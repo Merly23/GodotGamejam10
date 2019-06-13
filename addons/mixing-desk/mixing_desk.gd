@@ -9,7 +9,7 @@ func _enter_tree():
 	add_custom_type("RandomContainer", "Node", preload("music/containers/ran_cont.gd"), preload("music/song_icon.png"))
 	add_custom_type("SeqContainer", "Node", preload("music/containers/seq_cont.gd"), preload("music/song_icon.png"))
 	add_custom_type("ConcatContainer", "Node", preload("music/containers/concat_cont.gd"), preload("music/song_icon.png"))
-
+	
 	#sound nodes - nonspatial
 	add_custom_type("PolySoundContainer", "Node", preload("sound/nonspatial/polysound.gd"), preload("sound/snd_icon.png"))
 	add_custom_type("RanSoundContainer", "Node", preload("sound/nonspatial/ran_cont.gd"), preload("sound/snd_icon.png"))
@@ -23,11 +23,11 @@ func _enter_tree():
 	add_custom_type("ConcatSoundContainer2D", "Node2D", preload("sound/2d/concat_cont.gd"), preload("sound/snd_icon.png"))
 
 	#sound nodes - 3d
-	add_custom_type("PolySoundContainer3D", "Spatial", preload("sound/2d/polysound.gd"), preload("sound/snd_icon.png"))
-	add_custom_type("RanSoundContainer3D", "Spatial", preload("sound/2d/ran_cont.gd"), preload("sound/snd_icon.png"))
-	add_custom_type("ScatterSoundContainer3D", "Spatial", preload("sound/2d/scatter_cont.gd"), preload("sound/snd_icon.png"))
-	add_custom_type("ConcatSoundContainer3D", "Spatial", preload("sound/2d/concat_cont.gd"), preload("sound/snd_icon.png"))
-
+	add_custom_type("PolySoundContainer3D", "Spatial", preload("sound/3d/polysound.gd"), preload("sound/snd_icon.png"))
+	add_custom_type("RanSoundContainer3D", "Spatial", preload("sound/3d/ran_cont.gd"), preload("sound/snd_icon.png"))
+	add_custom_type("ScatterSoundContainer3D", "Spatial", preload("sound/3d/scatter_cont.gd"), preload("sound/snd_icon.png"))
+	add_custom_type("ConcatSoundContainer3D", "Spatial", preload("sound/3d/concat_cont.gd"), preload("sound/snd_icon.png"))
+	
 func _exit_tree():
 	#music nodes
 	remove_custom_type("MixingDeskMusic")
@@ -36,7 +36,7 @@ func _exit_tree():
 	remove_custom_type("RandomContainer")
 	remove_custom_type("SeqContainer")
 	remove_custom_type("ConcatContainer")
-
+	
 	#sound nodes - nonspatial
 	remove_custom_type("PolysoundContainer")
 	remove_custom_type("RanSoundContainer")

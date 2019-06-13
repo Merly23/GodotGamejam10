@@ -33,7 +33,7 @@ func _scatter_timeout(timer, tmin, tmax):
 	_play(1)
 	timer.start(rand_range(tmin, tmax))
 	
-func _end(sound):
+func _end():
 	timeroot.queue_free()
 	
 func _play(num, ran=true):
@@ -60,3 +60,6 @@ func _randomise_pitch_and_vol(sound):
 	var newpitch = (dpitch + rand_range(-pitch_range,pitch_range))
 	sound.volume_db = newvol
 	sound.pitch_scale = newpitch
+
+func _range(item : float) -> float:
+	return rand_range(-item,item)
