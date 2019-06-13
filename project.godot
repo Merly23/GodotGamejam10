@@ -43,6 +43,10 @@ window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "mixing-desk" )
+
 [importer_defaults]
 
 texture={
