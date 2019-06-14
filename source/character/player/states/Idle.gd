@@ -3,11 +3,12 @@ extends State
 func enter(host: Node) -> void:
 	host = host as Character
 	host.play("idle")
+	host.motion = Vector2(0,0)
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 
-	if event.is_action_pressed("jump"):
+	if event.is_action_pressed("ui_up"):
 		host.fsm.change_state("jump")
 
 func update(host: Node, delta: float) -> void:

@@ -3,7 +3,7 @@ extends State
 var left := false
 var right := false
 
-export var max_speed := 400
+export var max_speed := 450
 export var acceleration := 60
 export var friction := 0.4
 
@@ -14,7 +14,7 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 
-	if event.is_action_pressed("jump"):
+	if event.is_action_pressed("ui_up"):
 		host.fsm.change_state("jump")
 
 func update(host: Node, delta: float) -> void:
