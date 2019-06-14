@@ -1,17 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://source/game/Game.gd" type="Script" id=1]
-[ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=2]
-[ext_resource path="res://source/character/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/interface/hud/Interface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=3]
+[ext_resource path="res://source/character/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/camera/GameCam.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="Interface" parent="." instance=ExtResource( 2 )]
+
 [node name="Terrain" type="TileMap" parent="."]
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
+[node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 166, 203 )
+
+[node name="GameCam" parent="." instance=ExtResource( 5 )]
+current = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+target = NodePath("../Player")
+[connection signal="state_changed" from="Player" to="." method="_on_Player_state_changed"]

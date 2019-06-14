@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Character
 
+signal state_changed(state_name)
+
 var motion := Vector2()
 
 onready var upper := {
@@ -40,5 +42,5 @@ func play_lower(anim_name: String) -> void:
 	lower.anim.travel(anim_name)
 
 func _on_FiniteStateMachine_state_changed(state_name) -> void:
-	print(name, ": ", state_name)
+	emit_signal("state_changed", state_name)
 
