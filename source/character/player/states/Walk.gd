@@ -35,5 +35,8 @@ func update(host: Node, delta: float) -> void:
 	if abs(host.motion.x) < 1:
 		host.fsm.change_state("idle")
 
+	if not host.is_on_floor():
+		host.fsm.change_state("fall")
+
 func exit(host: Node) -> void:
 	host = host as Character
