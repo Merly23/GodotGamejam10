@@ -5,6 +5,8 @@ signal state_changed(state_name)
 
 var motion := Vector2()
 
+export var team_name := 0
+
 onready var upper := {
 	anim_player = $Upper/AnimationPlayer,
 	anim_tree = $Upper/AnimationTree,
