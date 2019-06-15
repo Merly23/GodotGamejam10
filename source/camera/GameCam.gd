@@ -12,8 +12,3 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	global_position = _target.global_position
-
-	if _target.motion.x:
-		global_position.x += _target.motion.x / 2.5
-		var factor = 1 + abs(_target.motion.x) / 2000
-		zoom = Vector2(factor, factor)

@@ -1,6 +1,7 @@
 extends Character
 
 func _ready() -> void:
+	Global.Player = self
 	fsm.change_state("idle")
 
 func _register_states() -> void:
