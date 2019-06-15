@@ -15,7 +15,8 @@ var direction = 1
 var sight_box
 var sprite
 
-export var team_name := 2
+export(int) var team_name := 2
+export(Array) var enemy_teams := [1, 3]
 
 func _ready():
 	set_physics_process(true)
@@ -47,5 +48,6 @@ func _check_for_enemies(sight_box):
 		var kinematic_parent = KinematicBody2D.get_parent()
 		var seen_objects_team = kinematic_parent.get("team_name")
 		if seen_objects_team != null:
-			if seen_objects_team != team_name:
-				print(seen_objects_team, team_name)
+			for item in enemy_teams:
+				if(item != seen_objects_team):
+					print("enemy")
