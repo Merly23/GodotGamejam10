@@ -17,6 +17,9 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
 		host.fsm.change_state("jump")
 
+	if event.is_action_pressed("ui_down"):
+		host.fsm.change_state("dash")
+
 func update(host: Node, delta: float) -> void:
 	host = host as Character
 
@@ -25,7 +28,9 @@ func update(host: Node, delta: float) -> void:
 
 	if right and not left:
 		host.motion.x = clamp(host.motion.x + acceleration, 0, max_speed)
+		host.flip_right()
 	elif left and not right:
+		host.flip_left()
 		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, 0)
 	else:
 		host.motion.x = lerp(host.motion.x, 0, friction)

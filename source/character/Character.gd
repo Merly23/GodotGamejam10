@@ -28,9 +28,6 @@ func _ready() -> void:
 func _register_states() -> void:
 	print("Character::_ready->_setup_states: Overwrite!")
 
-func _register_host() -> void:
-	fsm.host = self
-
 func play(anim_name: String) -> void:
 	upper.anim.travel(anim_name)
 	lower.anim.travel(anim_name)
@@ -40,6 +37,26 @@ func play_upper(anim_name: String) -> void:
 
 func play_lower(anim_name: String) -> void:
 	lower.anim.travel(anim_name)
+
+func flip() -> void:
+	if is_flipped():
+		flip_right()
+	else:
+		flip_left()
+
+func flip_left() -> void:
+	upper.sprite.flip_v = true
+	lower.sprite.flip_v = true
+
+func flip_right() -> void:
+	upper.sprite.flip_v = false
+	lower.sprite.flip_v = false
+
+func is_flipped() -> bool:
+	return lower.sprite.flip_v
+
+func _register_host() -> void:
+	fsm.host = self
 
 func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	emit_signal("state_changed", state_name)

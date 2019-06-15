@@ -9,3 +9,4 @@ func _register_states() -> void:
 	fsm.register_state("walk", "Walk")
 	fsm.register_state("fall", "Fall")
 	fsm.register_state("jump", "Jump")
+	fsm.register_state("dash", "Dash")
