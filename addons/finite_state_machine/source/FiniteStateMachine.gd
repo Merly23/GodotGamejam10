@@ -24,8 +24,6 @@ func _physics_process(delta: float) -> void:
 
 func register_state(id: String, node_path: String):
 	states[id] = get_node(node_path)
-	self.register_state("search", "Search")
-	self.register_state("attackenemy", "AttackEnemy")
 
 func change_state(new_state: String) -> void:
 
