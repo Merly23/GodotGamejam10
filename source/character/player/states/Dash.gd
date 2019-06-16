@@ -6,6 +6,7 @@ export var friction := 0.08
 func enter(host: Node) -> void:
 	host = host as Character
 	host.play("dash")
+	host.spawn_dash_dust()
 	if host.is_flipped():
 		host.motion = Vector2(-force.x, force.y)
 	else:

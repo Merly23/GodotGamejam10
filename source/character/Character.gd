@@ -68,6 +68,12 @@ func spawn_jump_dust() -> void:
 	get_tree().root.add_child(dust)
 	dust.play("jump")
 
+func spawn_dash_dust() -> void:
+	var dust = Instance.Dust()
+	dust.global_position = hooks.dust_center.global_position
+	get_tree().root.add_child(dust)
+	dust.play("dash", is_flipped())
+
 func spawn_stop_dust() -> void:
 	var dust = Instance.Dust()
 	get_tree().root.add_child(dust)
@@ -89,6 +95,7 @@ func spawn_land_dust() -> void:
 
 	dust_left.play("land", true)
 	dust_right.play("land")
+
 
 func flip() -> void:
 	if is_flipped():
