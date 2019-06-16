@@ -3,9 +3,16 @@ class_name Character
 
 signal state_changed(state_name)
 
+signal health_changed(health)
+signal died
+
 var motion := Vector2()
 
-export var team_name := 0
+var health setget _set_health
+
+export var team_number := 0
+
+export var max_health := 2
 
 onready var upper := {
 	anim_player = $Upper/AnimationPlayer,
@@ -29,6 +36,9 @@ func _ready() -> void:
 
 func _register_states() -> void:
 	print("Character::_ready->_setup_states: Overwrite!")
+
+func hurt(damage) -> void:
+	_set_health(health - damage)
 
 func play(anim_name: String) -> void:
 #	upper.anim.travel(anim_name)
@@ -63,6 +73,12 @@ func is_flipped() -> bool:
 
 func _register_host() -> void:
 	fsm.host = self
+
+func _set_health(value) -> void:
+	health = clamp(value, 0, max_health)
+	emit_signal("health_changed")
+	if health == 0:
+		emit_signal("died")
 
 func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	emit_signal("state_changed", state_name)
