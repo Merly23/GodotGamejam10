@@ -28,6 +28,12 @@ onready var lower := {
 	sprite = $Lower/Sprite
 }
 
+onready var hooks := {
+	dust_left = $Hooks/DustLeft,
+	dust_center = $Hooks/DustCenter,
+	dust_right = $Hooks/DustRight
+}
+
 onready var fsm := $FiniteStateMachine as FiniteStateMachine
 
 func _ready() -> void:
@@ -53,6 +59,34 @@ func play_upper(anim_name: String) -> void:
 func play_lower(anim_name: String) -> void:
 #	lower.anim.travel(anim_name)
 	lower.anim_player.play(anim_name)
+
+func spawn_jump_dust() -> void:
+	var dust = Instance.Dust()
+	dust.global_position = hooks.dust_center.global_position
+	get_parent().add_child(dust)
+	dust.play("jump")
+
+func spawn_stop_dust() -> void:
+	var dust = Instance.Dust()
+	get_parent().add_child(dust)
+	if is_flipped():
+		dust.global_position = hooks.dust_left.global_position
+	else:
+		dust.global_position = hooks.dust_right.global_position
+	dust.play("land", is_flipped())
+
+func spawn_land_dust() -> void:
+	var dust_left = Instance.Dust()
+	var dust_right = Instance.Dust()
+
+	get_parent().add_child(dust_left)
+	get_parent().add_child(dust_right)
+
+	dust_left.global_position = hooks.dust_left.global_position
+	dust_right.global_position = hooks.dust_right.global_position
+
+	dust_left.play("land", true)
+	dust_right.play("land")
 
 func flip() -> void:
 	if is_flipped():
@@ -82,4 +116,3 @@ func _set_health(value) -> void:
 
 func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	emit_signal("state_changed", state_name)
-

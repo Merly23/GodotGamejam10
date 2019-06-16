@@ -7,6 +7,8 @@ export var max_speed := 450
 export var acceleration := 60
 export var friction := 0.4
 
+var stopped := false
+
 func enter(host: Node) -> void:
 	host = host as Character
 	host.play("idle")
@@ -29,11 +31,16 @@ func update(host: Node, delta: float) -> void:
 	if right and not left:
 		host.motion.x = clamp(host.motion.x + acceleration, 0, max_speed)
 		host.flip_right()
+		stopped = false
 	elif left and not right:
-		host.flip_left()
 		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, 0)
+		host.flip_left()
+		stopped = false
 	else:
 		host.motion.x = lerp(host.motion.x, 0, friction)
+		if not stopped:
+			host.spawn_stop_dust()
+			stopped = true
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
@@ -44,4 +51,5 @@ func update(host: Node, delta: float) -> void:
 		host.fsm.change_state("fall")
 
 func exit(host: Node) -> void:
+	stopped = true
 	host = host as Character

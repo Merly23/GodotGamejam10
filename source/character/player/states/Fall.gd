@@ -39,6 +39,7 @@ func update(host: Node, delta: float) -> void:
 			host.fsm.change_state("walk")
 		else:
 			host.fsm.change_state("idle")
+		host.spawn_land_dust()
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 

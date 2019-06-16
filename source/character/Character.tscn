@@ -45,6 +45,7 @@ parameters/playback = SubResource( 4 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
 shape = SubResource( 5 )
 
 [node name="FiniteStateMachine" type="Node" parent="."]
@@ -52,4 +53,15 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+
+[node name="Hooks" type="Node2D" parent="."]
+
+[node name="DustLeft" type="Position2D" parent="Hooks"]
+position = Vector2( -31, 32 )
+
+[node name="DustCenter" type="Position2D" parent="Hooks"]
+position = Vector2( 0, 32 )
+
+[node name="DustRight" type="Position2D" parent="Hooks"]
+position = Vector2( 31, 32 )
 [connection signal="state_changed" from="FiniteStateMachine" to="." method="_on_FiniteStateMachine_state_changed"]
