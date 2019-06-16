@@ -14,14 +14,17 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
 
-[node name="Enemies" type="Node2D" parent="Terrain"]
+[node name="Checkpoints" type="Node2D" parent="."]
 
-[node name="Player" parent="Terrain" instance=ExtResource( 3 )]
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Player" parent="Characters" instance=ExtResource( 3 )]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Cutscenes" type="Node" parent="."]
 
 [node name="GameCam" parent="." instance=ExtResource( 4 )]
 current = true
-target = NodePath("../Terrain/Player")
-
-[node name="Cutscenes" type="Node" parent="."]
 
 [node name="Interface" parent="." instance=ExtResource( 5 )]

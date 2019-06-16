@@ -1,9 +1,15 @@
 extends Area2D
 
-signal checkpoint_reached(id)
+signal reached(id)
 
-export var id := 0
+var active := false
+
+var id := 0
+
+func _ready() -> void:
+	id = get_index()
 
 func _on_Checkpoint_body_entered(body: PhysicsBody2D) -> void:
-	if body == Global.Player:
-		emit_signal("checkpoint_reached", id)
+	if body == Global.Player and not active:
+		active = true
+		emit_signal("reached", id)

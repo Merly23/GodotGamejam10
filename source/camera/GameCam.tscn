@@ -10,4 +10,8 @@ smoothing_enabled = true
 smoothing_speed = 6.0
 script = ExtResource( 1 )
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="ScreenShake" parent="." instance=ExtResource( 2 )]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

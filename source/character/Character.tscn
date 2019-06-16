@@ -30,6 +30,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Upper"]
+position = Vector2( 0, -32 )
 texture = ExtResource( 2 )
 
 [node name="Lower" type="Node2D" parent="."]
@@ -43,9 +44,10 @@ parameters/playback = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Lower"]
 texture = ExtResource( 2 )
+offset = Vector2( 0, -32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1 )
+position = Vector2( 0, -31 )
 shape = SubResource( 5 )
 
 [node name="FiniteStateMachine" type="Node" parent="."]
@@ -57,11 +59,10 @@ __meta__ = {
 [node name="Hooks" type="Node2D" parent="."]
 
 [node name="DustLeft" type="Position2D" parent="Hooks"]
-position = Vector2( -31, 32 )
+position = Vector2( -31, 0 )
 
 [node name="DustCenter" type="Position2D" parent="Hooks"]
-position = Vector2( 0, 32 )
 
 [node name="DustRight" type="Position2D" parent="Hooks"]
-position = Vector2( 31, 32 )
+position = Vector2( 31, 0 )
 [connection signal="state_changed" from="FiniteStateMachine" to="." method="_on_FiniteStateMachine_state_changed"]

@@ -1,18 +1,25 @@
 extends Camera2D
 class_name GameCam
 
-var _target : Character = null
+var _target = null
+var _prev_target = null
 
-var fake_position := Vector2()
-
-export(NodePath) var target = null
-
+onready var timer := $Timer as Timer
 onready var screen_shake := $ScreenShake as ScreenShake
 
-func _ready() -> void:
-	if target:
-		_target = get_node(target)
-		fake_position = _target.global_position
-
 func _process(delta: float) -> void:
-	global_position = _target.global_position
+	if _target:
+		global_position = _target.global_position
+
+func change_target(new_target: Node2D, wait_time: float = 0) -> void:
+	if _target:
+		_prev_target = _target
+
+	_target = new_target
+
+	if wait_time:
+		timer.wait_time = wait_time
+		timer.start()
+
+func _on_Timer_timeout() -> void:
+	change_target(_prev_target)
