@@ -18,7 +18,7 @@ var sees_enemy = false
 var can_attack_enemy = false
 var host = host as Character
 
-export(int) var team_name := 2
+var team_name := 2
 export(Array) var enemy_teams := [1, 3]
 export(int) var weapon_type := 1
 export(int) var gun_range := 150
