@@ -15,6 +15,7 @@ extents = Vector2( 126, 41 )
 
 [node name="AICharacter" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+team_number = 2
 
 [node name="AnimationTree" parent="Upper" index="1"]
 parameters/playback = SubResource( 1 )
