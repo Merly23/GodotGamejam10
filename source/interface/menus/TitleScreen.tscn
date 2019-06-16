@@ -1,62 +1,70 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://graphics/themes/theme.tres" type="Theme" id=1]
+[ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
+[ext_resource path="res://graphics/fonts/pixelmix/pixelmix24.tres" type="DynamicFont" id=3]
 
 [node name="TitleScreen" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 288.0
-margin_top = 119.0
-margin_right = 351.0
-margin_bottom = 240.0
+margin_left = 260.0
+margin_top = 106.0
+margin_right = 380.0
+margin_bottom = 253.0
 custom_constants/separation = 15
 
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 63.0
-margin_bottom = 14.0
+margin_right = 120.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 3 )
 text = "Glitch"
 align = 1
 valign = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 63.0
-margin_bottom = 121.0
+margin_top = 39.0
+margin_right = 120.0
+margin_bottom = 147.0
 
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
-margin_right = 63.0
-margin_bottom = 20.0
+margin_right = 120.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Play"
 
 [node name="Settings" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
-margin_top = 24.0
-margin_right = 63.0
-margin_bottom = 44.0
+margin_top = 28.0
+margin_right = 120.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 0, 24 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Options"
 
 [node name="Credits" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
-margin_top = 48.0
-margin_right = 63.0
-margin_bottom = 68.0
+margin_top = 56.0
+margin_right = 120.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 24 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Credits"
 
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
-margin_top = 72.0
-margin_right = 63.0
-margin_bottom = 92.0
+margin_top = 84.0
+margin_right = 120.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 0, 24 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Quit"
