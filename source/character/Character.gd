@@ -31,14 +31,18 @@ func _register_states() -> void:
 	print("Character::_ready->_setup_states: Overwrite!")
 
 func play(anim_name: String) -> void:
-	upper.anim.travel(anim_name)
-	lower.anim.travel(anim_name)
+#	upper.anim.travel(anim_name)
+#	lower.anim.travel(anim_name)
+	upper.anim_player.play(anim_name)
+	lower.anim_player.play(anim_name)
 
 func play_upper(anim_name: String) -> void:
-	upper.anim.travel(anim_name)
+#	upper.anim.travel(anim_name)
+	upper.anim_player.play(anim_name)
 
 func play_lower(anim_name: String) -> void:
-	lower.anim.travel(anim_name)
+#	lower.anim.travel(anim_name)
+	lower.anim_player.play(anim_name)
 
 func flip() -> void:
 	if is_flipped():

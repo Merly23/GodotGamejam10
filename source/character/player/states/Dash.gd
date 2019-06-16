@@ -1,7 +1,7 @@
 extends State
 
-export var force := Vector2(1200, -60)
-export var friction := 0.05
+export var force := Vector2(1400, 0)
+export var friction := 0.08
 
 func enter(host: Node) -> void:
 	host = host as Character
@@ -17,13 +17,12 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Character
 
-	host.motion.y += Global.GRAVITY * delta
+	# host.motion.y += Global.GRAVITY * delta
 	host.motion.x = lerp(host.motion.x, 0, friction)
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
-	if host.is_on_floor():
-		if abs(host.motion.x) < 500:
-			host.fsm.change_state("walk")
+	if abs(host.motion.x) < 500:
+		host.fsm.change_state("fall")
 
 func exit(host: Node) -> void:
 	host = host as Character

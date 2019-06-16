@@ -8,7 +8,7 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 
-	if event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("jump"):
 		host.fsm.change_state("jump")
 
 	if event.is_action_pressed("ui_down"):

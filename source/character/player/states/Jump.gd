@@ -7,7 +7,7 @@ export var friction := 0.4
 
 func enter(host: Node) -> void:
 	host = host as Character
-	host.play("jump")
+	host.play("idle")
 	host.motion.y = -jump_force
 
 func input(host: Node, event: InputEvent) -> void:
@@ -26,8 +26,10 @@ func update(host: Node, delta: float) -> void:
 
 	if left and not right:
 		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, max_speed)
+		host.flip_left()
 	elif right and not left:
 		host.motion.x = clamp(host.motion.x + acceleration, -max_speed, max_speed)
+		host.flip_right()
 	else:
 		host.motion.x = lerp(host.motion.x, 0, friction)
 		if abs(host.motion.x) < 0.1:

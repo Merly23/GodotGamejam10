@@ -25,13 +25,13 @@ export(int) var ai_type = 0
 
 func _ready():
 	set_physics_process(true)
-	
+
 	sight_box = $"SightBoxArea"
 	sprite = $"Sprite"
 	team_name = self.get("team_name")
 	ai_type = self.get("ai_type")
 	weapon_type = self.get("weapon_type")
-	
+
 	if(ai_type == 0):
 		print(0)
 	if(ai_type == 1):
@@ -40,17 +40,17 @@ func _ready():
 		print(2)
 	if(ai_type == 3):
 		print(3)
-	
+
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	
+
 	velocity.x = Speed * direction
 	velocity.y += Gravity
 	velocity = move_and_slide(velocity, Floor)
-	
+
 	_check_for_enemies(sight_box)
-	
+
 	if(sees_enemy):
 		_face_toward_enemy(enemy)
 		_can_attack(enemy)
@@ -63,7 +63,7 @@ func _physics_process(delta):
 			direction = direction * -1
 			sprite.flip_v = true
 			sight_box.position.x += 150 * direction
-		
+
 
 func _can_attack(enemy):
 	var distance_from_enemy = self.get_global_position().distance_to(enemy.get_global_position())
@@ -78,7 +78,7 @@ func _can_attack(enemy):
 
 func _attack(enemy):
 	var weapon = self.get("weapon_type")
-	
+
 
 func _move_towards_enemy(enemy):
 	var enemy_direction = self.get_global_position().distance_to(enemy.get_global_position())
@@ -102,11 +102,11 @@ func _face_toward_enemy(enemy):
 
 func _check_for_enemies(sight_box):
 	var seen_objects = sight_box.get_overlapping_bodies()
-	
+
 	for KinematicBody2D in seen_objects:
 		var kinematic_parent = KinematicBody2D.get_parent()
 		var seen_objects_team = kinematic_parent.get("team_name")
-		
+
 		if seen_objects_team != null:
 			for item in enemy_teams:
 				if(item != seen_objects_team):
