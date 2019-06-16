@@ -20,8 +20,8 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Character
 
-	var left = Input.is_action_pressed("ui_left")
-	var right = Input.is_action_pressed("ui_right")
+	var left = Input.is_action_pressed("ui_left") if not host.disabled else false
+	var right = Input.is_action_pressed("ui_right") if not host.disabled else false
 
 	if host.is_on_wall():
 		host.motion.x = 0

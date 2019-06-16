@@ -10,6 +10,8 @@ var motion := Vector2()
 
 var health setget _set_health
 
+var disabled := false setget _set_disabled
+
 export var team_number := 0
 
 export var max_health := 2
@@ -63,12 +65,12 @@ func play_lower(anim_name: String) -> void:
 func spawn_jump_dust() -> void:
 	var dust = Instance.Dust()
 	dust.global_position = hooks.dust_center.global_position
-	get_parent().add_child(dust)
+	get_tree().root.add_child(dust)
 	dust.play("jump")
 
 func spawn_stop_dust() -> void:
 	var dust = Instance.Dust()
-	get_parent().add_child(dust)
+	get_tree().root.add_child(dust)
 	if is_flipped():
 		dust.global_position = hooks.dust_left.global_position
 	else:
@@ -79,8 +81,8 @@ func spawn_land_dust() -> void:
 	var dust_left = Instance.Dust()
 	var dust_right = Instance.Dust()
 
-	get_parent().add_child(dust_left)
-	get_parent().add_child(dust_right)
+	get_tree().root.add_child(dust_left)
+	get_tree().root.add_child(dust_right)
 
 	dust_left.global_position = hooks.dust_left.global_position
 	dust_right.global_position = hooks.dust_right.global_position
@@ -107,6 +109,10 @@ func is_flipped() -> bool:
 
 func _register_host() -> void:
 	fsm.host = self
+
+func _set_disabled(value):
+	disabled = value
+	fsm.set_process_unhandled_input(!value)
 
 func _set_health(value) -> void:
 	health = clamp(value, 0, max_health)

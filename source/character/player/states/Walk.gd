@@ -25,8 +25,8 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Character
 
-	right = Input.is_action_pressed("ui_right")
-	left = Input.is_action_pressed("ui_left")
+	right = Input.is_action_pressed("ui_right") if not host.disabled else false
+	left = Input.is_action_pressed("ui_left") if not host.disabled else false
 
 	if right and not left:
 		host.motion.x = clamp(host.motion.x + acceleration, 0, max_speed)
