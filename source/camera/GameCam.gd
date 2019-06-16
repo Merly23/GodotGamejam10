@@ -10,8 +10,9 @@ export(NodePath) var target = null
 onready var screen_shake := $ScreenShake as ScreenShake
 
 func _ready() -> void:
-	_target = get_node(target)
-	fake_position = _target.global_position
+	if target:
+		_target = get_node(target)
+		fake_position = _target.global_position
 
 func _process(delta: float) -> void:
 	global_position = _target.global_position
