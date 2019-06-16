@@ -23,6 +23,9 @@ func update(host: Node, delta: float) -> void:
 	var left = Input.is_action_pressed("ui_left")
 	var right = Input.is_action_pressed("ui_right")
 
+	if host.is_on_wall():
+		host.motion.x = 0
+
 	host.motion.y += Global.GRAVITY * delta
 
 	if left and not right:
