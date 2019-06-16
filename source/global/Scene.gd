@@ -4,6 +4,7 @@ extends CanvasLayer
 const TitleScreen := "res://source/interface/menu/TitleScreen.tscn"
 
 const Game := "res://source/game/Game.tscn"
+const Level1 := "res://source/level/levels/Level1.tscn"
 
 var next_scene := ""
 var show_bar := false
