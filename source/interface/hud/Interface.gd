@@ -1,7 +1,10 @@
 extends CanvasLayer
 class_name Interface
 
-onready var player_state_label := $PlayerStateLabel
+onready var info_panel := $InfoPanel
 
-func update_player_state(state_name: String) -> void:
-	player_state_label.text = state_name
+func show() -> void:
+	info_panel.show()
+
+func hide() -> void:
+	info_panel.hide()
