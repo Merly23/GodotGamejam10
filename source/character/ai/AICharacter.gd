@@ -16,6 +16,7 @@ var sprite
 var enemy
 var sees_enemy = false
 var can_attack_enemy = false
+var host = host as Character
 
 export(int) var team_name := 2
 export(Array) var enemy_teams := [1, 3]

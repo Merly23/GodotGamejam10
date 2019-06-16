@@ -1,8 +1,10 @@
 extends State
 
+var host = host as Character
+
 func enter(host: Node) -> void:
     host = host as Character
-    host.play("walk")
+   # host.play("walk")
 
 func input(host: Node, event: InputEvent) -> void:
     host = host as Character
@@ -27,10 +29,10 @@ func exit(host: Node) -> void:
 	
 func _can_attack(enemy):
 	var distance_from_enemy = host.get_global_position().distance_to(host.enemy.get_global_position())
-	if(weapon_type == 1):
+	if(host.weapon_type == 1):
 		if(distance_from_enemy <= host.gun_range && distance_from_enemy >= host.gun_range * -1):
 			host.can_attack_enemy = true
-	if(weapon_type == 2):
+	if(host.weapon_type == 2):
 		if(distance_from_enemy <= host.melee_range && distance_from_enemy >= host.melee_range * -1):
 			host.can_attack_enemy = true
 	else:
@@ -44,18 +46,18 @@ func _move_towards_enemy(enemy):
 	var enemy_direction = host.get_global_position().distance_to(host.enemy.get_global_position())
 	if(enemy_direction <= 0):
 		host.direction = host.direction * -1
-		sprite.flip_v = true
+		host.sprite.flip_v = true
 		host.DetectionArea.position.x += 150 * host.direction
 	else:
 		host.direction = host.direction * -1
-		sprite.flip_v = true
+		host.sprite.flip_v = true
 		host.DetectionArea.position.x += 150 * host.direction
 
 func _face_toward_enemy(enemy):
 	var enemy_direction = host.get_global_position().distance_to(host.enemy.get_global_position())
 	if(enemy_direction <= 0):
 		host.direction = -1
-		sprite.flip_v = true
+		host.sprite.flip_v = true
 	else:
 		host.direction = 1
-		sprite.flip_v = true
+		host.sprite.flip_v = true

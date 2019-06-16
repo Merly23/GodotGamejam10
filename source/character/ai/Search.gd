@@ -4,10 +4,11 @@ var velocity = Vector2()
 const Gravity = 10
 const Speed = 30
 const Floor = Vector2(0,-1)
+var host = host as Character
 
 func enter(host: Node) -> void:
 	host = host as Character
-	host.play("walk")
+	#host.play("walk")
 	pass
 
 func input(host: Node, event: InputEvent) -> void:
@@ -43,7 +44,7 @@ func _check_for_enemies():
 		var seen_objects_team = kinematic_parent.team_name
 
 		if seen_objects_team != null:
-			for item in enemy_teams:
+			for item in host.enemy_teams:
 				#checks if the team association of the kinematic body is on the list of enemy teams
 				if(item != seen_objects_team):
 					print("enemy")
