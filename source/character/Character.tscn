@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/character/Character.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/characters/character.png" type="Texture" id=2]
 [ext_resource path="res://addons/finite_state_machine/source/FiniteStateMachine.gd" type="Script" id=3]
 [ext_resource path="res://addons/finite_state_machine/icons/fsm.png" type="Texture" id=4]
+[ext_resource path="res://source/character/HitArea.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 24.0
+height = 14.0
 
 [sub_resource type="AnimationNodeStateMachine" id=1]
 
@@ -13,12 +18,12 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 24.0
-height = 14.0
-
 [node name="Character" type="KinematicBody2D"]
 script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -31 )
+shape = SubResource( 5 )
 
 [node name="Upper" type="Node2D" parent="."]
 
@@ -46,10 +51,6 @@ parameters/playback = SubResource( 4 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -31 )
-shape = SubResource( 5 )
-
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource( 3 )
 __meta__ = {
@@ -65,4 +66,6 @@ position = Vector2( -31, 0 )
 
 [node name="DustRight" type="Position2D" parent="Hooks"]
 position = Vector2( 31, 0 )
+
+[node name="HitArea" parent="." instance=ExtResource( 5 )]
 [connection signal="state_changed" from="FiniteStateMachine" to="." method="_on_FiniteStateMachine_state_changed"]

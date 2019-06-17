@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/player/Player.gd" type="Script" id=2]
@@ -10,9 +10,43 @@
 [ext_resource path="res://source/character/player/states/Dash.gd" type="Script" id=8]
 [ext_resource path="res://source/character/player/states/Slash.gd" type="Script" id=9]
 [ext_resource path="res://source/character/player/states/Shoot.gd" type="Script" id=10]
+[ext_resource path="res://source/character/player/SlowMotion.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "dash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.101532, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[sub_resource type="Animation" id=4]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -43,58 +77,24 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-
-[sub_resource type="Animation" id=3]
-resource_name = "dash"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 0.101532, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "idle"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
 [node name="Player" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="Upper" index="0"]
 anims/dash = SubResource( 1 )
-anims/idle = SubResource( 5 )
+anims/idle = SubResource( 2 )
 
 [node name="AnimationTree" parent="Upper" index="1"]
-parameters/playback = SubResource( 2 )
+parameters/playback = SubResource( 3 )
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
-anims/dash = SubResource( 3 )
-anims/idle = SubResource( 6 )
+anims/dash = SubResource( 4 )
+anims/idle = SubResource( 5 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
-parameters/playback = SubResource( 4 )
+parameters/playback = SubResource( 6 )
 
 [node name="Idle" type="Node" parent="FiniteStateMachine" index="0"]
 script = ExtResource( 3 )
@@ -147,3 +147,5 @@ script = ExtResource( 10 )
 __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
+
+[node name="SlowMotion" parent="." index="6" instance=ExtResource( 11 )]

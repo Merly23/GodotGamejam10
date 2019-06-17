@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 25, 32 )
+
+[node name="HitArea" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 49, -32 )
+shape = SubResource( 6 )

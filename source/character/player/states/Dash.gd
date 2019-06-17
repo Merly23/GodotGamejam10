@@ -1,7 +1,7 @@
 extends State
 
 export var force := Vector2(1400, 0)
-export var friction := 0.08
+export var friction := 4500
 
 func enter(host: Node) -> void:
 	host = host as Character
@@ -19,7 +19,9 @@ func update(host: Node, delta: float) -> void:
 	host = host as Character
 
 	# host.motion.y += Global.GRAVITY * delta
-	host.motion.x = lerp(host.motion.x, 0, friction)
+	var direction = -1 if host.is_flipped() else 1
+
+	host.motion.x -= friction * direction * delta
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 	if abs(host.motion.x) < 500:

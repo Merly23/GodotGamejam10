@@ -36,6 +36,8 @@ onready var hooks := {
 	dust_right = $Hooks/DustRight
 }
 
+onready var hit_area := $HitArea as Area2D
+
 onready var fsm := $FiniteStateMachine as FiniteStateMachine
 
 func _ready() -> void:
@@ -113,6 +115,12 @@ func flip_right() -> void:
 
 func is_flipped() -> bool:
 	return lower.sprite.flip_v
+
+func slash() -> void:
+	pass
+
+func shoot() -> void:
+	pass
 
 func _register_host() -> void:
 	fsm.host = self
