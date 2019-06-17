@@ -128,6 +128,7 @@ func _register_host() -> void:
 func _set_disabled(value):
 	disabled = value
 	fsm.set_process_unhandled_input(!value)
+	set_process_input(!value)
 
 func _set_health(value) -> void:
 	health = clamp(value, 0, max_health)
