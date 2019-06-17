@@ -16,7 +16,4 @@ func get_random_target_position(move_radius: float) -> Vector2:
 
 	var new_target_position :=  Vector2(origin.x + rand, global_position.y)
 
-	print("Origin: ", origin)
-	print("Distance: ", new_target_position  - origin)
-
 	return new_target_position

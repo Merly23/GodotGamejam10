@@ -5,7 +5,6 @@ export var average_wait_time := 3.0
 onready var timer := $Timer as Timer
 
 func enter(host: Node) -> void:
-	print(host.name, ": Idle")
 	host = host as Character
 	host.play("idle")
 

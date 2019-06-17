@@ -21,7 +21,7 @@ func write(speaker: String, line: String) -> void:
 	text_label.text = line
 	reset()
 	writing = true
-	print("start writing textbox")
+	# print("start writing textbox")
 
 func stop():
 	writing = false
@@ -29,12 +29,12 @@ func stop():
 func reset():
 	visible_characters = 0.0
 	text_label.visible_characters = 0
-	print("reset textbox")
+	# print("reset textbox")
 
 func complete():
 	text_label.visible_characters = len(text_label.text)
-	print("complete textbox")
+	# print("complete textbox")
 
 func is_complete():
 	return text_label.visible_characters >= len(text_label.text)
-	print("textbox is complete")
+	# print("textbox is complete")

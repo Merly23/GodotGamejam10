@@ -1,6 +1,7 @@
 extends Character
 
 onready var slow_motion := $SlowMotion
+onready var terrain_checker := $TerrainCheckArea
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("X"):
@@ -43,3 +44,5 @@ func spawn_pulse_in() -> void:
 	pulse.global_position = hooks.pulse.global_position
 	get_tree().root.add_child(pulse)
 	pulse.play("in")
+
+

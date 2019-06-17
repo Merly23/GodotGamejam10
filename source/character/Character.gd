@@ -10,6 +10,8 @@ var motion := Vector2()
 
 var health setget _set_health
 
+var bottom_limit := 99999
+
 var disabled := false setget _set_disabled
 
 export var team_number := 0
@@ -38,6 +40,8 @@ onready var hooks := {
 	dust_right = $Hooks/DustRight
 }
 
+onready var collision_shape := $CollisionShape2D as CollisionShape2D
+
 onready var hit_area := $HitArea as Area2D
 
 onready var fsm := $FiniteStateMachine as FiniteStateMachine
@@ -47,6 +51,10 @@ func _ready() -> void:
 	_register_states()
 	fsm.register_state("die", "Die")
 	health = max_health
+
+func _process(delta: float) -> void:
+	if global_position.y > bottom_limit:
+		get_tree().reload_current_scene()
 
 func _register_states() -> void:
 	print("Character::_ready->_setup_states: Overwrite!")
@@ -103,6 +111,11 @@ func spawn_land_dust() -> void:
 	dust_left.play("land", true)
 	dust_right.play("land")
 
+func enable_collision() -> void:
+	collision_shape.disabled = false
+
+func disable_collision() -> void:
+	collision_shape.disabled = true
 
 func flip() -> void:
 	if is_flipped():
@@ -134,6 +147,9 @@ func shoot() -> void:
 
 func _register_host() -> void:
 	fsm.host = self
+
+func set_bottom_limit(value) -> void:
+	bottom_limit = value
 
 func _set_disabled(value):
 	disabled = value

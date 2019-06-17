@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://source/level/Level.gd" type="Script" id=1]
 [ext_resource path="res://graphics/tilesets/terrain.tres" type="TileSet" id=2]
-[ext_resource path="res://source/character/player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/camera/GameCam.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/interface/hud/Interface.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/level/Terrain.gd" type="Script" id=3]
+[ext_resource path="res://source/character/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/camera/GameCam.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/interface/hud/Interface.tscn" type="PackedScene" id=6]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,18 +16,19 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 2
 collision_mask = 5
 format = 1
+script = ExtResource( 3 )
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="Player" parent="Characters" instance=ExtResource( 3 )]
+[node name="Player" parent="Characters" instance=ExtResource( 4 )]
 
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Cutscenes" type="Node" parent="."]
 
-[node name="GameCam" parent="." instance=ExtResource( 4 )]
+[node name="GameCam" parent="." instance=ExtResource( 5 )]
 current = true
 
-[node name="Interface" parent="." instance=ExtResource( 5 )]
+[node name="Interface" parent="." instance=ExtResource( 6 )]

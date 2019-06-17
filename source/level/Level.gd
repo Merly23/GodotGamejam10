@@ -5,6 +5,7 @@ export var id := 1
 export var bottom_limit := 1000
 
 onready var player := $Characters/Player
+onready var terrain := $Terrain
 
 onready var interface := $Interface as Interface
 onready var game_cam := $GameCam
@@ -13,6 +14,7 @@ onready var cutscenes := $Cutscenes.get_children()
 onready var checkpoints := $Checkpoints.get_children()
 
 func _ready() -> void:
+	get_tree().call_group("Character", "set_bottom_limit", bottom_limit)
 	game_cam.change_target(player)
 
 	if Global.save_data[id] != -1:
@@ -27,10 +29,6 @@ func _ready() -> void:
 
 	for checkpoint in checkpoints:
 		checkpoint.connect("reached", self, "_on_Checkpoint_reached")
-
-func _process(delta: float) -> void:
-	if player.global_position.y > bottom_limit:
-		get_tree().reload_current_scene()
 
 func _on_Cutscene_started() -> void:
 	interface.hide()

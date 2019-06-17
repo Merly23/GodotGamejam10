@@ -12,7 +12,7 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 
-	if event.is_action_pressed("ui_down"):
+	if event.is_action_pressed("V"):
 		host.fsm.change_state("dash")
 
 func update(host: Node, delta: float) -> void:

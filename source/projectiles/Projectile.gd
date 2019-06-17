@@ -21,7 +21,6 @@ func fire(flipped: bool) -> void:
 	direction = -1 if flipped else 1
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
-	print(body.name)
 	if body is Character and shooter.team_number != body.team_number:
 		body.hurt(damage)
 		queue_free()
