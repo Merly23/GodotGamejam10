@@ -110,6 +110,7 @@ position = Vector2( -31, 0 )
 position = Vector2( 31, 0 )
 
 [node name="HitArea" parent="." instance=ExtResource( 7 )]
+position = Vector2( 40, -32 )
 [connection signal="died" from="." to="." method="_on_Character_died"]
 [connection signal="animation_finished" from="Upper/AnimationPlayer" to="." method="_on_Upper_AnimationPlayer_animation_finished"]
 [connection signal="state_changed" from="FiniteStateMachine" to="." method="_on_FiniteStateMachine_state_changed"]

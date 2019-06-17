@@ -113,10 +113,12 @@ func flip() -> void:
 func flip_left() -> void:
 	upper.sprite.flip_v = true
 	lower.sprite.flip_v = true
+	hit_area.position.x = -40
 
 func flip_right() -> void:
 	upper.sprite.flip_v = false
 	lower.sprite.flip_v = false
+	hit_area.position.x = 40
 
 func is_flipped() -> bool:
 	return lower.sprite.flip_v
