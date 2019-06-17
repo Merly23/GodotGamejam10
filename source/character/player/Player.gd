@@ -1,6 +1,9 @@
 extends Character
 
 onready var slow_motion := $SlowMotion
+
+onready var dash_timer := $DashTimer as Timer
+
 onready var terrain_checker := $TerrainCheckArea
 
 func _input(event: InputEvent) -> void:
@@ -32,6 +35,9 @@ func flip_right() -> void:
 	.flip_right()
 	hooks.barrel.position.x = 44
 
+func can_dash() -> bool:
+	return dash_timer.is_stopped()
+
 func shoot() -> void:
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
@@ -39,10 +45,14 @@ func shoot() -> void:
 	get_tree().root.add_child(projectile)
 	projectile.fire(is_flipped())
 
+func spawn_after_image() -> void:
+	var image = Instance.AfterImage()
+	image.global_position = hooks.pulse.global_position
+	get_tree().root.add_child(image)
+	image.play("fade", is_flipped())
+
 func spawn_pulse_in() -> void:
 	var pulse = Instance.Pulse()
 	pulse.global_position = hooks.pulse.global_position
 	get_tree().root.add_child(pulse)
 	pulse.play("in")
-
-

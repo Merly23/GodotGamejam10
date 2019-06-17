@@ -19,7 +19,7 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("SPACE"):
 		host.fsm.change_state("jump")
 
-	if event.is_action_pressed("V"):
+	if event.is_action_pressed("V") and host.can_dash():
 		host.fsm.change_state("dash")
 
 func update(host: Node, delta: float) -> void:
