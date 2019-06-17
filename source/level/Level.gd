@@ -13,7 +13,7 @@ onready var cutscenes := $Cutscenes.get_children()
 onready var checkpoints := $Checkpoints.get_children()
 
 func _ready() -> void:
-	game_cam.change_target($Enemies/Civilian)
+	game_cam.change_target(player)
 
 	if Global.save_data[id] != -1:
 		var new_position = checkpoints[Global.save_data[id]].global_position
