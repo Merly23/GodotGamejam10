@@ -16,6 +16,8 @@ export var team_number := 0
 
 export var max_health := 2
 
+onready var anim_player := $AnimationPlayer as AnimationPlayer
+
 onready var upper := {
 	anim_player = $Upper/AnimationPlayer,
 	anim_tree = $Upper/AnimationTree,
@@ -43,12 +45,15 @@ onready var fsm := $FiniteStateMachine as FiniteStateMachine
 func _ready() -> void:
 	_register_host()
 	_register_states()
+	fsm.register_state("die", "Die")
+	health = max_health
 
 func _register_states() -> void:
 	print("Character::_ready->_setup_states: Overwrite!")
 
 func hurt(damage) -> void:
 	_set_health(health - damage)
+	anim_player.play("hurt")
 
 func play(anim_name: String) -> void:
 #	upper.anim.travel(anim_name)
@@ -138,3 +143,10 @@ func _set_health(value) -> void:
 
 func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	emit_signal("state_changed", state_name)
+
+func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	var current_animation = lower.anim_player.current_animation
+	upper.anim_player.play(current_animation)
+
+func _on_Character_died() -> void:
+	fsm.change_state("die")

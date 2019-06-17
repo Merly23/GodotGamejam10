@@ -3,6 +3,8 @@ extends Sprite
 export var speed := 1600
 export var damage := 1
 
+var shooter : Character = null
+
 var direction := 1
 
 var fired := false
@@ -19,5 +21,7 @@ func fire(flipped: bool) -> void:
 	direction = -1 if flipped else 1
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
-	if body is Character:
+	print(body.name)
+	if body is Character and shooter.team_number != body.team_number:
 		body.hurt(damage)
+		queue_free()

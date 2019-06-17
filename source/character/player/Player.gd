@@ -33,6 +33,7 @@ func flip_right() -> void:
 
 func shoot() -> void:
 	var projectile = Instance.Projectile()
+	projectile.shooter = self
 	projectile.global_position = hooks.barrel.global_position
 	get_tree().root.add_child(projectile)
 	projectile.fire(is_flipped())
