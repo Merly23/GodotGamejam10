@@ -2,6 +2,7 @@ extends State
 
 export var force := 1400
 export var friction := 4500
+export var max_dashes := 2
 
 var direction := Vector2()
 
@@ -34,7 +35,7 @@ func update(host: Node, delta: float) -> void:
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 	if host.motion.length() < 500:
-		if follow_dash and dash_count < 2:
+		if follow_dash and dash_count < max_dashes:
 			enter(host)
 		elif host.terrain_checker.is_in_terrain():
 			host.fsm.change_state("die")
