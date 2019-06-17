@@ -121,6 +121,9 @@ func flip_right() -> void:
 func is_flipped() -> bool:
 	return lower.sprite.flip_v
 
+func get_direction() -> int:
+	return -1 if is_flipped() else 1
+
 func slash() -> void:
 	pass
 

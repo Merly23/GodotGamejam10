@@ -19,9 +19,8 @@ func update(host: Node, delta: float) -> void:
 	host = host as Character
 
 	# host.motion.y += Global.GRAVITY * delta
-	var direction = -1 if host.is_flipped() else 1
 
-	host.motion.x -= friction * direction * delta
+	host.motion.x -= friction * host.get_direction() * delta
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 	if abs(host.motion.x) < 500:
