@@ -11,7 +11,7 @@ var stopped := false
 
 func enter(host: Node) -> void:
 	host = host as Character
-	host.play("idle")
+	host.play("walk")
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character

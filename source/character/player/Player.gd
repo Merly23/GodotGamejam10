@@ -47,7 +47,7 @@ func shoot() -> void:
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)
-	particle_spawner.spawn_after_image(center, lower.sprite.texture, is_flipped())
+	particle_spawner.spawn_after_image(center, is_flipped())
 
 func spawn_pulse_in() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)

@@ -35,9 +35,8 @@ func spawn_land_dust(spawn_position: Vector2, distance: int, flipped: bool) -> v
 	dust_left.play("land", true)
 	dust_right.play("land")
 
-func spawn_after_image(spawn_position: Vector2, texture: Texture, flipped: bool) -> void:
+func spawn_after_image(spawn_position: Vector2, flipped: bool) -> void:
 	var image = Instance.AfterImage()
-	image.texture = texture
 	image.global_position = spawn_position
 	get_tree().root.add_child(image)
 	image.play("fade", flipped)
