@@ -19,9 +19,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("V"):
 		shoot()
 
-	if event.is_action("B"):
-		attack()
-
 func _ready() -> void:
 	Global.Player = self
 	fsm.change_state("idle")

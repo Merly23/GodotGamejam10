@@ -11,6 +11,9 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("SPACE"):
 		host.fsm.change_state("jump")
 
+	if event.is_action_pressed("B"):
+		host.attack()
+
 	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")
 
