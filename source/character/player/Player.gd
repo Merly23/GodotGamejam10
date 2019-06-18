@@ -16,6 +16,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("C"):
 		shoot()
 
+	if event.is_action("B"):
+		attack()
+
 func _ready() -> void:
 	Global.Player = self
 	fsm.change_state("idle")
@@ -37,6 +40,9 @@ func flip_right() -> void:
 
 func can_dash() -> bool:
 	return dash_timer.is_stopped()
+
+func attack() -> void:
+	play_upper("attack")
 
 func shoot() -> void:
 	var projectile = Instance.Projectile()

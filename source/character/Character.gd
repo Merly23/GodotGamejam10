@@ -60,9 +60,9 @@ func hurt(damage) -> void:
 	anim_player.play("hurt")
 
 func play(anim_name: String) -> void:
-#	upper.anim.travel(anim_name)
-#	lower.anim.travel(anim_name)
-	upper.anim_player.play(anim_name)
+
+	if not upper.anim_player.current_animation == "attack":
+		upper.anim_player.play(anim_name)
 	lower.anim_player.play(anim_name)
 
 func play_upper(anim_name: String) -> void:
@@ -122,13 +122,15 @@ func shoot() -> void:
 func set_bottom_limit(value) -> void:
 	bottom_limit = value
 
+func get_current_frame() -> int:
+	return lower.sprite.frame
+
 func reset_modulate() -> void:
 	upper.sprite.modulate = Color("FFFFFFFF")
 	lower.sprite.modulate = Color("FFFFFFFF")
 
 func _register_host() -> void:
 	fsm.host = self
-
 
 func _set_disabled(value):
 	disabled = value
@@ -148,6 +150,7 @@ func _on_FiniteStateMachine_state_changed(state_name) -> void:
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	var current_animation = lower.anim_player.current_animation
 	upper.anim_player.play(current_animation)
+	upper.anim_player.advance(lower.anim_player.current_animation_position)
 
 func _on_Character_died() -> void:
 	fsm.change_state("die")

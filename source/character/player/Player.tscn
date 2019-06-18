@@ -1,22 +1,75 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://source/character/player/SlowMotion.tscn" type="PackedScene" id=3]
-[ext_resource path="res://graphics/images/characters/android_jump.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/characters/andorid_standby.png" type="Texture" id=5]
-[ext_resource path="res://graphics/images/characters/android_walk_body.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/characters/android_walk_legs.png" type="Texture" id=7]
-[ext_resource path="res://source/character/player/states/Idle.gd" type="Script" id=8]
-[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=9]
-[ext_resource path="res://source/character/player/states/Walk.gd" type="Script" id=10]
-[ext_resource path="res://source/character/player/states/Jump.gd" type="Script" id=11]
-[ext_resource path="res://source/character/player/states/Fall.gd" type="Script" id=12]
-[ext_resource path="res://source/character/player/states/Dash.gd" type="Script" id=13]
-[ext_resource path="res://source/character/player/states/Slash.gd" type="Script" id=14]
-[ext_resource path="res://source/character/player/states/Shoot.gd" type="Script" id=15]
-[ext_resource path="res://source/character/player/states/Die.gd" type="Script" id=16]
-[ext_resource path="res://source/character/player/TerrainCheckArea.tscn" type="PackedScene" id=17]
+[ext_resource path="res://graphics/images/characters/android_attack-body.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/characters/android_jump.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/characters/andorid_standby.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/characters/android_walk_body.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/characters/android_walk_legs.png" type="Texture" id=8]
+[ext_resource path="res://source/character/player/states/Idle.gd" type="Script" id=9]
+[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=10]
+[ext_resource path="res://source/character/player/states/Walk.gd" type="Script" id=11]
+[ext_resource path="res://source/character/player/states/Jump.gd" type="Script" id=12]
+[ext_resource path="res://source/character/player/states/Fall.gd" type="Script" id=13]
+[ext_resource path="res://source/character/player/states/Dash.gd" type="Script" id=14]
+[ext_resource path="res://source/character/player/states/Slash.gd" type="Script" id=15]
+[ext_resource path="res://source/character/player/states/Shoot.gd" type="Script" id=16]
+[ext_resource path="res://source/character/player/states/Die.gd" type="Script" id=17]
+[ext_resource path="res://source/character/player/TerrainCheckArea.tscn" type="PackedScene" id=18]
+
+[sub_resource type="Animation" id=12]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "dash"
@@ -46,7 +99,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -99,7 +152,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 5 ) ]
+"values": [ ExtResource( 6 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -151,7 +204,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -203,7 +256,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 6 ) ]
+"values": [ ExtResource( 7 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -271,7 +324,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -323,7 +376,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -375,7 +428,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 7 ) ]
+"values": [ ExtResource( 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -416,7 +469,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
-[node name="Player" instance=ExtResource( 1 )]
+[node name="Player" index="0" instance=ExtResource( 1 )]
 collision_layer = 1
 script = ExtResource( 2 )
 max_health = 3
@@ -431,6 +484,7 @@ one_shot = true
 position = Vector2( 0, -32 )
 
 [node name="AnimationPlayer" parent="Upper" index="0"]
+anims/attack = SubResource( 12 )
 anims/dash = SubResource( 1 )
 anims/fall = SubResource( 10 )
 anims/idle = SubResource( 2 )
@@ -442,9 +496,8 @@ parameters/playback = SubResource( 5 )
 
 [node name="Sprite" parent="Upper" index="2"]
 texture = ExtResource( 4 )
-vframes = 2
-hframes = 3
-frame = 2
+hframes = 6
+frame = 5
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
 anims/dash = SubResource( 6 )
@@ -457,30 +510,30 @@ anims/walk = SubResource( 7 )
 parameters/playback = SubResource( 8 )
 
 [node name="Sprite" parent="Lower" index="2"]
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 vframes = 2
 hframes = 3
 frame = 4
 
 [node name="Idle" type="Node" parent="FiniteStateMachine" index="0"]
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 10 )
 }
 
 [node name="Walk" type="Node" parent="FiniteStateMachine" index="1"]
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 10 )
 }
 max_speed = 420
 acceleration = 80
 friction = 0.5
 
 [node name="Jump" type="Node" parent="FiniteStateMachine" index="2"]
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 10 )
 }
 jump_force = 680
 max_speed = 420
@@ -488,36 +541,36 @@ acceleration = 50
 friction = 0.2
 
 [node name="Fall" type="Node" parent="FiniteStateMachine" index="3"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 10 )
 }
 max_speed = 420
 acceleration = 50
 friction = 0.2
 
 [node name="Dash" type="Node" parent="FiniteStateMachine" index="4"]
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 10 )
 }
 
 [node name="Slash" type="Node" parent="FiniteStateMachine" index="5"]
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 10 )
 }
 
 [node name="Shoot" type="Node" parent="FiniteStateMachine" index="6"]
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 __meta__ = {
-"_editor_icon": ExtResource( 9 )
+"_editor_icon": ExtResource( 10 )
 }
 
 [node name="Die" parent="FiniteStateMachine" index="7"]
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 
-[node name="TerrainCheckArea" parent="." index="9" instance=ExtResource( 17 )]
+[node name="TerrainCheckArea" parent="." index="9" instance=ExtResource( 18 )]
 position = Vector2( 0, -32 )
 
 [node name="ProjectileHook" type="Position2D" parent="." index="10"]
