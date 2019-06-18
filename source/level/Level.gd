@@ -15,7 +15,12 @@ onready var cutscenes := $Cutscenes.get_children()
 onready var checkpoints := $Checkpoints.get_children()
 
 func _ready() -> void:
+
+	for character in get_tree().get_nodes_in_group("Character"):
+		character.connect("hurt", self, "_on_Character_hurt")
+
 	get_tree().call_group("Character", "set_bottom_limit", bottom_limit)
+
 	game_cam.change_target(player)
 
 	if Global.save_data[id] != -1:
@@ -44,3 +49,8 @@ func _on_Cutscene_finished() -> void:
 
 func _on_Checkpoint_reached(id: int) -> void:
 	Global.save_data[self.id] = id
+
+func _on_Character_hurt(damage: int) -> void:
+	if damage < 1:
+		return
+	game_cam.screen_shake.start(0.05 * damage + 0.1, 10.0, 1.0 * damage, 1.0 * damage)

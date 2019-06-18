@@ -4,6 +4,9 @@ class_name Character
 signal state_changed(state_name)
 
 signal health_changed(health)
+
+signal hurt(damage)
+
 signal died
 
 var motion := Vector2()
@@ -59,6 +62,7 @@ func _register_states() -> void:
 func hurt(damage) -> void:
 	_set_health(health - damage)
 	anim_player.play("hurt")
+	emit_signal("hurt", damage)
 
 func play(anim_name: String) -> void:
 
