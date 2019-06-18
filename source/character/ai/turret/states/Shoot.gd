@@ -13,6 +13,7 @@ func update(host: Node, delta: float) -> void:
 	host = host as Character
 
 	if shots < max_shots:
+
 		if timer.is_stopped():
 			timer.start()
 			shots += 1

@@ -40,6 +40,8 @@ func is_player_in_vision() -> bool:
 	return (global_position - Global.Player.global_position).length() < vision
 
 func get_direction() -> int:
+
 	if not Global.Player:
 		return 1
+
 	return -1 if Global.Player.global_position.x < global_position.x else 1
