@@ -7,7 +7,7 @@ export var friction := 0.4
 
 func enter(host: Node) -> void:
 	host = host as Character
-	host.play("idle")
+	host.play("jump")
 	host.spawn_jump_dust()
 	host.motion.y = -jump_force
 

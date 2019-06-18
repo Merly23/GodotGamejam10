@@ -7,7 +7,7 @@ export var friction := 0.4
 func enter(host: Node) -> void:
 	host.motion.y = 0
 	host = host as Character
-	host.play("idle")
+	host.play("fall")
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
