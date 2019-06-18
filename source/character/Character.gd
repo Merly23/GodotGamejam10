@@ -34,9 +34,6 @@ onready var lower := {
 	sprite = $Lower/Sprite
 }
 
-onready var hook = $Hook as Position2D
-
-
 onready var particle_spawner := $ParticleSpawner as ParticleSpawner
 
 onready var collision_shape := $CollisionShape2D as CollisionShape2D
@@ -122,11 +119,16 @@ func slash() -> void:
 func shoot() -> void:
 	pass
 
+func set_bottom_limit(value) -> void:
+	bottom_limit = value
+
+func reset_modulate() -> void:
+	upper.sprite.modulate = Color("FFFFFFFF")
+	lower.sprite.modulate = Color("FFFFFFFF")
+
 func _register_host() -> void:
 	fsm.host = self
 
-func set_bottom_limit(value) -> void:
-	bottom_limit = value
 
 func _set_disabled(value):
 	disabled = value

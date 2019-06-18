@@ -39,7 +39,7 @@ func spawn_after_image(spawn_position: Vector2, flipped: bool) -> void:
 	var image = Instance.AfterImage()
 	image.global_position = spawn_position
 	get_tree().root.add_child(image)
-	image.play("fade", flipped)
+	image.play(flipped)
 
 func spawn_pulse_in(spawn_position: Vector2) -> void:
 	var pulse = Instance.Pulse()

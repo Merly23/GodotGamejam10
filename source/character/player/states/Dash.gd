@@ -1,5 +1,7 @@
 extends State
 
+export var distance := 450
+
 export var force := 1400
 export var friction := 4500
 export var max_dashes := 2
@@ -48,6 +50,7 @@ func exit(host: Node) -> void:
 	follow_dash = false
 	dash_count = 0
 	host.enable_collision()
+	host.reset_modulate()
 
 func get_direction(host: Character) -> Vector2:
 	var direction := Vector2()
