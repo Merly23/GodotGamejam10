@@ -2,7 +2,7 @@
 
 [ext_resource path="res://source/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/checkpoint/Checkpoint.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/character/ai/civilian/Civilian.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/character/ai/turret/Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/cutscene/Dialoque.tscn" type="PackedScene" id=5]
 [ext_resource path="res://source/cutscene/Speech.tscn" type="PackedScene" id=6]
@@ -22,12 +22,8 @@ position = Vector2( 2064, 320 )
 [node name="Player" parent="Characters" index="0"]
 position = Vector2( 611, 204 )
 
-[node name="Civilian" parent="Enemies" index="0" instance=ExtResource( 3 )]
-position = Vector2( 762, 321 )
-
-[node name="Enemy" parent="Enemies" index="1" instance=ExtResource( 3 )]
-position = Vector2( 879, 321 )
-team_number = 1
+[node name="Turret" parent="Enemies" index="0" instance=ExtResource( 3 )]
+position = Vector2( 821, 320 )
 
 [node name="Cutscene" parent="Cutscenes" index="0" instance=ExtResource( 4 )]
 position = Vector2( 394, 158 )

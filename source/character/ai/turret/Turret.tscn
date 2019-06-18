@@ -13,6 +13,7 @@
 
 [node name="Turret" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+team_number = 1
 max_health = 10
 
 [node name="Upper" parent="." index="3"]
@@ -43,9 +44,16 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="Timer" type="Timer" parent="FiniteStateMachine/Shoot" index="0"]
+wait_time = 0.3
+one_shot = true
+
 [node name="HitArea" parent="." index="6"]
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 position = Vector2( 0, 9 )
+
+[node name="Barrel" type="Position2D" parent="." index="7"]
+position = Vector2( 55, -45 )
