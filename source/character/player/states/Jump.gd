@@ -18,7 +18,7 @@ func input(host: Node, event: InputEvent) -> void:
 		host.fsm.change_state("dash")
 
 	if event.is_action_pressed("B"):
-		host.attack()
+		host.attack("attack")
 
 func update(host: Node, delta: float) -> void:
 	host = host as Character

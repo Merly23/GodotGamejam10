@@ -15,7 +15,7 @@ func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 
 	if event.is_action_pressed("B"):
-		host.attack()
+		host.attack("air_attack")
 
 	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")

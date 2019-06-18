@@ -42,8 +42,8 @@ func flip_right() -> void:
 func can_dash() -> bool:
 	return dash_timer.is_stopped()
 
-func attack() -> void:
-	play_upper("attack")
+func attack(attack_name: String) -> void:
+	play_upper(attack_name)
 
 func shoot() -> void:
 	var projectile = Instance.Projectile()

@@ -12,7 +12,7 @@ func input(host: Node, event: InputEvent) -> void:
 		host.fsm.change_state("jump")
 
 	if event.is_action_pressed("B"):
-		host.attack()
+		host.attack("attack")
 
 	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")
