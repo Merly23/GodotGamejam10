@@ -21,7 +21,8 @@
 
 [sub_resource type="Animation" id=12]
 resource_name = "attack"
-length = 0.6
+length = 0.3
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -65,10 +66,24 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "slash"
+} ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -480,9 +495,6 @@ one_shot = true
 
 [node name="SlowMotion" parent="." index="2" instance=ExtResource( 3 )]
 
-[node name="CollisionShape2D" parent="." index="4"]
-position = Vector2( 0, -32 )
-
 [node name="AnimationPlayer" parent="Upper" index="0"]
 anims/attack = SubResource( 12 )
 anims/dash = SubResource( 1 )
@@ -497,7 +509,7 @@ parameters/playback = SubResource( 5 )
 [node name="Sprite" parent="Upper" index="2"]
 texture = ExtResource( 4 )
 hframes = 6
-frame = 5
+frame = 2
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
 anims/dash = SubResource( 6 )
@@ -569,6 +581,9 @@ __meta__ = {
 
 [node name="Die" parent="FiniteStateMachine" index="7"]
 script = ExtResource( 17 )
+
+[node name="CollisionShape2D" parent="." index="7"]
+position = Vector2( 0, -32 )
 
 [node name="TerrainCheckArea" parent="." index="9" instance=ExtResource( 18 )]
 position = Vector2( 0, -32 )

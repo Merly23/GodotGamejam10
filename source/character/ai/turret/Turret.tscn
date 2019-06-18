@@ -16,7 +16,7 @@ script = ExtResource( 2 )
 team_number = 1
 max_health = 10
 
-[node name="Upper" parent="." index="3"]
+[node name="Upper" parent="." index="2"]
 visible = false
 
 [node name="AnimationTree" parent="Upper" index="1"]

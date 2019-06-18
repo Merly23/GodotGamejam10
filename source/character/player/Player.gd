@@ -1,5 +1,8 @@
 extends Character
 
+export var sword_damage := 2
+export var gun_damage := 1
+
 onready var slow_motion := $SlowMotion
 
 onready var dash_timer := $DashTimer as Timer
@@ -50,6 +53,17 @@ func shoot() -> void:
 	projectile.global_position = barrel.global_position
 	get_tree().root.add_child(projectile)
 	projectile.fire(is_flipped())
+
+func slash() -> void:
+
+	print("slash")
+
+	var bodies = hit_area.get_overlapping_bodies()
+
+	for body in bodies:
+		print(body.name)
+		if body is Character and body.team_number != team_number:
+			body.hurt(sword_damage)
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)

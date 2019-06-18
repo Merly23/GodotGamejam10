@@ -37,10 +37,6 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 24.0
-height = 16.0
-
 [sub_resource type="AnimationNodeStateMachine" id=3]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
@@ -48,6 +44,10 @@ height = 16.0
 [sub_resource type="AnimationNodeStateMachine" id=5]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 24.0
+height = 16.0
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 25, 32 )
@@ -63,10 +63,6 @@ script = ExtResource( 1 )
 anims/hurt = SubResource( 1 )
 
 [node name="ParticleSpawner" parent="." instance=ExtResource( 2 )]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -31 )
-shape = SubResource( 2 )
 
 [node name="Upper" type="Node2D" parent="."]
 
@@ -106,8 +102,14 @@ __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -31 )
+shape = SubResource( 2 )
+
 [node name="HitArea" type="Area2D" parent="."]
 position = Vector2( 40, -32 )
+collision_layer = 0
+collision_mask = 5
 __meta__ = {
 "_edit_group_": true
 }

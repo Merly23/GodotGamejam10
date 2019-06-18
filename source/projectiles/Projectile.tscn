@@ -8,6 +8,7 @@ extents = Vector2( 49, 1 )
 [node name="Projectile" type="Sprite"]
 script = ExtResource( 1 )
 speed = 4500
+damage = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -49.0
