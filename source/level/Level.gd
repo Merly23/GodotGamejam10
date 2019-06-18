@@ -32,12 +32,14 @@ func _ready() -> void:
 
 func _on_Cutscene_started() -> void:
 	interface.hide()
-	Global.Player.disabled = true
+	get_tree().call_group("Character", "_set_disabled", true)
+	# Global.Player.disabled = true
 
 func _on_Cutscene_finished() -> void:
 	yield(get_tree().create_timer(0.2), "timeout")
 	interface.show()
-	Global.Player.disabled = false
+	get_tree().call_group("Character", "_set_disabled", false)
+	# Global.Player.disabled = false
 
 func _on_Checkpoint_reached(id: int) -> void:
 	Global.save_data[self.id] = id

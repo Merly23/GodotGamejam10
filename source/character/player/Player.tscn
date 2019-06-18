@@ -74,7 +74,7 @@ tracks/2/keys = {
 "values": [ ExtResource( 4 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "walk"
 length = 0.8
 loop = true
@@ -115,9 +115,9 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -132,7 +132,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "walk"
 length = 0.8
 loop = true
@@ -173,11 +173,12 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
-[node name="Player" index="0" instance=ExtResource( 1 )]
+[node name="Player" instance=ExtResource( 1 )]
 collision_layer = 1
 script = ExtResource( 2 )
+max_health = 3
 
 [node name="DashTimer" type="Timer" parent="." index="1"]
 wait_time = 3.0
@@ -191,21 +192,21 @@ position = Vector2( 0, -32 )
 [node name="AnimationPlayer" parent="Upper" index="0"]
 anims/dash = SubResource( 1 )
 anims/idle = SubResource( 2 )
-anims/walk = SubResource( 7 )
+anims/walk = SubResource( 3 )
 
 [node name="AnimationTree" parent="Upper" index="1"]
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 4 )
 
 [node name="Sprite" parent="Upper" index="2"]
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
-anims/dash = SubResource( 4 )
+anims/dash = SubResource( 5 )
 anims/idle = SubResource( 2 )
-anims/walk = SubResource( 8 )
+anims/walk = SubResource( 6 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
-parameters/playback = SubResource( 6 )
+parameters/playback = SubResource( 7 )
 
 [node name="Sprite" parent="Lower" index="2"]
 texture = ExtResource( 6 )

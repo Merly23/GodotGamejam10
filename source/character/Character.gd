@@ -130,6 +130,7 @@ func set_bottom_limit(value) -> void:
 
 func _set_disabled(value):
 	disabled = value
+	fsm.change_state("idle")
 	fsm.set_process_unhandled_input(!value)
 	set_process_input(!value)
 
