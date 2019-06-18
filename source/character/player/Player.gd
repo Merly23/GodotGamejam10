@@ -16,7 +16,7 @@ func _input(event: InputEvent) -> void:
 		slow_motion.toggle()
 		spawn_pulse_in()
 
-	if event.is_action_pressed("C"):
+	if event.is_action_pressed("V"):
 		shoot()
 
 	if event.is_action("B"):
