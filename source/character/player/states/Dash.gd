@@ -14,8 +14,8 @@ var follow_dash := false
 
 func enter(host: Node) -> void:
 	host = host as Character
-	host.disable_collision()
 	host.play("dash")
+	host.disable_collision()
 	host.spawn_after_image()
 	direction = get_direction(host)
 	host.motion = Vector2(force, force) * direction
@@ -25,7 +25,7 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 
-	if event.is_action_pressed("V"):
+	if event.is_action_pressed("C"):
 		follow_dash = true
 
 func update(host: Node, delta: float) -> void:

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/interface/hud/Interface.gd"
 }, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://source/level/Level.gd"
+}, {
 "base": "Node",
 "class": "ParticleSpawner",
 "language": "GDScript",
@@ -54,6 +59,7 @@ _global_script_class_icons={
 "FiniteStateMachine": "",
 "GameCam": "",
 "Interface": "",
+"Level": "",
 "ParticleSpawner": "",
 "SceneLoader": "",
 "ScreenShake": "",
@@ -74,7 +80,6 @@ Instance="*res://source/global/Instance.gd"
 
 [debug]
 
-settings/stdout/print_fps=true
 gdscript/warnings/enable=false
 
 [display]

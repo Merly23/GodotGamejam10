@@ -47,6 +47,7 @@ func _ready() -> void:
 	_register_states()
 	fsm.register_state("die", "Die")
 	health = max_health
+	move_and_slide_with_snap(Vector2(0,0), Global.DOWN, Global.UP)
 
 func _process(delta: float) -> void:
 	if global_position.y > bottom_limit:
@@ -134,7 +135,6 @@ func _register_host() -> void:
 
 func _set_disabled(value):
 	disabled = value
-	fsm.change_state("idle")
 	fsm.set_process_unhandled_input(!value)
 	set_process_input(!value)
 

@@ -4,6 +4,8 @@ export var max_speed := 450
 export var acceleration := 20
 export var friction := 0.4
 
+onready var timer := $Timer as Timer
+
 func enter(host: Node) -> void:
 	host.motion.y = 0
 	host = host as Character
@@ -14,8 +16,12 @@ func input(host: Node, event: InputEvent) -> void:
 
 	if event.is_action_pressed("B"):
 		host.attack()
+
 	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")
+
+	if event.is_action_pressed("SPACE"):
+		timer.start()
 
 func update(host: Node, delta: float) -> void:
 	host = host as Character
@@ -40,14 +46,20 @@ func update(host: Node, delta: float) -> void:
 			host.motion.x = 0
 
 	if host.is_on_floor():
-		if host.motion.x:
+
+		if not timer.is_stopped():
+			host.fsm.change_state("jump")
+		elif host.motion.x:
 			host.fsm.change_state("walk")
 		else:
 			host.fsm.change_state("idle")
-		host.spawn_land_dust()
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 func exit(host: Node) -> void:
+	host.spawn_land_dust()
 	host = host as Character
 	host.motion.y = 0
+
+func _on_Timer_timeout() -> void:
+	pass
