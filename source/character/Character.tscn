@@ -7,7 +7,6 @@
 [ext_resource path="res://addons/finite_state_machine/icons/fsm.png" type="Texture" id=5]
 [ext_resource path="res://source/character/states/Die.gd" type="Script" id=6]
 [ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=7]
-[ext_resource path="res://source/character/HitArea.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hurt"
@@ -49,6 +48,9 @@ height = 16.0
 [sub_resource type="AnimationNodeStateMachine" id=5]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 25, 32 )
 
 [node name="Character" type="KinematicBody2D" groups=[
 "Character",
@@ -104,8 +106,14 @@ __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }
 
-[node name="HitArea" parent="." instance=ExtResource( 8 )]
+[node name="HitArea" type="Area2D" parent="."]
 position = Vector2( 40, -32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource( 7 )
 [connection signal="died" from="." to="." method="_on_Character_died"]
 [connection signal="animation_finished" from="Upper/AnimationPlayer" to="." method="_on_Upper_AnimationPlayer_animation_finished"]
 [connection signal="state_changed" from="FiniteStateMachine" to="." method="_on_FiniteStateMachine_state_changed"]
