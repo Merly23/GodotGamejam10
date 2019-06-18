@@ -155,7 +155,7 @@ func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	print("animation finished")
 	var current_animation = lower.anim_player.current_animation
 
-	if anim_name == current_animation:
+	if anim_name != "attack":
 		return
 
 	upper.anim_player.play(current_animation)
