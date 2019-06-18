@@ -1,7 +1,7 @@
 extends Sprite
 
-export var speed := 1600
-export var damage := 1
+var speed := 1600
+var damage := 1
 
 var shooter : Character = null
 
@@ -15,10 +15,14 @@ func _physics_process(delta: float) -> void:
 	if fired:
 		global_position.x += speed * delta * direction
 
-func fire(flipped: bool) -> void:
-	fired = true
-	flip_h = flipped
-	direction = -1 if flipped else 1
+func fire(speed: int, damage: int, flipped: bool) -> void:
+	self.speed = speed
+	self.damage = damage
+
+	self.flip_h = flipped
+
+	self.fired = true
+	self.direction = -1 if flipped else 1
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 	if body is Character and shooter.team_number != body.team_number:

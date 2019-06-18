@@ -1,9 +1,11 @@
 extends Character
 
 export var vision := 350
-export var idle_time := 2.0
-export var frequenzy := 0.2
-export var max_shots := 3
+export var idle_time := 5.0
+export var frequenzy := 1.0
+export var max_shots := 2
+export var bullet_speed := 800
+export var bullet_damage := 1
 
 onready var barrel := $Barrel as Position2D
 
@@ -30,7 +32,7 @@ func shoot() -> void:
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
 	get_tree().root.add_child(projectile)
-	projectile.fire(is_flipped())
+	projectile.fire(bullet_speed, bullet_damage, is_flipped())
 
 func is_player_in_vision() -> bool:
 

@@ -1,7 +1,8 @@
 extends Character
 
 export var sword_damage := 2
-export var gun_damage := 1
+export var bullet_speed := 1600
+export var bullet_damage := 1
 
 onready var slow_motion := $SlowMotion
 
@@ -49,7 +50,7 @@ func shoot() -> void:
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
 	get_tree().root.add_child(projectile)
-	projectile.fire(is_flipped())
+	projectile.fire(bullet_speed, bullet_damage, is_flipped())
 
 func slash() -> void:
 
