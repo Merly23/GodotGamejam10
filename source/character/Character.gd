@@ -148,7 +148,12 @@ func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	emit_signal("state_changed", state_name)
 
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	print("animation finished")
 	var current_animation = lower.anim_player.current_animation
+
+	if anim_name == current_animation:
+		return
+
 	upper.anim_player.play(current_animation)
 	upper.anim_player.advance(lower.anim_player.current_animation_position)
 
