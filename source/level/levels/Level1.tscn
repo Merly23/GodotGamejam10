@@ -20,10 +20,6 @@ position = Vector2( 522, 320 )
 [node name="2" parent="Checkpoints" index="1" instance=ExtResource( 3 )]
 position = Vector2( 2064, 320 )
 
-[node name="Player" parent="Characters" index="0"]
-position = Vector2( 24, 320 )
-sword_damage = 1
-
 [node name="Turret" parent="Enemies" index="0" instance=ExtResource( 4 )]
 position = Vector2( 811, 383 )
 
