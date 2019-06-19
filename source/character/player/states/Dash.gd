@@ -51,6 +51,7 @@ func exit(host: Node) -> void:
 	dash_count = 0
 	host.enable_collision()
 	host.reset_modulate()
+	host.shoot_timer.start()
 
 func get_direction(host: Character) -> Vector2:
 	var direction := Vector2()

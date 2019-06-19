@@ -56,10 +56,10 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
+	if Input.is_action_pressed("V") and host.can_shoot():
+		host.shoot()
+
 func exit(host: Node) -> void:
 	host.spawn_land_dust()
 	host = host as Character
 	host.motion.y = 0
-
-func _on_Timer_timeout() -> void:
-	pass

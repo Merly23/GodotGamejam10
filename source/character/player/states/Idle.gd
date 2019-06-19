@@ -29,5 +29,8 @@ func update(host: Node, delta: float) -> void:
 	elif bool(int(left) + int(right)):
 		host.fsm.change_state("walk")
 
+	elif Input.is_action_pressed("V") and host.can_shoot():
+		host.shoot()
+
 func exit(host: Node) -> void:
 	host = host as Character

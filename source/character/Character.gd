@@ -60,8 +60,8 @@ func _register_states() -> void:
 	print("Character::_ready->_setup_states: Overwrite!")
 
 func hurt(damage) -> void:
-	_set_health(health - damage)
 	anim_player.play("hurt")
+	_set_health(health - damage)
 	emit_signal("hurt", damage)
 
 func play(anim_name: String) -> void:
@@ -77,6 +77,10 @@ func play_upper(anim_name: String) -> void:
 func play_lower(anim_name: String) -> void:
 #	lower.anim.travel(anim_name)
 	lower.anim_player.play(anim_name)
+
+func stop_anim() -> void:
+	upper.anim_player.stop()
+	lower.anim_player.stop()
 
 func spawn_jump_dust() -> void:
 	particle_spawner.spawn_jump_dust(global_position)
@@ -152,7 +156,6 @@ func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	emit_signal("state_changed", state_name)
 
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	print("animation finished")
 	var current_animation = lower.anim_player.current_animation
 
 	if anim_name != "attack":

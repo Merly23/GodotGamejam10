@@ -50,5 +50,8 @@ func update(host: Node, delta: float) -> void:
 	if host.is_on_floor():
 		host.fsm.change_state("idle")
 
+	if Input.is_action_pressed("V") and host.can_shoot():
+		host.shoot()
+
 func exit(host: Node) -> void:
 	host = host as Character

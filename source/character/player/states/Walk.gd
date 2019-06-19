@@ -53,6 +53,9 @@ func update(host: Node, delta: float) -> void:
 	if not host.is_on_floor():
 		host.fsm.change_state("fall")
 
+	if Input.is_action_pressed("V") and host.can_shoot():
+		host.shoot()
+
 func exit(host: Node) -> void:
 	stopped = true
 	host = host as Character

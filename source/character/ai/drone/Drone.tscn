@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://source/character/ai/turret/Turret.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/drone/Drone.gd" type="Script" id=2]
@@ -7,7 +7,51 @@
 [ext_resource path="res://source/character/ai/drone/states/Seek.gd" type="Script" id=5]
 [ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
+resource_name = "die"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 6.72717, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Upper/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.2 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lower/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.2 ),
+"transitions": PoolRealArray( 4, 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 0.6
 loop = true
@@ -24,19 +68,30 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+[sub_resource type="AnimationNodeStateMachine" id=7]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
+[sub_resource type="AnimationNodeStateMachine" id=8]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[sub_resource type="CircleShape2D" id=4]
 
 [node name="Drone" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_health = 2
 
+[node name="AnimationPlayer" parent="." index="0"]
+anims/die = SubResource( 5 )
+anims/hurt = SubResource( 6 )
+
 [node name="AnimationPlayer" parent="Lower" index="0"]
-anims/idle = SubResource( 3 )
+anims/idle = SubResource( 1 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
-parameters/playback = SubResource( 1 )
+tree_root = SubResource( 7 )
+parameters/playback = SubResource( 2 )
 
 [node name="Sprite" parent="Lower" index="2"]
 texture = ExtResource( 3 )
@@ -46,7 +101,8 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 384, 64 )
 
 [node name="AnimationTree" parent="Upper" index="1"]
-parameters/playback = SubResource( 2 )
+tree_root = SubResource( 8 )
+parameters/playback = SubResource( 3 )
 
 [node name="Idle" parent="FiniteStateMachine" index="1"]
 script = ExtResource( 4 )
@@ -56,6 +112,9 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource( 4 )
 
 [node name="Rays" type="Node2D" parent="." index="8"]
 position = Vector2( 0, -32 )

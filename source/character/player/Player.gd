@@ -4,10 +4,12 @@ class_name Player
 export var sword_damage := 2
 export var bullet_speed := 1600
 export var bullet_damage := 1
+export var bullet_cooldown := 0.3
 
 onready var slow_motion := $SlowMotion
 
 onready var dash_timer := $DashTimer as Timer
+onready var shoot_timer := $ShootTimer as Timer
 
 onready var terrain_checker := $TerrainCheckArea
 
@@ -18,12 +20,10 @@ func _input(event: InputEvent) -> void:
 		slow_motion.toggle()
 		spawn_pulse_in()
 
-	if event.is_action_pressed("V"):
-		shoot()
-
 func _ready() -> void:
 	Global.Player = self
 	fsm.change_state("idle")
+	shoot_timer.wait_time = bullet_cooldown
 
 func _register_states() -> void:
 	fsm.register_state("idle", "Idle")
@@ -43,10 +43,14 @@ func flip_right() -> void:
 func can_dash() -> bool:
 	return dash_timer.is_stopped()
 
+func can_shoot() -> bool:
+	return shoot_timer.is_stopped()
+
 func attack(attack_name: String) -> void:
 	play_upper(attack_name)
 
 func shoot() -> void:
+	shoot_timer.start()
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
