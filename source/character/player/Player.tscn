@@ -712,5 +712,5 @@ shape = SubResource( 15 )
 position = Vector2( 0, -31 )
 
 [node name="ProjectileHook" type="Position2D" parent="." index="11"]
-position = Vector2( 44, -40 )
+position = Vector2( 0, -31 )
 [connection signal="timeout" from="FiniteStateMachine/Fall/Timer" to="FiniteStateMachine/Fall" method="_on_Timer_timeout"]

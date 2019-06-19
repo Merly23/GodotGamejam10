@@ -17,7 +17,7 @@ func enter(host: Node) -> void:
 	host.play("dash")
 	host.disable_collision()
 	host.spawn_after_image()
-	direction = get_direction(host)
+	direction = host.get_input_direction()
 	host.motion = Vector2(force, force) * direction
 	host.dash_timer.start()
 	dash_count += 1
@@ -52,26 +52,3 @@ func exit(host: Node) -> void:
 	host.enable_collision()
 	host.reset_modulate()
 	host.shoot_timer.start()
-
-func get_direction(host: Character) -> Vector2:
-	var direction := Vector2()
-
-	var left = Input.is_action_pressed("ui_left")
-	var right = Input.is_action_pressed("ui_right")
-	var up = Input.is_action_pressed("ui_up")
-	var down = Input.is_action_pressed("ui_down")
-
-	if left and not right:
-		direction.x = -1
-	elif right and not left:
-		direction.x = 1
-
-	if up and not down:
-		direction.y = -1
-	elif down and not up:
-		direction.y = 1
-
-	if not direction:
-		direction.x = -1 if host.is_flipped() else 1
-
-	return direction.normalized()

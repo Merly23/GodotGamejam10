@@ -32,14 +32,6 @@ func _register_states() -> void:
 	fsm.register_state("jump", "Jump")
 	fsm.register_state("dash", "Dash")
 
-func flip_left() -> void:
-	.flip_left()
-	barrel.position.x = -40
-
-func flip_right() -> void:
-	.flip_right()
-	barrel.position.x = 40
-
 func can_dash() -> bool:
 	return dash_timer.is_stopped()
 
@@ -55,7 +47,7 @@ func shoot() -> void:
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
 	get_tree().root.add_child(projectile)
-	projectile.fire(bullet_speed, bullet_damage, is_flipped())
+	projectile.fire(bullet_damage, bullet_speed, get_input_direction(false))
 
 func slash() -> void:
 
@@ -67,6 +59,29 @@ func slash() -> void:
 		print(body.name)
 		if body is Character and body.team_number != team_number:
 			body.hurt(sword_damage)
+
+func get_input_direction(normalized := true) -> Vector2:
+	var direction := Vector2()
+
+	var left = Input.is_action_pressed("ui_left")
+	var right = Input.is_action_pressed("ui_right")
+	var up = Input.is_action_pressed("ui_up")
+	var down = Input.is_action_pressed("ui_down")
+
+	if left and not right:
+		direction.x = -1
+	elif right and not left:
+		direction.x = 1
+
+	if up and not down:
+		direction.y = -1
+	elif down and not up:
+		direction.y = 1
+
+	if not direction:
+		direction.x = -1 if is_flipped() else 1
+
+	return direction.normalized() if normalized else direction
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)
