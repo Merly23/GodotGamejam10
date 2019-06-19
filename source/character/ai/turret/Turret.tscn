@@ -7,7 +7,7 @@
 [ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=5]
 [ext_resource path="res://source/character/ai/turret/states/Shoot.gd" type="Script" id=6]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
@@ -17,7 +17,7 @@ team_number = 1
 max_health = 10
 
 [node name="AnimationTree" parent="Lower" index="1"]
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 1 )
 
 [node name="Sprite" parent="Lower" index="2"]
 texture = ExtResource( 3 )

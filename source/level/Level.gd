@@ -53,4 +53,4 @@ func _on_Checkpoint_reached(id: int) -> void:
 func _on_Character_hurt(damage: int) -> void:
 	if damage < 1:
 		return
-	game_cam.screen_shake.start(0.05 * damage + 0.1, 10.0, 1.0 * damage, 1.0 * damage)
+	# game_cam.screen_shake.start(0.05 * damage + 0.1, 10.0, 1.0 * damage, 1.0 * damage)
