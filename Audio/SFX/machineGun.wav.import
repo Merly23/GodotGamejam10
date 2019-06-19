@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/combatLoop.wav-3d845503aabc99cd04ce0ba515285543.sample"
+path="res://.import/machineGun.wav-c75b6c32122f7d4a3786abb13df0140b.sample"
 
 [deps]
 
-source_file="res://Audio/music/combatLoop.wav"
-dest_files=[ "res://.import/combatLoop.wav-3d845503aabc99cd04ce0ba515285543.sample" ]
+source_file="res://Audio/SFX/machineGun.wav"
+dest_files=[ "res://.import/machineGun.wav-c75b6c32122f7d4a3786abb13df0140b.sample" ]
 
 [params]
 

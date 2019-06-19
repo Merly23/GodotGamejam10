@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/combatLoop.wav-3d845503aabc99cd04ce0ba515285543.sample"
+path="res://.import/endBlink.wav-aed1914e37a04bd71c02c97b85c0570d.sample"
 
 [deps]
 
-source_file="res://Audio/music/combatLoop.wav"
-dest_files=[ "res://.import/combatLoop.wav-3d845503aabc99cd04ce0ba515285543.sample" ]
+source_file="res://Audio/SFX/endBlink.wav"
+dest_files=[ "res://.import/endBlink.wav-aed1914e37a04bd71c02c97b85c0570d.sample" ]
 
 [params]
 

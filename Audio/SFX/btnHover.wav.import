@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/combatLoop.wav-3d845503aabc99cd04ce0ba515285543.sample"
+path="res://.import/btnHover.wav-2ba04247b171e9960724b67c00052181.sample"
 
 [deps]
 
-source_file="res://Audio/music/combatLoop.wav"
-dest_files=[ "res://.import/combatLoop.wav-3d845503aabc99cd04ce0ba515285543.sample" ]
+source_file="res://Audio/SFX/btnHover.wav"
+dest_files=[ "res://.import/btnHover.wav-2ba04247b171e9960724b67c00052181.sample" ]
 
 [params]
 
