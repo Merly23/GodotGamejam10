@@ -28,6 +28,7 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+loop = true
 
 [node name="CoreContainer" type="Node" parent="MixingDeskMusic/menuMusic"]
 script = ExtResource( 6 )
@@ -44,6 +45,7 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+loop = true
 
 [node name="CoreContainer" type="Node" parent="MixingDeskMusic/levelMusic"]
 script = ExtResource( 6 )
