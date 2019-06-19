@@ -4,9 +4,6 @@ var key = null
 
 onready var anim := $AnimationPlayer as AnimationPlayer
 
-func _ready() -> void:
-	new_key("SPACE")
-
 func new_key(text: String) -> void:
 	key = Instance.KeyButton()
 	key.text = text

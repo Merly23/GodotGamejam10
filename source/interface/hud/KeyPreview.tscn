@@ -36,7 +36,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "press"
-length = 2.0
+length = 1.5
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -46,7 +46,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 1, 1.2, 1.25 ),
+"times": PoolRealArray( 0, 0.1, 0.15, 0.5, 0.6, 0.65 ),
 "transitions": PoolRealArray( 2, 1, 1, 2, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 320, 50 ), Vector2( 320, 62 ), Vector2( 320, 58 ), Vector2( 320, 58 ), Vector2( 320, 48 ), Vector2( 320, 50 ) ]
