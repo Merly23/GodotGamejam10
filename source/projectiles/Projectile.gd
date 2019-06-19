@@ -22,8 +22,10 @@ func fire(damage: int, speed: int, direction : Vector2 = Vector2(1, 0)) -> void:
 	self.damage = damage
 	self.fired = true
 
-	rotation_degrees = dir2rot(direction)
-	print(rotation_degrees)
+	# directional shooting
+	# rotation_degrees = dir2rot(direction)
+
+	rotation_degrees = 180 if direction.x == -1 else 0
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 	if body is Character and shooter.team_number != body.team_number:

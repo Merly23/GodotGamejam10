@@ -61,6 +61,7 @@ func slash() -> void:
 			body.hurt(sword_damage)
 
 func get_input_direction(normalized := true) -> Vector2:
+
 	var direction := Vector2()
 
 	var left = Input.is_action_pressed("ui_left")
@@ -68,18 +69,21 @@ func get_input_direction(normalized := true) -> Vector2:
 	var up = Input.is_action_pressed("ui_up")
 	var down = Input.is_action_pressed("ui_down")
 
-	if left and not right:
-		direction.x = -1
-	elif right and not left:
-		direction.x = 1
+# directional shooting
+#	if left and not right:
+#		direction.x = -1
+#	elif right and not left:
+#		direction.x = 1
+#
+#	if up and not down:
+#		direction.y = -1
+#	elif down and not up:
+#		direction.y = 1
+#
+#	if not direction:
+#		direction.x = -1 if is_flipped() else 1
 
-	if up and not down:
-		direction.y = -1
-	elif down and not up:
-		direction.y = 1
-
-	if not direction:
-		direction.x = -1 if is_flipped() else 1
+	direction.x = -1 if is_flipped() else 1
 
 	return direction.normalized() if normalized else direction
 
