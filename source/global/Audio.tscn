@@ -28,6 +28,10 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+tempo = 120
+bars = 55
+beats_in_bar = 4
+transition_beats = 4.0
 loop = true
 
 [node name="CoreContainer" type="Node" parent="MixingDeskMusic/menuMusic"]
@@ -36,7 +40,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MixingDeskMusic/menuMusic/CoreContainer"]
+[node name="baseMenuMusic" type="AudioStreamPlayer" parent="MixingDeskMusic/menuMusic/CoreContainer"]
 stream = ExtResource( 7 )
 volume_db = -2.0
 
@@ -45,6 +49,10 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+tempo = 155
+bars = 48
+beats_in_bar = 4
+transition_beats = 4.0
 loop = true
 
 [node name="CoreContainer" type="Node" parent="MixingDeskMusic/levelMusic"]
@@ -53,6 +61,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MixingDeskMusic/levelMusic/CoreContainer"]
+[node name="baseLevelMusic" type="AudioStreamPlayer" parent="MixingDeskMusic/levelMusic/CoreContainer"]
 stream = ExtResource( 8 )
 volume_db = -2.0

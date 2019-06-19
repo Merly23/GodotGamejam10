@@ -1,14 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://graphics/themes/theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menus/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://graphics/fonts/pixelmix/pixelmix24.tres" type="DynamicFont" id=3]
+[ext_resource path="res://source/global/Audio.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/global/menuAudio.gd" type="Script" id=4]
+[ext_resource path="res://graphics/fonts/pixelmix/pixelmix24.tres" type="DynamicFont" id=5]
+[ext_resource path="res://source/interface/menus/musicSwapLevel.gd" type="Script" id=6]
 
 [node name="TitleScreen" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Audio" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 4 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -24,7 +30,7 @@ custom_constants/separation = 15
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_right = 120.0
 margin_bottom = 24.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 5 )
 text = "Glitch"
 align = 1
 valign = 1
@@ -42,6 +48,7 @@ rect_min_size = Vector2( 0, 24 )
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Play"
+script = ExtResource( 6 )
 
 [node name="Settings" type="Button" parent="CenterContainer/VBoxContainer/Buttons"]
 margin_top = 32.0
@@ -70,4 +77,5 @@ focus_mode = 0
 enabled_focus_mode = 0
 text = "Quit"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Play" to="Audio" method="_on_Play_pressed" flags=6]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]
