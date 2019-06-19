@@ -6,8 +6,8 @@
 [ext_resource path="res://graphics/images/characters/android_jump.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/characters/andorid_standby_legs.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/characters/android_walk_legs.png" type="Texture" id=6]
-[ext_resource path="res://graphics/images/characters/android_air_attack.png" type="Texture" id=7]
-[ext_resource path="res://graphics/images/characters/android_attack-body.png" type="Texture" id=8]
+[ext_resource path="res://graphics/images/characters/android_air_attack-2.png" type="Texture" id=7]
+[ext_resource path="res://graphics/images/characters/android_attack-body-2.png" type="Texture" id=8]
 [ext_resource path="res://graphics/images/characters/android_standby_body.png" type="Texture" id=9]
 [ext_resource path="res://graphics/images/characters/android_walk_body.png" type="Texture" id=10]
 [ext_resource path="res://source/character/player/states/Idle.gd" type="Script" id=11]
@@ -245,7 +245,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "air_attack"
-length = 0.2
+length = 0.25
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -311,7 +311,7 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=8]
-length = 0.3
+length = 0.25
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -347,7 +347,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 5 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:frame")
@@ -356,10 +356,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.2, 0.25, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
+"values": [ 0, 1, 2, 3, 4 ]
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath("..")
@@ -601,12 +601,13 @@ tracks/3/keys = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 26, 31 )
+extents = Vector2( 28, 40 )
 
 [node name="Player" index="0" instance=ExtResource( 1 )]
 collision_layer = 1
 script = ExtResource( 2 )
 max_health = 3
+bullet_cooldown = 0.25
 
 [node name="DashTimer" type="Timer" parent="." index="1"]
 wait_time = 3.0
@@ -617,6 +618,8 @@ wait_time = 0.3
 one_shot = true
 
 [node name="SlowMotion" parent="." index="3" instance=ExtResource( 3 )]
+slow_down_scale = 0.5
+slow_down_time = 0.5
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
 anims/dash = SubResource( 1 )
@@ -700,7 +703,7 @@ script = ExtResource( 17 )
 position = Vector2( 0, -31 )
 
 [node name="HitArea" parent="." index="9"]
-position = Vector2( 26, -31 )
+position = Vector2( 14, -31 )
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 shape = SubResource( 15 )
