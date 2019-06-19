@@ -12,6 +12,7 @@
 [node name="Audio" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
+music_volume = 0.7
 
 [node name="MixingDeskMusic" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -39,6 +40,7 @@ __meta__ = {
 [node name="baseMenuMusic" type="AudioStreamPlayer" parent="MixingDeskMusic/menuMusic/CoreContainer"]
 stream = ExtResource( 7 )
 volume_db = -2.0
+bus = "Music"
 
 [node name="levelMusic" type="Node" parent="MixingDeskMusic"]
 script = ExtResource( 4 )
@@ -60,3 +62,4 @@ __meta__ = {
 [node name="baseLevelMusic" type="AudioStreamPlayer" parent="MixingDeskMusic/levelMusic/CoreContainer"]
 stream = ExtResource( 8 )
 volume_db = -2.0
+bus = "Music"
