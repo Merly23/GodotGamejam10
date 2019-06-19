@@ -148,7 +148,7 @@ func _set_disabled(value):
 
 func _set_health(value) -> void:
 	health = clamp(value, 0, max_health)
-	emit_signal("health_changed")
+	emit_signal("health_changed", health)
 	if health == 0:
 		emit_signal("died")
 

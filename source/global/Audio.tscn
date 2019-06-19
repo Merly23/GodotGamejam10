@@ -6,8 +6,8 @@
 [ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=4]
 [ext_resource path="res://addons/mixing-desk/music/song_icon.png" type="Texture" id=5]
 [ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=6]
-[ext_resource path="res://Audio/Music/menuLoop.wav" type="AudioStream" id=7]
-[ext_resource path="res://Audio/Music/combatLoop.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/music/menuLoop.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/music/combatLoop.wav" type="AudioStream" id=8]
 
 [node name="Audio" type="Node"]
 pause_mode = 2
