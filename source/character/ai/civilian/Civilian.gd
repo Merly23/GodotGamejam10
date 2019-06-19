@@ -1,4 +1,5 @@
 extends Character
+class_name Civilian
 
 var origin := Vector2()
 

@@ -12,7 +12,7 @@ func update(host: Node, delta: float) -> void:
 
 	if host.is_player_in_vision() and timer.is_stopped():
 
-		if host.get_direction() == -1:
+		if host.get_player_direction() == -1:
 			host.flip_left()
 		else:
 			host.flip_right()

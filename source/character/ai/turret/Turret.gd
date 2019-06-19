@@ -1,4 +1,5 @@
 extends Character
+class_name Turret
 
 export var vision := 350
 export var idle_time := 5.0
@@ -39,9 +40,9 @@ func is_player_in_vision() -> bool:
 	if not Global.Player:
 		return false
 
-	return (global_position - Global.Player.global_position).length() < vision
+	return global_position.distance_to(Global.Player.global_position) < vision
 
-func get_direction() -> int:
+func get_player_direction() -> int:
 
 	if not Global.Player:
 		return 1

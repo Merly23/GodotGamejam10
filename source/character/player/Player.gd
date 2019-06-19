@@ -1,4 +1,5 @@
 extends Character
+class_name Player
 
 export var sword_damage := 2
 export var bullet_speed := 1600

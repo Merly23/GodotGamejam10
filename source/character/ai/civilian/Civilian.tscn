@@ -10,13 +10,13 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
-[node name="Civilian" instance=ExtResource( 1 )]
+[node name="Civilian" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="AnimationTree" parent="Upper" index="1"]
+[node name="AnimationTree" parent="Lower" index="1"]
 parameters/playback = SubResource( 1 )
 
-[node name="AnimationTree" parent="Lower" index="1"]
+[node name="AnimationTree" parent="Upper" index="1"]
 parameters/playback = SubResource( 2 )
 
 [node name="Idle" type="Node" parent="FiniteStateMachine" index="1"]

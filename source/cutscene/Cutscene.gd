@@ -5,11 +5,14 @@ signal finished
 
 var seen := false
 
-onready var dialoque := $Dialoque
+export var active := true
 
-export(Array, String, MULTILINE) var pages := [""]
+onready var dialoque := $Dialoque
+onready var coll := $CollisionShape2D as CollisionShape2D
 
 func _ready() -> void:
+	coll.disabled = !active
+
 	if not dialoque:
 		print(name, " Dialoque is missing")
 	else:

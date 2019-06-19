@@ -46,7 +46,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [sub_resource type="CapsuleShape2D" id=6]
-radius = 24.0
+radius = 23.0
 height = 16.0
 
 [sub_resource type="RectangleShape2D" id=7]
