@@ -17,6 +17,8 @@ var bottom_limit := 99999
 
 var disabled := false setget _set_disabled
 
+var dead := false
+
 export var team_number := 0
 
 export var max_health := 2
@@ -60,6 +62,10 @@ func _register_states() -> void:
 	print("Character::_ready->_setup_states: Overwrite!")
 
 func hurt(damage) -> void:
+
+	if dead:
+		return
+
 	anim_player.play("hurt")
 	_set_health(health - damage)
 	emit_signal("hurt", damage)
@@ -93,6 +99,9 @@ func spawn_stop_dust() -> void:
 
 func spawn_land_dust() -> void:
 	particle_spawner.spawn_land_dust(global_position, 31, is_flipped())
+
+func spawn_sparks() -> void:
+	particle_spawner.spawn_sparks(global_position, -16)
 
 func enable_collision() -> void:
 	collision_shape.disabled = false
@@ -151,6 +160,7 @@ func _set_health(value) -> void:
 	emit_signal("health_changed", health)
 	if health == 0:
 		emit_signal("died")
+		dead = true
 
 func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	emit_signal("state_changed", state_name)
