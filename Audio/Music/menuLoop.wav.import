@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/menuLoop.wav-55356a626fccfdf0d108e6b5524fbf19.sample"
+
+[deps]
+
+source_file="res://Audio/Music/menuLoop.wav"
+dest_files=[ "res://.import/menuLoop.wav-55356a626fccfdf0d108e6b5524fbf19.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
