@@ -61,5 +61,5 @@ __meta__ = {
 
 [node name="baseLevelMusic" type="AudioStreamPlayer" parent="MixingDeskMusic/levelMusic/CoreContainer"]
 stream = ExtResource( 8 )
-volume_db = -2.0
+volume_db = -12.0
 bus = "Music"
