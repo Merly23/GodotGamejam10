@@ -54,7 +54,7 @@ func _ready():
 					var tween = Tween.new()
 					tween.name = 'Tween'
 					o.add_child(tween)
-				
+
 #loads a song and gets ready to play
 func _init_song(track):
 	track = songname_to_int(track)
@@ -101,7 +101,7 @@ func _clear_song(track):
 		AudioServer.remove_bus(bus)
 		inum += 1
 	song.get_child(0).disconnect("finished", self, "_song_finished")
-		
+
 #updates place in song and detects beats/bars
 func _process(delta):
 	if suppress_beat > 0:
@@ -114,8 +114,8 @@ func _process(delta):
 		if beat != last_beat && (beat - 1) % int(bars * beats_in_bar) + 1 != last_beat:
 			_beat()
 		last_beat = beat
-			
-			
+
+
 
 #start a song with only one track playing
 func _start_alone(song, layer):
@@ -150,7 +150,7 @@ func trackname_to_int(song, ref):
 		return songs[song].get_core().get_node(ref).get_index()
 	else:
 		return ref
-	
+
 #play a song
 func _play(song):
 	song = songname_to_int(song)
@@ -184,7 +184,7 @@ func _play(song):
 			if repeats < 1:
 				play_concat(i)
 			songs[song].concats.append(i)
-	
+
 	if bar_tran:
 		bar_tran = false
 	if beat_tran:
@@ -226,7 +226,7 @@ func _mute_below_layer(song, layer):
     	    _fade_out(song, i)
 		if layer == 1:
 			_fade_out(song, 0)
-			
+
 #mute all layers aside from specified layer
 func _solo(song, layer):
 	song = songname_to_int(song)
@@ -282,7 +282,7 @@ func _fade_out(song, layer):
 	tween.interpolate_property(target, 'volume_db', in_from, -60.0, transition_beats, Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween.start()
 
-	
+
 #binds a track's volume to an object's parameter
 func _bind_to_param(track,param):
 	track = songname_to_int(track)
@@ -317,7 +317,7 @@ func _queue_bar_transition(song):
 	songs[old_song].fading_out = true
 	new_song = song
 	bar_tran = true
-	
+
 #change to the specified song at the next beat
 func _queue_beat_transition(song):
 	song = songname_to_int(song)
@@ -355,7 +355,7 @@ func _stop(song):
 func _bar():
 	if can_bar:
 		can_bar = false
-		
+
 		if bar_tran:
 			if current_song_num != new_song:
 				_change_song(new_song)
@@ -373,7 +373,7 @@ func _bar():
 			emit_signal("end")
 		yield(get_tree().create_timer(0.5), "timeout")
 		can_bar = true
-	
+
 #called every beat
 func _beat():
 	if beat_tran:
@@ -395,7 +395,7 @@ func get_rantrk(song):
 	var chance = randi() % song.get_child_count()
 	var rantrk = song.get_child(chance)
 	return rantrk
-		
+
 #choose new song randomly
 func _shuffle_songs():
 	if playing:

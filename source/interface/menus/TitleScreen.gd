@@ -1,5 +1,8 @@
 extends Panel
 
+func _ready() -> void:
+	Audio.play_song("menuMusic")
+
 func _on_Play_pressed() -> void:
 	Scene.change(Scene.Level1)
 
