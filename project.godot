@@ -119,7 +119,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "finite_state_machine", "mixing-desk" )
+enabled=PoolStringArray( "finite_state_machine" )
 
 [importer_defaults]
 
