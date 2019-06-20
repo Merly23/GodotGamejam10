@@ -66,7 +66,12 @@ func can_dash() -> bool:
 	return true
 
 func can_shoot() -> bool:
-	return shoot_timer.is_stopped()
+	if not energy - shoot_cost >= 0:
+		emit_signal("no_energy_left")
+		return false
+	elif not shoot_timer.is_stopped():
+		return false
+	return true
 
 func flip_left() -> void:
 	upper.sprite.flip_h = true
@@ -80,6 +85,9 @@ func flip_right() -> void:
 
 func attack(attack_name: String) -> void:
 	play_upper(attack_name)
+
+func play_shoot() -> void:
+	play_upper("shoot")
 
 func shoot() -> void:
 
@@ -153,6 +161,13 @@ func spawn_pulse_in() -> void:
 func _set_energy(value) -> void:
 	energy = clamp(value, 0, max_energy)
 	emit_signal("energy_changed", energy)
+
+func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	var current_animation = lower.anim_player.current_animation
+
+	if anim_name == "attack" or anim_name == "shoot" and not can_shoot():
+		upper.anim_player.play(current_animation)
+		upper.anim_player.advance(lower.anim_player.current_animation_position)
 
 func _on_SlowMotionTimer_timeout() -> void:
 	if energy - slow_motion_cost >= 0:

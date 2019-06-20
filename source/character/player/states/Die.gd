@@ -3,6 +3,7 @@ extends State
 func enter(host) -> void:
 	host = host as Player
 	host.stop_anim()
+	host.cancel_slow_motion()
 	host.anim_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished", [ host ])
 	host.anim_player.play("die")
 

@@ -1,64 +1,27 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://source/character/Character.gd" type="Script" id=1]
-[ext_resource path="res://graphics/images/characters/android_faint.png" type="Texture" id=2]
-[ext_resource path="res://source/particles/ParticleSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://graphics/images/characters/character.png" type="Texture" id=4]
-[ext_resource path="res://addons/finite_state_machine/source/FiniteStateMachine.gd" type="Script" id=5]
-[ext_resource path="res://addons/finite_state_machine/icons/fsm.png" type="Texture" id=6]
-[ext_resource path="res://source/character/states/Die.gd" type="Script" id=7]
-[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=8]
+[ext_resource path="res://source/particles/ParticleSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://graphics/images/characters/character.png" type="Texture" id=3]
+[ext_resource path="res://addons/finite_state_machine/source/FiniteStateMachine.gd" type="Script" id=4]
+[ext_resource path="res://addons/finite_state_machine/icons/fsm.png" type="Texture" id=5]
+[ext_resource path="res://source/character/states/Die.gd" type="Script" id=6]
+[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
-length = 0.7
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Lower/Sprite:texture")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 0.999999 ),
-"update": 1,
-"values": [ ExtResource( 2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Lower/Sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 7 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Lower/Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Upper:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -103,7 +66,7 @@ script = ExtResource( 1 )
 anims/die = SubResource( 1 )
 anims/hurt = SubResource( 2 )
 
-[node name="ParticleSpawner" parent="." instance=ExtResource( 3 )]
+[node name="ParticleSpawner" parent="." instance=ExtResource( 2 )]
 
 [node name="Lower" type="Node2D" parent="."]
 
@@ -115,7 +78,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Lower"]
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 offset = Vector2( 0, -32 )
 
 [node name="Upper" type="Node2D" parent="."]
@@ -129,18 +92,18 @@ parameters/playback = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Upper"]
 position = Vector2( 0, -32 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="FiniteStateMachine" type="Node" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 __meta__ = {
-"_editor_icon": ExtResource( 6 )
+"_editor_icon": ExtResource( 5 )
 }
 
 [node name="Die" type="Node" parent="FiniteStateMachine"]
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
-"_editor_icon": ExtResource( 8 )
+"_editor_icon": ExtResource( 7 )
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

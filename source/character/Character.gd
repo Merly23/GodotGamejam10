@@ -168,13 +168,7 @@ func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	emit_signal("state_changed", state_name)
 
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	var current_animation = lower.anim_player.current_animation
-
-	if anim_name != "attack":
-		return
-
-	upper.anim_player.play(current_animation)
-	upper.anim_player.advance(lower.anim_player.current_animation_position)
+	pass
 
 func _on_Character_died() -> void:
 	fsm.change_state("die")
