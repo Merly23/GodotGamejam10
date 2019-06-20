@@ -11,6 +11,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
+wait_time_from = 4.0
+wait_time_to = 7.0
 
 [node name="Wait" type="Timer" parent="."]
 one_shot = true

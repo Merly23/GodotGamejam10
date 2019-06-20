@@ -6,7 +6,7 @@ const masks = [
 	preload("res://graphics/images/misc/displacement3.png"),
 ]
 
-var level := 1.0
+var level := 1.0 setget _set_level
 
 var offset := 0.0 setget _set_offset
 var abberation := 0.0 setget _set_abberation
@@ -26,6 +26,16 @@ func _ready() -> void:
 func _new_time() -> float:
 	randomize()
 	return rand_range(wait_time_from / level, wait_time_to / level)
+
+func _set_level(value) -> void:
+	level = value
+	_set_abberation(0.001)
+
+	if level == 0:
+		wait.stop()
+	else:
+		wait.wait_time = _new_time()
+		wait.start()
 
 func _set_offset(value) -> void:
 	offset = value
