@@ -14,6 +14,10 @@ func _ready() -> void:
 	_register_buttons()
 	_set_current_button_index(0, true)
 
+	var idx := 0
+	for button in buttons:
+		button.connect("mouse_entered", self, "_on_Button_mouse_entered", [ idx ])
+		idx += 1
 func register_button(button) -> void:
 	buttons.append(button)
 
@@ -46,3 +50,6 @@ func _set_current_button_index(value, silent := false) -> void:
 	current_button.set("custom_styles/normal", style_hover)
 	if not silent:
 		current_button.emit_signal("mouse_entered")
+
+func _on_Button_mouse_entered(index) -> void:
+	_set_current_button_index(index, true)
