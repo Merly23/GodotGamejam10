@@ -43,6 +43,7 @@ func update(host: Node, delta: float) -> void:
 		host.motion.x = lerp(host.motion.x, 0, friction)
 		if not stopped:
 			host.spawn_stop_dust()
+			Audio.play_sfx("player_stop")
 			stopped = true
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)

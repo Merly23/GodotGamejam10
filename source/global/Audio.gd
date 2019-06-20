@@ -15,6 +15,7 @@ onready var sfx = {
 	player_hurt = $SFX/Player/Hurt,
 	player_jump = $SFX/Player/Jump,
 	player_land = $SFX/Player/Land,
+	player_stop = $SFX/Player/Stop,
 	player_slash = $SFX/Player/Slash,
 	player_blink_start = $SFX/Player/BlinkStart,
 	player_blink_end = $SFX/Player/BlinkEnd,
@@ -36,6 +37,10 @@ func play_music(song: String) -> void:
 	music_player.play()
 
 func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
+
+	if not sfx.has(effect_name):
+		print("could not find sound: ", effect_name)
+		return
 
 	if pitch_from and pitch_to:
 		sfx[effect_name].pitch = rand_range(pitch_from, pitch_to)
