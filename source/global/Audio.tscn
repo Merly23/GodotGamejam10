@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://source/global/Audio.gd" type="Script" id=1]
 [ext_resource path="res://audio/music/menuLoop.wav" type="AudioStream" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://audio/sfx/endBlink.wav" type="AudioStream" id=6]
 [ext_resource path="res://audio/sfx/btnHover.wav" type="AudioStream" id=7]
 [ext_resource path="res://audio/sfx/btnPress.wav" type="AudioStream" id=8]
-[ext_resource path="res://audio/sfx/glitch.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/sfx/gunShot.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/sfx/glitch.wav" type="AudioStream" id=10]
 
 [node name="Audio" type="Node"]
 pause_mode = 2
@@ -62,11 +63,11 @@ stream = ExtResource( 8 )
 bus = "Effects"
 
 [node name="GunShot" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 bus = "Effects"
 
 [node name="Glitch" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 volume_db = -18.0
 pitch_scale = 1.5
 bus = "Effects"

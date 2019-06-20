@@ -16,6 +16,7 @@ func enter(host: Node) -> void:
 	host = host as Player
 
 	if host.energy - host.dash_cost < 0:
+		host.emit_signal("no_energy_left")
 		host.fsm.return_to_previous_state()
 		return
 
@@ -56,8 +57,11 @@ func update(host: Node, delta: float) -> void:
 func exit(host: Node) -> void:
 	host = host as Character
 	follow_dash = false
+
+	if dash_count:
+		Audio.play_sfx("player_blink_end")
+
 	dash_count = 0
 	host.enable_collision()
 	host.reset_modulate()
 	host.shoot_timer.start()
-	Audio.play_sfx("player_blink_end")

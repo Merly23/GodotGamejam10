@@ -60,3 +60,7 @@ func _on_Player_health_changed(health) -> void:
 
 func _on_Player_energy_changed(energy) -> void:
 	interface.update_energy(energy)
+
+
+func _on_Player_no_energy_left() -> void:
+	interface.shake_energy_bar()

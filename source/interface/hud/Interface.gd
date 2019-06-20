@@ -9,6 +9,9 @@ func update_health(health: int) -> void:
 func update_energy(energy: int) -> void:
 	info_panel.update_energy(energy)
 
+func shake_energy_bar() -> void:
+	info_panel.shake_energy_bar()
+
 func show() -> void:
 	info_panel.show()
 

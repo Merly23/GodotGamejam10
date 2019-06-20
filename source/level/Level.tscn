@@ -44,3 +44,4 @@ current = true
 [node name="Interface" parent="." instance=ExtResource( 7 )]
 [connection signal="energy_changed" from="Characters/Player" to="." method="_on_Player_energy_changed"]
 [connection signal="health_changed" from="Characters/Player" to="." method="_on_Player_health_changed"]
+[connection signal="no_energy_left" from="Characters/Player" to="." method="_on_Player_no_energy_left"]

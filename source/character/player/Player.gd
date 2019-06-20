@@ -2,6 +2,7 @@ extends Character
 class_name Player
 
 signal energy_changed(energy)
+signal no_energy_left()
 
 var energy := 0 setget _set_energy
 
@@ -31,6 +32,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("X"):
 
 		if not energy - slow_motion_cost >= 0 and not slow_motion.active:
+			emit_signal("no_energy_left")
 			return
 
 		slow_motion.toggle()
@@ -66,10 +68,12 @@ func attack(attack_name: String) -> void:
 func shoot() -> void:
 
 	if not energy - shoot_cost >= 0:
+		emit_signal("no_energy_left")
 		return
 
 	_set_energy(energy - shoot_cost)
 
+	Audio.play_sfx("gun_shot")
 	shoot_timer.start()
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
@@ -135,3 +139,4 @@ func _on_SlowMotionTimer_timeout() -> void:
 		slow_motion.toggle()
 		slow_motion_timer.stop()
 		spawn_pulse_in()
+		emit_signal("no_energy_left")

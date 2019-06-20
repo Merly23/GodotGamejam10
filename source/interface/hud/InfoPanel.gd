@@ -26,6 +26,9 @@ func update_energy(energy: int) -> void:
 	tween.interpolate_property(energy_bar, "value", energy_bar.value, energy, 0.2, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
 
+func shake_energy_bar() -> void:
+	anim.play("shake_energy_bar")
+
 func _hurt(damage: int) -> void:
 	for i in range(current_health, current_health - damage, -1):
 		var idx = i - 1
