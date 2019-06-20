@@ -18,10 +18,10 @@ onready var sfx = {
 }
 
 func _ready() -> void:
-	mixing_desk._init_song("menuMusic")
 	mixing_desk._init_song("levelMusic")
 
 func play_song(song: String) -> void:
+	mixing_desk._queue_bar_transition(song)
 	mixing_desk._change_song(song)
 
 func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):

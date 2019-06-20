@@ -79,7 +79,8 @@ func _init_song(track):
 	if song.muted_tracks.size() > 0:
 		for i in song.muted_tracks:
 			_mute(current_song_num, i)
-	root.get_child(0).connect("finished", self, "_song_finished")
+	if not root.get_child(0).is_connected("finished", self, "_song_finished"):
+		root.get_child(0).connect("finished", self, "_song_finished")
 	tempo = song.tempo
 	bars = song.bars
 	loop = song.loop
