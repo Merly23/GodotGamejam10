@@ -1,6 +1,8 @@
-extends Control
+extends KeyboardMenu
 
 const fade_time = 0.5
+
+var active = false
 
 onready var tween := $Tween as Tween
 
@@ -11,12 +13,28 @@ onready var origin_position = menu.rect_global_position
 onready var offscreen_position = menu.rect_global_position + Vector2(0, -400)
 
 func _input(event: InputEvent) -> void:
+
 	if event.is_action_pressed("ui_cancel") and not tween.is_active():
 		toggle()
+
+	if not active:
+		return
+
+	if event.is_action_pressed("ui_down"):
+		next_button()
+	elif event.is_action_pressed("ui_up"):
+		previous_button()
+	elif event.is_action_pressed("ui_accept"):
+		current_button.set("custom_styles/normal", style_pressed)
+		current_button.emit_signal("pressed")
 
 func _ready() -> void:
 	menu.rect_global_position = offscreen_position
 	background.hide()
+
+func _register_buttons() -> void:
+	register_button($Layer2/PopupPanel/CenterContainer/VBoxContainer/Resume)
+	register_button($Layer2/PopupPanel/CenterContainer/VBoxContainer/Quit)
 
 func toggle() -> void:
 	if background.visible:
@@ -26,6 +44,8 @@ func toggle() -> void:
 
 func fade_in() -> void:
 	get_tree().paused = true
+
+	_set_current_button_index(0, true)
 	tween.stop_all()
 	tween.remove_all()
 
@@ -37,6 +57,7 @@ func fade_in() -> void:
 	tween.start()
 
 	Audio.play_sfx("menu_open")
+	active = true
 
 func fade_out() -> void:
 	tween.stop_all()
@@ -47,6 +68,7 @@ func fade_out() -> void:
 	tween.start()
 
 	Audio.play_sfx("menu_close")
+	active = false
 
 func _on_Tween_tween_all_completed() -> void:
 	if background.modulate == Color("00FFFFFF"):

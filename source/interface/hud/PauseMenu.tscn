@@ -49,19 +49,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Layer2/PopupPanel/CenterContainer"]
-margin_left = 34.0
+margin_left = 35.0
 margin_top = 54.0
-margin_right = 146.0
+margin_right = 145.0
 margin_bottom = 106.0
 
 [node name="Resume" parent="Layer2/PopupPanel/CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 112.0
+margin_right = 110.0
 margin_bottom = 24.0
 text = "Resume"
 
 [node name="Quit" parent="Layer2/PopupPanel/CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 28.0
-margin_right = 112.0
+margin_right = 110.0
 margin_bottom = 52.0
 text = "Quit"
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
