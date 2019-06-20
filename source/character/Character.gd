@@ -145,6 +145,7 @@ func get_current_frame() -> int:
 	return lower.sprite.frame
 
 func reset_modulate() -> void:
+	modulate = Color("FFFFFF")
 	upper.sprite.modulate = Color("FFFFFFFF")
 	lower.sprite.modulate = Color("FFFFFFFF")
 

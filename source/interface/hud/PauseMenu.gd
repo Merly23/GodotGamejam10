@@ -44,7 +44,6 @@ func toggle() -> void:
 
 func fade_in() -> void:
 	get_tree().paused = true
-
 	_set_current_button_index(0, true)
 	tween.stop_all()
 	tween.remove_all()
@@ -56,8 +55,10 @@ func fade_in() -> void:
 	tween.interpolate_property(menu, "rect_global_position", menu.rect_global_position, origin_position, fade_time, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.start()
 
-	Audio.play_sfx("menu_open")
 	active = true
+
+	Audio.play_sfx("menu_open")
+	Glitch.level = 1
 
 func fade_out() -> void:
 	tween.stop_all()
@@ -67,8 +68,10 @@ func fade_out() -> void:
 	tween.interpolate_property(menu, "rect_global_position", menu.rect_global_position, offscreen_position, fade_time, Tween.TRANS_BACK, Tween.EASE_IN)
 	tween.start()
 
-	Audio.play_sfx("menu_close")
 	active = false
+
+	Glitch.level = 0
+	Audio.play_sfx("menu_close")
 
 func _on_Tween_tween_all_completed() -> void:
 	if background.modulate == Color("00FFFFFF"):
