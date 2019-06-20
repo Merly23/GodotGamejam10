@@ -65,11 +65,14 @@ func can_dash() -> bool:
 		return false
 	return true
 
+func can_attack() -> bool:
+	return not upper.anim_player.current_animation == "shoot" and not upper.anim_player.current_animation == "attack"
+
 func can_shoot() -> bool:
 	if not energy - shoot_cost >= 0:
 		emit_signal("no_energy_left")
 		return false
-	elif not shoot_timer.is_stopped():
+	elif not can_attack():
 		return false
 	return true
 

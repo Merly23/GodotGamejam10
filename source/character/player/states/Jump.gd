@@ -53,7 +53,7 @@ func update(host: Node, delta: float) -> void:
 		host.fsm.change_state("idle")
 
 	if Input.is_action_pressed("V") and host.can_shoot():
-		host.shoot()
+		host.play_shoot()
 
 func exit(host: Node) -> void:
 	host = host as Character

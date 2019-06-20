@@ -55,7 +55,7 @@ func update(host: Node, delta: float) -> void:
 		host.fsm.change_state("fall")
 
 	if Input.is_action_pressed("V") and host.can_shoot():
-		host.shoot()
+		host.play_shoot()
 
 func exit(host: Node) -> void:
 	stopped = true
