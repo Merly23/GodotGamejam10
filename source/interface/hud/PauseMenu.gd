@@ -36,6 +36,8 @@ func fade_in() -> void:
 	tween.interpolate_property(menu, "rect_global_position", menu.rect_global_position, origin_position, fade_time, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.start()
 
+	Audio.play_sfx("menu_open")
+
 func fade_out() -> void:
 	tween.stop_all()
 	tween.remove_all()
@@ -44,10 +46,13 @@ func fade_out() -> void:
 	tween.interpolate_property(menu, "rect_global_position", menu.rect_global_position, offscreen_position, fade_time, Tween.TRANS_BACK, Tween.EASE_IN)
 	tween.start()
 
+	Audio.play_sfx("menu_close")
+
 func _on_Tween_tween_all_completed() -> void:
 	if background.modulate == Color("00FFFFFF"):
 		get_tree().paused = false
 		background.hide()
+
 
 func _on_Resume_pressed() -> void:
 	fade_out()
