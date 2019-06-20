@@ -22,11 +22,7 @@ func _ready() -> void:
 	mixing_desk._init_song("levelMusic")
 
 func play_song(song: String) -> void:
-	if mixing_desk.playing:
-		mixing_desk._queue_beat_transition(song)
-		mixing_desk._change_song(song)
-	else:
-		mixing_desk._play(song)
+	mixing_desk._change_song(song)
 
 func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
 

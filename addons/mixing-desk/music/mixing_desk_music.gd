@@ -328,18 +328,20 @@ func _queue_beat_transition(song):
 
 #unload and stops the current song, then initialises and plays the new one
 func _change_song(song):
-	song = songname_to_int(song)
-	_clear_song(old_song)
-	_init_song(song)
-	for i in songs[old_song].get_children():
-		if i.cont == "core":
-			if songs[old_song].transition_beats >= 1:
-				for o in i.get_child_count():
-					_fade_out(old_song, o)
-		if 'ran' or 'seq' or 'concat' in i.cont:
-			for o in i.get_children():
-				o.stop()
-	_play(song)
+    song = songname_to_int(song)
+    old_song = current_song_num
+    if old_song:
+        _clear_song(old_song)
+    _init_song(song)
+    for i in songs[old_song].get_children():
+        if i.cont == "core":
+            if songs[old_song].transition_beats >= 1:
+                for o in i.get_child_count():
+                    _fade_out(old_song, o)
+        if 'ran' or 'seq' or 'concat' in i.cont:
+            for o in i.get_children():
+                o.stop()
+    _play(song)
 
 #stops playing
 func _stop(song):
