@@ -13,7 +13,14 @@ var dash_count := 0
 var follow_dash := false
 
 func enter(host: Node) -> void:
-	host = host as Character
+	host = host as Player
+
+	if host.energy - host.dash_cost < 0:
+		host.fsm.return_to_previous_state()
+		return
+
+	host.energy -= host.dash_cost
+
 	host.play("dash")
 	host.disable_collision()
 	host.spawn_after_image()

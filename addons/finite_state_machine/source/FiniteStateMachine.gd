@@ -7,6 +7,8 @@ var states := {}
 
 var current_state = null
 
+var previous_state := ""
+
 var host = null
 
 func _ready() -> void:
@@ -28,6 +30,7 @@ func register_state(id: String, node_path: String):
 func change_state(new_state: String) -> void:
 
 	if current_state:
+		previous_state = current_state.name.to_lower()
 		current_state.exit(host)
 
 	current_state = states[new_state]
@@ -35,3 +38,6 @@ func change_state(new_state: String) -> void:
 	current_state.enter(host)
 
 	emit_signal("state_changed", current_state.name)
+
+func return_to_previous_state() -> void:
+	change_state(previous_state)

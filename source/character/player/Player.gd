@@ -8,7 +8,7 @@ var energy := 0 setget _set_energy
 export var max_energy := 100
 
 export var sword_damage := 2
-
+export var recharge_modifier := 5
 export var bullet_speed := 1600
 export var bullet_damage := 1
 export var bullet_cooldown := 0.3
@@ -21,6 +21,7 @@ onready var slow_motion := $SlowMotion
 
 onready var dash_timer := $DashTimer as Timer
 onready var shoot_timer := $ShootTimer as Timer
+onready var slow_motion_timer := $SlowMotionTimer as Timer
 
 onready var terrain_checker := $TerrainCheckArea
 
@@ -29,6 +30,10 @@ onready var barrel := $ProjectileHook
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("X"):
 		slow_motion.toggle()
+		if slow_motion.active:
+			slow_motion_timer.start(1.0 * Engine.time_scale)
+		else:
+			slow_motion_timer.stop()
 		spawn_pulse_in()
 
 func _ready() -> void:
@@ -54,6 +59,12 @@ func attack(attack_name: String) -> void:
 	play_upper(attack_name)
 
 func shoot() -> void:
+
+	if not energy - shoot_cost >= 0:
+		return
+
+	_set_energy(energy - shoot_cost)
+
 	shoot_timer.start()
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
@@ -71,7 +82,7 @@ func slash() -> void:
 		print(body.name)
 		if body is Character and body.team_number != team_number:
 			body.hurt(sword_damage)
-			_set_energy(energy + sword_damage)
+			_set_energy(energy + sword_damage * recharge_modifier)
 
 func get_input_direction(normalized := true) -> Vector2:
 
@@ -111,3 +122,11 @@ func spawn_pulse_in() -> void:
 func _set_energy(value) -> void:
 	energy = clamp(value, 0, max_energy)
 	emit_signal("energy_changed", energy)
+
+func _on_SlowMotionTimer_timeout() -> void:
+	if energy - slow_motion_cost >= 0:
+		_set_energy(energy - slow_motion_cost)
+	else:
+		slow_motion.toggle()
+		slow_motion_timer.stop()
+		spawn_pulse_in()
