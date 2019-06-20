@@ -1,4 +1,5 @@
 extends Node2D
+class_name Projectile
 
 var speed := 1600
 var damage := 1

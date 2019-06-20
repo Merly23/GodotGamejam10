@@ -44,7 +44,7 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	Global.Player = self
-	fsm.change_state("idle")
+	fsm.change_state("fall")
 	energy = max_energy
 	shoot_timer.wait_time = bullet_cooldown
 
@@ -56,7 +56,12 @@ func _register_states() -> void:
 	fsm.register_state("dash", "Dash")
 
 func can_dash() -> bool:
-	return dash_timer.is_stopped()
+	if not energy - dash_cost >= 0:
+		emit_signal("no_energy_left")
+		return false
+	elif not dash_timer.is_stopped():
+		return false
+	return true
 
 func can_shoot() -> bool:
 	return shoot_timer.is_stopped()
@@ -93,6 +98,8 @@ func shoot() -> void:
 func slash() -> void:
 
 	var bodies = hit_area.get_overlapping_bodies()
+	var areas = hit_area.get_overlapping_areas()
+
 	Audio.play_sfx("player_slash")
 
 	for body in bodies:

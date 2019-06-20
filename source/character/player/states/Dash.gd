@@ -14,14 +14,6 @@ var follow_dash := false
 
 func enter(host: Node) -> void:
 	host = host as Player
-
-	if host.energy - host.dash_cost < 0:
-		host.emit_signal("no_energy_left")
-		host.fsm.change_state("fall")
-		return
-
-	host.energy -= host.dash_cost
-
 	host.play("dash")
 	Audio.play_sfx("player_blink_start")
 	host.disable_collision()
@@ -29,6 +21,7 @@ func enter(host: Node) -> void:
 	direction = host.get_input_direction()
 	host.motion = Vector2(force, force) * direction
 	host.dash_timer.start()
+	host.energy -= host.dash_cost
 	dash_count += 1
 
 func input(host: Node, event: InputEvent) -> void:
