@@ -54,7 +54,7 @@ func update(host: Node, delta: float) -> void:
 	if not host.is_on_floor():
 		host.fsm.change_state("fall")
 
-	if Input.is_action_pressed("V") and host.can_shoot():
+	if Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
 		host.play_shoot()
 
 func exit(host: Node) -> void:

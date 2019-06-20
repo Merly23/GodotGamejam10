@@ -57,7 +57,7 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
-	if Input.is_action_pressed("V") and host.can_shoot():
+	if Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
 		host.play_shoot()
 
 func exit(host: Node) -> void:
