@@ -78,7 +78,7 @@ func shoot() -> void:
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
 	get_tree().root.add_child(projectile)
-	projectile.fire(bullet_damage, bullet_speed, get_input_direction(false))
+	projectile.fire(bullet_damage, bullet_speed, Vector2(get_shoot_direction(), 0))
 
 func slash() -> void:
 
@@ -99,23 +99,23 @@ func get_input_direction(normalized := true) -> Vector2:
 	var up = Input.is_action_pressed("ui_up")
 	var down = Input.is_action_pressed("ui_down")
 
-# directional shooting
-#	if left and not right:
-#		direction.x = -1
-#	elif right and not left:
-#		direction.x = 1
-#
-#	if up and not down:
-#		direction.y = -1
-#	elif down and not up:
-#		direction.y = 1
-#
-#	if not direction:
-#		direction.x = -1 if is_flipped() else 1
+	if left and not right:
+		direction.x = -1
+	elif right and not left:
+		direction.x = 1
 
-	direction.x = -1 if is_flipped() else 1
+	if up and not down:
+		direction.y = -1
+	elif down and not up:
+		direction.y = 1
+
+	if not direction:
+		direction.x = -1 if is_flipped() else 1
 
 	return direction.normalized() if normalized else direction
+
+func get_shoot_direction() -> int:
+	return -1 if is_flipped() else 1
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)
