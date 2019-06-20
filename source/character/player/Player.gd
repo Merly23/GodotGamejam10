@@ -168,7 +168,7 @@ func _set_energy(value) -> void:
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	var current_animation = lower.anim_player.current_animation
 
-	if anim_name == "attack" or anim_name == "shoot" and not can_shoot():
+	if anim_name == "attack" or anim_name == "shoot":
 		upper.anim_player.play(current_animation)
 		upper.anim_player.advance(lower.anim_player.current_animation_position)
 
