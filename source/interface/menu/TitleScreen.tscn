@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://graphics/themes/theme.tres" type="Theme" id=1]
 [ext_resource path="res://source/interface/menu/TitleScreen.gd" type="Script" id=2]
-[ext_resource path="res://graphics/fonts/pixelmix/pixelmix24.tres" type="DynamicFont" id=3]
+[ext_resource path="res://graphics/fonts/xolonium/xolonium-fonts-4.1/ttf/Xolonium-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://source/interface/menu/MenuButton.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+extra_spacing_char = 10
+font_data = ExtResource( 3 )
 
 [node name="TitleScreen" type="Panel"]
 anchor_right = 1.0
@@ -17,23 +22,23 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 254.0
-margin_top = 100.0
+margin_top = 97.0
 margin_right = 386.0
-margin_bottom = 259.0
+margin_bottom = 262.0
 custom_constants/separation = 15
 
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_right = 132.0
-margin_bottom = 24.0
-custom_fonts/font = ExtResource( 3 )
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 1 )
 text = "Glitch"
 align = 1
 valign = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 39.0
+margin_top = 45.0
 margin_right = 132.0
-margin_bottom = 159.0
+margin_bottom = 165.0
 custom_constants/separation = 8
 
 [node name="Play" parent="CenterContainer/VBoxContainer/Buttons" instance=ExtResource( 4 )]
