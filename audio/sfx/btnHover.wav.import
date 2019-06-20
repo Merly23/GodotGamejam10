@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/machineGun.wav-c75b6c32122f7d4a3786abb13df0140b.sample"
+path="res://.import/btnHover.wav-4f54876e8fc98d32973e8f594a191fe2.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/machineGun.wav"
-dest_files=[ "res://.import/machineGun.wav-c75b6c32122f7d4a3786abb13df0140b.sample" ]
+source_file="res://audio/sfx/btnHover.wav"
+dest_files=[ "res://.import/btnHover.wav-4f54876e8fc98d32973e8f594a191fe2.sample" ]
 
 [params]
 

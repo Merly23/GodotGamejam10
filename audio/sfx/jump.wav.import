@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/droneLoop.wav-2e7d79c071e6ba59eb5c9a23ffbe9844.sample"
+path="res://.import/jump.wav-ca4ccb66e678679518a9b9888fc39709.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/droneLoop.wav"
-dest_files=[ "res://.import/droneLoop.wav-2e7d79c071e6ba59eb5c9a23ffbe9844.sample" ]
+source_file="res://audio/sfx/jump.wav"
+dest_files=[ "res://.import/jump.wav-ca4ccb66e678679518a9b9888fc39709.sample" ]
 
 [params]
 

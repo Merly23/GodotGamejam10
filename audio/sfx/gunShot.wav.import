@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/startBlink.wav-97583d0aa3b7855a93430c6e6a888d12.sample"
+path="res://.import/gunShot.wav-ba7c0cd542ef17cbee9713ebe66b5a44.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/startBlink.wav"
-dest_files=[ "res://.import/startBlink.wav-97583d0aa3b7855a93430c6e6a888d12.sample" ]
+source_file="res://audio/sfx/gunShot.wav"
+dest_files=[ "res://.import/gunShot.wav-ba7c0cd542ef17cbee9713ebe66b5a44.sample" ]
 
 [params]
 

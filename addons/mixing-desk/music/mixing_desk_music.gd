@@ -93,7 +93,7 @@ func _clear_song(track):
 	players.clear()
 	binds.clear()
 	params.clear()
-	print('clearing song "' + str(songs[track].name) + '"')
+	# print('clearing song "' + str(songs[track].name) + '"')
 	var song = songs[track].get_core()
 	var inum = 0
 	for i in song.get_children():

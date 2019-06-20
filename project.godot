@@ -93,7 +93,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Glitch"
-run/main_scene="res://source/interface/menus/TitleScreen.tscn"
+run/main_scene="res://source/interface/menu/TitleScreen.tscn"
 
 [autoload]
 

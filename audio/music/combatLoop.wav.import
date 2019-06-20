@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/combatLoop.wav-3d845503aabc99cd04ce0ba515285543.sample"
+path="res://.import/combatLoop.wav-59420d26d0c1de364e6828ece432b9e4.sample"
 
 [deps]
 
-source_file="res://Audio/music/combatLoop.wav"
-dest_files=[ "res://.import/combatLoop.wav-3d845503aabc99cd04ce0ba515285543.sample" ]
+source_file="res://audio/music/combatLoop.wav"
+dest_files=[ "res://.import/combatLoop.wav-59420d26d0c1de364e6828ece432b9e4.sample" ]
 
 [params]
 

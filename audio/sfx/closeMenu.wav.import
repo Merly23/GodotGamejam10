@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/endBlink.wav-aed1914e37a04bd71c02c97b85c0570d.sample"
+path="res://.import/closeMenu.wav-a3725a4587eab8c17f7c62265c44d15e.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/endBlink.wav"
-dest_files=[ "res://.import/endBlink.wav-aed1914e37a04bd71c02c97b85c0570d.sample" ]
+source_file="res://audio/sfx/closeMenu.wav"
+dest_files=[ "res://.import/closeMenu.wav-a3725a4587eab8c17f7c62265c44d15e.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/playerDamaged.wav-5e5cab3d1ceadf8cf9e7d5a654757177.sample"
+path="res://.import/btnPress.wav-61a16d800bc767ca98be4a146674fa4b.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/playerDamaged.wav"
-dest_files=[ "res://.import/playerDamaged.wav-5e5cab3d1ceadf8cf9e7d5a654757177.sample" ]
+source_file="res://audio/sfx/btnPress.wav"
+dest_files=[ "res://.import/btnPress.wav-61a16d800bc767ca98be4a146674fa4b.sample" ]
 
 [params]
 
