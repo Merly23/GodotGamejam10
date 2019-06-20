@@ -2,7 +2,7 @@
 
 [ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/player/Player.gd" type="Script" id=2]
-[ext_resource path="res://source/character/player/SlowMotion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/tools/SlowMotion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://graphics/images/characters/android_jump.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/characters/andorid_standby_legs.png" type="Texture" id=5]
 [ext_resource path="res://graphics/images/characters/android_walk_legs.png" type="Texture" id=6]
@@ -17,7 +17,8 @@
 [ext_resource path="res://source/character/player/states/Fall.gd" type="Script" id=15]
 [ext_resource path="res://source/character/player/states/Dash.gd" type="Script" id=16]
 [ext_resource path="res://source/character/player/states/Die.gd" type="Script" id=17]
-[ext_resource path="res://source/character/player/TerrainCheckArea.tscn" type="PackedScene" id=18]
+[ext_resource path="res://source/tools/TerrainCheckArea.tscn" type="PackedScene" id=18]
+
 
 [sub_resource type="Animation" id=1]
 length = 0.2
