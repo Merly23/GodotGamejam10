@@ -22,6 +22,7 @@ func enter(host: Node) -> void:
 	host.energy -= host.dash_cost
 
 	host.play("dash")
+	Audio.play_sfx("player_blink_start")
 	host.disable_collision()
 	host.spawn_after_image()
 	direction = host.get_input_direction()
@@ -59,3 +60,4 @@ func exit(host: Node) -> void:
 	host.enable_collision()
 	host.reset_modulate()
 	host.shoot_timer.start()
+	Audio.play_sfx("player_blink_end")

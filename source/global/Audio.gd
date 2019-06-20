@@ -13,6 +13,7 @@ onready var music = {
 
 onready var sfx = {
 	player_hurt = $SFX/Player/Hurt,
+	player_jump = $SFX/Player/Jump,
 	player_blink_start = $SFX/Player/BlinkStart,
 	player_blink_end = $SFX/Player/BlinkEnd,
 	button_hover = $SFX/Button/Hover,
