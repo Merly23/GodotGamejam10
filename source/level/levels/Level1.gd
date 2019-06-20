@@ -1,4 +1,4 @@
 extends Level
 
 func _ready() -> void:
-	Audio.play_song("levelMusic")
+	Audio.play_music("game_music")

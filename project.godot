@@ -101,6 +101,7 @@ Scene="*res://source/global/Scene.tscn"
 Audio="*res://source/global/Audio.tscn"
 Global="*res://source/global/Global.gd"
 Instance="*res://source/global/Instance.gd"
+Glitch="*res://source/global/Glitch.tscn"
 
 [debug]
 

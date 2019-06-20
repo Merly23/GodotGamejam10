@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/glitch/Glitch.tscn" type="PackedScene" id=1]
+
+[node name="Glitch" type="CanvasLayer"]
+layer = 3
+
+[node name="Glitch" parent="." instance=ExtResource( 1 )]

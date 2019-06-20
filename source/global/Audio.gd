@@ -4,7 +4,12 @@ export var master_volume := 1.0 setget _set_master_volume
 export var music_volume := 1.0 setget _set_music_volume
 export var effects_volume := 1.0 setget _set_effects_volume
 
-onready var mixing_desk := $MixingDeskMusic
+onready var music_player := $MusicPlayer as AudioStreamPlayer
+
+onready var music = {
+	menu_music = preload("res://audio/music/menuLoop.wav"),
+	game_music = preload("res://audio/music/combatLoop.wav")
+}
 
 onready var sfx = {
 	player_hurt = $SFX/Player/Hurt,
@@ -14,15 +19,13 @@ onready var sfx = {
 	button_pressed = $SFX/Button/Pressed,
 	menu_open = $SFX/Menu/Open,
 	menu_close = $SFX/Menu/Close,
-	gun_shot = $SFX/GunShot
+	gun_shot = $SFX/GunShot,
+	glitch = $SFX/Glitch,
 }
 
-func _ready() -> void:
-	mixing_desk._init_song("levelMusic")
-
-func play_song(song: String) -> void:
-	mixing_desk._queue_bar_transition(song)
-	mixing_desk._change_song(song)
+func play_music(song: String) -> void:
+	music_player.stream = music[song]
+	music_player.play()
 
 func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
 
