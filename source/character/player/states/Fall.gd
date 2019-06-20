@@ -46,6 +46,7 @@ func update(host: Node, delta: float) -> void:
 			host.motion.x = 0
 
 	if host.is_on_floor():
+		Audio.play_sfx("player_land")
 
 		if not timer.is_stopped():
 			host.fsm.change_state("jump")

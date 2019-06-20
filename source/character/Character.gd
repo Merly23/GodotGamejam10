@@ -67,6 +67,7 @@ func hurt(damage) -> void:
 		return
 
 	anim_player.play("hurt")
+	Audio.play_sfx("player_hurt")
 	_set_health(health - damage)
 	emit_signal("hurt", damage)
 
@@ -101,7 +102,7 @@ func spawn_land_dust() -> void:
 	particle_spawner.spawn_land_dust(global_position, 31, is_flipped())
 
 func spawn_sparks() -> void:
-	particle_spawner.spawn_sparks(global_position, -16)
+	particle_spawner.spawn_sparks(global_position, 30)
 
 func enable_collision() -> void:
 	collision_shape.disabled = false

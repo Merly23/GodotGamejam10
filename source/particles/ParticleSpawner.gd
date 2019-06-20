@@ -3,7 +3,7 @@ class_name ParticleSpawner
 
 func spawn_sparks(spawn_position: Vector2, offset: int) -> void:
 	var sparks = Instance.Sparks()
-	sparks.global_position = spawn_position + Vector2(0, offset)
+	sparks.global_position = spawn_position - Vector2(0, offset)
 	get_tree().root.add_child(sparks)
 	sparks.play()
 

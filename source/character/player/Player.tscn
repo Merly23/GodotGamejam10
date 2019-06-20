@@ -618,6 +618,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="SlowMotionTimer" type="Timer" parent="." index="3"]
+one_shot = true
 
 [node name="SlowMotion" parent="." index="4" instance=ExtResource( 3 )]
 slow_down_scale = 0.5

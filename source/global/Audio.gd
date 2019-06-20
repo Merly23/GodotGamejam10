@@ -14,6 +14,8 @@ onready var music = {
 onready var sfx = {
 	player_hurt = $SFX/Player/Hurt,
 	player_jump = $SFX/Player/Jump,
+	player_land = $SFX/Player/Land,
+	player_slash = $SFX/Player/Slash,
 	player_blink_start = $SFX/Player/BlinkStart,
 	player_blink_end = $SFX/Player/BlinkEnd,
 	button_hover = $SFX/Button/Hover,
@@ -22,6 +24,10 @@ onready var sfx = {
 	menu_close = $SFX/Menu/Close,
 	gun_shot = $SFX/GunShot,
 	glitch = $SFX/Glitch,
+	tick1 = $SFX/Tick1,
+	tick2 = $SFX/Tick2,
+	tick3 = $SFX/Tick3,
+	tick4 = $SFX/Tick4
 }
 
 func play_music(song: String) -> void:
@@ -32,6 +38,9 @@ func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
 
 	if pitch_from and pitch_to:
 		sfx[effect_name].pitch = rand_range(pitch_from, pitch_to)
+
+	if effect_name == "tick":
+		effect_name += str(randi() % 4 + 1)
 
 	sfx[effect_name].play()
 

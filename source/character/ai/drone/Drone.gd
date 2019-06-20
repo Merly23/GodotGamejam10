@@ -20,6 +20,9 @@ func _register_states():
 	fsm.register_state("shoot", "Shoot")
 	fsm.register_state("seek", "Seek")
 
+func spawn_sparks():
+	.spawn_sparks()
+
 func terrain_on(direction: String) -> bool:
 
 	if not rays[direction].is_colliding():

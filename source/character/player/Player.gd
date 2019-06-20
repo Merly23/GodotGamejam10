@@ -37,8 +37,7 @@ func _input(event: InputEvent) -> void:
 
 		slow_motion.toggle()
 		if slow_motion.active:
-			slow_motion_timer.start(1.0 * Engine.time_scale)
-			_set_energy(energy - slow_motion_cost)
+			_on_SlowMotionTimer_timeout()
 		else:
 			slow_motion_timer.stop()
 		spawn_pulse_in()
@@ -83,12 +82,10 @@ func shoot() -> void:
 
 func slash() -> void:
 
-	print("slash")
-
 	var bodies = hit_area.get_overlapping_bodies()
+	Audio.play_sfx("player_slash")
 
 	for body in bodies:
-		print(body.name)
 		if body is Character and body.team_number != team_number:
 			body.hurt(sword_damage)
 			_set_energy(energy + sword_damage * recharge_modifier)
@@ -135,6 +132,8 @@ func _set_energy(value) -> void:
 func _on_SlowMotionTimer_timeout() -> void:
 	if energy - slow_motion_cost >= 0:
 		_set_energy(energy - slow_motion_cost)
+		Audio.play_sfx("tick")
+		slow_motion_timer.start(slow_motion.time_scale)
 	else:
 		slow_motion.toggle()
 		slow_motion_timer.stop()
