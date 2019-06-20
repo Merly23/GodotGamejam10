@@ -17,7 +17,7 @@ func enter(host: Node) -> void:
 
 	if host.energy - host.dash_cost < 0:
 		host.emit_signal("no_energy_left")
-		host.fsm.return_to_previous_state()
+		host.fsm.change_state("fall")
 		return
 
 	host.energy -= host.dash_cost
