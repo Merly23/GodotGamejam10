@@ -24,6 +24,7 @@ onready var sfx = {
 	menu_close = $SFX/Menu/Close,
 	gun_shot = $SFX/GunShot,
 	glitch = $SFX/Glitch,
+	type = $SFX/Type,
 	tick1 = $SFX/Tick1,
 	tick2 = $SFX/Tick2,
 	tick3 = $SFX/Tick3,
@@ -41,6 +42,10 @@ func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
 
 	if effect_name == "tick":
 		effect_name += str(randi() % 4 + 1)
+
+	if effect_name == "type":
+		randomize()
+		sfx[effect_name].pitch_scale = rand_range(0.9, 1.4)
 
 	sfx[effect_name].play()
 

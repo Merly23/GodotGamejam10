@@ -40,9 +40,9 @@ custom_constants/margin_bottom = 3
 
 [node name="Label" type="Label" parent="MarginContainer1/Panel/MarginContainer"]
 margin_left = 3.0
-margin_top = 7.0
+margin_top = 5.0
 margin_right = 134.0
-margin_bottom = 23.0
+margin_bottom = 25.0
 align = 1
 valign = 1
 
