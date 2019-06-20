@@ -691,7 +691,7 @@ one_shot = true
 
 [node name="SlowMotion" parent="." index="4" instance=ExtResource( 4 )]
 slow_down_scale = 0.5
-slow_down_time = 0.5
+slow_down_time = 0.3
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
 anims/dash = SubResource( 1 )

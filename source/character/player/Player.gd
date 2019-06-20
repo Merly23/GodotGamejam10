@@ -35,7 +35,9 @@ func _input(event: InputEvent) -> void:
 			emit_signal("no_energy_left")
 			return
 
-		slow_motion.toggle()
+		if not slow_motion.toggle():
+			return
+
 		if slow_motion.active:
 			_on_SlowMotionTimer_timeout()
 		else:
@@ -133,6 +135,12 @@ func get_input_direction(normalized := true) -> Vector2:
 
 func get_shoot_direction() -> int:
 	return -1 if is_flipped() else 1
+
+func cancel_slow_motion() -> void:
+	if slow_motion.active:
+		slow_motion.toggle()
+		slow_motion_timer.stop()
+		spawn_pulse_in()
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)

@@ -59,6 +59,7 @@ func fade_in() -> void:
 
 	Audio.play_sfx("menu_open")
 	Glitch.level = 1
+	if Global.Player: Global.Player.cancel_slow_motion()
 
 func fade_out() -> void:
 	tween.stop_all()
