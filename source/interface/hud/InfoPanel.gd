@@ -23,7 +23,8 @@ func update_health(health: int) -> void:
 	current_health = health
 
 func update_energy(energy: int) -> void:
-	pass
+	tween.interpolate_property(energy_bar, "value", energy_bar.value, energy, 0.2, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.start()
 
 func _hurt(damage: int) -> void:
 	for i in range(current_health, current_health - damage, -1):

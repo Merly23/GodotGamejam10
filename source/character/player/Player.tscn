@@ -19,7 +19,6 @@
 [ext_resource path="res://source/character/player/states/Die.gd" type="Script" id=17]
 [ext_resource path="res://source/tools/TerrainCheckArea.tscn" type="PackedScene" id=18]
 
-
 [sub_resource type="Animation" id=1]
 length = 0.2
 tracks/0/type = "value"

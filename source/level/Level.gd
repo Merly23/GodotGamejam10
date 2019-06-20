@@ -57,3 +57,6 @@ func _on_Character_hurt(damage: int) -> void:
 
 func _on_Player_health_changed(health) -> void:
 	interface.update_health(health)
+
+func _on_Player_energy_changed(energy) -> void:
+	interface.update_energy(energy)

@@ -1,10 +1,21 @@
 extends Character
 class_name Player
 
+signal energy_changed(energy)
+
+var energy := 0 setget _set_energy
+
+export var max_energy := 100
+
 export var sword_damage := 2
+
 export var bullet_speed := 1600
 export var bullet_damage := 1
 export var bullet_cooldown := 0.3
+
+export var dash_cost := 10
+export var slow_motion_cost := 10
+export var shoot_cost := 5
 
 onready var slow_motion := $SlowMotion
 
@@ -23,6 +34,7 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	Global.Player = self
 	fsm.change_state("idle")
+	energy = max_energy
 	shoot_timer.wait_time = bullet_cooldown
 
 func _register_states() -> void:
@@ -59,6 +71,7 @@ func slash() -> void:
 		print(body.name)
 		if body is Character and body.team_number != team_number:
 			body.hurt(sword_damage)
+			_set_energy(energy + sword_damage)
 
 func get_input_direction(normalized := true) -> Vector2:
 
@@ -94,3 +107,7 @@ func spawn_after_image() -> void:
 func spawn_pulse_in() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)
 	particle_spawner.spawn_pulse_in(center)
+
+func _set_energy(value) -> void:
+	energy = clamp(value, 0, max_energy)
+	emit_signal("energy_changed", energy)
