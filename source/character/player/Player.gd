@@ -29,9 +29,14 @@ onready var barrel := $ProjectileHook
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("X"):
+
+		if not energy - slow_motion_cost >= 0 and not slow_motion.active:
+			return
+
 		slow_motion.toggle()
 		if slow_motion.active:
 			slow_motion_timer.start(1.0 * Engine.time_scale)
+			_set_energy(energy - slow_motion_cost)
 		else:
 			slow_motion_timer.stop()
 		spawn_pulse_in()
