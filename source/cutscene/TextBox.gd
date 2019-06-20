@@ -20,7 +20,7 @@ func _process(delta):
 		text_label.visible_characters = visible_characters
 
 		tick += delta
-		if tick > 0.05:
+		if tick > 0.08:
 			tick = 0.0
 			Audio.play_sfx("type")
 
