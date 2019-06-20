@@ -39,7 +39,10 @@ func _ready() -> void:
 func _on_Cutscene_started() -> void:
 	interface.hide()
 	get_tree().call_group("Character", "_set_disabled", true)
-	# Global.Player.disabled = true
+	if Global.Player and Global.Player.slow_motion.active:
+		Global.Player.slow_motion.toggle()
+		Global.Player.slow_motion_timer.stop()
+		Global.Player.spawn_pulse_in()
 
 func _on_Cutscene_finished() -> void:
 	yield(get_tree().create_timer(0.2), "timeout")
@@ -60,7 +63,6 @@ func _on_Player_health_changed(health) -> void:
 
 func _on_Player_energy_changed(energy) -> void:
 	interface.update_energy(energy)
-
 
 func _on_Player_no_energy_left() -> void:
 	interface.shake_energy_bar()

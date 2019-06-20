@@ -61,6 +61,16 @@ func can_dash() -> bool:
 func can_shoot() -> bool:
 	return shoot_timer.is_stopped()
 
+func flip_left() -> void:
+	upper.sprite.flip_h = true
+	lower.sprite.flip_h = true
+	hit_area.position.x = -16
+
+func flip_right() -> void:
+	upper.sprite.flip_h = false
+	lower.sprite.flip_h = false
+	hit_area.position.x = 16
+
 func attack(attack_name: String) -> void:
 	play_upper(attack_name)
 
