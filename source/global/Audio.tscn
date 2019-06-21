@@ -95,7 +95,7 @@ bus = "Effects"
 [node name="Glitch" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 13 )
 volume_db = -18.0
-pitch_scale = 1.5
+pitch_scale = 0.6
 bus = "Effects"
 
 [node name="Type" type="AudioStreamPlayer" parent="SFX"]
