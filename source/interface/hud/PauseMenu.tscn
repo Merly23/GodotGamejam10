@@ -58,7 +58,6 @@ margin_bottom = 108.0
 margin_right = 84.0
 margin_bottom = 26.0
 text = "Resume"
-grab_focus = true
 
 [node name="Quit" parent="Layer2/PopupPanel/CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 30.0

@@ -41,6 +41,8 @@ func fade_in() -> void:
 
 	active = true
 
+	$Layer2/PopupPanel/CenterContainer/VBoxContainer/Resume.grab_focus()
+
 	Audio.play_sfx("menu_open")
 	Glitch.level = 1
 	if Global.Player: Global.Player.cancel_slow_motion()
@@ -58,6 +60,8 @@ func fade_out() -> void:
 	Glitch.level = 0
 	Audio.play_sfx("menu_close")
 
+	$Layer2/PopupPanel/CenterContainer/VBoxContainer/Resume.release_focus()
+	$Layer2/PopupPanel/CenterContainer/VBoxContainer/Quit.release_focus()
 func _on_Tween_tween_all_completed() -> void:
 	if background.modulate == Color("00FFFFFF"):
 		get_tree().paused = false
