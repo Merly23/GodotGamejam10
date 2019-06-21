@@ -40,9 +40,10 @@ func _input(event: InputEvent) -> void:
 
 		if slow_motion.active:
 			_on_SlowMotionTimer_timeout()
+			spawn_pulse_in()
 		else:
 			slow_motion_timer.stop()
-		spawn_pulse_in()
+			spawn_pulse_out()
 
 func _ready() -> void:
 	Global.Player = self
@@ -147,15 +148,19 @@ func get_shoot_direction() -> int:
 func cancel_slow_motion() -> void:
 	if slow_motion.active:
 		slow_motion.toggle()
-		spawn_pulse_in()
+		spawn_pulse_out()
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)
 	particle_spawner.spawn_after_image(center, is_flipped())
 
 func spawn_pulse_in() -> void:
-	var center = Vector2(global_position.x, global_position.y - 32)
+	var center = Vector2(0, -32)
 	particle_spawner.spawn_pulse_in(center)
+
+func spawn_pulse_out() -> void:
+	var center = Vector2(0, -32)
+	particle_spawner.spawn_pulse_out(center)
 
 func _set_energy(value) -> void:
 	energy = clamp(value, 0, max_energy)
