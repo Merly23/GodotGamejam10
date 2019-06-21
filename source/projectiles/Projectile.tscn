@@ -15,16 +15,18 @@ margin_top = -2.0
 margin_right = 60.0
 margin_bottom = 2.0
 
-[node name="Area2D" type="Area2D" parent="Sprite"]
+[node name="Projectile" type="Area2D" parent="Sprite"]
 position = Vector2( 30, 0 )
 collision_layer = 8
 collision_mask = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Projectile"]
 shape = SubResource( 1 )
 
 [node name="LifeTime" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
-[connection signal="body_entered" from="Sprite/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="Sprite/Projectile" to="." method="_on_Projectile_area_entered"]
+[connection signal="body_entered" from="Sprite/Projectile" to="." method="_on_Area2D_body_entered"]
+[connection signal="tree_exited" from="Sprite/Projectile" to="." method="_on_Projectile_tree_exited"]
 [connection signal="timeout" from="LifeTime" to="." method="_on_LifeTime_timeout"]

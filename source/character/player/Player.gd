@@ -44,11 +44,6 @@ func _input(event: InputEvent) -> void:
 			slow_motion_timer.stop()
 		spawn_pulse_in()
 
-func _process(delta: float) -> void:
-	if not is_energy_filled() and not slow_motion.active:
-		_set_energy(energy + 20 * delta)
-		print("refill")
-
 func _ready() -> void:
 	Global.Player = self
 	fsm.change_state("fall")
@@ -114,7 +109,6 @@ func shoot() -> void:
 func slash() -> void:
 
 	var bodies = hit_area.get_overlapping_bodies()
-	var areas = hit_area.get_overlapping_areas()
 
 	Audio.play_sfx("player_slash")
 
@@ -170,6 +164,9 @@ func _set_energy(value) -> void:
 func is_energy_filled() -> bool:
 	return energy == max_energy
 
+func is_attacking() -> bool:
+	return upper.anim_player.current_animation == "attack" or upper.anim_player.current_animation == "air_attack"
+
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	var current_animation = lower.anim_player.current_animation
 
@@ -188,5 +185,10 @@ func _on_SlowMotionTimer_timeout() -> void:
 		print("slomo tick")
 
 func _on_Tick_timeout() -> void:
-	if not slow_motion.active:
+	if not slow_motion.active and not is_energy_filled():
 		_set_energy(energy + 5)
+
+func _on_HitArea_area_entered(area: Area2D) -> void:
+	print(area.name)
+	if area.name == "Projectile" and is_attacking():
+		area.queue_free()

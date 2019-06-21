@@ -847,6 +847,7 @@ shape = SubResource( 17 )
 
 [node name="HitArea" parent="." index="11"]
 position = Vector2( 16, -31 )
+collision_mask = 13
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 shape = SubResource( 18 )
@@ -859,3 +860,4 @@ position = Vector2( 0, -31 )
 [connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]
 [connection signal="timeout" from="SlowMotionTimer" to="." method="_on_SlowMotionTimer_timeout"]
 [connection signal="timeout" from="FiniteStateMachine/Fall/Timer" to="FiniteStateMachine/Fall" method="_on_Timer_timeout"]
+[connection signal="area_entered" from="HitArea" to="." method="_on_HitArea_area_entered"]

@@ -50,3 +50,10 @@ func dir2rot(direction: Vector2) -> float:
 
 func _on_LifeTime_timeout() -> void:
 	queue_free()
+
+func _on_Projectile_area_entered(area: Area2D) -> void:
+	if area.name == "Projectile":
+		queue_free()
+
+func _on_Projectile_tree_exited() -> void:
+	queue_free()

@@ -50,6 +50,11 @@ _global_script_classes=[ {
 "path": "res://source/particles/ParticleSpawner.gd"
 }, {
 "base": "Character",
+"class": "Patrol",
+"language": "GDScript",
+"path": "res://source/character/ai/patrol/Patrol.gd"
+}, {
+"base": "Character",
 "class": "Player",
 "language": "GDScript",
 "path": "res://source/character/player/Player.gd"
@@ -88,6 +93,7 @@ _global_script_class_icons={
 "Interface": "",
 "Level": "",
 "ParticleSpawner": "",
+"Patrol": "",
 "Player": "",
 "Projectile": "",
 "SceneLoader": "",
