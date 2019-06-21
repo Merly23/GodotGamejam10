@@ -7,10 +7,12 @@ export var acceleration := 8
 
 onready var timer := $Timer as Timer
 onready var flip_timer := $FlipTimer as Timer
+
 func enter(host: Node) -> void:
 	host = host as Drone
 	host.play_lower("idle")
 	timer.start()
+	print("idleeee")
 
 func update(host: Node, delta: float) -> void:
 	host = host as Drone
@@ -34,4 +36,4 @@ func update(host: Node, delta: float) -> void:
 	host.move_and_slide(host.motion, Global.UP)
 
 	if host.is_player_in_vision() and timer.is_stopped():
-		pass # host.fsm.change_state("seek")
+		host.fsm.change_state("seek")

@@ -1,15 +1,17 @@
 extends State
 
-export var speed := Vector2(150, 150)
+export var speed := 150
+export var home_distance := 50
 
 func enter(host: Node) -> void:
 	host = host as Drone
-	print("seeeeekk")
+	print("retreeeat")
 
 func update(host: Node, delta: float) -> void:
 	host = host as Drone
 
-	var direction = host.get_player_vector_direction()
+	var direction = host.get_origin_direction()
+
 	host.motion = direction * speed
 
 	if direction.x < 0:
@@ -19,12 +21,8 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
-	if host.is_player_in_shoot_range():
-		host.fsm.change_state("shoot")
-	elif not host.is_player_in_vision():
-		host.fsm.change_state("retreat")
-	elif host.is_too_far_from_origin():
-		host.fsm.change_state("retreat")
+	if host.global_position.distance_to(host.origin) < home_distance:
+		host.fsm.change_state("idle")
 
 func exit(host: Node) -> void:
 	host = host as Drone
