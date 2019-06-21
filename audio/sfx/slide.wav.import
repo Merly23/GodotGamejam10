@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/playerGunshot.wav-f9a14296ce5fc6a3d99c6f71d560e3eb.sample"
+path="res://.import/slide.wav-17bf79882485ac3e87ad31351353ed40.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/playerGunshot.wav"
-dest_files=[ "res://.import/playerGunshot.wav-f9a14296ce5fc6a3d99c6f71d560e3eb.sample" ]
+source_file="res://audio/sfx/slide.wav"
+dest_files=[ "res://.import/slide.wav-17bf79882485ac3e87ad31351353ed40.sample" ]
 
 [params]
 
