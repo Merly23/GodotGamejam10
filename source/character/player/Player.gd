@@ -6,6 +6,7 @@ signal no_energy_left()
 
 var energy := 0 setget _set_energy
 
+
 export var max_energy := 100
 
 export var sword_damage := 2
@@ -18,6 +19,8 @@ export var dash_cost := 15
 export var slow_motion_cost := 20
 export var shoot_cost := 12
 
+export var has_virus := false
+
 onready var slow_motion := $SlowMotion
 
 onready var dash_timer := $DashTimer as Timer
@@ -29,7 +32,7 @@ onready var terrain_checker := $TerrainCheckArea
 onready var barrel := $ProjectileHook
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("X"):
+	if event.is_action_pressed("X") and has_virus:
 
 		if not energy - slow_motion_cost >= 0 and not slow_motion.active:
 			emit_signal("no_energy_left")

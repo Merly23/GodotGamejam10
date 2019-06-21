@@ -19,7 +19,7 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("B"):
 		host.attack("air_attack")
 
-	if event.is_action_pressed("C") and host.can_dash():
+	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
 		host.fsm.change_state("dash")
 
 	if event.is_action_pressed("SPACE"):

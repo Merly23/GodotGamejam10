@@ -22,7 +22,7 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("B"):
 		host.attack("attack")
 
-	if event.is_action_pressed("C") and host.can_dash():
+	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
 		host.fsm.change_state("dash")
 
 func update(host: Node, delta: float) -> void:

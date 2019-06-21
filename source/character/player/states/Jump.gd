@@ -16,7 +16,7 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 
-	if event.is_action_pressed("C") and host.can_dash():
+	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
 		host.fsm.change_state("dash")
 
 	if event.is_action_pressed("B"):
