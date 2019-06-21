@@ -1,13 +1,26 @@
 extends State
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+onready var idle_timer := $IdleTimer as Timer
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func enter(host: Node) -> void:
+	host = host as Patrol
+	idle_timer.start()
+	if not idle_timer.is_connected("timeout", self, "_on_IdleTimer_timeout"):
+		idle_timer.connect("timeout", self, "_on_IdleTimer_timeout", [ host ])
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func input(host: Node, event: InputEvent) -> void:
+	host = host as Patrol
+
+func update(host: Node, delta: float) -> void:
+	host = host as Patrol
+
+	if host.is_player_in_shoot_range():
+		host.fsm.change_state("shoot")
+	if host.is_player_in_vision():
+		host.fsm.change_state("seek")
+
+func exit(host: Node) -> void:
+	host = host as Patrol
+
+func _on_IdleTimer_timeout(host: Patrol) -> void:
+	host.fsm.change_state("walk")

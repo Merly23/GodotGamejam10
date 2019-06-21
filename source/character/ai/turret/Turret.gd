@@ -32,7 +32,7 @@ func shoot() -> void:
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
-	get_tree().root.add_child(projectile)
+	get_tree().current_scene.add_child(projectile)
 	projectile.fire(bullet_damage, bullet_speed, Vector2(get_player_direction(), 0))
 
 func is_player_in_vision() -> bool:

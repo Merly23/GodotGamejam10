@@ -7,13 +7,13 @@
 [ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=5]
 [ext_resource path="res://source/character/ai/patrol/states/Walk.gd" type="Script" id=6]
 [ext_resource path="res://source/character/ai/patrol/states/Seek.gd" type="Script" id=7]
-[ext_resource path="res://source/character/ai/patrol/states/Attack.gd" type="Script" id=8]
+[ext_resource path="res://source/character/ai/patrol/states/Shoot.gd" type="Script" id=8]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
-[node name="Patrol" instance=ExtResource( 1 )]
+[node name="Patrol" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
@@ -31,6 +31,8 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="IdleTimer" type="Timer" parent="FiniteStateMachine/Idle" index="0"]
+
 [node name="Walk" type="Node" parent="FiniteStateMachine" index="2"]
 script = ExtResource( 6 )
 __meta__ = {
@@ -43,7 +45,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Attack" type="Node" parent="FiniteStateMachine" index="4"]
+[node name="Shoot" type="Node" parent="FiniteStateMachine" index="4"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
