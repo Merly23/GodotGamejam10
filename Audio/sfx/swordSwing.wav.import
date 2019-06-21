@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/startBlink.wav-e63a9e0e9a48caf34112f5a8c1df4bb1.sample"
+path="res://.import/swordSwing.wav-777d26624ad9ae053a6003b898400a50.sample"
 
 [deps]
 
-source_file="res://audio/sfx/startBlink.wav"
-dest_files=[ "res://.import/startBlink.wav-e63a9e0e9a48caf34112f5a8c1df4bb1.sample" ]
+source_file="res://Audio/sfx/swordSwing.wav"
+dest_files=[ "res://.import/swordSwing.wav-777d26624ad9ae053a6003b898400a50.sample" ]
 
 [params]
 

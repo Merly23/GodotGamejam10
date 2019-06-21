@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/closeMenu.wav-a3725a4587eab8c17f7c62265c44d15e.sample"
+path="res://.import/closeMenu.wav-2ab9415b8d5534a3a5b6d31c11074f13.sample"
 
 [deps]
 
-source_file="res://audio/sfx/closeMenu.wav"
-dest_files=[ "res://.import/closeMenu.wav-a3725a4587eab8c17f7c62265c44d15e.sample" ]
+source_file="res://Audio/sfx/closeMenu.wav"
+dest_files=[ "res://.import/closeMenu.wav-2ab9415b8d5534a3a5b6d31c11074f13.sample" ]
 
 [params]
 
