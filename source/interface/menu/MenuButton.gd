@@ -14,4 +14,7 @@ func _on_MenuButton_mouse_entered() -> void:
 	grab_focus()
 
 func _on_MenuButton_focus_entered() -> void:
-	Audio.play_sfx("button_hover")
+	if grab_focus:
+		grab_focus = false
+	else:
+		Audio.play_sfx("button_hover")

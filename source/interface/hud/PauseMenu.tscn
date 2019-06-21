@@ -49,20 +49,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Layer2/PopupPanel/CenterContainer"]
-margin_left = 35.0
-margin_top = 54.0
-margin_right = 145.0
-margin_bottom = 106.0
+margin_left = 48.0
+margin_top = 52.0
+margin_right = 132.0
+margin_bottom = 108.0
 
 [node name="Resume" parent="Layer2/PopupPanel/CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 110.0
-margin_bottom = 24.0
+margin_right = 84.0
+margin_bottom = 26.0
 text = "Resume"
+grab_focus = true
 
 [node name="Quit" parent="Layer2/PopupPanel/CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 28.0
-margin_right = 110.0
-margin_bottom = 52.0
+margin_top = 30.0
+margin_right = 84.0
+margin_bottom = 56.0
 text = "Quit"
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="pressed" from="Layer2/PopupPanel/CenterContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
