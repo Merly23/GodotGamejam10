@@ -19,9 +19,34 @@ func _register_states():
 	fsm.register_state("idle", "Idle")
 	fsm.register_state("shoot", "Shoot")
 	fsm.register_state("seek", "Seek")
+	fsm.register_state("retreat", "Retreat")
+
+func flip_left() -> void:
+	.flip_left()
+	barrel.position.x = 0
+
+func flip_right() -> void:
+	.flip_right()
+	barrel.position.x = 0
 
 func spawn_sparks():
 	.spawn_sparks()
+
+func is_player_in_shoot_range() -> bool:
+
+	if not Global.Player:
+		return false
+
+	return Global.Player.global_position.distance_to(global_position) < 100
+
+func get_origin_direction() -> Vector2:
+	return (origin - global_position).normalized()
+
+func get_player_vector_direction() -> Vector2:
+	if not Global.Player:
+		return Vector2()
+
+	return (Global.Player.global_position - global_position).normalized()
 
 func terrain_on(direction: String) -> bool:
 
