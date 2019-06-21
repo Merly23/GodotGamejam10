@@ -1,4 +1,4 @@
-extends KeyboardMenu
+extends Control
 
 const fade_time = 0.5
 
@@ -17,23 +17,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and not tween.is_active():
 		toggle()
 
-	if not active:
-		return
-
-	if event.is_action_pressed("ui_down"):
-		_next_button()
-	elif event.is_action_pressed("ui_up"):
-		_previous_button()
-	elif event.is_action_pressed("ui_accept"):
-		_press_current_button()
-
 func _ready() -> void:
 	menu.rect_global_position = offscreen_position
 	background.hide()
-
-func _register_buttons() -> void:
-	_register_button($Layer2/PopupPanel/CenterContainer/VBoxContainer/Resume)
-	_register_button($Layer2/PopupPanel/CenterContainer/VBoxContainer/Quit)
 
 func toggle() -> void:
 	if background.visible:
@@ -43,7 +29,6 @@ func toggle() -> void:
 
 func fade_in() -> void:
 	get_tree().paused = true
-	_set_current_button_index(0, true)
 	tween.stop_all()
 	tween.remove_all()
 
