@@ -4,7 +4,9 @@ onready var idle_timer := $IdleTimer as Timer
 
 func enter(host: Node) -> void:
 	host = host as Patrol
+
 	idle_timer.start()
+
 	if not idle_timer.is_connected("timeout", self, "_on_IdleTimer_timeout"):
 		idle_timer.connect("timeout", self, "_on_IdleTimer_timeout", [ host ])
 
