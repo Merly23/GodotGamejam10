@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/tick3.wav-9ff33e50b0dce06f157f5db19f851a17.sample"
+path="res://.import/tick3.wav-34ff376505d8cd22f5502e030902cdeb.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/tick3.wav"
-dest_files=[ "res://.import/tick3.wav-9ff33e50b0dce06f157f5db19f851a17.sample" ]
+source_file="res://audio/sfx/tick3.wav"
+dest_files=[ "res://.import/tick3.wav-34ff376505d8cd22f5502e030902cdeb.sample" ]
 
 [params]
 
