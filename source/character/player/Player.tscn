@@ -859,6 +859,7 @@ script = ExtResource( 18 )
 __meta__ = {
 "_editor_icon": ExtResource( 14 )
 }
+max_dashes = 1
 
 [node name="Die" parent="FiniteStateMachine" index="5"]
 script = ExtResource( 19 )
