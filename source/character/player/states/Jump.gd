@@ -12,7 +12,6 @@ func enter(host: Node) -> void:
 	host.spawn_jump_dust()
 	host.motion.y = -jump_force
 
-
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 

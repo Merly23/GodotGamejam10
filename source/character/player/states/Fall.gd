@@ -52,16 +52,16 @@ func update(host: Node, delta: float) -> void:
 		Audio.play_sfx("player_land")
 
 		var fall_damage = int(host.motion.y / fall_damage_threshold)
+
 		if fall_damage:
 			host.hurt(fall_damage)
-		elif not timer.is_stopped():
-			host.fsm.change_state("jump")
-		elif host.motion.x:
-			host.fsm.change_state("walk")
-		else:
-			host.fsm.change_state("idle")
-		host.motion.y = 0
 
+		if not timer.is_stopped() and not host.dead:
+			host.fsm.change_state("jump")
+		elif host.motion.x and not host.dead:
+			host.fsm.change_state("walk")
+		elif not host.dead:
+			host.fsm.change_state("idle")
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 

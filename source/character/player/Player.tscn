@@ -843,7 +843,7 @@ acceleration = 50
 friction = 0.2
 
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Fall" index="0"]
-wait_time = 0.1
+wait_time = 0.15
 one_shot = true
 
 [node name="Dash" type="Node" parent="FiniteStateMachine" index="4"]
@@ -873,5 +873,4 @@ position = Vector2( 0, -31 )
 position = Vector2( 0, -31 )
 [connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]
 [connection signal="timeout" from="SlowMotionTimer" to="." method="_on_SlowMotionTimer_timeout"]
-[connection signal="timeout" from="FiniteStateMachine/Fall/Timer" to="FiniteStateMachine/Fall" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_HitArea_area_entered"]
