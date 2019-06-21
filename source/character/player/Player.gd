@@ -14,9 +14,9 @@ export var bullet_speed := 1600
 export var bullet_damage := 1
 export var bullet_cooldown := 0.3
 
-export var dash_cost := 10
-export var slow_motion_cost := 10
-export var shoot_cost := 5
+export var dash_cost := 15
+export var slow_motion_cost := 20
+export var shoot_cost := 12
 
 onready var slow_motion := $SlowMotion
 
@@ -44,6 +44,11 @@ func _input(event: InputEvent) -> void:
 			slow_motion_timer.stop()
 		spawn_pulse_in()
 
+func _process(delta: float) -> void:
+	if not is_energy_filled() and not slow_motion.active:
+		_set_energy(energy + 20 * delta)
+		print("refill")
+
 func _ready() -> void:
 	Global.Player = self
 	fsm.change_state("fall")
@@ -57,9 +62,10 @@ func _register_states() -> void:
 	fsm.register_state("jump", "Jump")
 	fsm.register_state("dash", "Dash")
 
-func can_dash() -> bool:
+func can_dash(silent := false) -> bool:
 	if not energy - dash_cost >= 0:
-		emit_signal("no_energy_left")
+		if not silent:
+			emit_signal("no_energy_left")
 		return false
 	elif not dash_timer.is_stopped():
 		return false
@@ -68,9 +74,10 @@ func can_dash() -> bool:
 func can_attack() -> bool:
 	return not upper.anim_player.current_animation == "shoot" and not upper.anim_player.current_animation == "attack"
 
-func can_shoot() -> bool:
+func can_shoot(silent := false) -> bool:
 	if not energy - shoot_cost >= 0:
-		emit_signal("no_energy_left")
+		if not silent:
+			emit_signal("no_energy_left")
 		return false
 	elif not can_attack():
 		return false
@@ -93,10 +100,6 @@ func play_shoot() -> void:
 	play_upper("shoot")
 
 func shoot() -> void:
-
-	if not energy - shoot_cost >= 0:
-		emit_signal("no_energy_left")
-		return
 
 	_set_energy(energy - shoot_cost)
 
@@ -150,7 +153,6 @@ func get_shoot_direction() -> int:
 func cancel_slow_motion() -> void:
 	if slow_motion.active:
 		slow_motion.toggle()
-		slow_motion_timer.stop()
 		spawn_pulse_in()
 
 func spawn_after_image() -> void:
@@ -165,6 +167,9 @@ func _set_energy(value) -> void:
 	energy = clamp(value, 0, max_energy)
 	emit_signal("energy_changed", energy)
 
+func is_energy_filled() -> bool:
+	return energy == max_energy
+
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	var current_animation = lower.anim_player.current_animation
 
@@ -178,7 +183,10 @@ func _on_SlowMotionTimer_timeout() -> void:
 		Audio.play_sfx("tick")
 		slow_motion_timer.start(slow_motion.time_scale)
 	else:
-		slow_motion.toggle()
-		slow_motion_timer.stop()
-		spawn_pulse_in()
+		cancel_slow_motion()
 		emit_signal("no_energy_left")
+		print("slomo tick")
+
+func _on_Tick_timeout() -> void:
+	if not slow_motion.active:
+		_set_energy(energy + 5)
