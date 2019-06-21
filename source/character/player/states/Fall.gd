@@ -4,7 +4,7 @@ export var max_speed := 450
 export var acceleration := 20
 export var friction := 0.4
 
-export var fall_damage_threshold := 1000
+export var fall_damage_threshold := 1500
 
 onready var timer := $Timer as Timer
 
