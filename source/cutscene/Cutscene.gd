@@ -3,12 +3,18 @@ extends Area2D
 signal started
 signal finished
 
+var time := 0.0
+
 var seen := false
 
 var _target : Node = null
 var _requires_dialoque = null
 
 export var active := true
+
+export var on_input := false
+export var input_action := ""
+export var input_time := 0.2
 
 export(NodePath) var target = null
 
@@ -30,6 +36,16 @@ func _ready() -> void:
 	else:
 		dialoque.connect("finished", self, "_on_Dialoque_finished")
 
+func _process(delta: float) -> void:
+	if not on_input:
+		set_process(false)
+
+	if Input.is_action_pressed(input_action) and requirement_fullfilled():
+		time += delta
+		if time > input_time:
+			time = 0.0
+			_start()
+			set_process(false)
 
 func _setup_target() -> void:
 
