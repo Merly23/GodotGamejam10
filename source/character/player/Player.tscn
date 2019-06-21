@@ -739,6 +739,7 @@ extents = Vector2( 28, 36 )
 collision_layer = 1
 script = ExtResource( 2 )
 max_health = 3
+bullet_speed = 800
 
 [node name="AnimationPlayer" parent="." index="0"]
 anims/die = SubResource( 1 )

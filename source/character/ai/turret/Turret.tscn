@@ -15,6 +15,7 @@
 script = ExtResource( 2 )
 team_number = 1
 max_health = 10
+bullet_speed = 600
 
 [node name="AnimationTree" parent="Lower" index="1"]
 parameters/playback = SubResource( 1 )

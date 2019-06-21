@@ -13,12 +13,13 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
-[node name="Patrol" index="0" instance=ExtResource( 1 )]
+[node name="Patrol" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 team_number = 1
 max_health = 6
 vision = 400
 shoot_range = 150
+bullet_speed = 600
 
 [node name="ShootTimer" type="Timer" parent="." index="0"]
 wait_time = 3.0
