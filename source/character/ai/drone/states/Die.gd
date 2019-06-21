@@ -3,6 +3,7 @@ extends State
 func enter(host) -> void:
 	host = host as Drone
 	host.stop_anim()
+	host.audio_player.stop()
 	host.anim_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished", [ host ])
 	host.anim_player.queue("die")
 

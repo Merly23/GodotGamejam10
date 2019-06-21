@@ -3,6 +3,8 @@ class_name Drone
 
 export var seek_distance := 500
 
+onready var audio_player := $AudioStreamPlayer2D as AudioStreamPlayer2D
+
 onready var origin := global_position
 
 func _ready() -> void:
