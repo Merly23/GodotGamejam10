@@ -76,6 +76,7 @@ lines = [ "Shooting is fun!" ]
 
 [node name="GameCam" parent="." index="7"]
 offset = Vector2( 0, -80 )
+smoothing_speed = 10.0
 
 [editable path="Cutscenes/Cutscene"]
 
