@@ -46,6 +46,8 @@ func _process(delta: float) -> void:
 			time = 0.0
 			_start()
 			set_process(false)
+	elif time:
+		time = 0.0
 
 func _setup_target() -> void:
 
