@@ -22,7 +22,7 @@ func update(host: Node, delta: float) -> void:
 			shots += 1
 			host.shoot()
 	else:
-		host.fsm.change_state("walk")
+		host.fsm.change_state("seek")
 
 func exit(host: Node) -> void:
 	host = host as Patrol

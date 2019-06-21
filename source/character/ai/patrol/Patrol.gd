@@ -61,7 +61,3 @@ func is_player_in_vision() -> bool:
 		return false
 
 	return global_position.distance_to(Global.Player.global_position) < vision
-
-func _draw() -> void:
-	draw_circle(to_local(global_position), vision, Color("33FFFFFF"))
-	draw_circle(to_local(global_position), shoot_range, Color("33FFFFFF"))

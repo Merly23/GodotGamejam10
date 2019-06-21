@@ -21,9 +21,9 @@ func update(host: Node, delta: float) -> void:
 	else:
 		host.motion.y += Global.GRAVITY * delta
 
-	if host.is_player_in_shoot_range():
+	if host.is_player_in_shoot_range() and host.can_shoot():
 		host.fsm.change_state("shoot")
-	if host.is_player_in_vision():
+	if host.is_player_in_vision() and not host.is_player_in_shoot_range():
 		host.fsm.change_state("seek")
 
 func exit(host: Node) -> void:

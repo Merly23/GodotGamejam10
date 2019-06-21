@@ -17,8 +17,8 @@
 script = ExtResource( 2 )
 team_number = 1
 max_health = 6
-vision = 300
-shoot_range = 120
+vision = 400
+shoot_range = 150
 
 [node name="ShootTimer" type="Timer" parent="." index="0"]
 wait_time = 3.0
@@ -55,6 +55,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+speed = 220
 
 [node name="Shoot" type="Node" parent="FiniteStateMachine" index="4"]
 script = ExtResource( 8 )
