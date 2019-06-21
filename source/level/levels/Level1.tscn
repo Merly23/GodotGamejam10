@@ -11,7 +11,7 @@ extents = Vector2( 30, 120 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
-[node name="Level1" instance=ExtResource( 1 )]
+[node name="Level1" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Terrain" parent="." index="1"]
