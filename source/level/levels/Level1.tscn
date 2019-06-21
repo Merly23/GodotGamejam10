@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/level/levels/Level1.gd" type="Script" id=2]
 [ext_resource path="res://source/character/ai/turret/Turret.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/cutscene/Speech.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/character/ai/drone/Drone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/cutscene/Speech.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 120 )
@@ -22,10 +23,24 @@ position = Vector2( 796, 384 )
 vision = 400
 bullet_speed = 500
 
+[node name="Drone" parent="Enemies" index="1" groups=[
+"Character",
+] instance=ExtResource( 4 )]
+position = Vector2( 1372, 270 )
+collision_layer = 4
+collision_mask = 2
+
+[node name="Drone2" parent="Enemies" index="2" groups=[
+"Character",
+] instance=ExtResource( 4 )]
+position = Vector2( 1846, 257 )
+collision_layer = 4
+collision_mask = 2
+
 [node name="Player" parent="Characters" index="0"]
 position = Vector2( 295, 312 )
 
-[node name="Cutscene" parent="Cutscenes" index="0" instance=ExtResource( 4 )]
+[node name="Cutscene" parent="Cutscenes" index="0" instance=ExtResource( 5 )]
 position = Vector2( 324, 352 )
 target = NodePath("../../Characters/Player")
 on_enter = true
@@ -34,11 +49,11 @@ on_enter = true
 position = Vector2( 1260, -271 )
 shape = SubResource( 1 )
 
-[node name="Speech" parent="Cutscenes/Cutscene/Dialoque" index="0" instance=ExtResource( 5 )]
+[node name="Speech" parent="Cutscenes/Cutscene/Dialoque" index="0" instance=ExtResource( 6 )]
 speaker = "Raphie"
 lines = [ "Nice view..." ]
 
-[node name="Cutscene2" parent="Cutscenes" index="1" instance=ExtResource( 4 )]
+[node name="Cutscene2" parent="Cutscenes" index="1" instance=ExtResource( 5 )]
 position = Vector2( -1111, 545 )
 target = NodePath("../../Characters/Player")
 on_enter = true
@@ -48,11 +63,11 @@ requires_dialoque = NodePath("../Cutscene")
 position = Vector2( 1260, -271 )
 shape = SubResource( 1 )
 
-[node name="Speech" parent="Cutscenes/Cutscene2/Dialoque" index="0" instance=ExtResource( 5 )]
+[node name="Speech" parent="Cutscenes/Cutscene2/Dialoque" index="0" instance=ExtResource( 6 )]
 speaker = "Raphie"
 lines = [ "Back to the start..." ]
 
-[node name="Cutscene3" parent="Cutscenes" index="2" instance=ExtResource( 4 )]
+[node name="Cutscene3" parent="Cutscenes" index="2" instance=ExtResource( 5 )]
 target = NodePath("../../Enemies/Turret")
 on_signal = "died"
 
@@ -60,11 +75,11 @@ on_signal = "died"
 position = Vector2( 1260, -271 )
 shape = SubResource( 2 )
 
-[node name="Speech" parent="Cutscenes/Cutscene3/Dialoque" index="0" instance=ExtResource( 5 )]
+[node name="Speech" parent="Cutscenes/Cutscene3/Dialoque" index="0" instance=ExtResource( 6 )]
 speaker = "Raphie"
 lines = [ "Take this you you rusty can!!" ]
 
-[node name="Cutscene4" parent="Cutscenes" index="3" instance=ExtResource( 4 )]
+[node name="Cutscene4" parent="Cutscenes" index="3" instance=ExtResource( 5 )]
 on_input = true
 input_action = "V"
 input_time = 0.5
@@ -73,7 +88,7 @@ input_time = 0.5
 position = Vector2( 1260, -271 )
 shape = SubResource( 2 )
 
-[node name="Speech" parent="Cutscenes/Cutscene4/Dialoque" index="0" instance=ExtResource( 5 )]
+[node name="Speech" parent="Cutscenes/Cutscene4/Dialoque" index="0" instance=ExtResource( 6 )]
 speaker = "Raphie"
 lines = [ "Shooting is fun!" ]
 
