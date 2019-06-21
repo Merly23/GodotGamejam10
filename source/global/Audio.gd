@@ -26,6 +26,7 @@ onready var sfx = {
 	gun_shot = $SFX/GunShot,
 	glitch = $SFX/Glitch,
 	type = $SFX/Type,
+	checkpoint = $SFX/Checkpoint,
 	tick1 = $SFX/Tick1,
 	tick2 = $SFX/Tick2,
 	tick3 = $SFX/Tick3,
