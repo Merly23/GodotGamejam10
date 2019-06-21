@@ -26,6 +26,8 @@ onready var slow_motion := $SlowMotion
 onready var dash_timer := $DashTimer as Timer
 onready var shoot_timer := $ShootTimer as Timer
 onready var slow_motion_timer := $SlowMotionTimer as Timer
+onready var heal_tick_timer := $HealTickTimer as Timer
+onready var heal_cooldown_timer := $HealCooldownTimer as Timer
 
 onready var terrain_checker := $TerrainCheckArea
 
@@ -97,6 +99,10 @@ func attack(attack_name: String) -> void:
 
 func play_shoot() -> void:
 	play_upper("shoot")
+
+func hurt(damage) -> void:
+	.hurt(damage)
+	heal_cooldown_timer.start()
 
 func shoot() -> void:
 
@@ -200,3 +206,12 @@ func _on_HitArea_area_entered(area: Area2D) -> void:
 	print(area.name)
 	if area.name == "Projectile" and is_attacking():
 		area.queue_free()
+
+func _on_HealTickTimer_timeout() -> void:
+
+	if not heal_cooldown_timer.is_stopped():
+		return
+
+	if health == max_health:
+		return
+	_set_health(health + 1)
