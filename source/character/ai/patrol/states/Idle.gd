@@ -16,6 +16,11 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Patrol
 
+	if host.is_on_floor():
+		host.motion.y = 0
+	else:
+		host.motion.y += Global.GRAVITY * delta
+
 	if host.is_player_in_shoot_range():
 		host.fsm.change_state("shoot")
 	if host.is_player_in_vision():
@@ -23,6 +28,7 @@ func update(host: Node, delta: float) -> void:
 
 func exit(host: Node) -> void:
 	host = host as Patrol
+	idle_timer.stop()
 
 func _on_IdleTimer_timeout(host: Patrol) -> void:
 	host.fsm.change_state("walk")

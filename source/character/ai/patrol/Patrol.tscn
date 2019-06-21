@@ -13,10 +13,16 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
-[node name="Patrol" instance=ExtResource( 1 )]
+[node name="Patrol" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 team_number = 1
 max_health = 6
+vision = 300
+shoot_range = 120
+
+[node name="ShootTimer" type="Timer" parent="." index="0"]
+wait_time = 3.0
+one_shot = true
 
 [node name="AnimationTree" parent="Lower" index="1"]
 parameters/playback = SubResource( 1 )
@@ -34,12 +40,15 @@ __meta__ = {
 }
 
 [node name="IdleTimer" type="Timer" parent="FiniteStateMachine/Idle" index="0"]
+wait_time = 3.0
+one_shot = true
 
 [node name="Walk" type="Node" parent="FiniteStateMachine" index="2"]
 script = ExtResource( 6 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+speed = 160
 
 [node name="Seek" type="Node" parent="FiniteStateMachine" index="3"]
 script = ExtResource( 7 )
@@ -52,3 +61,10 @@ script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+
+[node name="Timer" type="Timer" parent="FiniteStateMachine/Shoot" index="0"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Barrel" type="Position2D" parent="." index="9"]
+position = Vector2( 0, -44 )
