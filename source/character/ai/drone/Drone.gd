@@ -2,13 +2,19 @@ extends Turret
 class_name Drone
 
 export var seek_distance := 500
+export var sound_distance := 2000
 
-onready var audio_player := $AudioStreamPlayer2D as AudioStreamPlayer2D
+onready var audio_player := $AudioStreamPlayer as AudioStreamPlayer
 
 onready var origin := global_position
 
 func _ready() -> void:
 	lower.sprite.region_rect.position.y = 64 * (randi() % 3)
+
+func _process(delta: float) -> void:
+	if Global.Player:
+		var volume = 0.5 - (Global.Player.global_position.distance_to(global_position) / sound_distance)
+		audio_player.volume_db = linear2db(clamp(volume, 0, 0.6))
 
 onready var rays := {
 	left = $Rays/Left,

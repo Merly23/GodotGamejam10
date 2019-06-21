@@ -16,6 +16,7 @@ onready var sfx = {
 	player_jump = $SFX/Player/Jump,
 	player_land = $SFX/Player/Land,
 	player_stop = $SFX/Player/Stop,
+	player_step = $SFX/Player/Step,
 	player_slash = $SFX/Player/Slash,
 	player_blink_start = $SFX/Player/BlinkStart,
 	player_blink_end = $SFX/Player/BlinkEnd,

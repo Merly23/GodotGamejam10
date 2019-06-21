@@ -100,6 +100,9 @@ func attack(attack_name: String) -> void:
 func play_shoot() -> void:
 	play_upper("shoot")
 
+func play_step():
+	Audio.play_sfx("player_step")
+
 func hurt(damage) -> void:
 	.hurt(damage)
 	heal_cooldown_timer.start()
