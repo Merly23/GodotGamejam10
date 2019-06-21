@@ -106,6 +106,7 @@ _global_script_class_icons={
 
 config/name="Glitch"
 run/main_scene="res://source/interface/menu/TitleScreen.tscn"
+boot_splash/image="res://graphics/images/splash/wallpaper.png"
 
 [autoload]
 
