@@ -12,6 +12,7 @@ var fired := false
 
 onready var area := $Sprite/Area2D as Area2D
 onready var sprite := $Sprite as Sprite
+onready var life_time := $LifeTime
 
 func _physics_process(delta: float) -> void:
 	if fired:
@@ -46,3 +47,6 @@ func dir2rot(direction: Vector2) -> float:
 		rot -= 45 * direction.x * direction.y
 
 	return rot
+
+func _on_LifeTime_timeout() -> void:
+	queue_free()

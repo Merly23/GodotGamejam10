@@ -36,8 +36,9 @@ func is_player_in_shoot_range() -> bool:
 
 	if not Global.Player:
 		return false
-
-	return Global.Player.global_position.distance_to(global_position) < 60
+	var distance_vector = Global.Player.global_position - global_position
+	distance_vector.x /= 20
+	return distance_vector.length() < 20
 
 func get_origin_direction() -> Vector2:
 	return (origin - global_position).normalized()
