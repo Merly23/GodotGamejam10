@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/droneLoop.wav-ac3411a42eef72780d46e36357055349.sample"
+path="res://.import/playerGunshot.wav-f9a14296ce5fc6a3d99c6f71d560e3eb.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/droneLoop.wav"
-dest_files=[ "res://.import/droneLoop.wav-ac3411a42eef72780d46e36357055349.sample" ]
+source_file="res://Audio/sfx/playerGunshot.wav"
+dest_files=[ "res://.import/playerGunshot.wav-f9a14296ce5fc6a3d99c6f71d560e3eb.sample" ]
 
 [params]
 

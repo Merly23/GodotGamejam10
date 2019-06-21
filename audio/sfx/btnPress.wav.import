@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/btnPress.wav-61a16d800bc767ca98be4a146674fa4b.sample"
+path="res://.import/btnPress.wav-43305852805bb77d9e2243ea7a8583f2.sample"
 
 [deps]
 
-source_file="res://audio/sfx/btnPress.wav"
-dest_files=[ "res://.import/btnPress.wav-61a16d800bc767ca98be4a146674fa4b.sample" ]
+source_file="res://Audio/sfx/btnPress.wav"
+dest_files=[ "res://.import/btnPress.wav-43305852805bb77d9e2243ea7a8583f2.sample" ]
 
 [params]
 
