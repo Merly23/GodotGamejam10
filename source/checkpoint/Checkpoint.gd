@@ -13,3 +13,4 @@ func _on_Checkpoint_body_entered(body: PhysicsBody2D) -> void:
 	if body == Global.Player and not active:
 		active = true
 		emit_signal("reached", id)
+		Audio.play_sfx("checkpoint")

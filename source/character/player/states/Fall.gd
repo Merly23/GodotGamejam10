@@ -4,27 +4,29 @@ export var max_speed := 450
 export var acceleration := 20
 export var friction := 0.4
 
+export var fall_damage_threshold := 1500
+
 onready var timer := $Timer as Timer
 
 func enter(host: Node) -> void:
 	host.motion.y = 0
-	host = host as Character
+	host = host as Player
 	host.play("fall")
 
 func input(host: Node, event: InputEvent) -> void:
-	host = host as Character
+	host = host as Player
 
 	if event.is_action_pressed("B"):
 		host.attack("air_attack")
 
-	if event.is_action_pressed("C") and host.can_dash():
+	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
 		host.fsm.change_state("dash")
 
 	if event.is_action_pressed("SPACE"):
 		timer.start()
 
 func update(host: Node, delta: float) -> void:
-	host = host as Character
+	host = host as Player
 
 	var left = Input.is_action_pressed("ui_left") if not host.disabled else false
 	var right = Input.is_action_pressed("ui_right") if not host.disabled else false
@@ -46,13 +48,19 @@ func update(host: Node, delta: float) -> void:
 			host.motion.x = 0
 
 	if host.is_on_floor():
+
 		Audio.play_sfx("player_land")
 
-		if not timer.is_stopped():
+		var fall_damage = int(host.motion.y / fall_damage_threshold)
+
+		if fall_damage:
+			host.hurt(fall_damage)
+
+		if not timer.is_stopped() and not host.dead:
 			host.fsm.change_state("jump")
-		elif host.motion.x:
+		elif host.motion.x and not host.dead:
 			host.fsm.change_state("walk")
-		else:
+		elif not host.dead:
 			host.fsm.change_state("idle")
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)

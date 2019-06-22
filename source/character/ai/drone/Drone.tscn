@@ -1,14 +1,15 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://source/character/ai/turret/Turret.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/drone/Drone.gd" type="Script" id=2]
-[ext_resource path="res://graphics/images/characters/drones.png" type="Texture" id=3]
-[ext_resource path="res://source/character/ai/drone/states/Die.gd" type="Script" id=4]
-[ext_resource path="res://source/character/ai/drone/states/Idle.gd" type="Script" id=5]
-[ext_resource path="res://source/character/ai/drone/states/Shoot.gd" type="Script" id=6]
-[ext_resource path="res://source/character/ai/drone/states/Seek.gd" type="Script" id=7]
-[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=8]
-[ext_resource path="res://source/character/ai/drone/states/Retreat.gd" type="Script" id=9]
+[ext_resource path="res://audio/sfx/droneLoop.wav" type="AudioStream" id=3]
+[ext_resource path="res://graphics/images/characters/drones.png" type="Texture" id=4]
+[ext_resource path="res://source/character/ai/drone/states/Die.gd" type="Script" id=5]
+[ext_resource path="res://source/character/ai/drone/states/Idle.gd" type="Script" id=6]
+[ext_resource path="res://source/character/ai/drone/states/Shoot.gd" type="Script" id=7]
+[ext_resource path="res://source/character/ai/drone/states/Seek.gd" type="Script" id=8]
+[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=9]
+[ext_resource path="res://source/character/ai/drone/states/Retreat.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
@@ -72,10 +73,16 @@ max_health = 2
 vision = 250
 idle_time = 1.0
 frequenzy = 3.0
-bullet_speed = 500
 seek_distance = 1000
 
-[node name="AnimationPlayer" parent="." index="0"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="0"]
+stream = ExtResource( 3 )
+volume_db = 1.0
+pitch_scale = 0.75
+autoplay = true
+bus = "Effects"
+
+[node name="AnimationPlayer" parent="." index="1"]
 anims/die = SubResource( 1 )
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
@@ -86,7 +93,7 @@ tree_root = SubResource( 3 )
 parameters/playback = SubResource( 4 )
 
 [node name="Sprite" parent="Lower" index="2"]
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 hframes = 6
 frame = 1
 region_enabled = true
@@ -97,10 +104,10 @@ tree_root = SubResource( 5 )
 parameters/playback = SubResource( 6 )
 
 [node name="Die" parent="FiniteStateMachine" index="0"]
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="Idle" parent="FiniteStateMachine" index="1"]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="Timer" parent="FiniteStateMachine/Idle" index="0"]
 wait_time = 1.0
@@ -109,27 +116,27 @@ wait_time = 1.0
 one_shot = true
 
 [node name="Shoot" parent="FiniteStateMachine" index="2"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="Seek" type="Node" parent="FiniteStateMachine" index="3"]
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 __meta__ = {
-"_editor_icon": ExtResource( 8 )
+"_editor_icon": ExtResource( 9 )
 }
 
 [node name="Retreat" type="Node" parent="FiniteStateMachine" index="4"]
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 __meta__ = {
-"_editor_icon": ExtResource( 8 )
+"_editor_icon": ExtResource( 9 )
 }
 
-[node name="CollisionShape2D" parent="." index="5"]
+[node name="CollisionShape2D" parent="." index="6"]
 shape = SubResource( 7 )
 
-[node name="Barrel" parent="." index="7"]
+[node name="Barrel" parent="." index="8"]
 position = Vector2( 0, -27 )
 
-[node name="Rays" type="Node2D" parent="." index="8"]
+[node name="Rays" type="Node2D" parent="." index="9"]
 position = Vector2( 0, -32 )
 
 [node name="Left" type="RayCast2D" parent="Rays" index="0"]
@@ -154,3 +161,4 @@ collision_mask = 2
 enabled = true
 cast_to = Vector2( 0, 100 )
 collision_mask = 2
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
