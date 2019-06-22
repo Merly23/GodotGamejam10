@@ -2,7 +2,7 @@
 
 [ext_resource path="res://source/character/Character.gd" type="Script" id=1]
 [ext_resource path="res://source/particles/ParticleSpawner.tscn" type="PackedScene" id=2]
-[ext_resource path="res://graphics/images/characters/character.png" type="Texture" id=3]
+[ext_resource path="res://graphics/images/characters/dummy.png" type="Texture" id=3]
 [ext_resource path="res://addons/finite_state_machine/source/FiniteStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://addons/finite_state_machine/icons/fsm.png" type="Texture" id=5]
 [ext_resource path="res://source/character/states/Die.gd" type="Script" id=6]
