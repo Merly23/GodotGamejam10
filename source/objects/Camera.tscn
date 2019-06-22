@@ -22,7 +22,6 @@ tracks/0/keys = {
 [node name="Camera" type="Sprite"]
 texture = ExtResource( 1 )
 hframes = 12
-frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
