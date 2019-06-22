@@ -2,10 +2,13 @@ extends CanvasLayer
 
 # Scenes
 const TitleScreen := "res://source/interface/menu/TitleScreen.tscn"
+const GameOver := "res://source/interface/menu/GameOver.tscn"
 
 const Level1 := "res://source/level/levels/Level1.tscn"
 
 var next_scene := ""
+var prev_scene := ""
+
 var show_bar := false
 
 onready var scene_loader := $SceneLoader as SceneLoader
@@ -14,6 +17,7 @@ onready var progress_bar := $TextureProgress as TextureProgress
 
 func change(scene: String, show_bar: bool = false) -> void:
 	self.show_bar = show_bar
+	prev_scene = next_scene
 	next_scene = scene
 	anim.play("fade_out")
 
@@ -31,7 +35,6 @@ func _on_ProgressBar_value_changed(value: float) -> void:
 func _on_SceneLoader_scene_loaded(scene) -> void:
 	get_tree().change_scene_to(scene)
 	anim.play("fade_in")
-	next_scene = ""
 
 func _on_SceneLoader_stage_changed(stage) -> void:
 	progress_bar.value = stage
