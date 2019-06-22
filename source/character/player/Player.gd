@@ -6,7 +6,6 @@ signal no_energy_left()
 
 var energy := 0 setget _set_energy
 
-
 export var max_energy := 100
 
 export var sword_damage := 2
@@ -62,6 +61,9 @@ func _register_states() -> void:
 	fsm.register_state("fall", "Fall")
 	fsm.register_state("jump", "Jump")
 	fsm.register_state("dash", "Dash")
+
+func infect() -> void:
+	has_virus = true
 
 func can_dash(silent := false) -> bool:
 	if not energy - dash_cost >= 0:
