@@ -10,7 +10,7 @@ func enter(host: Node) -> void:
 	if not idle_timer.is_connected("timeout", self, "_on_IdleTimer_timeout"):
 		idle_timer.connect("timeout", self, "_on_IdleTimer_timeout", [ host ])
 
-	host.play("idle")
+	host.play_lower("idle")
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Patrol
