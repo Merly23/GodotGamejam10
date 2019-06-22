@@ -8,7 +8,7 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
-[node name="Glitcher" index="0" instance=ExtResource( 1 )]
+[node name="Glitcher" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 team_number = 0
 max_health = 2
