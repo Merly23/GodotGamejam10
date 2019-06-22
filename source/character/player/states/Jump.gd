@@ -32,6 +32,9 @@ func update(host: Node, delta: float) -> void:
 
 	host.motion.y += Global.GRAVITY * delta
 
+	if Input.is_action_just_released("SPACE"):
+		jump_cut(host)
+
 	if left and not right:
 		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, max_speed)
 		host.flip_left()
@@ -53,6 +56,10 @@ func update(host: Node, delta: float) -> void:
 
 	if Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
 		host.play_shoot()
+
+func jump_cut(host):
+    if host.motion.y < -100:
+        host.motion.y = -100
 
 func exit(host: Node) -> void:
 	host = host as Character
