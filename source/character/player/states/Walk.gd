@@ -25,6 +25,7 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
 		host.fsm.change_state("dash")
 
+
 func update(host: Node, delta: float) -> void:
 	host = host as Character
 
@@ -51,11 +52,15 @@ func update(host: Node, delta: float) -> void:
 	if abs(host.motion.x) < 1:
 		host.fsm.change_state("idle")
 
-	if not host.is_on_floor():
+	elif not host.is_on_floor():
 		host.fsm.change_state("fall")
 
-	if Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
+	elif Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
 		host.play_shoot()
+
+	elif Input.is_action_pressed("ui_down"):
+		host.fsm.change_state("crouch")
+		host.spawn_stop_dust()
 
 func exit(host: Node) -> void:
 	stopped = true

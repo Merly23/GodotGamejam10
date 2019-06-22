@@ -26,6 +26,9 @@ func update(host: Node, delta: float) -> void:
 	if not host.is_on_floor():
 		host.fsm.change_state("fall")
 
+	elif Input.is_action_pressed("ui_down"):
+		host.fsm.change_state("crouch")
+
 	elif bool(int(left) + int(right)):
 		host.fsm.change_state("walk")
 

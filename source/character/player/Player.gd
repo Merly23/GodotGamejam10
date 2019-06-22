@@ -28,6 +28,8 @@ onready var slow_motion_timer := $SlowMotionTimer as Timer
 onready var heal_tick_timer := $HealTickTimer as Timer
 onready var heal_cooldown_timer := $HealCooldownTimer as Timer
 
+onready var capsule := collision_shape.shape as CapsuleShape2D
+
 onready var terrain_checker := $TerrainCheckArea
 
 onready var barrel := $ProjectileHook
@@ -61,6 +63,7 @@ func _register_states() -> void:
 	fsm.register_state("fall", "Fall")
 	fsm.register_state("jump", "Jump")
 	fsm.register_state("dash", "Dash")
+	fsm.register_state("crouch", "Crouch")
 
 func infect() -> void:
 	has_virus = true
@@ -131,6 +134,14 @@ func slash() -> void:
 		if body is Character and body.team_number != team_number:
 			body.hurt(sword_damage)
 			_set_energy(energy + sword_damage * recharge_modifier)
+
+func crouch() -> void:
+	collision_shape.position.y = -16
+	capsule.height = 12
+
+func stand() -> void:
+	collision_shape.position.y = -24
+	capsule.height = 28
 
 func get_input_direction(normalized := true) -> Vector2:
 
