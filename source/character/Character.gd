@@ -54,7 +54,7 @@ onready var fsm := $FiniteStateMachine as FiniteStateMachine
 func _ready() -> void:
 
 	if flip_on_start:
-		flip_left()
+		call_deferred("flip_left")
 
 	_register_host()
 	_register_states()
