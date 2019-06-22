@@ -16,7 +16,7 @@ func enter(host: Node) -> void:
 	host = host as Player
 	host.play("dash")
 	Audio.play_sfx("player_blink_start")
-	host.disable_collision()
+	# host.disable_collision()
 	host.spawn_after_image()
 	direction = host.get_input_direction()
 	host.motion = Vector2(force, force) * direction
@@ -55,6 +55,6 @@ func exit(host: Node) -> void:
 		Audio.play_sfx("player_blink_end")
 
 	dash_count = 0
-	host.enable_collision()
+	# host.enable_collision()
 	host.reset_modulate()
 	host.shoot_timer.start()
