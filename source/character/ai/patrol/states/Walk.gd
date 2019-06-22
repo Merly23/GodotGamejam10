@@ -7,6 +7,7 @@ export var radius := 250
 
 func enter(host: Node) -> void:
 	host = host as Patrol
+	host.play_lower("walk")
 	target_position = host.get_random_target_position(radius)
 
 func input(host: Node, event: InputEvent) -> void:

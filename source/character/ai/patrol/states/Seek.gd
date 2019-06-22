@@ -4,6 +4,7 @@ export var speed = 120
 
 func enter(host: Node) -> void:
 	host = host as Patrol
+	host.play_lower("walk")
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Patrol
