@@ -41,8 +41,8 @@ func update(host: Node, delta: float) -> void:
 	if host.motion.length() < 500:
 		if follow_dash and dash_count < max_dashes:
 			enter(host)
-		elif host.terrain_checker.is_in_terrain():
-			host.fsm.change_state("die")
+#		elif host.terrain_checker.is_in_terrain():
+#			host.fsm.change_state("die")
 		else:
 			host.motion.x = 0
 			host.fsm.change_state("fall")
