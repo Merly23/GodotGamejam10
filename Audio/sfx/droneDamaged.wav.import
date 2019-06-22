@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/btnHover.wav-37acffed475e89393eaa1ce43d417efc.sample"
+path="res://.import/droneDamaged.wav-93cd85d34f5e68ededb39c09ff150d90.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/btnHover.wav"
-dest_files=[ "res://.import/btnHover.wav-37acffed475e89393eaa1ce43d417efc.sample" ]
+source_file="res://Audio/sfx/droneDamaged.wav"
+dest_files=[ "res://.import/droneDamaged.wav-93cd85d34f5e68ededb39c09ff150d90.sample" ]
 
 [params]
 

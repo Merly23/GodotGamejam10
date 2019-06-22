@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/checkpointReached.wav-e9f97594a75f633b2c125ec84954a78c.sample"
+path="res://.import/checkpointReached.wav-9441ed731baccde4e8897b0273eeadc7.sample"
 
 [deps]
 
-source_file="res://audio/sfx/checkpointReached.wav"
-dest_files=[ "res://.import/checkpointReached.wav-e9f97594a75f633b2c125ec84954a78c.sample" ]
+source_file="res://Audio/sfx/checkpointReached.wav"
+dest_files=[ "res://.import/checkpointReached.wav-9441ed731baccde4e8897b0273eeadc7.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/btnHover.wav-37acffed475e89393eaa1ce43d417efc.sample"
+path="res://.import/blink.wav-f072e68fd8ba6c5de85efe8083b08f06.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/btnHover.wav"
-dest_files=[ "res://.import/btnHover.wav-37acffed475e89393eaa1ce43d417efc.sample" ]
+source_file="res://Audio/sfx/blink.wav"
+dest_files=[ "res://.import/blink.wav-f072e68fd8ba6c5de85efe8083b08f06.sample" ]
 
 [params]
 
