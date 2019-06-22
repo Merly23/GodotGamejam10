@@ -29,14 +29,10 @@ func _new_time() -> float:
 
 func _set_level(value) -> void:
 	level = value
-	_set_abberation(0.001 * level)
+	_set_abberation(0.001)
 
 	if level == 0:
 		wait.stop()
-		glitch.stop()
-		abberation_timer.stop()
-		_set_offset(0.0)
-		_set_abberation(0.001)
 	else:
 		wait.wait_time = _new_time()
 		wait.start()

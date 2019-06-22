@@ -38,8 +38,9 @@ func _hurt(damage: int) -> void:
 
 func _heal(value: int) -> void:
 	for i in range(current_health, current_health + value):
-		tween.interpolate_property(health_bar[i], "value", 0, 100, 0.2, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-		tween.start()
+		health_bar[i].value = 0
+		pass
+	pass
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
 	pass # Replace with function body.

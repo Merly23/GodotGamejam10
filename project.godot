@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/camera/GameCam.gd"
 }, {
-"base": "Patrol",
-"class": "Glitcher",
-"language": "GDScript",
-"path": "res://source/character/ai/glitcher/Glitcher.gd"
-}, {
 "base": "CanvasLayer",
 "class": "Interface",
 "language": "GDScript",
@@ -95,7 +90,6 @@ _global_script_class_icons={
 "Drone": "",
 "FiniteStateMachine": "",
 "GameCam": "",
-"Glitcher": "",
 "Interface": "",
 "Level": "",
 "ParticleSpawner": "",
@@ -112,7 +106,6 @@ _global_script_class_icons={
 
 config/name="Glitch"
 run/main_scene="res://source/interface/menu/TitleScreen.tscn"
-boot_splash/image="res://graphics/images/splash/wallpaper.png"
 
 [autoload]
 

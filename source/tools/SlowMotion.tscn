@@ -2,6 +2,7 @@
 
 [ext_resource path="res://source/tools/SlowMotion.gd" type="Script" id=1]
 
+
 [node name="SlowMotion" type="Node"]
 script = ExtResource( 1 )
 

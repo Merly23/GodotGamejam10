@@ -4,6 +4,7 @@
 [ext_resource path="res://graphics/images/interface/white.png" type="Texture" id=2]
 [ext_resource path="res://source/interface/glitch/GlitchShader.gd" type="Script" id=3]
 
+
 [node name="GlitchShader" type="NinePatchRect"]
 pause_mode = 2
 material = ExtResource( 1 )

@@ -12,10 +12,11 @@ func enter(host: Node) -> void:
 	host.spawn_jump_dust()
 	host.motion.y = -jump_force
 
+
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Character
 
-	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
+	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")
 
 	if event.is_action_pressed("B"):

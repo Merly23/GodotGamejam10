@@ -28,8 +28,6 @@ script = ExtResource( 4 )
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
-[node name="Objects" type="Node2D" parent="."]
-
 [node name="Civilians" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]

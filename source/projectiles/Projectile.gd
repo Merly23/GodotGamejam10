@@ -10,7 +10,7 @@ var direction := Vector2()
 
 var fired := false
 
-onready var area := $Sprite/Projectile as Area2D
+onready var area := $Sprite/Area2D as Area2D
 onready var sprite := $Sprite as Sprite
 onready var life_time := $LifeTime
 

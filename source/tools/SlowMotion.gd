@@ -27,5 +27,3 @@ func toggle() -> bool:
 
 func _on_Tween_tween_step(object: Object, key: NodePath, elapsed: float, value) -> void:
 	Engine.time_scale = value
-	var pitch_effect = AudioServer.get_bus_effect(2, 0)
-	pitch_effect.pitch_scale = value
