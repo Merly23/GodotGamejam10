@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/droneDie.wav-ac42ce34bee0cceb0884f603ab779e43.sample"
+path="res://.import/droneDie.wav-abcd7060a3d0d4f13b0eede050feb995.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/droneDie.wav"
-dest_files=[ "res://.import/droneDie.wav-ac42ce34bee0cceb0884f603ab779e43.sample" ]
+source_file="res://audio/sfx/droneDie.wav"
+dest_files=[ "res://.import/droneDie.wav-abcd7060a3d0d4f13b0eede050feb995.sample" ]
 
 [params]
 

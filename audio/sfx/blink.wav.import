@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/slowMoStart.wav-fb3d7a6db633d9eb9f41f2fab8dc5e28.sample"
+path="res://.import/blink.wav-5df2b90f4c1600ab355c9a239f32b93a.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/slowMoStart.wav"
-dest_files=[ "res://.import/slowMoStart.wav-fb3d7a6db633d9eb9f41f2fab8dc5e28.sample" ]
+source_file="res://audio/sfx/blink.wav"
+dest_files=[ "res://.import/blink.wav-5df2b90f4c1600ab355c9a239f32b93a.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/glitch1.wav-1f9ede56077e29a9376d4dfefe693a99.sample"
+path="res://.import/droneDamaged.wav-bf4a00579065a6c9552b24b620a091fa.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/glitch1.wav"
-dest_files=[ "res://.import/glitch1.wav-1f9ede56077e29a9376d4dfefe693a99.sample" ]
+source_file="res://audio/sfx/droneDamaged.wav"
+dest_files=[ "res://.import/droneDamaged.wav-bf4a00579065a6c9552b24b620a091fa.sample" ]
 
 [params]
 

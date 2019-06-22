@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/slowMoEnd.wav-3467bf225ebd09dbb6ac01c3eb375915.sample"
+path="res://.import/slowMoStart.wav-194d1aacb3525336d4c7828c047e18b2.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/slowMoEnd.wav"
-dest_files=[ "res://.import/slowMoEnd.wav-3467bf225ebd09dbb6ac01c3eb375915.sample" ]
+source_file="res://audio/sfx/slowMoStart.wav"
+dest_files=[ "res://.import/slowMoStart.wav-194d1aacb3525336d4c7828c047e18b2.sample" ]
 
 [params]
 
