@@ -138,11 +138,11 @@ func slash() -> void:
 
 func crouch() -> void:
 	collision_shape.position.y = -16
-	capsule.height = 12
+	capsule.height = 10
 
 func stand() -> void:
 	collision_shape.position.y = -24
-	capsule.height = 28
+	capsule.height = 26
 
 func get_input_direction(normalized := true) -> Vector2:
 

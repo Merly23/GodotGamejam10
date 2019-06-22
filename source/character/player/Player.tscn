@@ -850,7 +850,7 @@ tracks/3/keys = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 
 [sub_resource type="CapsuleShape2D" id=17]
-height = 12.0
+height = 26.0
 
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 28, 36 )
@@ -861,7 +861,6 @@ script = ExtResource( 2 )
 max_health = 3
 bullet_speed = 800
 has_virus = true
-can_move = false
 
 [node name="AnimationPlayer" parent="." index="0"]
 anims/crouch = SubResource( 19 )
@@ -979,7 +978,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" parent="." index="12"]
-position = Vector2( 0, -16 )
+position = Vector2( 0, -24 )
 shape = SubResource( 17 )
 
 [node name="HitArea" parent="." index="13"]
