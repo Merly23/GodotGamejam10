@@ -210,6 +210,9 @@ func spawn_pulse_out() -> void:
 	Audio.play_sfx("player_slow_motion_end")
 	particle_spawner.spawn_pulse_out(center)
 
+func set_glitch_level(level: int) -> void:
+	Glitch.level = level
+
 func _set_energy(value) -> void:
 	energy = clamp(value, 0, max_energy)
 	emit_signal("energy_changed", energy)
