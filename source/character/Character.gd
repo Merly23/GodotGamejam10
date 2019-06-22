@@ -19,6 +19,8 @@ var disabled := false setget _set_disabled
 
 var dead := false
 
+export var flip_on_start := true
+
 export var can_move := true
 
 export var team_number := 0
@@ -50,6 +52,10 @@ onready var hit_area := $HitArea as Area2D
 onready var fsm := $FiniteStateMachine as FiniteStateMachine
 
 func _ready() -> void:
+
+	if flip_on_start:
+		flip_left()
+
 	_register_host()
 	_register_states()
 	fsm.register_state("die", "Die")
