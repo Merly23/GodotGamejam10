@@ -110,7 +110,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Glitch"
+config/name="Raphie"
 run/main_scene="res://source/interface/menu/TitleScreen.tscn"
 boot_splash/image="res://graphics/images/splash/wallpaper.png"
 
