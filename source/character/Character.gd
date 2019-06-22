@@ -19,6 +19,8 @@ var disabled := false setget _set_disabled
 
 var dead := false
 
+export var can_move := false
+
 export var team_number := 0
 
 export var max_health := 2

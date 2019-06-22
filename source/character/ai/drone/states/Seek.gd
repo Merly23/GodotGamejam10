@@ -20,7 +20,9 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
-	if not host.is_player_in_vision() or host.is_too_far_from_origin():
+	if not host.can_move:
+		host.fsm.change_state("idle")
+	elif not host.is_player_in_vision() or host.is_too_far_from_origin():
 		host.fsm.change_state("retreat")
 	elif host.is_player_in_shoot_range():
 		host.fsm.change_state("shoot")

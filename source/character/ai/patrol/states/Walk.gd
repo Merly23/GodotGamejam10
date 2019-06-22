@@ -31,7 +31,8 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
-	if host.global_position.distance_to(target_position) < 20 or host.is_on_wall():
+
+	if host.global_position.distance_to(target_position) < 20 or host.is_on_wall() or not host.can_move:
 		host.fsm.change_state("idle")
 
 func exit(host: Node) -> void:

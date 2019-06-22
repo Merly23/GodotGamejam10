@@ -23,9 +23,9 @@ func update(host: Node, delta: float) -> void:
 	else:
 		host.motion.y += Global.GRAVITY * delta
 
-	if host.is_player_in_attack_range() and host.can_shoot() and not host.disabled:
+	if host.is_player_in_attack_range() and host.can_shoot() and not host.disabled and host.can_move:
 		host.fsm.change_state("attack")
-	if host.is_player_in_vision() and not host.is_player_in_attack_range() and not host.disabled:
+	if host.is_player_in_vision() and not host.is_player_in_attack_range() and not host.disabled and host.can_move:
 		host.fsm.change_state("seek")
 
 func exit(host: Node) -> void:

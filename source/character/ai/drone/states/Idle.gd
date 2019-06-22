@@ -37,5 +37,5 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide(host.motion, Global.UP)
 
-	if host.is_player_in_vision() and timer.is_stopped() and not host.disabled:
+	if host.is_player_in_vision() and timer.is_stopped() and not host.disabled and host.can_move:
 		host.fsm.change_state("seek")

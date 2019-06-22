@@ -23,7 +23,6 @@ export var slow_motion_cost := 20
 export var shoot_cost := 12
 
 export var has_virus := false
-export var can_move := true
 
 onready var slow_motion := $SlowMotion
 

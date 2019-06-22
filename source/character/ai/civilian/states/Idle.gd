@@ -17,4 +17,7 @@ func enter(host: Node) -> void:
 	timer.start()
 
 func _on_Timer_timeout(host: Character) -> void:
-	host.fsm.change_state("walk")
+	if host.can_move:
+		host.fsm.change_state("walk")
+	else:
+		timer.start()

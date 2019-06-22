@@ -21,6 +21,8 @@ func update(host: Node, delta: float) -> void:
 			timer.start()
 			shots += 1
 			host.shoot()
+	elif not host.can_move:
+		host.fsm.change_state("idle")
 	else:
 		host.fsm.change_state("seek")
 

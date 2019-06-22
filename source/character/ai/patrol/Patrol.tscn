@@ -13,7 +13,7 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
-[node name="Patrol" instance=ExtResource( 1 )]
+[node name="Patrol" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 team_number = 1
 max_health = 6
