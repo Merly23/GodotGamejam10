@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Glitcher",
+"class": "Android",
+"language": "GDScript",
+"path": "res://source/character/ai/android/Android.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -90,6 +95,7 @@ _global_script_classes=[ {
 "path": "res://source/character/ai/turret/Turret.gd"
 } ]
 _global_script_class_icons={
+"Android": "",
 "Character": "",
 "Civilian": "",
 "Drone": "",

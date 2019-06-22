@@ -10,7 +10,7 @@
 [ext_resource path="res://source/character/ai/patrol/states/Seek.gd" type="Script" id=8]
 [ext_resource path="res://source/character/ai/patrol/states/Shoot.gd" type="Script" id=9]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
@@ -50,11 +50,11 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 9, 24 )
 
 [node name="Patrol" instance=ExtResource( 1 )]
@@ -69,10 +69,10 @@ wait_time = 3.0
 one_shot = true
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
-anims/idle = SubResource( 4 )
+anims/idle = SubResource( 1 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
-parameters/playback = SubResource( 1 )
+parameters/playback = SubResource( 2 )
 
 [node name="Sprite" parent="Lower" index="2"]
 texture = ExtResource( 3 )
@@ -81,7 +81,7 @@ texture = ExtResource( 3 )
 visible = false
 
 [node name="AnimationTree" parent="Upper" index="1"]
-parameters/playback = SubResource( 2 )
+parameters/playback = SubResource( 3 )
 
 [node name="Die" parent="FiniteStateMachine" index="0"]
 script = ExtResource( 4 )
@@ -122,7 +122,7 @@ one_shot = true
 
 [node name="CollisionShape2D" parent="." index="6"]
 position = Vector2( 0, -26 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Barrel" type="Position2D" parent="." index="8"]
 position = Vector2( 0, -44 )

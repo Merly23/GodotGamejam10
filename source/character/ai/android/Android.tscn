@@ -1,16 +1,15 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://source/character/ai/patrol/Patrol.tscn" type="PackedScene" id=1]
-[ext_resource path="res://source/character/ai/glitcher/Glitcher.gd" type="Script" id=2]
-[ext_resource path="res://graphics/images/characters/alien_dead.png" type="Texture" id=3]
-[ext_resource path="res://graphics/images/characters/alien_attack.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/characters/alien_idle.png" type="Texture" id=5]
-[ext_resource path="res://graphics/images/characters/alien_walk.png" type="Texture" id=6]
-[ext_resource path="res://source/character/ai/glitcher/states/Attack.gd" type="Script" id=7]
+[ext_resource path="res://source/character/ai/glitcher/Glitcher.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/character/ai/android/Android.gd" type="Script" id=2]
+[ext_resource path="res://graphics/images/characters/android_faint.png" type="Texture" id=3]
+[ext_resource path="res://graphics/images/characters/android_attack.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/characters/andorid_standby.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/characters/android_walk.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Lower/Sprite:texture")
 tracks/0/interp = 1
@@ -45,7 +44,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 5 ]
+"values": [ 7 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Lower/Sprite:frame")
@@ -54,10 +53,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Lower/Sprite:modulate")
@@ -66,15 +65,31 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6 ),
+"times": PoolRealArray( 0, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=7]
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.3 ),
+"transitions": PoolRealArray( 4, 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
-length = 0.6
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -109,7 +124,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 5 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:frame")
@@ -118,13 +133,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
+"values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
 length = 0.9
 loop = true
 tracks/0/type = "value"
@@ -161,7 +177,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 9 ]
+"values": [ 1 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:frame")
@@ -170,15 +186,15 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+"values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "walk"
-length = 0.4
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -214,7 +230,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 8 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:frame")
@@ -223,68 +239,81 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeStateMachine" id=8]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 20, 12 )
+[sub_resource type="AnimationNodeStateMachine" id=9]
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 25, 16 )
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
-[node name="Glitcher" instance=ExtResource( 1 )]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 24 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 22, 32 )
+
+[node name="Android" groups=[
+"Character",
+] instance=ExtResource( 1 )]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource( 2 )
-team_number = 0
-max_health = 2
-vision = 350
-attack_range = 40
-bullet_speed = 500
-damage = 1
+team_number = 1
+max_health = 20
+vision = 450
+attack_range = 60
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/die = SubResource( 1 )
+anims/hurt = SubResource( 7 )
+
+[node name="Lower" parent="." index="3"]
+modulate = Color( 0.917647, 0.733333, 0.105882, 1 )
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
 anims/attack = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/walk = SubResource( 4 )
+anims/idle = SubResource( 4 )
+anims/walk = SubResource( 3 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
-parameters/playback = SubResource( 5 )
+tree_root = SubResource( 8 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 10 )
 
 [node name="Sprite" parent="Lower" index="2"]
-texture = ExtResource( 3 )
-hframes = 5
-frame = 4
+texture = ExtResource( 4 )
+offset = Vector2( 0, -32 )
+frame = 0
 
 [node name="AnimationTree" parent="Upper" index="1"]
-parameters/playback = SubResource( 6 )
+tree_root = SubResource( 9 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 11 )
 
 [node name="Walk" parent="FiniteStateMachine" index="2"]
-speed = 260
+speed = 200
 
 [node name="Seek" parent="FiniteStateMachine" index="3"]
-speed = 320
-
-[node name="Attack" parent="FiniteStateMachine" index="4"]
-script = ExtResource( 7 )
+speed = 250
 
 [node name="Timer" parent="FiniteStateMachine/Attack" index="0"]
-wait_time = 0.8
+wait_time = 0.3
 
 [node name="CollisionShape2D" parent="." index="6"]
-position = Vector2( -1, -14 )
-shape = SubResource( 7 )
+position = Vector2( -3, -26 )
+shape = SubResource( 5 )
 
 [node name="HitArea" parent="." index="7"]
-position = Vector2( 25, -16 )
+position = Vector2( 15, -26 )
+collision_layer = 0
+collision_mask = 5
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
