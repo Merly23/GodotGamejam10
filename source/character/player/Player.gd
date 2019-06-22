@@ -192,10 +192,12 @@ func spawn_after_image() -> void:
 
 func spawn_pulse_in() -> void:
 	var center = Vector2(0, -32)
+	Audio.play_sfx("player_slow_motion_start")
 	particle_spawner.spawn_pulse_in(center)
 
 func spawn_pulse_out() -> void:
 	var center = Vector2(0, -32)
+	Audio.play_sfx("player_slow_motion_end")
 	particle_spawner.spawn_pulse_out(center)
 
 func _set_energy(value) -> void:
