@@ -21,7 +21,7 @@ func update(host: Node, delta: float) -> void:
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 	if host.is_player_in_shoot_range() and host.can_shoot():
-		host.fsm.change_state("shoot")
+		host.fsm.change_state("attack")
 	elif not host.is_player_in_vision() or host.is_on_wall() or host.is_player_in_shoot_range():
 		host.fsm.change_state("idle")
 

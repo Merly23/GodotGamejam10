@@ -58,13 +58,13 @@ __meta__ = {
 }
 speed = 220
 
-[node name="Shoot" type="Node" parent="FiniteStateMachine" index="4"]
+[node name="Attack" type="Node" parent="FiniteStateMachine" index="4"]
 script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Timer" type="Timer" parent="FiniteStateMachine/Shoot" index="0"]
+[node name="Timer" type="Timer" parent="FiniteStateMachine/Attack" index="0"]
 wait_time = 0.5
 one_shot = true
 

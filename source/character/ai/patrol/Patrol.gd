@@ -20,7 +20,7 @@ func _register_states() -> void:
 	fsm.register_state("idle", "Idle")
 	fsm.register_state("walk", "Walk")
 	fsm.register_state("seek", "Seek")
-	fsm.register_state("shoot", "Shoot")
+	fsm.register_state("attack", "Attack")
 
 func shoot() -> void:
 	var projectile = Instance.Projectile()
