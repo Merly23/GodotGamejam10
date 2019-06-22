@@ -23,9 +23,9 @@ func update(host: Node, delta: float) -> void:
 	else:
 		host.motion.y += Global.GRAVITY * delta
 
-	if host.is_player_in_attack_range() and host.can_shoot():
+	if host.is_player_in_attack_range() and host.can_shoot() and not host.disabled:
 		host.fsm.change_state("attack")
-	if host.is_player_in_vision() and not host.is_player_in_attack_range():
+	if host.is_player_in_vision() and not host.is_player_in_attack_range() and not host.disabled:
 		host.fsm.change_state("seek")
 
 func exit(host: Node) -> void:
@@ -33,4 +33,5 @@ func exit(host: Node) -> void:
 	idle_timer.stop()
 
 func _on_IdleTimer_timeout(host: Patrol) -> void:
-	host.fsm.change_state("walk")
+	if not host.disabled:
+		host.fsm.change_state("walk")

@@ -10,7 +10,7 @@ func enter(host: Node) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Character
 
-	if host.is_player_in_vision() and timer.is_stopped():
+	if host.is_player_in_vision() and timer.is_stopped() and not host.disabled:
 
 		if host.get_player_direction() == -1:
 			host.flip_left()

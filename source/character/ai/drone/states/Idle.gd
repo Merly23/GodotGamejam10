@@ -17,9 +17,11 @@ func enter(host: Node) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Drone
 
-	if direction == 1 and host.terrain_on("right"):
+	direction = 0
+
+	if direction == 1 and host.terrain_on("right") and not host.disabled:
 		direction = -1
-	elif direction == -1 and host.terrain_on("left"):
+	elif direction == -1 and host.terrain_on("left") and not host.disabled:
 		direction = 1
 
 	if host.is_too_far_from_origin() and flip_timer.is_stopped():
@@ -35,5 +37,5 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide(host.motion, Global.UP)
 
-	if host.is_player_in_vision() and timer.is_stopped():
+	if host.is_player_in_vision() and timer.is_stopped() and not host.disabled:
 		host.fsm.change_state("seek")
