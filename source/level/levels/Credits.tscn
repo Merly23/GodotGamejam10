@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/level/levels/Credits.gd" type="Script" id=1]
+[ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/cutscene/Speech.tscn" type="PackedScene" id=3]
+
+[node name="Credits" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.054902, 0.0470588, 0.0470588, 1 )
+
+[node name="Cutscene" parent="." instance=ExtResource( 2 )]
+target = NodePath("..")
+on_signal = "ready"
+
+[node name="Speech" parent="Cutscene/Dialoque" index="0" instance=ExtResource( 3 )]
+speaker = "Game Devs"
+lines = [ "That's....", "That's it. You played all there is. No time, no levels.
+Apologies.", "Thank you for playing.", "Good Bye." ]
+[connection signal="finished" from="Cutscene" to="." method="_on_Cutscene_finished"]
+
+[editable path="Cutscene"]
