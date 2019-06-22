@@ -19,7 +19,7 @@ var disabled := false setget _set_disabled
 
 var dead := false
 
-export var can_move := false
+export var can_move := true
 
 export var team_number := 0
 
