@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/swordSwing.wav-777d26624ad9ae053a6003b898400a50.sample"
+path="res://.import/swordSwing.wav-a50e7a7f5d1d10f99595aebc39a70089.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/swordSwing.wav"
-dest_files=[ "res://.import/swordSwing.wav-777d26624ad9ae053a6003b898400a50.sample" ]
+source_file="res://audio/sfx/swordSwing.wav"
+dest_files=[ "res://.import/swordSwing.wav-a50e7a7f5d1d10f99595aebc39a70089.sample" ]
 
 [params]
 

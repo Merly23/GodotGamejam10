@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/playerDamaged.wav-a21cafe2d52b186e58154ab0c4216a8b.sample"
+path="res://.import/playerDamaged.wav-992cc37f0f1b4b3fdf61793acab45032.sample"
 
 [deps]
 
-source_file="res://Audio/sfx/playerDamaged.wav"
-dest_files=[ "res://.import/playerDamaged.wav-a21cafe2d52b186e58154ab0c4216a8b.sample" ]
+source_file="res://audio/sfx/playerDamaged.wav"
+dest_files=[ "res://.import/playerDamaged.wav-992cc37f0f1b4b3fdf61793acab45032.sample" ]
 
 [params]
 
