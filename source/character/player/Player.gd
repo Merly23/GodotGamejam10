@@ -6,6 +6,9 @@ signal no_energy_left()
 
 var energy := 0 setget _set_energy
 
+export var heal_tick_time := 5.0
+export var heal_tick_cooldown := 5.0
+
 export var max_energy := 100
 
 export var sword_damage := 2
@@ -15,6 +18,7 @@ export var bullet_damage := 1
 export var bullet_cooldown := 0.3
 
 export var dash_cost := 15
+export var dash_cooldown := 1.0
 export var slow_motion_cost := 20
 export var shoot_cost := 12
 
@@ -57,6 +61,10 @@ func _ready() -> void:
 	fsm.change_state("fall")
 	energy = max_energy
 	shoot_timer.wait_time = bullet_cooldown
+	dash_timer.wait_time = dash_cooldown
+	heal_cooldown_timer.wait_time = heal_tick_cooldown
+	heal_tick_timer.wait_time = heal_tick_time
+	heal_tick_timer.start()
 
 func _register_states() -> void:
 	fsm.register_state("idle", "Idle")

@@ -868,7 +868,6 @@ anims/die = SubResource( 1 )
 
 [node name="HealTickTimer" type="Timer" parent="." index="1"]
 wait_time = 5.0
-autostart = true
 
 [node name="HealCooldownTimer" type="Timer" parent="." index="2"]
 wait_time = 5.0
