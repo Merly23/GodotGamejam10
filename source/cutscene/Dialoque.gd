@@ -26,6 +26,7 @@ func _on_Speech_finished() -> void:
 	current_index += 1
 
 	if current_index == get_child_count():
+		yield(get_tree().create_timer(0.2), "timeout")
 		emit_signal("finished")
 		current_speech = null
 	else:
