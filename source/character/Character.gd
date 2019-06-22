@@ -140,6 +140,12 @@ func slash() -> void:
 func shoot() -> void:
 	pass
 
+func enable_movement() -> void:
+	can_move = true
+
+func disable_movement() -> void:
+	can_move = false
+
 func set_bottom_limit(value) -> void:
 	bottom_limit = value
 
