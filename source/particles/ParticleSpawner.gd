@@ -50,5 +50,11 @@ func spawn_after_image(spawn_position: Vector2, flipped: bool) -> void:
 func spawn_pulse_in(spawn_position: Vector2) -> void:
 	var pulse = Instance.Pulse()
 	pulse.global_position = spawn_position
-	get_tree().current_scene.add_child(pulse)
+	Global.Player.add_child(pulse)
 	pulse.play("in")
+
+func spawn_pulse_out(spawn_position: Vector2) -> void:
+	var pulse = Instance.Pulse()
+	pulse.global_position = spawn_position
+	Global.Player.add_child(pulse)
+	pulse.play("out")

@@ -6,6 +6,7 @@ signal no_energy_left()
 
 var energy := 0 setget _set_energy
 
+
 export var max_energy := 100
 
 export var sword_damage := 2
@@ -18,18 +19,22 @@ export var dash_cost := 15
 export var slow_motion_cost := 20
 export var shoot_cost := 12
 
+export var has_virus := false
+
 onready var slow_motion := $SlowMotion
 
 onready var dash_timer := $DashTimer as Timer
 onready var shoot_timer := $ShootTimer as Timer
 onready var slow_motion_timer := $SlowMotionTimer as Timer
+onready var heal_tick_timer := $HealTickTimer as Timer
+onready var heal_cooldown_timer := $HealCooldownTimer as Timer
 
 onready var terrain_checker := $TerrainCheckArea
 
 onready var barrel := $ProjectileHook
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("X"):
+	if event.is_action_pressed("X") and has_virus:
 
 		if not energy - slow_motion_cost >= 0 and not slow_motion.active:
 			emit_signal("no_energy_left")
@@ -40,9 +45,10 @@ func _input(event: InputEvent) -> void:
 
 		if slow_motion.active:
 			_on_SlowMotionTimer_timeout()
+			spawn_pulse_in()
 		else:
 			slow_motion_timer.stop()
-		spawn_pulse_in()
+			spawn_pulse_out()
 
 func _ready() -> void:
 	Global.Player = self
@@ -93,6 +99,13 @@ func attack(attack_name: String) -> void:
 
 func play_shoot() -> void:
 	play_upper("shoot")
+
+func play_step():
+	Audio.play_sfx("player_step")
+
+func hurt(damage) -> void:
+	.hurt(damage)
+	heal_cooldown_timer.start()
 
 func shoot() -> void:
 
@@ -147,15 +160,19 @@ func get_shoot_direction() -> int:
 func cancel_slow_motion() -> void:
 	if slow_motion.active:
 		slow_motion.toggle()
-		spawn_pulse_in()
+		spawn_pulse_out()
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)
 	particle_spawner.spawn_after_image(center, is_flipped())
 
 func spawn_pulse_in() -> void:
-	var center = Vector2(global_position.x, global_position.y - 32)
+	var center = Vector2(0, -32)
 	particle_spawner.spawn_pulse_in(center)
+
+func spawn_pulse_out() -> void:
+	var center = Vector2(0, -32)
+	particle_spawner.spawn_pulse_out(center)
 
 func _set_energy(value) -> void:
 	energy = clamp(value, 0, max_energy)
@@ -192,3 +209,12 @@ func _on_HitArea_area_entered(area: Area2D) -> void:
 	print(area.name)
 	if area.name == "Projectile" and is_attacking():
 		area.queue_free()
+
+func _on_HealTickTimer_timeout() -> void:
+
+	if not heal_cooldown_timer.is_stopped():
+		return
+
+	if health == max_health:
+		return
+	_set_health(health + 1)
