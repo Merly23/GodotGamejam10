@@ -95,7 +95,7 @@ parameters/playback = SubResource( 3 )
 speed = 250
 
 [node name="Seek" parent="FiniteStateMachine" index="3"]
-speed = 420
+speed = 360
 
 [node name="Attack" parent="FiniteStateMachine" index="4"]
 script = ExtResource( 4 )
