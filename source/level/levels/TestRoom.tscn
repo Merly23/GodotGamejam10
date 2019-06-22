@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://source/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/checkpoint/Checkpoint.tscn" type="PackedScene" id=2]
-[ext_resource path="res://source/character/ai/drone/Drone.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/character/ai/glitcher/Glitcher.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/character/ai/drone/Drone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/character/ai/glitcher/Glitcher.tscn" type="PackedScene" id=5]
 
 [node name="TestRoom" index="0" instance=ExtResource( 1 )]
 id = 0
@@ -14,11 +15,16 @@ tile_data = PoolIntArray( 786432, 3, 0, 786433, 3, 0, 786434, 3, 0, 786435, 3, 0
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 2 )]
 position = Vector2( 517, 384 )
 
-[node name="Drone" parent="Enemies" index="0" instance=ExtResource( 3 )]
+[node name="Character" parent="Civilians" index="0" instance=ExtResource( 3 )]
+position = Vector2( 400, 384 )
+team_number = 1
+
+[node name="Drone" parent="Enemies" index="0" instance=ExtResource( 4 )]
 position = Vector2( 678, 122 )
 
-[node name="Drone2" parent="Enemies" index="1" instance=ExtResource( 3 )]
+[node name="Drone2" parent="Enemies" index="1" instance=ExtResource( 4 )]
 position = Vector2( 108, 270 )
 
-[node name="Glitcher" parent="Enemies" index="2" instance=ExtResource( 4 )]
+[node name="Glitcher" parent="Enemies" index="2" instance=ExtResource( 5 )]
 position = Vector2( 708, 384 )
+team_number = 1

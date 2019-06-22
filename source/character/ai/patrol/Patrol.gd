@@ -4,7 +4,7 @@ class_name Patrol
 var origin := Vector2()
 
 export var vision := 350
-export var shoot_range := 200
+export var attack_range := 200
 export var bullet_speed := 500
 export var bullet_damage := 0
 
@@ -48,12 +48,12 @@ func can_shoot() -> bool:
 	return shoot_timer.is_stopped()
 
 
-func is_player_in_shoot_range() -> bool:
+func is_player_in_attack_range() -> bool:
 
 	if not Global.Player:
 		return false
 
-	return global_position.distance_to(Global.Player.global_position) < shoot_range
+	return global_position.distance_to(Global.Player.global_position) < attack_range
 
 func is_player_in_vision() -> bool:
 
