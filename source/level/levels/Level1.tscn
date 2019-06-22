@@ -36,13 +36,16 @@ tile_data = PoolIntArray( 65527, 1, 0, 65528, 1, 0, 65529, 1, 0, 65530, 1, 0, 65
 [node name="Checkpoint" parent="Objects" index="0" instance=ExtResource( 3 )]
 position = Vector2( 32, 384 )
 
-[node name="Door" parent="Objects" index="1" instance=ExtResource( 4 )]
+[node name="Checkpoint2" parent="Objects" index="1" instance=ExtResource( 3 )]
+position = Vector2( 2784, 384 )
+
+[node name="Door" parent="Objects" index="2" instance=ExtResource( 4 )]
 position = Vector2( 640, 288 )
 
-[node name="Door2" parent="Objects" index="2" instance=ExtResource( 4 )]
+[node name="Door2" parent="Objects" index="3" instance=ExtResource( 4 )]
 position = Vector2( 1568, 288 )
 
-[node name="Door3" parent="Objects" index="3" instance=ExtResource( 4 )]
+[node name="Door3" parent="Objects" index="4" instance=ExtResource( 4 )]
 position = Vector2( 2208, 289 )
 automatic = true
 
@@ -68,6 +71,7 @@ team_number = 1
 
 [node name="Player" parent="Characters" index="0"]
 position = Vector2( 40, 368 )
+has_virus = false
 
 [node name="Cutscene0" parent="Cutscenes" index="0" instance=ExtResource( 8 )]
 position = Vector2( 0, 384 )
@@ -293,13 +297,21 @@ speaker = "Intercom"
 lines = [ "You may proceed to the maintenance room." ]
 
 [node name="Cutscene11" parent="Cutscenes" index="11" instance=ExtResource( 8 )]
-position = Vector2( 832, 384 )
+position = Vector2( 2496, 384 )
 target = NodePath("../../Characters/Player")
 on_enter = true
 
 [node name="CollisionShape2D" parent="Cutscenes/Cutscene11" index="1"]
 position = Vector2( 32, -128 )
 shape = SubResource( 6 )
+
+[node name="Speech" parent="Cutscenes/Cutscene11/Dialoque" index="0" instance=ExtResource( 9 )]
+speaker = "Server"
+lines = [ "Updating system, please don't interup-p-p--" ]
+
+[node name="Speech2" parent="Cutscenes/Cutscene11/Dialoque" index="1" instance=ExtResource( 9 )]
+speaker = "System"
+lines = [ "Rebooting..." ]
 
 [node name="GameCam" parent="." index="8"]
 offset = Vector2( 0, -80 )
@@ -321,7 +333,7 @@ smoothing_speed = 10.0
 [connection signal="started" from="Cutscenes/Cutscene8" to="Characters/Player" method="can_move" binds= [ true ]]
 [connection signal="started" from="Cutscenes/Cutscene8" to="Interface" method="hide_key"]
 [connection signal="finished" from="Cutscenes/Cutscene10" to="Objects/Door2" method="open"]
-[connection signal="started" from="Cutscenes/Cutscene11" to="Objects/Door2" method="close"]
+[connection signal="finished" from="Cutscenes/Cutscene11" to="Characters/Player" method="infect"]
 
 [editable path="Cutscenes/Cutscene0"]
 
