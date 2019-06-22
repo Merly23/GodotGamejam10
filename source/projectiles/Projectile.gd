@@ -30,9 +30,11 @@ func fire(damage: int, speed: int, direction : Vector2 = Vector2(1, 0)) -> void:
 	rotation_degrees = 180 if direction.x == -1 else 0
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
+
 	if body is Character and shooter and shooter.team_number != body.team_number:
 		body.hurt(damage)
-		queue_free()
+
+	queue_free()
 
 func dir2rot(direction: Vector2) -> float:
 	var rot := 0.0
