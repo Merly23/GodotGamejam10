@@ -23,14 +23,17 @@ func open() -> void:
 	sprite.visible = false
 	coll.disabled = true
 
+	global_position.y -= 96
+
 func close() -> void:
 	sprite.visible = true
 	coll.disabled = false
 
-func _on_EnterArea_body_entered(body: PhysicsBody2D) -> void:
-	if automatic:
-		open()
+	global_position.y += 96
+func _on_EnterArea_body_entered(body) -> void:
+	if automatic and close_timer.is_stopped():
 		close_timer.start()
+		open()
 
 func _on_CloseTimer_timeout() -> void:
 	close()
