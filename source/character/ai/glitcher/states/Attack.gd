@@ -1,9 +1,5 @@
 extends State
 
-var shots := 0
-
-export var max_shots := 3
-
 onready var timer := $Timer as Timer
 
 func enter(host: Node) -> void:
@@ -15,8 +11,15 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Glitcher
 
+	var direction = host.get_player_direction()
+
 	if host.is_player_in_attack_range() and timer.is_stopped():
+		if direction < 0:
+			host.flip_left()
+		elif direction > 0:
+			host.flip_right()
 		host.attack()
+		host.play_lower("attack")
 		timer.start()
 	elif not host.is_player_in_attack_range():
 		host.fsm.change_state("seek")

@@ -64,8 +64,6 @@ func terrain_on(direction: String) -> bool:
 
 	var collider = rays[direction].get_collider()
 
-	print(collider)
-
 	return collider == Global.Terrain
 
 func is_too_far_from_origin() -> bool:
