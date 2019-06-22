@@ -8,7 +8,7 @@ export var max_shots := 2
 export var bullet_speed := 800
 export var bullet_damage := 1
 
-onready var barrel := $Barrel as Position2D
+onready var barrel := $Barrel
 
 func _ready() -> void:
 	fsm.change_state("idle")
@@ -22,18 +22,18 @@ func _register_states():
 
 func flip_left() -> void:
 	.flip_left()
-	barrel.position.x = -55
+	barrel.position.x = -14
 
 func flip_right() -> void:
 	.flip_right()
-	barrel.position.x = 55
+	barrel.position.x = 14
 
 func shoot() -> void:
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
 	get_tree().current_scene.add_child(projectile)
-	projectile.fire(bullet_damage, bullet_speed, Vector2(get_player_direction(), 0))
+	projectile.fire(bullet_damage, bullet_speed, Vector2(1 if is_flipped() else -1, 0))
 
 func is_player_in_vision() -> bool:
 
@@ -41,10 +41,3 @@ func is_player_in_vision() -> bool:
 		return false
 
 	return global_position.distance_to(Global.Player.global_position) < vision
-
-func get_player_direction() -> int:
-
-	if not Global.Player:
-		return 1
-
-	return -1 if Global.Player.global_position.x < global_position.x else 1
