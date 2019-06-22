@@ -178,7 +178,6 @@ func _set_health(value) -> void:
 		dead = true
 
 func _on_FiniteStateMachine_state_changed(state_name) -> void:
-	$State.text = state_name
 	emit_signal("state_changed", state_name)
 
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:

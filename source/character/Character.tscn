@@ -120,13 +120,6 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 shape = SubResource( 8 )
-
-[node name="State" type="Label" parent="."]
-margin_left = -24.0
-margin_top = -79.0
-margin_right = 24.0
-margin_bottom = -65.0
-align = 1
 [connection signal="died" from="." to="." method="_on_Character_died"]
 [connection signal="animation_finished" from="Upper/AnimationPlayer" to="." method="_on_Upper_AnimationPlayer_animation_finished"]
 [connection signal="state_changed" from="FiniteStateMachine" to="." method="_on_FiniteStateMachine_state_changed"]
