@@ -1,6 +1,8 @@
 extends Node2D
 class_name Level
 
+const PATH := "res://source/level/levels/"
+
 export var id := 1
 
 export var bottom_limit := 1000
@@ -15,6 +17,7 @@ onready var cutscenes := $Cutscenes.get_children()
 onready var checkpoints := $Checkpoints.get_children()
 
 func _ready() -> void:
+	Global.current_level = PATH + "Level" + str(id) + ".tscn"
 
 	for character in get_tree().get_nodes_in_group("Character"):
 		character.connect("hurt", self, "_on_Character_hurt")
