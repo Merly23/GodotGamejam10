@@ -4,6 +4,7 @@ onready var timer := $Timer as Timer
 
 func enter(host: Node) -> void:
 	host = host as Glitcher
+	timer.start()
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Glitcher

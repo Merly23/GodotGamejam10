@@ -50,7 +50,7 @@ func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
 	if effect_name == "tick":
 		effect_name += str(randi() % 4 + 1)
 
-	if effect_name == "type":
+	if effect_name == "type" or effect_name == "glitch":
 		randomize()
 		sfx[effect_name].pitch_scale = rand_range(0.9, 1.4)
 
