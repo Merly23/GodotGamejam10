@@ -16,7 +16,8 @@ func update(host: Node, delta: float) -> void:
 		host.fsm.change_state("fall")
 	elif not Input.is_action_pressed("ui_down"):
 		host.fsm.change_state("idle")
-
+	elif Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
+		host.play_shoot(true)
 
 func exit(host: Node) -> void:
 	host = host as Player

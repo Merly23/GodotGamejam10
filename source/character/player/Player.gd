@@ -113,8 +113,11 @@ func flip_right() -> void:
 func attack(attack_name: String) -> void:
 	play_upper(attack_name)
 
-func play_shoot() -> void:
-	play_upper("shoot")
+func play_shoot(crouch := false) -> void:
+	if crouch:
+		anim_player.play("crouch_shoot")
+	else:
+		play_upper("shoot")
 
 func play_step():
 	Audio.play_sfx("player_step")
@@ -148,9 +151,11 @@ func slash() -> void:
 
 func crouch() -> void:
 	collision_shape.position.y = -16
+	barrel.position.y = -23
 	capsule.height = 10
 
 func stand() -> void:
+	barrel.position.y = -31
 	collision_shape.position.y = -24
 	capsule.height = 26
 
@@ -244,3 +249,7 @@ func _on_HealTickTimer_timeout() -> void:
 	if health == max_health:
 		return
 	_set_health(health + 1)
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if anim_name == "crouch_shoot":
+		anim_player.play("crouch")
