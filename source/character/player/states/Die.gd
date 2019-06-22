@@ -16,4 +16,4 @@ func update(host: Node, delta: float) -> void:
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 func _on_AnimationPlayer_animation_finished(anim_name: String, host: Player) -> void:
-	Scene.change(Scene.Level1)
+	get_tree().reload_current_scene()

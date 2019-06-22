@@ -18,6 +18,11 @@ func update(host: Node, delta: float) -> void:
 
 	host.motion.x = host.get_player_direction() * speed
 
+	if host.motion.x < 0:
+		host.flip_left()
+	else:
+		host.flip_right()
+
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 	if host.is_player_in_shoot_range() and host.can_shoot():
