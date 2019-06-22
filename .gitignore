@@ -6,3 +6,7 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+.DS_Store
+graphics/.DS_Store
+graphics/images/.DS_Store
+graphics/images/characters/.DS_Store
