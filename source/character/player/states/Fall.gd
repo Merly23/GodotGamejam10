@@ -56,9 +56,9 @@ func update(host: Node, delta: float) -> void:
 		if fall_damage:
 			host.hurt(fall_damage)
 
-		if not timer.is_stopped() and not host.dead:
+		if not timer.is_stopped() and not host.dead and host.can_move:
 			host.fsm.change_state("jump")
-		elif host.motion.x and not host.dead:
+		elif host.motion.x and not host.dead and host.can_move:
 			host.fsm.change_state("walk")
 		elif not host.dead:
 			host.fsm.change_state("idle")

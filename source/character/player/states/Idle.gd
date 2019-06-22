@@ -29,7 +29,7 @@ func update(host: Node, delta: float) -> void:
 	elif Input.is_action_pressed("ui_down"):
 		host.fsm.change_state("crouch")
 
-	elif bool(int(left) + int(right)):
+	elif bool(int(left) + int(right)) and host.can_move:
 		host.fsm.change_state("walk")
 
 	elif Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:

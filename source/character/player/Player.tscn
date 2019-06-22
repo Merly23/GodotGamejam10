@@ -861,6 +861,7 @@ script = ExtResource( 2 )
 max_health = 3
 bullet_speed = 800
 has_virus = true
+can_move = false
 
 [node name="AnimationPlayer" parent="." index="0"]
 anims/crouch = SubResource( 19 )
