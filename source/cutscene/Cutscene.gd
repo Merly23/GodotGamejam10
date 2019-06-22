@@ -12,6 +12,8 @@ var _requires_dialoque = null
 
 export var active := true
 
+export var delay := 0.0
+
 export var on_input := false
 export var input_action := ""
 export var input_time := 0.2
@@ -25,6 +27,8 @@ export(NodePath) var requires_dialoque = null
 
 onready var coll := $CollisionShape2D as CollisionShape2D
 onready var dialoque := $Dialoque
+
+onready var delay_timer := $DelayTimer as Timer
 
 func _ready() -> void:
 	_set_on_enter(on_enter)
@@ -77,6 +81,11 @@ func requirement_fullfilled() -> bool:
 
 func _start() -> void:
 	if active and dialoque and requirement_fullfilled() and not seen:
+
+		if delay:
+			delay_timer.start(delay)
+			yield(delay_timer, "timeout")
+
 		emit_signal("started")
 		dialoque.start()
 
