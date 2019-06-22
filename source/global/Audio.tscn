@@ -25,7 +25,8 @@
 [node name="Audio" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
-music_volume = 0.0
+music_volume = 0.6
+effects_volume = 0.8
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
@@ -57,7 +58,7 @@ bus = "Effects"
 
 [node name="Step" type="AudioStreamPlayer" parent="SFX/Player"]
 stream = ExtResource( 6 )
-volume_db = -6.0
+volume_db = -14.0
 bus = "Effects"
 
 [node name="Slash" type="AudioStreamPlayer" parent="SFX/Player"]
