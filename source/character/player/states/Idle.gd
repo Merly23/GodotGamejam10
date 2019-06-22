@@ -35,5 +35,11 @@ func update(host: Node, delta: float) -> void:
 	elif Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
 		host.play_shoot()
 
+	elif left:
+		host.flip_left()
+	elif right:
+		host.flip_right()
+
+
 func exit(host: Node) -> void:
 	host = host as Character
