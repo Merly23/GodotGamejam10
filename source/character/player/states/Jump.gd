@@ -35,10 +35,10 @@ func update(host: Node, delta: float) -> void:
 	if Input.is_action_just_released("SPACE"):
 		jump_cut(host)
 
-	if left and not right:
+	if left and not right and host.can_move:
 		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, max_speed)
 		host.flip_left()
-	elif right and not left:
+	elif right and not left and host.can_move:
 		host.motion.x = clamp(host.motion.x + acceleration, -max_speed, max_speed)
 		host.flip_right()
 	else:
