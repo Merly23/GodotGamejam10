@@ -11,7 +11,7 @@ func new_key(text: String) -> void:
 	anim.play("fade_in")
 
 func clear() -> void:
-	get_child(0).queue_free()
+	anim.play("fade_out")
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 
