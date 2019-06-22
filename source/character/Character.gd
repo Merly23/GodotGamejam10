@@ -146,6 +146,9 @@ func enable_movement() -> void:
 func disable_movement() -> void:
 	can_move = false
 
+func set_team_number(value: int) -> void:
+	team_number = value
+
 func set_bottom_limit(value) -> void:
 	bottom_limit = value
 
