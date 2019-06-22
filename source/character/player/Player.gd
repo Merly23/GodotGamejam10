@@ -98,6 +98,9 @@ func can_shoot(silent := false) -> bool:
 		return false
 	return true
 
+func can_move(can_move: bool) -> void:
+	self.can_move = can_move
+
 func flip_left() -> void:
 	upper.sprite.flip_h = true
 	lower.sprite.flip_h = true
