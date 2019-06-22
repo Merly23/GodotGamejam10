@@ -17,6 +17,7 @@ func enter(host: Node) -> void:
 	host.play("dash")
 	Audio.play_sfx("player_blink_start")
 	# host.disable_collision()
+	host.dashing = true
 	host.spawn_after_image()
 	direction = host.get_input_direction()
 	host.motion = Vector2(force, force) * direction
@@ -50,6 +51,7 @@ func update(host: Node, delta: float) -> void:
 func exit(host: Node) -> void:
 	host = host as Character
 	follow_dash = false
+	host.dashing = false
 
 	if dash_count:
 		Audio.play_sfx("player_blink_end")

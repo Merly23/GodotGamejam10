@@ -6,6 +6,8 @@ signal no_energy_left()
 
 var energy := 0 setget _set_energy
 
+var dashing := false
+
 export var heal_tick_time := 5.0
 export var heal_tick_cooldown := 5.0
 
@@ -123,6 +125,9 @@ func play_step():
 	Audio.play_sfx("player_step")
 
 func hurt(damage) -> void:
+	if dashing:
+		return
+
 	.hurt(damage)
 	heal_cooldown_timer.start()
 
