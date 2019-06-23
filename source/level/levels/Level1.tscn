@@ -243,7 +243,7 @@ bullet_speed = 400
 bullet_damage = 1
 
 [node name="Player" parent="Characters" index="0"]
-position = Vector2( 3744, 512 )
+position = Vector2( 32, 370 )
 flip_on_start = false
 dash_cost = 10
 dash_cooldown = 0.5
@@ -539,7 +539,7 @@ speaker = " Raphie"
 lines = [ "That's all of the aliens. Time to make my escape!" ]
 
 [node name="Cutscene15" parent="Cutscenes" index="15" instance=ExtResource( 16 )]
-position = Vector2( 1056, 864 )
+position = Vector2( 936, 864 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
 
@@ -584,34 +584,34 @@ smoothing_speed = 10.0
 [connection signal="finished" from="Cutscenes/Cutscene6" to="Interface" method="show_key" binds= [ "B" ]]
 [connection signal="finished" from="Cutscenes/Cutscene6" to="Enemies/Dummy" method="set_team_number" binds= [ 1 ]]
 [connection signal="started" from="Cutscenes/Cutscene6" to="Objects/Door" method="close"]
-[connection signal="finished" from="Cutscenes/Cutscene7" to="Characters/Player" method="can_move" binds= [ false ]]
 [connection signal="finished" from="Cutscenes/Cutscene7" to="Interface" method="show_key" binds= [ "V" ]]
+[connection signal="finished" from="Cutscenes/Cutscene7" to="Characters/Player" method="can_move" binds= [ false ]]
 [connection signal="finished" from="Cutscenes/Cutscene7" to="Enemies/Dummy2" method="set_team_number" binds= [ 1 ]]
 [connection signal="started" from="Cutscenes/Cutscene7" to="Interface" method="hide_key"]
-[connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Drone" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Drone" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Turret" method="enable_movement"]
 [connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Cutscenes/Cutscene8" to="Characters/Player" method="can_move" binds= [ true ]]
+[connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Drone" method="enable_movement"]
+[connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Drone" method="set_team_number" binds= [ 1 ]]
 [connection signal="started" from="Cutscenes/Cutscene8" to="Interface" method="hide_key"]
+[connection signal="started" from="Cutscenes/Cutscene8" to="Characters/Player" method="can_move" binds= [ true ]]
+[connection signal="finished" from="Cutscenes/Cutscene9" to="Objects/AlienGage" method="open"]
 [connection signal="finished" from="Cutscenes/Cutscene9" to="Enemies/Glitcher" method="enable_movement"]
 [connection signal="finished" from="Cutscenes/Cutscene9" to="Enemies/Glitcher" method="set_team_number" binds= [ 2 ]]
-[connection signal="finished" from="Cutscenes/Cutscene9" to="Objects/AlienGage" method="open"]
 [connection signal="finished" from="Cutscenes/Cutscene10" to="Objects/Door2" method="open"]
-[connection signal="finished" from="Cutscenes/Cutscene11" to="Characters/Player" method="infect"]
 [connection signal="finished" from="Cutscenes/Cutscene11" to="Interface" method="show_key" binds= [ "C" ]]
+[connection signal="finished" from="Cutscenes/Cutscene11" to="Characters/Player" method="infect"]
 [connection signal="started" from="Cutscenes/Cutscene11" to="Objects/Door3" method="lock"]
 [connection signal="finished" from="Cutscenes/Cutscene12" to="Interface" method="show_key" binds= [ "X" ]]
+[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone2" method="enable_movement"]
+[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone2" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone3" method="enable_movement"]
+[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone3" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Turret2" method="enable_movement"]
 [connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Turret3" method="enable_movement"]
 [connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Turret3" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone3" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone3" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone2" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone2" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Cutscenes/Cutscene12" to="Interface" method="hide_key"]
 [connection signal="started" from="Cutscenes/Cutscene12" to="Objects/Door3" method="lock"]
+[connection signal="started" from="Cutscenes/Cutscene12" to="Interface" method="hide_key"]
 [connection signal="finished" from="Cutscenes/Cutscene13" to="Objects/Door5" method="open"]
 [connection signal="started" from="Cutscenes/Cutscene13" to="Interface" method="hide_key"]
 [connection signal="finished" from="Cutscenes/Cutscene14" to="Objects/Door6" method="open"]
