@@ -51,6 +51,14 @@ func is_player_in_shoot_range() -> bool:
 func get_origin_direction() -> Vector2:
 	return (origin - global_position).normalized()
 
+func get_player_direction() -> int:
+	if not Global.Player:
+		return 1
+
+	var direction = Global.Player.global_position.x - global_position.x
+
+	return -1 if direction > 0 else 1
+
 func get_player_vector_direction() -> Vector2:
 	if not Global.Player:
 		return Vector2()
