@@ -7,8 +7,11 @@ var time := 0.0
 
 var seen := false
 
-var _target : Node = null
+var _targets : Node = null
 var _required_dialoques := []
+
+var expected_signals := 0
+var signals := 0
 
 export var active := true
 
@@ -18,7 +21,7 @@ export var on_input := false
 export var input_action := ""
 export var input_time := 0.2
 
-export(NodePath) var target = null
+export(Array, NodePath) var targets = null
 
 export var on_enter := false
 export var on_signal := ""
@@ -31,6 +34,9 @@ onready var dialoque := $Dialoque
 onready var delay_timer := $DelayTimer as Timer
 
 func _ready() -> void:
+	if targets:
+		expected_signals = targets.size()
+
 	_set_on_enter(on_enter)
 	_setup_target()
 	_setup_requires_dialoque()
@@ -55,15 +61,17 @@ func _process(delta: float) -> void:
 
 func _setup_target() -> void:
 
-	if not target:
+	if not targets:
 		return
 
-	_target = get_node(target)
+	for target in targets:
+		_targets.append(get_node(targets))
 
 	if not on_signal:
 		return
 
-	_target.connect(on_signal, self, "_on_Target_signal")
+	for target in targets:
+		target.connect(on_signal, self, "_on_Target_signal")
 
 func _setup_requires_dialoque() -> void:
 
@@ -99,11 +107,14 @@ func _set_on_enter(value):
 		coll.disabled = !value
 
 func _on_Target_signal() -> void:
-	_start()
+	signals += 1
+
+	if signals >= expected_signals:
+		_start()
 
 func _on_Cutscene_body_entered(body: PhysicsBody2D) -> void:
 
-	if body == _target:
+	if _targets.has(body):
 		_start()
 
 func _on_Dialoque_finished() -> void:
