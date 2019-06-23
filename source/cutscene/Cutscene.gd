@@ -7,7 +7,7 @@ var time := 0.0
 
 var seen := false
 
-var _targets : Node = null
+var _targets := []
 var _required_dialoques := []
 
 var expected_signals := 0
@@ -65,12 +65,12 @@ func _setup_target() -> void:
 		return
 
 	for target in targets:
-		_targets.append(get_node(targets))
+		_targets.append(get_node(target))
 
 	if not on_signal:
 		return
 
-	for target in targets:
+	for target in _targets:
 		target.connect(on_signal, self, "_on_Target_signal")
 
 func _setup_requires_dialoque() -> void:
