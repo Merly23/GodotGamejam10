@@ -8,7 +8,7 @@ var time := 0.0
 var seen := false
 
 var _target : Node = null
-var _requires_dialoque = null
+var _required_dialoques := []
 
 export var active := true
 
@@ -23,7 +23,7 @@ export(NodePath) var target = null
 export var on_enter := false
 export var on_signal := ""
 
-export(NodePath) var requires_dialoque = null
+export(Array, NodePath) var required_dialoques = null
 
 onready var coll := $CollisionShape2D as CollisionShape2D
 onready var dialoque := $Dialoque
@@ -67,17 +67,22 @@ func _setup_target() -> void:
 
 func _setup_requires_dialoque() -> void:
 
-	if not requires_dialoque:
+	if not required_dialoques:
 		return
 
-	_requires_dialoque = get_node(requires_dialoque)
+	for req_d in required_dialoques:
+
+		_required_dialoques.append(get_node(req_d))
 
 func requirement_fullfilled() -> bool:
 
-	if not _requires_dialoque:
+	if not _required_dialoques:
 		return true
 
-	return _requires_dialoque.seen
+	for req_d in _required_dialoques:
+		if not req_d.seen:
+			return false
+	return true
 
 func _start() -> void:
 	if active and dialoque and requirement_fullfilled() and not seen:
