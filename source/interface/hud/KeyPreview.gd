@@ -19,5 +19,6 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		anim.play("press")
 
 	if anim_name == "fade_out":
-		key.queue_free()
-		key = null
+		if key:
+			key.queue_free()
+			key = null
