@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/dummy/Dummy.gd" type="Script" id=2]
@@ -122,18 +122,22 @@ tracks/4/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
 [node name="Dummy" index="0" instance=ExtResource( 1 )]
-modulate = Color( 1, 1, 1, 0 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="." index="0"]
 anims/die = SubResource( 1 )
 anims/hurt = SubResource( 2 )
 
-[node name="Sprite" parent="Lower" index="2"]
-texture = ExtResource( 3 )
-hframes = 7
-frame = 6
+[node name="AnimationTree" parent="Lower" index="1"]
+parameters/playback = SubResource( 3 )
+
+[node name="AnimationTree" parent="Upper" index="1"]
+parameters/playback = SubResource( 4 )
 
 [node name="Sprite" parent="Upper" index="2"]
 visible = false
