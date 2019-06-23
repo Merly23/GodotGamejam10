@@ -57,7 +57,8 @@ func _on_LifeTime_timeout() -> void:
 
 func _on_Projectile_area_entered(area: Area2D) -> void:
 	if area.name == "Projectile":
-		queue_free()
+		if area.get_parent().shooter != shooter:
+			queue_free()
 
 func _on_Projectile_tree_exited() -> void:
 	queue_free()
