@@ -1,15 +1,16 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/turret/Turret.gd" type="Script" id=2]
 [ext_resource path="res://audio/sfx/droneDie.wav" type="AudioStream" id=3]
 [ext_resource path="res://audio/sfx/machineGun.wav" type="AudioStream" id=4]
 [ext_resource path="res://graphics/images/objects/turret-gatling.png" type="Texture" id=5]
-[ext_resource path="res://source/character/ai/turret/states/Idle.gd" type="Script" id=6]
-[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=7]
-[ext_resource path="res://source/character/ai/turret/states/Shoot.gd" type="Script" id=8]
+[ext_resource path="res://source/character/ai/turret/states/Die.gd" type="Script" id=6]
+[ext_resource path="res://source/character/ai/turret/states/Idle.gd" type="Script" id=7]
+[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=8]
+[ext_resource path="res://source/character/ai/turret/states/Shoot.gd" type="Script" id=9]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "activate"
 length = 0.8
 tracks/0/type = "value"
@@ -24,9 +25,32 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lower/Sprite:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0101669 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Lower/Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0101669 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
 
-[sub_resource type="Animation" id=1]
-resource_name = "die"
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -99,8 +123,32 @@ tracks/5/keys = {
 "update": 0,
 "values": [ -4.0 ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Lower/Sprite:vframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.0148583 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Lower/Sprite:hframes")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.0148583 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "shoot"
 length = 1.2
 tracks/0/type = "value"
@@ -159,13 +207,37 @@ tracks/3/keys = {
 "update": 1,
 "values": [ ExtResource( 4 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Lower/Sprite:vframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0148583 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Lower/Sprite:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.0148583 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 15, 11 )
+extents = Vector2( 14, 23 )
 
 [node name="Turret" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -176,33 +248,43 @@ bullet_speed = 600
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="0"]
 stream = ExtResource( 3 )
-volume_db = -12.0
+volume_db = -4.0
 pitch_scale = 0.7
 
 [node name="AnimationPlayer" parent="." index="1"]
-anims/activate = SubResource( 5 )
-anims/die = SubResource( 1 )
-anims/shoot = SubResource( 4 )
+anims/activate = SubResource( 1 )
+anims/die = SubResource( 2 )
+anims/shoot = SubResource( 3 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
-parameters/playback = SubResource( 2 )
+parameters/playback = SubResource( 4 )
 
 [node name="Sprite" parent="Lower" index="2"]
 texture = ExtResource( 5 )
 vframes = 4
 hframes = 12
-frame = 7
+frame = 24
+
+[node name="ColorRect" type="ColorRect" parent="Lower/Sprite" index="0"]
+show_behind_parent = true
+margin_left = -15.0
+margin_top = -22.0
+margin_right = 13.0
+color = Color( 0.054902, 0.0470588, 0.0470588, 1 )
 
 [node name="Upper" parent="." index="4"]
 visible = false
 
 [node name="AnimationTree" parent="Upper" index="1"]
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 5 )
+
+[node name="Die" parent="FiniteStateMachine" index="0"]
+script = ExtResource( 6 )
 
 [node name="Idle" type="Node" parent="FiniteStateMachine" index="1"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Idle" index="0"]
@@ -210,9 +292,9 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Shoot" type="Node" parent="FiniteStateMachine" index="2"]
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Shoot" index="0"]
@@ -220,7 +302,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="CollisionShape2D" parent="." index="6"]
-position = Vector2( -1, -32 )
+position = Vector2( -1, -23 )
 shape = SubResource( 6 )
 
 [node name="HitArea" parent="." index="7"]
