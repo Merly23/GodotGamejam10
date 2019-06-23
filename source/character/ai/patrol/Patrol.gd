@@ -22,6 +22,14 @@ func _register_states() -> void:
 	fsm.register_state("seek", "Seek")
 	fsm.register_state("attack", "Attack")
 
+func flip_left() -> void:
+	.flip_left()
+	barrel.position.x = -14
+
+func flip_right() -> void:
+	.flip_right()
+	barrel.position.x = 14
+
 func shoot() -> void:
 	var projectile = Instance.Projectile()
 	projectile.shooter = self

@@ -2,12 +2,11 @@ extends State
 
 var shots := 0
 
-export var max_shots := 3
-
-onready var timer := $Timer as Timer
+export var max_shots := 2
 
 func enter(host: Node) -> void:
 	host = host as Patrol
+	host.play_lower("shoot")
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Patrol
@@ -17,10 +16,8 @@ func update(host: Node, delta: float) -> void:
 
 	if shots < max_shots:
 
-		if timer.is_stopped():
-			timer.start()
+		if not host.lower.anim_player.is_playing():
 			shots += 1
-			host.shoot()
 	elif not host.can_move:
 		host.fsm.change_state("idle")
 	else:
