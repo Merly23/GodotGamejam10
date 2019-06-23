@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 color = Color( 0.054902, 0.0470588, 0.0470588, 1 )
 
 [node name="Cutscene" parent="." instance=ExtResource( 2 )]
-target = NodePath("..")
+targets = [ NodePath("..") ]
 on_signal = "ready"
 
 [node name="Speech" parent="Cutscene/Dialoque" index="0" instance=ExtResource( 3 )]
