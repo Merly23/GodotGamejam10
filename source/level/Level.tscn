@@ -39,6 +39,7 @@ format = 1
 script = ExtResource( 4 )
 
 [node name="Portal" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -200 )
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
