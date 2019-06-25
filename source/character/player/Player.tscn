@@ -1029,7 +1029,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
 max_speed = 260
-acceleration = 40
+acceleration = 50
 friction = 0.5
 
 [node name="Jump" type="Node" parent="FiniteStateMachine" index="2"]
