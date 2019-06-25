@@ -18,6 +18,8 @@ func _input(event: InputEvent) -> void:
 		toggle()
 
 func _ready() -> void:
+	menu.visible = true
+	background.visible = true
 	menu.rect_global_position = offscreen_position
 	background.hide()
 
