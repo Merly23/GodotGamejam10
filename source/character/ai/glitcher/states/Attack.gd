@@ -18,7 +18,6 @@ func update(host: Node, delta: float) -> void:
 			host.flip_left()
 		elif direction > 0:
 			host.flip_right()
-		host.attack()
 		host.play_lower("attack")
 		timer.start()
 

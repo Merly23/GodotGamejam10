@@ -123,6 +123,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.9
@@ -259,9 +273,9 @@ anims/walk = SubResource( 4 )
 parameters/playback = SubResource( 5 )
 
 [node name="Sprite" parent="Lower" index="2"]
-texture = ExtResource( 3 )
-hframes = 5
-frame = 4
+texture = ExtResource( 4 )
+vframes = 1
+frame = 3
 
 [node name="AnimationTree" parent="Upper" index="1"]
 parameters/playback = SubResource( 6 )
