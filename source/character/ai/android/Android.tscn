@@ -71,7 +71,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -87,8 +87,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "attack"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -192,8 +191,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk"
+[sub_resource type="Animation" id=5]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -245,18 +243,18 @@ tracks/3/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
+[sub_resource type="AnimationNodeStateMachine" id=6]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+
 [sub_resource type="AnimationNodeStateMachine" id=8]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 
-[sub_resource type="AnimationNodeStateMachine" id=9]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
-
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 10, 24 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 22, 32 )
 
 [node name="Android" groups=[
@@ -272,20 +270,20 @@ attack_range = 60
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/die = SubResource( 1 )
-anims/hurt = SubResource( 7 )
+anims/hurt = SubResource( 2 )
 
 [node name="Lower" parent="." index="3"]
 modulate = Color( 0.917647, 0.733333, 0.105882, 1 )
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
-anims/attack = SubResource( 2 )
+anims/attack = SubResource( 3 )
 anims/idle = SubResource( 4 )
-anims/walk = SubResource( 3 )
+anims/walk = SubResource( 5 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 6 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 10 )
+parameters/playback = SubResource( 7 )
 
 [node name="Sprite" parent="Lower" index="2"]
 texture = ExtResource( 4 )
@@ -293,22 +291,22 @@ offset = Vector2( 0, -32 )
 frame = 0
 
 [node name="AnimationTree" parent="Upper" index="1"]
-tree_root = SubResource( 9 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 11 )
+parameters/playback = SubResource( 9 )
 
 [node name="Walk" parent="FiniteStateMachine" index="2"]
-speed = 200
+speed = 150
 
 [node name="Seek" parent="FiniteStateMachine" index="3"]
-speed = 250
+speed = 200
 
 [node name="Timer" parent="FiniteStateMachine/Attack" index="0"]
 wait_time = 0.3
 
 [node name="CollisionShape2D" parent="." index="6"]
 position = Vector2( -3, -26 )
-shape = SubResource( 5 )
+shape = SubResource( 10 )
 
 [node name="HitArea" parent="." index="7"]
 position = Vector2( 15, -26 )
@@ -316,4 +314,4 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 11 )

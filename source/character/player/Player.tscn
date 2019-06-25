@@ -1028,8 +1028,8 @@ script = ExtResource( 17 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
-max_speed = 420
-acceleration = 80
+max_speed = 300
+acceleration = 50
 friction = 0.5
 
 [node name="Jump" type="Node" parent="FiniteStateMachine" index="2"]
@@ -1037,9 +1037,9 @@ script = ExtResource( 18 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
-jump_force = 680
-max_speed = 420
-acceleration = 50
+jump_force = 650
+max_speed = 300
+acceleration = 40
 friction = 0.2
 
 [node name="Fall" type="Node" parent="FiniteStateMachine" index="3"]
@@ -1047,9 +1047,10 @@ script = ExtResource( 19 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
-max_speed = 420
-acceleration = 50
+max_speed = 300
+acceleration = 40
 friction = 0.2
+fall_damage_threshold = 1000
 
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Fall" index="0"]
 wait_time = 0.15
@@ -1060,6 +1061,7 @@ script = ExtResource( 20 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
+force = 1100
 max_dashes = 1
 
 [node name="Die" parent="FiniteStateMachine" index="5"]
