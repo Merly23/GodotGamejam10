@@ -10,7 +10,7 @@ onready var flip_timer := $FlipTimer as Timer
 
 func enter(host: Node) -> void:
 	host = host as Drone
-	host.play_lower("idle")
+	host.play_lower("hover")
 	timer.start()
 
 func update(host: Node, delta: float) -> void:

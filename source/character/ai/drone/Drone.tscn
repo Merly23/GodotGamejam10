@@ -1,242 +1,58 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://source/character/ai/turret/Turret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/drone/Drone.gd" type="Script" id=2]
 [ext_resource path="res://audio/sfx/droneLoop.wav" type="AudioStream" id=3]
-[ext_resource path="res://audio/sfx/droneDie.wav" type="AudioStream" id=4]
-[ext_resource path="res://audio/sfx/droneDamaged.wav" type="AudioStream" id=5]
-[ext_resource path="res://graphics/images/characters/drones.png" type="Texture" id=6]
-[ext_resource path="res://source/character/ai/drone/states/Die.gd" type="Script" id=7]
-[ext_resource path="res://source/character/ai/drone/states/Idle.gd" type="Script" id=8]
+[ext_resource path="res://source/character/ai/drone/drone_idle_anim.tres" type="Animation" id=4]
+[ext_resource path="res://graphics/images/characters/drones.png" type="Texture" id=5]
+[ext_resource path="res://source/character/ai/drone/states/Idle.gd" type="Script" id=6]
+[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=7]
 
-[sub_resource type="Animation" id=1]
-resource_name = "die"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.7 ),
-"transitions": PoolRealArray( 6.72717, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "spawn_sparks"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Effects:stream")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 4 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Effects:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
-[sub_resource type="Animation" id=2]
-resource_name = "hurt"
-length = 0.3
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.3 ),
-"transitions": PoolRealArray( 4, 0.5, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Effects:stream")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.05 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 5 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Effects:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.05 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=3]
-length = 0.6
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 6 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 6 ) ]
-}
-
-[sub_resource type="AnimationNodeStateMachine" id=4]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
-
-[sub_resource type="AnimationNodeStateMachine" id=6]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
-
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
 [node name="Drone" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-max_health = 2
-vision = 300
-idle_time = 0.25
-frequenzy = 3.0
-bullet_speed = 250
-seek_distance = 300
 
-[node name="AudioStreamPlayer" parent="." index="0"]
+[node name="Hover" type="AudioStreamPlayer" parent="." index="0"]
 stream = ExtResource( 3 )
-volume_db = 1.0
-pitch_scale = 0.75
-autoplay = true
+volume_db = -12.0
 bus = "Effects"
 
 [node name="Effects" type="AudioStreamPlayer" parent="." index="1"]
-stream = ExtResource( 4 )
-volume_db = -6.0
 bus = "Effects"
 
-[node name="AnimationPlayer" parent="." index="2"]
-anims/die = SubResource( 1 )
-anims/hurt = SubResource( 2 )
-
 [node name="AnimationPlayer" parent="Lower" index="0"]
-anims/idle = SubResource( 3 )
+anims/hover = ExtResource( 4 )
 
 [node name="AnimationTree" parent="Lower" index="1"]
-tree_root = SubResource( 4 )
-parameters/playback = SubResource( 5 )
+parameters/playback = SubResource( 1 )
 
 [node name="Sprite" parent="Lower" index="2"]
-texture = ExtResource( 6 )
-vframes = 1
+texture = ExtResource( 5 )
 hframes = 6
-frame = 0
 region_enabled = true
 region_rect = Rect2( 0, 0, 384, 64 )
 
-[node name="ColorRect" parent="Lower/Sprite" index="0"]
-visible = false
-
 [node name="AnimationTree" parent="Upper" index="1"]
-tree_root = SubResource( 6 )
-parameters/playback = SubResource( 7 )
+parameters/playback = SubResource( 2 )
 
-[node name="Die" parent="FiniteStateMachine" index="0"]
-script = ExtResource( 7 )
+[node name="Idle" type="Node" parent="FiniteStateMachine" index="1"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
 
-[node name="Idle" parent="FiniteStateMachine" index="1"]
-script = ExtResource( 8 )
-max_speed = 200
-
-[node name="Timer" parent="FiniteStateMachine/Idle" index="0"]
+[node name="Timer" type="Timer" parent="FiniteStateMachine/Idle" index="0"]
 wait_time = 0.25
+one_shot = true
 
 [node name="FlipTimer" type="Timer" parent="FiniteStateMachine/Idle" index="1"]
 wait_time = 2.0
 one_shot = true
 
-[node name="Shoot" parent="FiniteStateMachine" index="2"]
-script = null
-
-[node name="CollisionShape2D" parent="." index="7"]
-shape = SubResource( 8 )
-
-[node name="Barrel" parent="." index="9"]
-position = Vector2( 0, -27 )
-
-[node name="Rays" type="Node2D" parent="." index="10"]
+[node name="Rays" type="Node2D" parent="." index="9"]
 position = Vector2( 0, -32 )
 
 [node name="Left" type="RayCast2D" parent="Rays" index="0"]
@@ -261,5 +77,5 @@ collision_mask = 2
 enabled = true
 cast_to = Vector2( 0, 100 )
 collision_mask = 2
-[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
-[connection signal="finished" from="Effects" to="." method="_on_AudioStreamPlayer_finished"]
+
+[node name="Barrel" type="Position2D" parent="." index="10"]

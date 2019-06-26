@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/character/ai/civilian/Civilian.gd"
 }, {
-"base": "Turret",
+"base": "Character",
 "class": "Drone",
 "language": "GDScript",
 "path": "res://source/character/ai/drone/Drone.gd"

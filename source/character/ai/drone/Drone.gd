@@ -1,20 +1,23 @@
-extends Turret
+extends Character
 class_name Drone
 
+export var bullet_damage := 1
+export var bullet_speed := 250
 export var seek_distance := 500
 export var sound_distance := 2000
 
-onready var audio_player := $AudioStreamPlayer as AudioStreamPlayer
+onready var hover_player := $Hover as AudioStreamPlayer
 
 onready var origin := global_position
 
 func _ready() -> void:
+	hover_player.play()
 	lower.sprite.region_rect.position.y = 64 * (randi() % 3)
 
 func _process(delta: float) -> void:
 	if Global.Player:
 		var volume = 0.5 - (Global.Player.global_position.distance_to(global_position) / sound_distance)
-		audio_player.volume_db = linear2db(clamp(volume, 0, 0.6))
+		hover_player.volume_db = linear2db(clamp(volume, 0, 0.6))
 
 onready var rays := {
 	left = $Rays/Left,
@@ -25,15 +28,6 @@ onready var rays := {
 
 func _register_states():
 	fsm.register_state("idle", "Idle")
-	fsm.register_state("shoot", "Shoot")
-
-func flip_left() -> void:
-	.flip_left()
-	barrel.position.x = 0
-
-func flip_right() -> void:
-	.flip_right()
-	barrel.position.x = 0
 
 func spawn_sparks():
 	.spawn_sparks()
@@ -41,9 +35,9 @@ func spawn_sparks():
 func shoot() -> void:
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
-	projectile.global_position = barrel.global_position
+	projectile.global_position = global_position
 	get_tree().current_scene.add_child(projectile)
-	projectile.fire(bullet_damage, bullet_speed, Vector2(0, 1))
+	projectile.fire(bullet_damage, bullet_speed, Vector2(get_player_direction(), 1))
 
 func is_player_in_shoot_range() -> bool:
 
