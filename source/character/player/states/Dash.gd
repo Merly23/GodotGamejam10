@@ -16,7 +16,6 @@ func enter(host: Node) -> void:
 	host = host as Player
 	host.play("dash")
 	Audio.play_sfx("player_blink_start")
-	# host.disable_collision()
 	host.dashing = true
 	host.spawn_after_image()
 	direction = host.get_input_direction()
@@ -24,17 +23,16 @@ func enter(host: Node) -> void:
 	host.dash_timer.start()
 	host.energy -= host.dash_cost
 	dash_count += 1
+	# host.disable_collision()
 
 func input(host: Node, event: InputEvent) -> void:
-	host = host as Character
+	host = host as Player
 
 	if event.is_action_pressed("C"):
 		follow_dash = true
 
 func update(host: Node, delta: float) -> void:
-	host = host as Character
-
-	# host.motion.y += Global.GRAVITY * delta
+	host = host as Player
 
 	host.motion -= Vector2(friction, friction) * direction * delta
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
@@ -49,7 +47,8 @@ func update(host: Node, delta: float) -> void:
 			host.fsm.change_state("fall")
 
 func exit(host: Node) -> void:
-	host = host as Character
+	host = host as Player
+
 	follow_dash = false
 	host.dashing = false
 

@@ -944,7 +944,7 @@ height = 26.0
 [sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 28, 36 )
 
-[node name="Player" instance=ExtResource( 1 )]
+[node name="Player" index="0" instance=ExtResource( 1 )]
 collision_layer = 1
 script = ExtResource( 2 )
 max_health = 3

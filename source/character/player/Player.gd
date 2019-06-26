@@ -89,10 +89,13 @@ func can_dash(silent := false) -> bool:
 		return false
 	elif not dash_timer.is_stopped():
 		return false
-	return true
+	return true and not disabled and has_virus
+
+func can_slow_time() -> bool:
+	return not disabled and has_virus
 
 func can_attack() -> bool:
-	return not upper.anim_player.current_animation == "shoot" and not upper.anim_player.current_animation == "attack"
+	return not upper.anim_player.current_animation == "shoot" and not upper.anim_player.current_animation == "attack" and not disabled
 
 func can_shoot(silent := false) -> bool:
 	if not energy - shoot_cost >= 0:
@@ -101,10 +104,7 @@ func can_shoot(silent := false) -> bool:
 		return false
 	elif not can_attack():
 		return false
-	return true
-
-func can_move(can_move: bool) -> void:
-	self.can_move = can_move
+	return true and not disabled
 
 func flip_left() -> void:
 	upper.sprite.flip_h = true
@@ -129,6 +129,7 @@ func play_step():
 	Audio.play_sfx("player_step")
 
 func hurt(damage) -> void:
+
 	if dashing:
 		return
 
@@ -145,7 +146,7 @@ func shoot() -> void:
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
 	get_tree().current_scene.add_child(projectile)
-	projectile.fire(bullet_damage, bullet_speed, Vector2(get_shoot_direction(), 0))
+	projectile.fire(bullet_damage, bullet_speed, Vector2(get_direction(), 0))
 
 func slash() -> void:
 
@@ -168,37 +169,24 @@ func stand() -> void:
 	collision_shape.position.y = -24
 	capsule.height = 26
 
-func get_input_direction(normalized := true) -> Vector2:
-
-	var direction := Vector2()
-
-	var left = Input.is_action_pressed("ui_left")
-	var right = Input.is_action_pressed("ui_right")
-	var up = Input.is_action_pressed("ui_up")
-	var down = Input.is_action_pressed("ui_down")
-
-	if left and not right:
-		direction.x = -1
-	elif right and not left:
-		direction.x = 1
-
-	if up and not down:
-		direction.y = -1
-	elif down and not up:
-		direction.y = 1
-
-	if not direction:
-		direction.x = -1 if is_flipped() else 1
-
-	return direction.normalized() if normalized else direction
-
-func get_shoot_direction() -> int:
-	return -1 if is_flipped() else 1
-
 func cancel_slow_motion() -> void:
 	if slow_motion.active:
 		slow_motion.toggle()
 		spawn_pulse_out()
+
+func get_input_direction(normalized := false) -> Vector2:
+
+	var direction := Vector2()
+
+	if not disabled:
+		direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+		direction.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+
+	return direction.normalized() if normalized else direction
+
+
+func set_can_move(can_move: bool) -> void:
+	self.can_move = can_move
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)
