@@ -944,7 +944,7 @@ height = 26.0
 [sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 28, 36 )
 
-[node name="Player" index="0" instance=ExtResource( 1 )]
+[node name="Player" instance=ExtResource( 1 )]
 collision_layer = 1
 script = ExtResource( 2 )
 max_health = 3
@@ -995,9 +995,6 @@ texture = ExtResource( 4 )
 offset = Vector2( 0, -31 )
 hframes = 6
 frame = 1
-
-[node name="Upper" parent="." index="10"]
-visible = false
 
 [node name="AnimationPlayer" parent="Upper" index="0"]
 anims/air_attack = SubResource( 10 )
