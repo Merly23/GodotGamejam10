@@ -46,7 +46,13 @@ func update(host: Node, delta: float) -> void:
 		if abs(host.motion.x) < 0.1:
 			host.motion.x = 0
 
-	if host.is_on_floor():
+	if host.is_on_cliff():
+		host.fsm.change_state("hang")
+
+	elif host.is_on_slide_wall():
+		host.fsm.change_state("slide")
+
+	elif host.is_on_floor():
 
 		Audio.play_sfx("player_land")
 

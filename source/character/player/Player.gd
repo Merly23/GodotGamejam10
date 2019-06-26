@@ -29,6 +29,7 @@ export var has_virus := false
 onready var slow_motion := $SlowMotion
 
 onready var dash_timer := $DashTimer as Timer
+onready var cliff_timer := $CliffTimer as Timer
 onready var shoot_timer := $ShootTimer as Timer
 onready var slow_motion_timer := $SlowMotionTimer as Timer
 onready var heal_tick_timer := $HealTickTimer as Timer
@@ -37,6 +38,9 @@ onready var heal_cooldown_timer := $HealCooldownTimer as Timer
 onready var capsule := collision_shape.shape as CapsuleShape2D
 
 onready var terrain_checker := $TerrainCheckArea
+
+onready var upper_ray := $Rays/Upper as RayCast2D
+onready var lower_ray := $Rays/Lower as RayCast2D
 
 onready var barrel := $ProjectileHook
 
@@ -73,6 +77,8 @@ func _register_states() -> void:
 	fsm.register_state("idle", "Idle")
 	fsm.register_state("walk", "Walk")
 	fsm.register_state("fall", "Fall")
+	fsm.register_state("slide", "Slide")
+	fsm.register_state("hang", "Hang")
 	fsm.register_state("jump", "Jump")
 	fsm.register_state("dash", "Dash")
 	fsm.register_state("crouch", "Crouch")
@@ -110,11 +116,15 @@ func flip_left() -> void:
 	upper.sprite.flip_h = true
 	lower.sprite.flip_h = true
 	hit_area.position.x = -16
+	upper_ray.rotation_degrees = 90
+	lower_ray.rotation_degrees = 90
 
 func flip_right() -> void:
 	upper.sprite.flip_h = false
 	lower.sprite.flip_h = false
 	hit_area.position.x = 16
+	upper_ray.rotation_degrees = -90
+	lower_ray.rotation_degrees = -90
 
 func attack(attack_name: String) -> void:
 	play_upper(attack_name)
@@ -208,6 +218,24 @@ func set_glitch_level(level: int) -> void:
 func _set_energy(value) -> void:
 	energy = clamp(value, 0, max_energy)
 	emit_signal("energy_changed", energy)
+
+func is_on_cliff() -> bool:
+	if not upper_ray.is_colliding() and lower_ray.is_colliding() and cliff_timer.is_stopped():
+		var collider = lower_ray.get_collider()
+		if collider == Global.Terrain:
+			return true
+	return false
+
+func is_on_slide_wall() -> bool:
+	if upper_ray.is_colliding() and lower_ray.is_colliding() and not is_on_floor():
+		var collider = lower_ray.get_collider()
+		if collider == Global.Terrain:
+			return true
+	return false
+
+func is_turning_on_wall() -> bool:
+	var input_direction = get_input_direction()
+	return input_direction.x == -1 and not is_flipped() or input_direction.x == 1 and is_flipped()
 
 func is_energy_filled() -> bool:
 	return energy == max_energy
