@@ -14,7 +14,7 @@ onready var interface := $Interface as Interface
 onready var game_cam := $GameCam
 
 onready var cutscenes := $Events.get_children()
-onready var checkpoints := $Events.get_children()
+onready var checkpoints := $Checkpoints.get_children()
 
 func _ready() -> void:
 	Global.current_level = PATH + "Level" + str(id) + ".tscn"
