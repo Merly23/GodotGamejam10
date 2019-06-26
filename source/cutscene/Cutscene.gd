@@ -10,7 +10,6 @@ onready var dialoque := $Dialoque
 
 func _ready() -> void:
 	_setup_speeches()
-	dialoque.connect("finished", self, "_on_Dialoque_finished")
 
 func _happen() -> void:
 	if not requirements_fullfilled():

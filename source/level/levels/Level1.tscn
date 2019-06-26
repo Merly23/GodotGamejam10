@@ -1,25 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/level/levels/Level1.gd" type="Script" id=2]
-[ext_resource path="res://source/checkpoint/Checkpoint.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/objects/Door.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/objects/Scientist.tscn" type="PackedScene" id=5]
-[ext_resource path="res://source/objects/AlienCage.tscn" type="PackedScene" id=6]
-[ext_resource path="res://source/objects/Scanner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://source/objects/ComputerServer.tscn" type="PackedScene" id=8]
-[ext_resource path="res://source/objects/ControlPanelLarge.tscn" type="PackedScene" id=9]
-[ext_resource path="res://source/objects/Console.tscn" type="PackedScene" id=10]
-[ext_resource path="res://source/character/ai/patrol/Patrol.tscn" type="PackedScene" id=11]
-[ext_resource path="res://source/character/ai/glitcher/Glitcher.tscn" type="PackedScene" id=12]
-[ext_resource path="res://source/character/ai/turret/Turret.tscn" type="PackedScene" id=13]
-[ext_resource path="res://source/character/ai/drone/Drone.tscn" type="PackedScene" id=14]
-[ext_resource path="res://source/character/ai/dummy/Dummy.tscn" type="PackedScene" id=15]
-[ext_resource path="res://source/character/ai/android/Android.tscn" type="PackedScene" id=16]
-[ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=17]
-[ext_resource path="res://data/dialoques/level_1/dialoque_1/speech_1.tres" type="Resource" id=18]
+[ext_resource path="res://source/objects/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/objects/Scientist.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/objects/AlienCage.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/objects/Scanner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/objects/ComputerServer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/objects/ControlPanelLarge.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/objects/Console.tscn" type="PackedScene" id=9]
 
-[node name="Level1" instance=ExtResource( 1 )]
+[node name="Level1" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Background" parent="." index="1"]
@@ -32,223 +23,54 @@ tile_data = PoolIntArray( -65536, 18, 0, -65535, 18, 0, -65534, 18, 0, -65533, 1
 position = Vector2( 672, 832 )
 next_level = "Credits"
 
-[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 3 )]
-position = Vector2( 32, 384 )
-
-[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource( 3 )]
-position = Vector2( 2784, 384 )
-
-[node name="Checkpoint3" parent="Checkpoints" index="2" instance=ExtResource( 3 )]
-position = Vector2( 3808, 544 )
-
-[node name="Checkpoint4" parent="Checkpoints" index="3" instance=ExtResource( 3 )]
-position = Vector2( 1440, 864 )
-
-[node name="Door" parent="Objects" index="0" instance=ExtResource( 4 )]
+[node name="Door" parent="Objects" index="0" instance=ExtResource( 3 )]
 position = Vector2( 640, 288 )
+automatic = true
 
-[node name="Door2" parent="Objects" index="1" instance=ExtResource( 4 )]
+[node name="Door2" parent="Objects" index="1" instance=ExtResource( 3 )]
 position = Vector2( 1568, 288 )
+automatic = true
 
-[node name="Door3" parent="Objects" index="2" instance=ExtResource( 4 )]
+[node name="Door3" parent="Objects" index="2" instance=ExtResource( 3 )]
 position = Vector2( 2208, 289 )
 automatic = true
 
-[node name="Door4" parent="Objects" index="3" instance=ExtResource( 4 )]
+[node name="Door4" parent="Objects" index="3" instance=ExtResource( 3 )]
 position = Vector2( 2848, 288 )
 automatic = true
 
-[node name="Scientist" parent="Objects" index="4" instance=ExtResource( 5 )]
+[node name="Door5" parent="Objects" index="4" instance=ExtResource( 3 )]
+position = Vector2( 3520, 288 )
+automatic = true
+
+[node name="Door6" parent="Objects" index="5" instance=ExtResource( 3 )]
+position = Vector2( 1344, 768 )
+automatic = true
+
+[node name="Door7" parent="Objects" index="6" instance=ExtResource( 3 )]
+position = Vector2( 768, 768 )
+automatic = true
+
+[node name="Scientist" parent="Objects" index="7" instance=ExtResource( 4 )]
 position = Vector2( 200, 352 )
 version = 1
 
-[node name="AlienGage" parent="Objects" index="5" instance=ExtResource( 6 )]
+[node name="AlienGage" parent="Objects" index="8" instance=ExtResource( 5 )]
 position = Vector2( 1472, 357 )
 
-[node name="Scanner" parent="Objects" index="6" instance=ExtResource( 7 )]
+[node name="Scanner" parent="Objects" index="9" instance=ExtResource( 6 )]
 position = Vector2( 3104, 384 )
 offset = Vector2( 16, -45 )
 
-[node name="Door5" parent="Objects" index="7" instance=ExtResource( 4 )]
-position = Vector2( 3520, 288 )
-
-[node name="ComputerServer" parent="Objects" index="8" instance=ExtResource( 8 )]
+[node name="ComputerServer" parent="Objects" index="10" instance=ExtResource( 7 )]
 position = Vector2( 2400, 384 )
 offset = Vector2( 40, -41 )
 
-[node name="ControlPanelLarge" parent="Objects" index="9" instance=ExtResource( 9 )]
+[node name="ControlPanelLarge" parent="Objects" index="11" instance=ExtResource( 8 )]
 position = Vector2( 2528, 320 )
 
-[node name="Door6" parent="Objects" index="10" instance=ExtResource( 4 )]
-position = Vector2( 1344, 768 )
-
-[node name="Door7" parent="Objects" index="11" instance=ExtResource( 4 )]
-position = Vector2( 768, 768 )
-
-[node name="Console" parent="Objects" index="12" instance=ExtResource( 10 )]
+[node name="Console" parent="Objects" index="12" instance=ExtResource( 9 )]
 position = Vector2( 2964, 376 )
-
-[node name="Patrol" parent="Enemies" index="0" instance=ExtResource( 11 )]
-position = Vector2( 160, 384 )
-flip_on_start = false
-can_move = false
-team_number = 0
-max_health = 3
-attack_range = 300
-bullet_speed = 400
-bullet_damage = 1
-
-[node name="Glitcher" parent="Enemies" index="1" groups=[
-"Character",
-] instance=ExtResource( 12 )]
-position = Vector2( 1472, 384 )
-collision_layer = 4
-collision_mask = 2
-can_move = false
-max_health = 8
-
-[node name="Turret" parent="Enemies" index="2" instance=ExtResource( 13 )]
-position = Vector2( 1160, 384 )
-can_move = false
-team_number = 0
-bullet_speed = 400
-
-[node name="Drone" parent="Enemies" index="3" instance=ExtResource( 14 )]
-position = Vector2( 1400, 299 )
-can_move = false
-bullet_speed = 400
-
-[node name="Dummy" parent="Enemies" index="4" instance=ExtResource( 15 )]
-position = Vector2( 896, 385 )
-can_move = false
-max_health = 8
-
-[node name="Dummy2" parent="Enemies" index="5" instance=ExtResource( 15 )]
-position = Vector2( 1088, 385 )
-can_move = false
-
-[node name="Turret2" parent="Enemies" index="6" instance=ExtResource( 13 )]
-position = Vector2( 3008, 384 )
-flip_on_start = true
-can_move = false
-team_number = 0
-bullet_speed = 400
-
-[node name="Turret3" parent="Enemies" index="7" instance=ExtResource( 13 )]
-position = Vector2( 3296, 384 )
-can_move = false
-team_number = 0
-bullet_speed = 400
-
-[node name="Drone2" parent="Enemies" index="8" instance=ExtResource( 14 )]
-position = Vector2( 2938, 298 )
-can_move = false
-
-[node name="Drone3" parent="Enemies" index="9" instance=ExtResource( 14 )]
-position = Vector2( 3363, 214 )
-can_move = false
-
-[node name="Android" parent="Enemies" index="10" instance=ExtResource( 16 )]
-position = Vector2( 928, 850 )
-flip_on_start = false
-can_move = false
-team_number = 0
-bullet_speed = 400
-
-[node name="Glitcher2" parent="Enemies" index="11" groups=[
-"Character",
-] instance=ExtResource( 12 )]
-position = Vector2( 2366, 864 )
-collision_layer = 4
-collision_mask = 2
-flip_on_start = false
-team_number = 2
-max_health = 6
-
-[node name="Glitcher3" parent="Enemies" index="12" groups=[
-"Character",
-] instance=ExtResource( 12 )]
-position = Vector2( 2366, 864 )
-collision_layer = 4
-collision_mask = 2
-flip_on_start = false
-team_number = 2
-max_health = 6
-
-[node name="Glitcher4" parent="Enemies" index="13" groups=[
-"Character",
-] instance=ExtResource( 12 )]
-position = Vector2( 2144, 864 )
-collision_layer = 4
-collision_mask = 2
-flip_on_start = false
-team_number = 2
-max_health = 6
-
-[node name="Glitcher6" parent="Enemies" index="14" groups=[
-"Character",
-] instance=ExtResource( 12 )]
-position = Vector2( 1920, 864 )
-collision_layer = 4
-collision_mask = 2
-flip_on_start = false
-team_number = 2
-max_health = 6
-
-[node name="Glitcher7" parent="Enemies" index="15" groups=[
-"Character",
-] instance=ExtResource( 12 )]
-position = Vector2( 1824, 864 )
-collision_layer = 4
-collision_mask = 2
-flip_on_start = false
-team_number = 2
-max_health = 6
-
-[node name="Glitcher8" parent="Enemies" index="16" groups=[
-"Character",
-] instance=ExtResource( 12 )]
-position = Vector2( 2016, 864 )
-collision_layer = 4
-collision_mask = 2
-flip_on_start = false
-team_number = 2
-max_health = 6
-
-[node name="Glitcher5" parent="Enemies" index="17" groups=[
-"Character",
-] instance=ExtResource( 12 )]
-position = Vector2( 2240, 864 )
-collision_layer = 4
-collision_mask = 2
-flip_on_start = false
-team_number = 2
-max_health = 6
-
-[node name="Patrol2" parent="Enemies" index="18" instance=ExtResource( 11 )]
-position = Vector2( 3136, 864 )
-flip_on_start = false
-max_health = 2
-bullet_speed = 400
-bullet_damage = 1
-
-[node name="Patrol3" parent="Enemies" index="19" instance=ExtResource( 11 )]
-position = Vector2( 2784, 864 )
-max_health = 2
-bullet_speed = 400
-bullet_damage = 1
-
-[node name="Patrol4" parent="Enemies" index="20" instance=ExtResource( 11 )]
-position = Vector2( 2720, 864 )
-max_health = 2
-bullet_speed = 400
-bullet_damage = 1
-
-[node name="Patrol5" parent="Enemies" index="21" instance=ExtResource( 11 )]
-position = Vector2( 2624, 864 )
-max_health = 2
-bullet_speed = 400
-bullet_damage = 1
 
 [node name="Player" parent="Characters" index="0"]
 position = Vector2( 32, 370 )
@@ -257,180 +79,7 @@ dash_cost = 10
 dash_cooldown = 0.5
 slow_motion_cost = 5
 shoot_cost = 5
-has_virus = false
-
-[node name="Cutscene0" parent="Events" index="0" instance=ExtResource( 17 )]
-editor/display_folded = true
-position = Vector2( 0, 384 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-speeches = [ ExtResource( 18 ) ]
-
-[node name="Cutscene1" parent="Events" index="1" instance=ExtResource( 17 )]
-editor/display_folded = true
-position = Vector2( 64, 384 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-
-[node name="Cutscene2" parent="Events" index="2" instance=ExtResource( 17 )]
-editor/display_folded = true
-position = Vector2( 512, 384 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-
-[node name="Cutscene3" parent="Events" index="3" instance=ExtResource( 17 )]
-editor/display_folded = true
-position = Vector2( 230, 384 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-
-[node name="Cutscene4" parent="Events" index="4" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 0.5
-on_input = true
-input_action = "SPACE"
-input_time = 0.0
-
-[node name="Cutscene5" parent="Events" index="5" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 0.3
-on_input = true
-input_action = "ui_down"
-input_time = 0.0
-
-[node name="Cutscene6" parent="Events" index="6" instance=ExtResource( 17 )]
-editor/display_folded = true
-position = Vector2( 832, 384 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-
-[node name="Cutscene7" parent="Events" index="7" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 0.3
-targets = [ NodePath("../../Enemies/Dummy") ]
-on_signal = "died"
-
-[node name="Cutscene8" parent="Events" index="8" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 0.3
-targets = [ NodePath("../../Enemies/Dummy2") ]
-on_signal = "died"
-
-[node name="Cutscene9" parent="Events" index="9" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 1.0
-targets = [ NodePath("../../Enemies/Drone"), NodePath("../../Enemies/Turret") ]
-on_signal = "died"
-
-[node name="Cutscene10" parent="Events" index="10" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 0.5
-targets = [ NodePath("../../Enemies/Glitcher") ]
-on_signal = "died"
-
-[node name="Cutscene11" parent="Events" index="11" instance=ExtResource( 17 )]
-editor/display_folded = true
-position = Vector2( 2496, 385 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-
-[node name="Cutscene12" parent="Events" index="12" instance=ExtResource( 17 )]
-editor/display_folded = true
-position = Vector2( 3136, 385 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-
-[node name="Cutscene13" parent="Events" index="13" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 0.3
-targets = [ NodePath("../../Enemies/Turret2"), NodePath("../../Enemies/Turret3"), NodePath("../../Enemies/Drone2"), NodePath("../../Enemies/Drone3") ]
-on_signal = "died"
-
-[node name="Cutscene14" parent="Events" index="14" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 0.3
-targets = [ NodePath("../../Enemies/Glitcher2"), NodePath("../../Enemies/Glitcher3"), NodePath("../../Enemies/Glitcher4"), NodePath("../../Enemies/Glitcher5"), NodePath("../../Enemies/Glitcher6"), NodePath("../../Enemies/Glitcher7"), NodePath("../../Enemies/Glitcher8") ]
-on_signal = "died"
-
-[node name="Cutscene15" parent="Events" index="15" instance=ExtResource( 17 )]
-editor/display_folded = true
-position = Vector2( 936, 864 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-
-[node name="Cutscene16" parent="Events" index="16" instance=ExtResource( 17 )]
-editor/display_folded = true
-delay = 0.3
-targets = [ NodePath("../../Enemies/Android") ]
-on_signal = "died"
 
 [node name="GameCam" parent="." index="10"]
 offset = Vector2( 0, -80 )
 smoothing_speed = 10.0
-[connection signal="body_entered" from="Events/Cutscene0" to="Events/Cutscene0" method="_on_Event_body_entered"]
-[connection signal="body_entered" from="Events/Cutscene1" to="Events/Cutscene1" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene1" to="Interface" method="show_key" binds= [ "Right" ]]
-[connection signal="body_entered" from="Events/Cutscene2" to="Events/Cutscene2" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene2" to="Interface" method="show_key" binds= [ "Left" ]]
-[connection signal="started" from="Events/Cutscene2" to="Interface" method="hide_key"]
-[connection signal="body_entered" from="Events/Cutscene3" to="Events/Cutscene3" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene3" to="Interface" method="show_key" binds= [ "Space" ]]
-[connection signal="started" from="Events/Cutscene3" to="Interface" method="hide_key"]
-[connection signal="body_entered" from="Events/Cutscene4" to="Events/Cutscene4" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene4" to="Interface" method="show_key" binds= [ "Down" ]]
-[connection signal="started" from="Events/Cutscene4" to="Interface" method="hide_key"]
-[connection signal="body_entered" from="Events/Cutscene5" to="Events/Cutscene5" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene5" to="Objects/Door" method="open"]
-[connection signal="started" from="Events/Cutscene5" to="Interface" method="hide_key"]
-[connection signal="body_entered" from="Events/Cutscene6" to="Events/Cutscene6" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene6" to="Enemies/Dummy" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Cutscene6" to="Interface" method="show_key" binds= [ "B" ]]
-[connection signal="started" from="Events/Cutscene6" to="Objects/Door" method="close"]
-[connection signal="body_entered" from="Events/Cutscene7" to="Events/Cutscene7" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene7" to="Enemies/Dummy2" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Cutscene7" to="Interface" method="show_key" binds= [ "V" ]]
-[connection signal="finished" from="Events/Cutscene7" to="Characters/Player" method="can_move" binds= [ false ]]
-[connection signal="started" from="Events/Cutscene7" to="Interface" method="hide_key"]
-[connection signal="body_entered" from="Events/Cutscene8" to="Events/Cutscene8" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene8" to="Enemies/Drone" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene8" to="Enemies/Drone" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Cutscene8" to="Enemies/Turret" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene8" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Events/Cutscene8" to="Interface" method="hide_key"]
-[connection signal="started" from="Events/Cutscene8" to="Characters/Player" method="can_move" binds= [ true ]]
-[connection signal="body_entered" from="Events/Cutscene9" to="Events/Cutscene9" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene9" to="Enemies/Glitcher" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene9" to="Enemies/Glitcher" method="set_team_number" binds= [ 2 ]]
-[connection signal="finished" from="Events/Cutscene9" to="Objects/AlienGage" method="open"]
-[connection signal="body_entered" from="Events/Cutscene10" to="Events/Cutscene10" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene10" to="Objects/Door2" method="open"]
-[connection signal="body_entered" from="Events/Cutscene11" to="Events/Cutscene11" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene11" to="Interface" method="show_key" binds= [ "C" ]]
-[connection signal="finished" from="Events/Cutscene11" to="Characters/Player" method="infect"]
-[connection signal="started" from="Events/Cutscene11" to="Objects/Door3" method="lock"]
-[connection signal="body_entered" from="Events/Cutscene12" to="Events/Cutscene12" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret2" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone3" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone3" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret3" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret3" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone2" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone2" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Cutscene12" to="Interface" method="show_key" binds= [ "X" ]]
-[connection signal="started" from="Events/Cutscene12" to="Objects/Door3" method="lock"]
-[connection signal="started" from="Events/Cutscene12" to="Objects/Scanner" method="alert"]
-[connection signal="started" from="Events/Cutscene12" to="Objects/Console" method="alert"]
-[connection signal="started" from="Events/Cutscene12" to="Interface" method="hide_key"]
-[connection signal="started" from="Events/Cutscene12" to="Objects/ComputerServer" method="alert"]
-[connection signal="body_entered" from="Events/Cutscene13" to="Events/Cutscene13" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene13" to="Objects/Door5" method="open"]
-[connection signal="started" from="Events/Cutscene13" to="Interface" method="hide_key"]
-[connection signal="body_entered" from="Events/Cutscene14" to="Events/Cutscene14" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene14" to="Objects/Door6" method="open"]
-[connection signal="body_entered" from="Events/Cutscene15" to="Events/Cutscene15" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene15" to="Enemies/Android" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene15" to="Enemies/Android" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Events/Cutscene15" to="Objects/Door6" method="lock"]
-[connection signal="body_entered" from="Events/Cutscene16" to="Events/Cutscene16" method="_on_Event_body_entered"]
-[connection signal="finished" from="Events/Cutscene16" to="Objects/Door7" method="open"]
