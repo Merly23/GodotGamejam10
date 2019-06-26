@@ -39,13 +39,14 @@ onready var coll := $Area2D/CollisionShape2D as CollisionShape2D
 onready var delay_timer := $DelayTimer as Timer
 
 func _ready() -> void:
+	coll.shape = coll.shape.duplicate(true)
+	coll.shape.extents = area_extents
 	id = get_index()
 
 	if targets:
 		expected_signals = targets.size()
 
 	_set_on_enter(on_enter)
-	coll.shape.extents = area_extents
 	_setup_targets()
 	_setup_required_events()
 
