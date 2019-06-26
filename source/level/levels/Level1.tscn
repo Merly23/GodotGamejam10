@@ -98,8 +98,12 @@ attack_range = 300
 bullet_speed = 400
 bullet_damage = 1
 
-[node name="Glitcher" parent="Enemies" index="1" instance=ExtResource( 12 )]
+[node name="Glitcher" parent="Enemies" index="1" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 1472, 384 )
+collision_layer = 4
+collision_mask = 2
 can_move = false
 max_health = 8
 
@@ -151,44 +155,72 @@ can_move = false
 team_number = 0
 bullet_speed = 400
 
-[node name="Glitcher2" parent="Enemies" index="11" instance=ExtResource( 12 )]
+[node name="Glitcher2" parent="Enemies" index="11" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 2366, 864 )
+collision_layer = 4
+collision_mask = 2
 flip_on_start = false
 team_number = 2
 max_health = 6
 
-[node name="Glitcher3" parent="Enemies" index="12" instance=ExtResource( 12 )]
+[node name="Glitcher3" parent="Enemies" index="12" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 2366, 864 )
+collision_layer = 4
+collision_mask = 2
 flip_on_start = false
 team_number = 2
 max_health = 6
 
-[node name="Glitcher4" parent="Enemies" index="13" instance=ExtResource( 12 )]
+[node name="Glitcher4" parent="Enemies" index="13" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 2144, 864 )
+collision_layer = 4
+collision_mask = 2
 flip_on_start = false
 team_number = 2
 max_health = 6
 
-[node name="Glitcher6" parent="Enemies" index="14" instance=ExtResource( 12 )]
+[node name="Glitcher6" parent="Enemies" index="14" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 1920, 864 )
+collision_layer = 4
+collision_mask = 2
 flip_on_start = false
 team_number = 2
 max_health = 6
 
-[node name="Glitcher7" parent="Enemies" index="15" instance=ExtResource( 12 )]
+[node name="Glitcher7" parent="Enemies" index="15" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 1824, 864 )
+collision_layer = 4
+collision_mask = 2
 flip_on_start = false
 team_number = 2
 max_health = 6
 
-[node name="Glitcher8" parent="Enemies" index="16" instance=ExtResource( 12 )]
+[node name="Glitcher8" parent="Enemies" index="16" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 2016, 864 )
+collision_layer = 4
+collision_mask = 2
 flip_on_start = false
 team_number = 2
 max_health = 6
 
-[node name="Glitcher5" parent="Enemies" index="17" instance=ExtResource( 12 )]
+[node name="Glitcher5" parent="Enemies" index="17" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 2240, 864 )
+collision_layer = 4
+collision_mask = 2
 flip_on_start = false
 team_number = 2
 max_health = 6
@@ -351,10 +383,10 @@ smoothing_speed = 10.0
 [connection signal="finished" from="Events/Cutscene7" to="Characters/Player" method="can_move" binds= [ false ]]
 [connection signal="finished" from="Events/Cutscene7" to="Interface" method="show_key" binds= [ "V" ]]
 [connection signal="started" from="Events/Cutscene7" to="Interface" method="hide_key"]
-[connection signal="finished" from="Events/Cutscene8" to="Enemies/Turret" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene8" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Events/Cutscene8" to="Enemies/Drone" method="enable_movement"]
 [connection signal="finished" from="Events/Cutscene8" to="Enemies/Drone" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Cutscene8" to="Enemies/Turret" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene8" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
 [connection signal="started" from="Events/Cutscene8" to="Characters/Player" method="can_move" binds= [ true ]]
 [connection signal="started" from="Events/Cutscene8" to="Interface" method="hide_key"]
 [connection signal="finished" from="Events/Cutscene9" to="Objects/AlienGage" method="open"]
@@ -364,19 +396,19 @@ smoothing_speed = 10.0
 [connection signal="finished" from="Events/Cutscene11" to="Characters/Player" method="infect"]
 [connection signal="finished" from="Events/Cutscene11" to="Interface" method="show_key" binds= [ "C" ]]
 [connection signal="started" from="Events/Cutscene11" to="Objects/Door3" method="lock"]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret2" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone2" method="enable_movement"]
-[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone2" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone3" method="enable_movement"]
 [connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone3" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone2" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone2" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret2" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret3" method="enable_movement"]
 [connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret3" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Events/Cutscene12" to="Interface" method="show_key" binds= [ "X" ]]
-[connection signal="started" from="Events/Cutscene12" to="Objects/Door3" method="lock"]
 [connection signal="started" from="Events/Cutscene12" to="Objects/ComputerServer" method="alert"]
-[connection signal="started" from="Events/Cutscene12" to="Objects/Console" method="alert"]
 [connection signal="started" from="Events/Cutscene12" to="Objects/Scanner" method="alert"]
+[connection signal="started" from="Events/Cutscene12" to="Objects/Console" method="alert"]
+[connection signal="started" from="Events/Cutscene12" to="Objects/Door3" method="lock"]
 [connection signal="started" from="Events/Cutscene12" to="Interface" method="hide_key"]
 [connection signal="finished" from="Events/Cutscene13" to="Objects/Door5" method="open"]
 [connection signal="started" from="Events/Cutscene13" to="Interface" method="hide_key"]

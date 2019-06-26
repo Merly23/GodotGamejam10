@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 speaker = "Raphie"
-lines = [ "Hey, this is nice!" ]
+lines = [ "This is nice!" ]
