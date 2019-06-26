@@ -43,10 +43,10 @@ func _tween_attack(host: Glitcher, direction: int) -> void:
 	tween.start()
 
 func _tween_backwards(host: Glitcher, direction: int) -> void:
-	tween.interpolate_property(host, "motion:x", 500 * -direction, 0, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
+	tween.interpolate_property(host, "motion:x", 4 * host.attack_range * -direction, 0, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
 	tween.start()
 
 func _tween_backflip(host: Glitcher, direction: int) -> void:
-	tween.interpolate_property(host, "motion:x", 500 * -direction, 0, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
+	tween.interpolate_property(host, "motion:x", 4 * host.attack_range * -direction, 0, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
 	tween.start()
 	host.flip()
