@@ -14,7 +14,7 @@ onready var offscreen_position = menu.rect_global_position + Vector2(0, -400)
 
 func _input(event: InputEvent) -> void:
 
-	if event.is_action_pressed("ui_cancel") and not tween.is_active():
+	if event.is_action_pressed("ui_start") and not tween.is_active():
 		toggle()
 
 func _ready() -> void:
