@@ -55,6 +55,8 @@ func get_player_direction() -> int:
 func can_shoot() -> bool:
 	return shoot_timer.is_stopped()
 
+func get_player_distance() -> float:
+	return global_position.distance_to(Global.Player.global_position)
 
 func is_player_in_attack_range() -> bool:
 
@@ -69,3 +71,13 @@ func is_player_in_vision() -> bool:
 		return false
 
 	return global_position.distance_to(Global.Player.global_position) < vision
+
+func is_player_behind() -> bool:
+
+	if not Global.Player:
+		return false
+
+	var direction = -1 if is_flipped() else 1
+
+	return direction != get_player_direction()
+
