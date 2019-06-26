@@ -1,5 +1,5 @@
 extends Node2D
-class_name Event
+class_name Event, "res://graphics/icons/event.png"
 
 signal happened
 
