@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://source/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/level/levels/Level1.gd" type="Script" id=2]
@@ -17,30 +17,6 @@
 [ext_resource path="res://source/character/ai/dummy/Dummy.tscn" type="PackedScene" id=15]
 [ext_resource path="res://source/character/ai/android/Android.tscn" type="PackedScene" id=16]
 [ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=17]
-[ext_resource path="res://source/cutscene/Speech.tscn" type="PackedScene" id=18]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 128 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 128 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 32, 128 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 32, 128 )
-
-[sub_resource type="RectangleShape2D" id=5]
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 32, 128 )
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 32, 128 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 128, 192 )
 
 [node name="Level1" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -250,422 +226,160 @@ slow_motion_cost = 5
 shoot_cost = 5
 has_virus = false
 
-[node name="Cutscene0" parent="Cutscenes" index="0" instance=ExtResource( 17 )]
+[node name="Cutscene0" parent="Events" index="0" instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( 0, 384 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene0" index="1"]
-position = Vector2( 32, -128 )
-shape = SubResource( 1 )
-
-[node name="Speech" parent="Cutscenes/Cutscene0/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "System"
-lines = [ "Booting system… checking files… no corrupt data found... initiating system..." ]
-
-[node name="Cutscene1" parent="Cutscenes" index="1" instance=ExtResource( 17 )]
+[node name="Cutscene1" parent="Events" index="1" instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( 64, 384 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
-required_dialoques = [ NodePath("../Cutscene0") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene1" index="1"]
-position = Vector2( 32, -128 )
-shape = SubResource( 2 )
-
-[node name="Speech" parent="Cutscenes/Cutscene1/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Time to test this new model!
-" ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene1/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Soldier"
-lines = [ "I don’t like this at all.. What if it turns against us?" ]
-
-[node name="Speech3" parent="Cutscenes/Cutscene1/Dialoque" index="2" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Calm down. She has all the regular boundries in place. She won't be able to hurt a fly without us ordering her to." ]
-
-[node name="Speech4" parent="Cutscenes/Cutscene1/Dialoque" index="3" instance=ExtResource( 18 )]
-speaker = "Soldier"
-lines = [ "Either way, I’m ready to blow it away if necessary..." ]
-
-[node name="Speech5" parent="Cutscenes/Cutscene1/Dialoque" index="4" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Attention Raphie; I will now give you a series of orders to follow." ]
-
-[node name="Speech6" parent="Cutscenes/Cutscene1/Dialoque" index="5" instance=ExtResource( 18 )]
-speaker = "Raphie"
-lines = [ "Understood." ]
-
-[node name="Speech7" parent="Cutscenes/Cutscene1/Dialoque" index="6" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Great. Move right to the yellow marker." ]
-
-[node name="Cutscene2" parent="Cutscenes" index="2" instance=ExtResource( 17 )]
+[node name="Cutscene2" parent="Events" index="2" instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( 512, 384 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
-required_dialoques = [ NodePath("../Cutscene1") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene2" index="1"]
-position = Vector2( 32, -128 )
-shape = SubResource( 3 )
-
-[node name="Speech" parent="Cutscenes/Cutscene2/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Good." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene2/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Now move back to the white marker." ]
-
-[node name="Cutscene3" parent="Cutscenes" index="3" instance=ExtResource( 17 )]
+[node name="Cutscene3" parent="Events" index="3" instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( 230, 384 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
-required_dialoques = [ NodePath("../Cutscene2") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene3" index="1"]
-position = Vector2( 32, -128 )
-shape = SubResource( 4 )
-
-[node name="Speech" parent="Cutscenes/Cutscene3/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Excellent." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene3/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Now please jump for me." ]
-
-[node name="Speech3" parent="Cutscenes/Cutscene3/Dialoque" index="2" instance=ExtResource( 18 )]
-speaker = "Soldier"
-lines = [ "Why are you asking 'please'? It's a chunk of metal!" ]
-
-[node name="Cutscene4" parent="Cutscenes" index="4" instance=ExtResource( 17 )]
+[node name="Cutscene4" parent="Events" index="4" instance=ExtResource( 17 )]
 editor/display_folded = true
 delay = 0.5
 on_input = true
 input_action = "SPACE"
 input_time = 0.0
-required_dialoques = [ NodePath("../Cutscene3") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene4" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene4/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Great." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene4/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Now crouch." ]
-
-[node name="Cutscene5" parent="Cutscenes" index="5" instance=ExtResource( 17 )]
+[node name="Cutscene5" parent="Events" index="5" instance=ExtResource( 17 )]
 editor/display_folded = true
 delay = 0.3
 on_input = true
 input_action = "ui_down"
 input_time = 0.0
-required_dialoques = [ NodePath("../Cutscene4") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene5" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene5/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Perfect. All movement seems to be in working order." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene5/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Scientist"
-lines = [ "Please move on to the next room, Raphie." ]
-
-[node name="Cutscene6" parent="Cutscenes" index="6" instance=ExtResource( 17 )]
+[node name="Cutscene6" parent="Events" index="6" instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( 832, 384 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene6" index="1"]
-position = Vector2( 32, -128 )
-shape = SubResource( 6 )
-
-[node name="Speech" parent="Cutscenes/Cutscene6/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "We will now commence combat testing." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene6/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "Destroy the target." ]
-
-[node name="Cutscene7" parent="Cutscenes" index="7" instance=ExtResource( 17 )]
+[node name="Cutscene7" parent="Events" index="7" instance=ExtResource( 17 )]
 editor/display_folded = true
 delay = 0.3
 targets = [ NodePath("../../Enemies/Dummy") ]
 on_signal = "died"
-required_dialoques = [ NodePath("../Cutscene6") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene7" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene7/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "Sword functioning optimally..." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene7/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "Now shoot the next target." ]
-
-[node name="Cutscene8" parent="Cutscenes" index="8" instance=ExtResource( 17 )]
+[node name="Cutscene8" parent="Events" index="8" instance=ExtResource( 17 )]
 editor/display_folded = true
 delay = 0.3
 targets = [ NodePath("../../Enemies/Dummy2") ]
 on_signal = "died"
-required_dialoques = [ NodePath("../Cutscene7") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene8" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene8/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "Gun functioning well..." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene8/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "We will now commence the live combat exercises." ]
-
-[node name="Speech3" parent="Cutscenes/Cutscene8/Dialoque" index="2" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "Raphie, defeat all the enemies." ]
-
-[node name="Speech4" parent="Cutscenes/Cutscene8/Dialoque" index="3" instance=ExtResource( 18 )]
-speaker = "Raphie"
-lines = [ "Understood.... preparing combat mode... combat systems activated." ]
-
-[node name="Cutscene9" parent="Cutscenes" index="9" instance=ExtResource( 17 )]
+[node name="Cutscene9" parent="Events" index="9" instance=ExtResource( 17 )]
 editor/display_folded = true
 delay = 1.0
 targets = [ NodePath("../../Enemies/Drone"), NodePath("../../Enemies/Turret") ]
 on_signal = "died"
-required_dialoques = [ NodePath("../Cutscene8") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene9" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene9/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "Releasing live test subject." ]
-
-[node name="Cutscene10" parent="Cutscenes" index="10" instance=ExtResource( 17 )]
+[node name="Cutscene10" parent="Events" index="10" instance=ExtResource( 17 )]
 editor/display_folded = true
 delay = 0.5
 targets = [ NodePath("../../Enemies/Glitcher") ]
 on_signal = "died"
-required_dialoques = [ NodePath("../Cutscene9") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene10" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene10/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "All systems appear to be working." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene10/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Intercom"
-lines = [ "You may proceed to the maintenance room." ]
-
-[node name="Cutscene11" parent="Cutscenes" index="11" instance=ExtResource( 17 )]
+[node name="Cutscene11" parent="Events" index="11" instance=ExtResource( 17 )]
 editor/display_folded = true
 position = Vector2( 2496, 385 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene11" index="1"]
-position = Vector2( 32, -128 )
-shape = SubResource( 7 )
-
-[node name="Speech" parent="Cutscenes/Cutscene11/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Server"
-lines = [ "Updating system, please don't interup-p-p--" ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene11/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "System"
-lines = [ "Rebooting..." ]
-
-[node name="Speech3" parent="Cutscenes/Cutscene11/Dialoque" index="2" instance=ExtResource( 18 )]
-speaker = "Raphie"
-lines = [ "Something feels off..." ]
-
-[node name="Cutscene12" parent="Cutscenes" index="12" instance=ExtResource( 17 )]
+[node name="Cutscene12" parent="Events" index="12" instance=ExtResource( 17 )]
+editor/display_folded = true
 position = Vector2( 3136, 385 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene12" index="1"]
-position = Vector2( 128, -192 )
-shape = SubResource( 8 )
-
-[node name="Speech" parent="Cutscenes/Cutscene12/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Scanner"
-lines = [ "ALERT!! ALERT!!" ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene12/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Scanner"
-lines = [ "Anomaly detected. Eradicate immediately." ]
-
-[node name="Cutscene13" parent="Cutscenes" index="13" instance=ExtResource( 17 )]
+[node name="Cutscene13" parent="Events" index="13" instance=ExtResource( 17 )]
+editor/display_folded = true
 delay = 0.3
 targets = [ NodePath("../../Enemies/Turret2"), NodePath("../../Enemies/Turret3"), NodePath("../../Enemies/Drone2"), NodePath("../../Enemies/Drone3") ]
 on_signal = "died"
-required_dialoques = [ NodePath("../Cutscene12") ]
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene13" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene13/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = " Raphie"
-lines = [ "Something is definitely wrong!" ]
-
-[node name="Cutscene14" parent="Cutscenes" index="14" instance=ExtResource( 17 )]
+[node name="Cutscene14" parent="Events" index="14" instance=ExtResource( 17 )]
 editor/display_folded = true
 delay = 0.3
 targets = [ NodePath("../../Enemies/Glitcher2"), NodePath("../../Enemies/Glitcher3"), NodePath("../../Enemies/Glitcher4"), NodePath("../../Enemies/Glitcher5"), NodePath("../../Enemies/Glitcher6"), NodePath("../../Enemies/Glitcher7"), NodePath("../../Enemies/Glitcher8") ]
 on_signal = "died"
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene14" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene14/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = " Raphie"
-lines = [ "That's all of the aliens. Time to make my escape!" ]
-
-[node name="Cutscene15" parent="Cutscenes" index="15" instance=ExtResource( 17 )]
+[node name="Cutscene15" parent="Events" index="15" instance=ExtResource( 17 )]
+editor/display_folded = true
 position = Vector2( 936, 864 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
 
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene15" index="1"]
-position = Vector2( 128, -192 )
-shape = SubResource( 8 )
-
-[node name="Speech" parent="Cutscenes/Cutscene15/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = "Hera"
-lines = [ "Directive: eliminate android R-A-P-H-I-E." ]
-
-[node name="Speech2" parent="Cutscenes/Cutscene15/Dialoque" index="1" instance=ExtResource( 18 )]
-speaker = "Raphie"
-lines = [ "She seems nice." ]
-
-[node name="Cutscene16" parent="Cutscenes" index="16" instance=ExtResource( 17 )]
+[node name="Cutscene16" parent="Events" index="16" instance=ExtResource( 17 )]
+editor/display_folded = true
 delay = 0.3
 targets = [ NodePath("../../Enemies/Android") ]
 on_signal = "died"
-required_dialoques = [ NodePath("../Cutscene15") ]
-
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene16" index="1"]
-position = Vector2( 1260, -271 )
-shape = SubResource( 5 )
-
-[node name="Speech" parent="Cutscenes/Cutscene16/Dialoque" index="0" instance=ExtResource( 18 )]
-speaker = " Raphie"
-lines = [ "Such a pity..." ]
 
 [node name="GameCam" parent="." index="10"]
 offset = Vector2( 0, -80 )
 smoothing_speed = 10.0
-[connection signal="finished" from="Cutscenes/Cutscene1" to="Interface" method="show_key" binds= [ "Right" ]]
-[connection signal="finished" from="Cutscenes/Cutscene2" to="Interface" method="show_key" binds= [ "Left" ]]
-[connection signal="started" from="Cutscenes/Cutscene2" to="Interface" method="hide_key"]
-[connection signal="finished" from="Cutscenes/Cutscene3" to="Interface" method="show_key" binds= [ "Space" ]]
-[connection signal="started" from="Cutscenes/Cutscene3" to="Interface" method="hide_key"]
-[connection signal="finished" from="Cutscenes/Cutscene4" to="Interface" method="show_key" binds= [ "Down" ]]
-[connection signal="started" from="Cutscenes/Cutscene4" to="Interface" method="hide_key"]
-[connection signal="finished" from="Cutscenes/Cutscene5" to="Objects/Door" method="open"]
-[connection signal="started" from="Cutscenes/Cutscene5" to="Interface" method="hide_key"]
-[connection signal="finished" from="Cutscenes/Cutscene6" to="Interface" method="show_key" binds= [ "B" ]]
-[connection signal="finished" from="Cutscenes/Cutscene6" to="Enemies/Dummy" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Cutscenes/Cutscene6" to="Objects/Door" method="close"]
-[connection signal="finished" from="Cutscenes/Cutscene7" to="Interface" method="show_key" binds= [ "V" ]]
-[connection signal="finished" from="Cutscenes/Cutscene7" to="Enemies/Dummy2" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Cutscenes/Cutscene7" to="Characters/Player" method="can_move" binds= [ false ]]
-[connection signal="started" from="Cutscenes/Cutscene7" to="Interface" method="hide_key"]
-[connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Drone" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Drone" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Turret" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene8" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Cutscenes/Cutscene8" to="Interface" method="hide_key"]
-[connection signal="started" from="Cutscenes/Cutscene8" to="Characters/Player" method="can_move" binds= [ true ]]
-[connection signal="finished" from="Cutscenes/Cutscene9" to="Enemies/Glitcher" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene9" to="Enemies/Glitcher" method="set_team_number" binds= [ 2 ]]
-[connection signal="finished" from="Cutscenes/Cutscene9" to="Objects/AlienGage" method="open"]
-[connection signal="finished" from="Cutscenes/Cutscene10" to="Objects/Door2" method="open"]
-[connection signal="finished" from="Cutscenes/Cutscene11" to="Interface" method="show_key" binds= [ "C" ]]
-[connection signal="finished" from="Cutscenes/Cutscene11" to="Characters/Player" method="infect"]
-[connection signal="started" from="Cutscenes/Cutscene11" to="Objects/Door3" method="lock"]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Interface" method="show_key" binds= [ "X" ]]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Turret3" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Turret3" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone2" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone2" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone3" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Drone3" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Turret2" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene12" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Cutscenes/Cutscene12" to="Objects/Door3" method="lock"]
-[connection signal="started" from="Cutscenes/Cutscene12" to="Interface" method="hide_key"]
-[connection signal="started" from="Cutscenes/Cutscene12" to="Objects/Scanner" method="alert"]
-[connection signal="started" from="Cutscenes/Cutscene12" to="Objects/Console" method="alert"]
-[connection signal="started" from="Cutscenes/Cutscene12" to="Objects/ComputerServer" method="alert"]
-[connection signal="finished" from="Cutscenes/Cutscene13" to="Objects/Door5" method="open"]
-[connection signal="started" from="Cutscenes/Cutscene13" to="Interface" method="hide_key"]
-[connection signal="finished" from="Cutscenes/Cutscene14" to="Objects/Door6" method="open"]
-[connection signal="finished" from="Cutscenes/Cutscene15" to="Enemies/Android" method="enable_movement"]
-[connection signal="finished" from="Cutscenes/Cutscene15" to="Enemies/Android" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Cutscenes/Cutscene15" to="Objects/Door6" method="lock"]
-[connection signal="finished" from="Cutscenes/Cutscene16" to="Objects/Door7" method="open"]
-
-[editable path="Cutscenes/Cutscene0"]
-
-[editable path="Cutscenes/Cutscene1"]
-
-[editable path="Cutscenes/Cutscene2"]
-
-[editable path="Cutscenes/Cutscene3"]
-
-[editable path="Cutscenes/Cutscene4"]
-
-[editable path="Cutscenes/Cutscene5"]
-
-[editable path="Cutscenes/Cutscene6"]
-
-[editable path="Cutscenes/Cutscene7"]
-
-[editable path="Cutscenes/Cutscene8"]
-
-[editable path="Cutscenes/Cutscene9"]
-
-[editable path="Cutscenes/Cutscene10"]
-
-[editable path="Cutscenes/Cutscene11"]
-
-[editable path="Cutscenes/Cutscene12"]
-
-[editable path="Cutscenes/Cutscene13"]
-
-[editable path="Cutscenes/Cutscene14"]
-
-[editable path="Cutscenes/Cutscene15"]
-
-[editable path="Cutscenes/Cutscene16"]
+[connection signal="finished" from="Events/Cutscene1" to="Interface" method="show_key" binds= [ "Right" ]]
+[connection signal="finished" from="Events/Cutscene2" to="Interface" method="show_key" binds= [ "Left" ]]
+[connection signal="started" from="Events/Cutscene2" to="Interface" method="hide_key"]
+[connection signal="finished" from="Events/Cutscene3" to="Interface" method="show_key" binds= [ "Space" ]]
+[connection signal="started" from="Events/Cutscene3" to="Interface" method="hide_key"]
+[connection signal="finished" from="Events/Cutscene4" to="Interface" method="show_key" binds= [ "Down" ]]
+[connection signal="started" from="Events/Cutscene4" to="Interface" method="hide_key"]
+[connection signal="finished" from="Events/Cutscene5" to="Objects/Door" method="open"]
+[connection signal="started" from="Events/Cutscene5" to="Interface" method="hide_key"]
+[connection signal="finished" from="Events/Cutscene6" to="Enemies/Dummy" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Cutscene6" to="Interface" method="show_key" binds= [ "B" ]]
+[connection signal="started" from="Events/Cutscene6" to="Objects/Door" method="close"]
+[connection signal="finished" from="Events/Cutscene7" to="Characters/Player" method="can_move" binds= [ false ]]
+[connection signal="finished" from="Events/Cutscene7" to="Interface" method="show_key" binds= [ "V" ]]
+[connection signal="finished" from="Events/Cutscene7" to="Enemies/Dummy2" method="set_team_number" binds= [ 1 ]]
+[connection signal="started" from="Events/Cutscene7" to="Interface" method="hide_key"]
+[connection signal="finished" from="Events/Cutscene8" to="Enemies/Turret" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene8" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Cutscene8" to="Enemies/Drone" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene8" to="Enemies/Drone" method="set_team_number" binds= [ 1 ]]
+[connection signal="started" from="Events/Cutscene8" to="Characters/Player" method="can_move" binds= [ true ]]
+[connection signal="started" from="Events/Cutscene8" to="Interface" method="hide_key"]
+[connection signal="finished" from="Events/Cutscene9" to="Objects/AlienGage" method="open"]
+[connection signal="finished" from="Events/Cutscene9" to="Enemies/Glitcher" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene9" to="Enemies/Glitcher" method="set_team_number" binds= [ 2 ]]
+[connection signal="finished" from="Events/Cutscene10" to="Objects/Door2" method="open"]
+[connection signal="finished" from="Events/Cutscene11" to="Characters/Player" method="infect"]
+[connection signal="finished" from="Events/Cutscene11" to="Interface" method="show_key" binds= [ "C" ]]
+[connection signal="started" from="Events/Cutscene11" to="Objects/Door3" method="lock"]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret3" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret3" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone2" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone2" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone3" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Drone3" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Cutscene12" to="Interface" method="show_key" binds= [ "X" ]]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret2" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene12" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
+[connection signal="started" from="Events/Cutscene12" to="Objects/ComputerServer" method="alert"]
+[connection signal="started" from="Events/Cutscene12" to="Objects/Door3" method="lock"]
+[connection signal="started" from="Events/Cutscene12" to="Interface" method="hide_key"]
+[connection signal="started" from="Events/Cutscene12" to="Objects/Scanner" method="alert"]
+[connection signal="started" from="Events/Cutscene12" to="Objects/Console" method="alert"]
+[connection signal="finished" from="Events/Cutscene13" to="Objects/Door5" method="open"]
+[connection signal="started" from="Events/Cutscene13" to="Interface" method="hide_key"]
+[connection signal="finished" from="Events/Cutscene14" to="Objects/Door6" method="open"]
+[connection signal="finished" from="Events/Cutscene15" to="Enemies/Android" method="enable_movement"]
+[connection signal="finished" from="Events/Cutscene15" to="Enemies/Android" method="set_team_number" binds= [ 1 ]]
+[connection signal="started" from="Events/Cutscene15" to="Objects/Door6" method="lock"]
+[connection signal="finished" from="Events/Cutscene16" to="Objects/Door7" method="open"]

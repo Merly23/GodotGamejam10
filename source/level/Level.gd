@@ -13,8 +13,8 @@ onready var terrain := $Terrain
 onready var interface := $Interface as Interface
 onready var game_cam := $GameCam
 
-onready var cutscenes := $Cutscenes.get_children()
-onready var checkpoints := $Checkpoints.get_children()
+onready var cutscenes := $Events.get_children()
+onready var checkpoints := $Events.get_children()
 
 func _ready() -> void:
 	Global.current_level = PATH + "Level" + str(id) + ".tscn"
@@ -32,9 +32,11 @@ func _ready() -> void:
 		game_cam.global_position = new_position
 
 
-	for cutscene in cutscenes:
-		cutscene.connect("started", self, "_on_Cutscene_started")
-		cutscene.connect("finished", self, "_on_Cutscene_finished")
+	for event in cutscenes:
+
+		if event is Cutscene:
+			event.connect("started", self, "_on_Cutscene_started")
+			event.connect("finished", self, "_on_Cutscene_finished")
 
 	for checkpoint in checkpoints:
 		checkpoint.connect("reached", self, "_on_Checkpoint_reached")
@@ -48,7 +50,6 @@ func _on_Cutscene_finished() -> void:
 	yield(get_tree().create_timer(0.2), "timeout")
 	interface.show()
 	get_tree().call_group("Character", "_set_disabled", false)
-	# Global.Player.disabled = false
 
 func _on_Checkpoint_reached(id: int) -> void:
 	Global.save_data[self.id] = id
