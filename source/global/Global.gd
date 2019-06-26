@@ -1,6 +1,7 @@
 extends Node
 
 var save_data = [ -1, -1, -1, -1 ]
+
 var current_level := ""
 
 var has_virus = false
@@ -17,7 +18,6 @@ func _ready():
 
 func _exit_tree():
 	_save_score_data()
-
 
 func _load_score_data():
 	var file = File.new()

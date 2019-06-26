@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/projectiles/Projectile.gd"
 }, {
+"base": "Resource",
+"class": "RSpeech",
+"language": "GDScript",
+"path": "res://source/resources/RSpeech.gd"
+}, {
 "base": "Node",
 "class": "SceneLoader",
 "language": "GDScript",
@@ -93,6 +98,11 @@ _global_script_classes=[ {
 "class": "ScreenShake",
 "language": "GDScript",
 "path": "res://source/camera/ScreenShake.gd"
+}, {
+"base": "Control",
+"class": "Speech",
+"language": "GDScript",
+"path": "res://source/cutscene/Speech.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -120,8 +130,10 @@ _global_script_class_icons={
 "Patrol": "",
 "Player": "",
 "Projectile": "",
+"RSpeech": "",
 "SceneLoader": "",
 "ScreenShake": "",
+"Speech": "",
 "State": "",
 "Turret": ""
 }

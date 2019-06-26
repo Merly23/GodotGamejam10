@@ -1,8 +1,10 @@
 extends Control
+class_name Speech
 
 signal finished
 
 export var speaker := "Speaker"
+
 export(Array, String, MULTILINE) var lines = []
 
 var current = -1 setget _set_current

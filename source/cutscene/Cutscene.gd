@@ -4,14 +4,13 @@ class_name Cutscene
 signal started
 signal finished
 
+export(Array, Resource) var speeches = []
+
 onready var dialoque := $Dialoque
 
 func _ready() -> void:
-
-	if not dialoque:
-		print(name, " Dialoque is missing")
-	else:
-		dialoque.connect("finished", self, "_on_Dialoque_finished")
+	_setup_speeches()
+	dialoque.connect("finished", self, "_on_Dialoque_finished")
 
 func _happen() -> void:
 	if not requirements_fullfilled():
@@ -23,6 +22,10 @@ func _happen() -> void:
 
 	emit_signal("started")
 	dialoque.start()
+
+func _setup_speeches() -> void:
+	for res in speeches:
+		dialoque.add_speech(res)
 
 func _on_Dialoque_finished() -> void:
 	_set_on_enter(false)

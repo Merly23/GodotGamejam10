@@ -10,6 +10,8 @@ const Projectile = preload("res://source/projectiles/Projectile.tscn")
 
 const KeyButton = preload("res://source/interface/KeyButton.tscn")
 
+const Speech = preload("res://source/cutscene/Speech.tscn")
+
 func Dust(): return Dust.instance()
 func Pulse(): return Pulse.instance()
 func Sparks(): return Sparks.instance()
@@ -19,3 +21,5 @@ func AfterImage(): return AfterImage.instance()
 func Projectile(): return Projectile.instance()
 
 func KeyButton(): return KeyButton.instance()
+
+func Speech() -> Speech: return Speech.instance() as Speech
