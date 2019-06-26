@@ -1,6 +1,6 @@
 extends State
 
-export var speed := Vector2(120, 200)
+export var speed := 200
 
 func enter(host: Node) -> void:
 	host = host as Drone
@@ -9,14 +9,14 @@ func enter(host: Node) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Drone
 
-	var direction = host.get_player_vector_direction()
+	var direction = host.get_player_direction()
 
-	if direction.x < 0:
+	if direction < 0:
 		host.flip_left()
-	elif direction.x > 0:
+	elif direction > 0:
 		host.flip_right()
 
-	host.motion = direction * speed
+	host.motion.x = direction * speed
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 

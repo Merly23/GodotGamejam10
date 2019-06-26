@@ -18,18 +18,12 @@ func update(host: Node, delta: float) -> void:
 
 		if timer.is_stopped():
 			timer.start()
-
-			var direction = host.get_player_direction()
-
-			if direction < 0:
-				host.flip_left()
-			elif direction > 0:
-				host.flip_right()
-
 			shots += 1
 			host.shoot()
 	else:
-		host.fsm.change_state("seek")
+		host.fsm.change_state("idle")
+
+	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 func exit(host: Node) -> void:
 	host = host as Drone

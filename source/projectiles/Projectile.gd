@@ -27,7 +27,11 @@ func fire(damage: int, speed: int, direction : Vector2 = Vector2(1, 0)) -> void:
 	# directional shooting
 	# rotation_degrees = dir2rot(direction)
 
-	rotation_degrees = 180 if direction.x == -1 else 0
+	match direction:
+		Vector2.DOWN: rotation_degrees = 90
+		Vector2.UP: rotation_degrees = -90
+		Vector2.LEFT: rotation_degrees = -180
+		Vector2.RIGHT: rotation_degrees = 0
 
 func _on_Area2D_body_entered(body) -> void:
 

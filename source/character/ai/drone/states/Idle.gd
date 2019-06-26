@@ -12,12 +12,9 @@ func enter(host: Node) -> void:
 	host = host as Drone
 	host.play_lower("idle")
 	timer.start()
-	print("idleeee")
 
 func update(host: Node, delta: float) -> void:
 	host = host as Drone
-
-	direction = 0
 
 	if direction == 1 and host.terrain_on("right") and not host.disabled:
 		direction = -1
@@ -37,5 +34,6 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide(host.motion, Global.UP)
 
-	if host.is_player_in_vision() and timer.is_stopped() and not host.disabled and host.can_move:
-		host.fsm.change_state("seek")
+	if host.is_player_in_shoot_range() and timer.is_stopped() and not host.disabled and host.can_move:
+		host.shoot()
+		timer.start()

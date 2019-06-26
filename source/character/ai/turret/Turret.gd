@@ -13,12 +13,9 @@ onready var barrel := $Barrel
 func _ready() -> void:
 	fsm.change_state("idle")
 	$FiniteStateMachine/Idle/Timer.wait_time = idle_time
-	$FiniteStateMachine/Shoot/Timer.wait_time = frequenzy
-	$FiniteStateMachine/Shoot.max_shots = max_shots
 
 func _register_states():
 	fsm.register_state("idle", "Idle")
-	fsm.register_state("shoot", "Shoot")
 
 func flip_left() -> void:
 	.flip_left()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://source/character/ai/turret/Turret.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/drone/Drone.gd" type="Script" id=2]
@@ -8,10 +8,6 @@
 [ext_resource path="res://graphics/images/characters/drones.png" type="Texture" id=6]
 [ext_resource path="res://source/character/ai/drone/states/Die.gd" type="Script" id=7]
 [ext_resource path="res://source/character/ai/drone/states/Idle.gd" type="Script" id=8]
-[ext_resource path="res://source/character/ai/drone/states/Shoot.gd" type="Script" id=9]
-[ext_resource path="res://source/character/ai/drone/states/Seek.gd" type="Script" id=10]
-[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=11]
-[ext_resource path="res://source/character/ai/drone/states/Retreat.gd" type="Script" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "die"
@@ -173,10 +169,11 @@ tracks/3/keys = {
 [node name="Drone" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_health = 2
-vision = 250
-idle_time = 1.0
+vision = 300
+idle_time = 0.25
 frequenzy = 3.0
-seek_distance = 1000
+bullet_speed = 250
+seek_distance = 300
 
 [node name="AudioStreamPlayer" parent="." index="0"]
 stream = ExtResource( 3 )
@@ -221,28 +218,17 @@ script = ExtResource( 7 )
 
 [node name="Idle" parent="FiniteStateMachine" index="1"]
 script = ExtResource( 8 )
+max_speed = 200
 
 [node name="Timer" parent="FiniteStateMachine/Idle" index="0"]
-wait_time = 1.0
+wait_time = 0.25
 
 [node name="FlipTimer" type="Timer" parent="FiniteStateMachine/Idle" index="1"]
+wait_time = 2.0
 one_shot = true
 
 [node name="Shoot" parent="FiniteStateMachine" index="2"]
-script = ExtResource( 9 )
-max_shots = 3
-
-[node name="Seek" type="Node" parent="FiniteStateMachine" index="3"]
-script = ExtResource( 10 )
-__meta__ = {
-"_editor_icon": ExtResource( 11 )
-}
-
-[node name="Retreat" type="Node" parent="FiniteStateMachine" index="4"]
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_icon": ExtResource( 11 )
-}
+script = null
 
 [node name="CollisionShape2D" parent="." index="7"]
 shape = SubResource( 8 )

@@ -26,8 +26,6 @@ onready var rays := {
 func _register_states():
 	fsm.register_state("idle", "Idle")
 	fsm.register_state("shoot", "Shoot")
-	fsm.register_state("seek", "Seek")
-	fsm.register_state("retreat", "Retreat")
 
 func flip_left() -> void:
 	.flip_left()
@@ -40,13 +38,20 @@ func flip_right() -> void:
 func spawn_sparks():
 	.spawn_sparks()
 
+func shoot() -> void:
+	var projectile = Instance.Projectile()
+	projectile.shooter = self
+	projectile.global_position = barrel.global_position
+	get_tree().current_scene.add_child(projectile)
+	projectile.fire(bullet_damage, bullet_speed, Vector2(0, 1))
+
 func is_player_in_shoot_range() -> bool:
 
 	if not Global.Player:
 		return false
 	var distance_vector = Global.Player.global_position - global_position
-	distance_vector.x /= 20
-	return distance_vector.length() < 20
+	distance_vector.y /= 20
+	return distance_vector.length() < 100
 
 func get_origin_direction() -> Vector2:
 	return (origin - global_position).normalized()
@@ -58,12 +63,6 @@ func get_player_direction() -> int:
 	var direction = Global.Player.global_position.x - global_position.x
 
 	return -1 if direction > 0 else 1
-
-func get_player_vector_direction() -> Vector2:
-	if not Global.Player:
-		return Vector2()
-
-	return (Global.Player.global_position - global_position).normalized()
 
 func terrain_on(direction: String) -> bool:
 
