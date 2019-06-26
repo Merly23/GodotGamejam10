@@ -29,6 +29,8 @@ export var max_health := 2
 
 onready var anim_player := $AnimationPlayer as AnimationPlayer
 
+onready var tween := $Tween as Tween
+
 onready var upper := {
 	anim_player = $Upper/AnimationPlayer,
 	anim_tree = $Upper/AnimationTree,
@@ -74,7 +76,8 @@ func hurt(damage) -> void:
 	if dead:
 		return
 
-	anim_player.play("hurt")
+	_tween_hurt()
+
 	Audio.play_sfx("player_hurt")
 	_set_health(health - damage)
 	emit_signal("hurt", damage)
@@ -167,6 +170,11 @@ func reset_modulate() -> void:
 	lower.visible = true
 	upper.sprite.modulate = Color("FFFFFFFF")
 	lower.sprite.modulate = Color("FFFFFFFF")
+
+func _tween_hurt() -> void:
+	tween.interpolate_property(self, "modulate", Color("FFFFFF"), Color("FF0000"), 0.1, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(self, "modulate", Color("FF0000"), Color("FFFFFF"), 0.2, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
+	tween.start()
 
 func _register_host() -> void:
 	fsm.host = self
