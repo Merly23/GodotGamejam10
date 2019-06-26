@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/character/ai/drone/Drone.gd"
 }, {
-"base": "Area2D",
+"base": "Node2D",
 "class": "Event",
 "language": "GDScript",
 "path": "res://source/cutscene/Event.gd"

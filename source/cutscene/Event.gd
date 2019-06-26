@@ -1,7 +1,9 @@
-extends Area2D
+extends Node2D
 class_name Event
 
 signal happened
+
+var id := 0
 
 var time := 0.0
 
@@ -24,19 +26,26 @@ export var input_time := 0.2
 export(Array, NodePath) var targets = null
 
 export var on_enter := false
+
+export var area_extents := Vector2(10, 10)
+
 export var on_signal := ""
 
 export(Array, NodePath) var required_events = null
 
-onready var coll := $CollisionShape2D as CollisionShape2D
+onready var area := $Area2D as Area2D
+onready var coll := $Area2D/CollisionShape2D as CollisionShape2D
 
 onready var delay_timer := $DelayTimer as Timer
 
 func _ready() -> void:
+	id = get_index()
+
 	if targets:
 		expected_signals = targets.size()
 
 	_set_on_enter(on_enter)
+	coll.shape.extents = area_extents
 	_setup_targets()
 	_setup_required_events()
 
@@ -101,6 +110,8 @@ func _happen() -> void:
 func _set_on_enter(value):
 	if coll:
 		coll.disabled = !value
+	else:
+		area.queue_free()
 
 func _on_Target_signal() -> void:
 	signals += 1
@@ -108,7 +119,7 @@ func _on_Target_signal() -> void:
 	if signals >= expected_signals:
 		_happen()
 
-func _on_Event_body_entered(body: PhysicsBody2D) -> void:
+func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 
 	if _targets.has(body):
 		_happen()
