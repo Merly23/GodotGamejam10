@@ -16,6 +16,11 @@ func enter(host: Node) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Drone
 
+	if not host.can_move or host.disabled:
+		direction = 0
+	else:
+		direction = -1 if host.is_flipped() else 1
+
 	if direction == 1 and host.terrain_on("right") and not host.disabled:
 		direction = -1
 	elif direction == -1 and host.terrain_on("left") and not host.disabled:

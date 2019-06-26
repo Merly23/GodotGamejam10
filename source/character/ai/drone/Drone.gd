@@ -13,6 +13,7 @@ onready var origin := global_position
 func _ready() -> void:
 	hover_player.play()
 	lower.sprite.region_rect.position.y = 64 * (randi() % 3)
+	fsm.change_state("idle")
 
 func _process(delta: float) -> void:
 	if Global.Player:
@@ -33,16 +34,18 @@ func spawn_sparks():
 	.spawn_sparks()
 
 func shoot() -> void:
+	print("shoot")
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
 	projectile.global_position = global_position
 	get_tree().current_scene.add_child(projectile)
-	projectile.fire(bullet_damage, bullet_speed, Vector2(get_player_direction(), 1))
+	projectile.fire(bullet_damage, bullet_speed, Vector2(0, 1))
 
 func is_player_in_shoot_range() -> bool:
 
 	if not Global.Player:
 		return false
+
 	var distance_vector = Global.Player.global_position - global_position
 	distance_vector.y /= 20
 	return distance_vector.length() < 100
@@ -51,6 +54,7 @@ func get_origin_direction() -> Vector2:
 	return (origin - global_position).normalized()
 
 func get_player_direction() -> int:
+
 	if not Global.Player:
 		return 1
 

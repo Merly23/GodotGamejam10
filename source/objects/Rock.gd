@@ -26,8 +26,6 @@ func is_character_in_reach() -> bool:
 
 	var collider = ray.get_collider()
 
-	print(collider)
-
 	return collider is Character and not loose
 
 func _on_Rock_body_entered(body: PhysicsBody2D) -> void:
