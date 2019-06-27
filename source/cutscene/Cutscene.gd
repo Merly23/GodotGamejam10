@@ -1,5 +1,5 @@
 extends Event
-class_name Cutscene, "res://graphics/icons/cutscene.png"
+class_name Cutscene, "res://graphics/images/icons/cutscene.png"
 
 signal started
 signal finished
