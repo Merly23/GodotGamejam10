@@ -1,22 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://source/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/level/levels/Level3.gd" type="Script" id=2]
-[ext_resource path="res://source/cutscene/Event.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=4]
-[ext_resource path="res://source/cutscene/Speech.tscn" type="PackedScene" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 61, 61 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 57, 54 )
-
-[node name="Level3" instance=ExtResource( 1 )]
+[node name="Level3" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 id = 3
 
 [node name="ColorRect" parent="InfiniteBlackness/ParallaxLayer" index="0"]
+visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="Background" parent="." index="1"]
@@ -28,30 +20,3 @@ tile_data = PoolIntArray( 65535, 11, 0, 131071, 11, 0, 196607, 11, 0, 262143, 11
 [node name="Player" parent="Characters" index="0"]
 position = Vector2( 29, 230 )
 has_virus = false
-
-[node name="Event" parent="Cutscenes" index="0" instance=ExtResource( 3 )]
-position = Vector2( 544, 609 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-
-[node name="CollisionShape2D" parent="Cutscenes/Event" index="1"]
-position = Vector2( 1347, -12 )
-shape = SubResource( 1 )
-
-[node name="Cutscene" parent="Cutscenes" index="1" instance=ExtResource( 4 )]
-position = Vector2( 687, 607 )
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-required_events = [ NodePath("../Event") ]
-
-[node name="CollisionShape2D" parent="Cutscenes/Cutscene" index="1"]
-shape = SubResource( 2 )
-
-[node name="Speech" parent="Cutscenes/Cutscene/Dialoque" index="0" instance=ExtResource( 5 )]
-speaker = "Raphie"
-lines = [ "I feel dizzy..." ]
-[connection signal="happened" from="Cutscenes/Event" to="Characters/Player" method="infect"]
-
-[editable path="Cutscenes/Event"]
-
-[editable path="Cutscenes/Cutscene"]
