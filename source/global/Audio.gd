@@ -37,6 +37,10 @@ onready var sfx = {
 }
 
 func play_music(song: String) -> void:
+
+	if music_player.stream == music[song]:
+		return
+
 	music_player.stream = music[song]
 	music_player.play()
 
@@ -58,6 +62,18 @@ func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
 
 	sfx[effect_name].play()
 
+func db2int(db: float) -> int:
+	return int(db2linear(db) * 10)
+
+func linear2int(linear: float) -> int:
+	return int(linear * 10)
+
+func int2linear(integer: int) -> float:
+	return float(integer) / 10.0
+
+func int2db(integer: int) -> float:
+	return linear2db(linear2int(integer))
+
 func _set_master_volume(value):
 	master_volume = value
 	AudioServer.set_bus_volume_db(0, linear2db(master_volume))
@@ -65,7 +81,6 @@ func _set_master_volume(value):
 func _set_music_volume(value):
 	music_volume = value
 	AudioServer.set_bus_volume_db(1, linear2db(music_volume))
-
 
 func _set_effects_volume(value):
 	effects_volume = value

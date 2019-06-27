@@ -18,3 +18,7 @@ func _on_Quit_pressed() -> void:
 
 func _on_Load_pressed() -> void:
 	Scene.change(Global.current_level)
+
+
+func _on_Settings_pressed() -> void:
+	Scene.change(Scene.Settings)
