@@ -59,7 +59,7 @@ func update(host: Node, delta: float) -> void:
 		var fall_damage = int(host.motion.y / fall_damage_threshold)
 
 		if fall_damage:
-			host.hurt(fall_damage)
+			host.hurt(host.global_position, fall_damage)
 
 		if not timer.is_stopped() and not host.dead and host.can_move:
 			host.fsm.change_state("jump")

@@ -18,4 +18,4 @@ func attack():
 
 	for body in bodies:
 		if body is Character and body.team_number != team_number:
-			body.hurt(damage)
+			body.hurt(global_position, damage)

@@ -138,12 +138,12 @@ func play_shoot(crouch := false) -> void:
 func play_step():
 	Audio.play_sfx("player_step")
 
-func hurt(damage) -> void:
+func hurt(origin: Vector2, damage: int) -> void:
 
 	if dashing:
 		return
 
-	.hurt(damage)
+	.hurt(origin, damage)
 	heal_cooldown_timer.start()
 
 func shoot() -> void:
@@ -166,7 +166,7 @@ func slash() -> void:
 
 	for body in bodies:
 		if body is Character and body.team_number != team_number:
-			body.hurt(sword_damage)
+			body.hurt(global_position, sword_damage)
 			_set_energy(energy + sword_damage * recharge_modifier)
 
 func crouch() -> void:
