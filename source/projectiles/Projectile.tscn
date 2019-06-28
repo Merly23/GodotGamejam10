@@ -45,11 +45,6 @@ collision_mask = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Projectile"]
 position = Vector2( -11, 0 )
 shape = SubResource( 2 )
-
-[node name="LifeTime" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
 [connection signal="area_entered" from="Sprite/Projectile" to="." method="_on_Projectile_area_entered"]
 [connection signal="body_entered" from="Sprite/Projectile" to="." method="_on_Area2D_body_entered"]
 [connection signal="tree_exited" from="Sprite/Projectile" to="." method="_on_Projectile_tree_exited"]
-[connection signal="timeout" from="LifeTime" to="." method="_on_LifeTime_timeout"]
