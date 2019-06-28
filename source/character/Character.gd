@@ -29,6 +29,8 @@ export var max_health := 2
 
 onready var anim_player := $AnimationPlayer as AnimationPlayer
 
+onready var tween := $Tween as Tween
+
 onready var upper := {
 	anim_player = $Upper/AnimationPlayer,
 	anim_tree = $Upper/AnimationTree,
@@ -62,19 +64,21 @@ func _ready() -> void:
 	health = max_health
 	move_and_slide_with_snap(Vector2(0,0), Global.DOWN, Global.UP)
 
-func _process(delta: float) -> void:
-	if global_position.y > bottom_limit:
-		get_tree().reload_current_scene()
+func _physics_process(delta: float) -> void:
+	if tween.is_active():
+		move_and_slide_with_snap(motion, Global.DOWN, Global.UP)
 
 func _register_states() -> void:
 	print("Character::_ready->_setup_states: Overwrite!")
 
-func hurt(damage) -> void:
+func hurt(origin: Vector2, damage: int) -> void:
 
 	if dead:
 		return
 
-	anim_player.play("hurt")
+	_tween_hurt()
+	knockback(origin, damage * 120)
+
 	Audio.play_sfx("player_hurt")
 	_set_health(health - damage)
 	emit_signal("hurt", damage)
@@ -161,12 +165,23 @@ func set_bottom_limit(value) -> void:
 func get_current_frame() -> int:
 	return lower.sprite.frame
 
+func knockback(origin: Vector2, knockback:int) -> void:
+	var direction = origin.direction_to(global_position)
+
+	tween.interpolate_property(self, "motion", direction * knockback, Vector2(0, 0), 0.2, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	tween.start()
+
 func reset_modulate() -> void:
 	modulate = Color("FFFFFF")
 	upper.visible = true
 	lower.visible = true
 	upper.sprite.modulate = Color("FFFFFFFF")
 	lower.sprite.modulate = Color("FFFFFFFF")
+
+func _tween_hurt() -> void:
+	tween.interpolate_property(self, "modulate", Color("FFFFFF"), Color("FF0000"), 0.1, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(self, "modulate", Color("FF0000"), Color("FFFFFF"), 0.2, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
+	tween.start()
 
 func _register_host() -> void:
 	fsm.host = self

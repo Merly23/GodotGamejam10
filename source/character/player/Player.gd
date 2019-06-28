@@ -29,6 +29,7 @@ export var has_virus := false
 onready var slow_motion := $SlowMotion
 
 onready var dash_timer := $DashTimer as Timer
+onready var cliff_timer := $CliffTimer as Timer
 onready var shoot_timer := $ShootTimer as Timer
 onready var slow_motion_timer := $SlowMotionTimer as Timer
 onready var heal_tick_timer := $HealTickTimer as Timer
@@ -37,6 +38,9 @@ onready var heal_cooldown_timer := $HealCooldownTimer as Timer
 onready var capsule := collision_shape.shape as CapsuleShape2D
 
 onready var terrain_checker := $TerrainCheckArea
+
+onready var upper_ray := $Rays/Upper as RayCast2D
+onready var lower_ray := $Rays/Lower as RayCast2D
 
 onready var barrel := $ProjectileHook
 
@@ -73,6 +77,8 @@ func _register_states() -> void:
 	fsm.register_state("idle", "Idle")
 	fsm.register_state("walk", "Walk")
 	fsm.register_state("fall", "Fall")
+	fsm.register_state("slide", "Slide")
+	fsm.register_state("hang", "Hang")
 	fsm.register_state("jump", "Jump")
 	fsm.register_state("dash", "Dash")
 	fsm.register_state("crouch", "Crouch")
@@ -80,7 +86,7 @@ func _register_states() -> void:
 func infect() -> void:
 	Global.has_virus = true
 	has_virus = true
-	Glitch.level = 2
+	Glitch.infect(3.0)
 
 func can_dash(silent := false) -> bool:
 	if not energy - dash_cost >= 0:
@@ -89,10 +95,13 @@ func can_dash(silent := false) -> bool:
 		return false
 	elif not dash_timer.is_stopped():
 		return false
-	return true
+	return true and not disabled and has_virus
+
+func can_slow_time() -> bool:
+	return not disabled and has_virus
 
 func can_attack() -> bool:
-	return not upper.anim_player.current_animation == "shoot" and not upper.anim_player.current_animation == "attack"
+	return not upper.anim_player.current_animation == "shoot" and not upper.anim_player.current_animation == "attack" and not disabled
 
 func can_shoot(silent := false) -> bool:
 	if not energy - shoot_cost >= 0:
@@ -101,20 +110,21 @@ func can_shoot(silent := false) -> bool:
 		return false
 	elif not can_attack():
 		return false
-	return true
-
-func can_move(can_move: bool) -> void:
-	self.can_move = can_move
+	return true and not disabled
 
 func flip_left() -> void:
 	upper.sprite.flip_h = true
 	lower.sprite.flip_h = true
 	hit_area.position.x = -16
+	upper_ray.rotation_degrees = 90
+	lower_ray.rotation_degrees = 90
 
 func flip_right() -> void:
 	upper.sprite.flip_h = false
 	lower.sprite.flip_h = false
 	hit_area.position.x = 16
+	upper_ray.rotation_degrees = -90
+	lower_ray.rotation_degrees = -90
 
 func attack(attack_name: String) -> void:
 	play_upper(attack_name)
@@ -128,11 +138,12 @@ func play_shoot(crouch := false) -> void:
 func play_step():
 	Audio.play_sfx("player_step")
 
-func hurt(damage) -> void:
+func hurt(origin: Vector2, damage: int) -> void:
+
 	if dashing:
 		return
 
-	.hurt(damage)
+	.hurt(origin, damage)
 	heal_cooldown_timer.start()
 
 func shoot() -> void:
@@ -145,7 +156,7 @@ func shoot() -> void:
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
 	get_tree().current_scene.add_child(projectile)
-	projectile.fire(bullet_damage, bullet_speed, Vector2(get_shoot_direction(), 0))
+	projectile.fire(bullet_damage, bullet_speed, Vector2(get_direction(), 0))
 
 func slash() -> void:
 
@@ -155,7 +166,7 @@ func slash() -> void:
 
 	for body in bodies:
 		if body is Character and body.team_number != team_number:
-			body.hurt(sword_damage)
+			body.hurt(global_position, sword_damage)
 			_set_energy(energy + sword_damage * recharge_modifier)
 
 func crouch() -> void:
@@ -168,37 +179,24 @@ func stand() -> void:
 	collision_shape.position.y = -24
 	capsule.height = 26
 
-func get_input_direction(normalized := true) -> Vector2:
-
-	var direction := Vector2()
-
-	var left = Input.is_action_pressed("ui_left")
-	var right = Input.is_action_pressed("ui_right")
-	var up = Input.is_action_pressed("ui_up")
-	var down = Input.is_action_pressed("ui_down")
-
-	if left and not right:
-		direction.x = -1
-	elif right and not left:
-		direction.x = 1
-
-	if up and not down:
-		direction.y = -1
-	elif down and not up:
-		direction.y = 1
-
-	if not direction:
-		direction.x = -1 if is_flipped() else 1
-
-	return direction.normalized() if normalized else direction
-
-func get_shoot_direction() -> int:
-	return -1 if is_flipped() else 1
-
 func cancel_slow_motion() -> void:
 	if slow_motion.active:
 		slow_motion.toggle()
 		spawn_pulse_out()
+
+func get_input_direction(normalized := false) -> Vector2:
+
+	var direction := Vector2()
+
+	if not disabled:
+		direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+		direction.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+
+	return direction.normalized() if normalized else direction
+
+
+func set_can_move(can_move: bool) -> void:
+	self.can_move = can_move
 
 func spawn_after_image() -> void:
 	var center = Vector2(global_position.x, global_position.y - 32)
@@ -220,6 +218,24 @@ func set_glitch_level(level: int) -> void:
 func _set_energy(value) -> void:
 	energy = clamp(value, 0, max_energy)
 	emit_signal("energy_changed", energy)
+
+func is_on_cliff() -> bool:
+	if not upper_ray.is_colliding() and lower_ray.is_colliding() and cliff_timer.is_stopped():
+		var collider = lower_ray.get_collider()
+		if collider == Global.Terrain:
+			return true
+	return false
+
+func is_on_slide_wall() -> bool:
+	if upper_ray.is_colliding() and lower_ray.is_colliding() and not is_on_floor():
+		var collider = lower_ray.get_collider()
+		if collider == Global.Terrain:
+			return true
+	return false
+
+func is_turning_on_wall() -> bool:
+	var input_direction = get_input_direction()
+	return input_direction.x == -1 and not is_flipped() or input_direction.x == 1 and is_flipped()
 
 func is_energy_filled() -> bool:
 	return energy == max_energy

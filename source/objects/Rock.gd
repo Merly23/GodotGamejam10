@@ -30,7 +30,7 @@ func is_character_in_reach() -> bool:
 
 func _on_Rock_body_entered(body: PhysicsBody2D) -> void:
 	if body is Character:
-		body.hurt(damage)
+		body.hurt(global_position, damage)
 		queue_free()
 	elif not body is Character:
 		queue_free()

@@ -19,7 +19,7 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("B"):
 		host.attack("air_attack")
 
-	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
+	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")
 
 	if event.is_action_pressed("SPACE"):
@@ -28,33 +28,38 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Player
 
-	var left = Input.is_action_pressed("ui_left") if not host.disabled else false
-	var right = Input.is_action_pressed("ui_right") if not host.disabled else false
+	var input_direction = host.get_input_direction()
 
 	if host.is_on_wall():
 		host.motion.x = 0
 
 	host.motion.y += Global.GRAVITY * delta
 
-	if left and not right  and host.can_move:
-		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, max_speed)
-		host.flip_left()
-	elif right and not left and host.can_move:
+	if input_direction.x == 1:
 		host.motion.x = clamp(host.motion.x + acceleration, -max_speed, max_speed)
 		host.flip_right()
+	elif input_direction.x == -1:
+		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, max_speed)
+		host.flip_left()
 	else:
 		host.motion.x = lerp(host.motion.x, 0, friction)
 		if abs(host.motion.x) < 0.1:
 			host.motion.x = 0
 
-	if host.is_on_floor():
+	if host.is_on_cliff():
+		host.fsm.change_state("hang")
+
+	elif host.is_on_slide_wall():
+		host.fsm.change_state("slide")
+
+	elif host.is_on_floor():
 
 		Audio.play_sfx("player_land")
 
 		var fall_damage = int(host.motion.y / fall_damage_threshold)
 
 		if fall_damage:
-			host.hurt(fall_damage)
+			host.hurt(host.global_position, fall_damage)
 
 		if not timer.is_stopped() and not host.dead and host.can_move:
 			host.fsm.change_state("jump")

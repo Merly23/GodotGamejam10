@@ -10,11 +10,11 @@ export var friction := 0.4
 var stopped := false
 
 func enter(host: Node) -> void:
-	host = host as Character
+	host = host as Player
 	host.play("walk")
 
 func input(host: Node, event: InputEvent) -> void:
-	host = host as Character
+	host = host as Player
 
 	if event.is_action_pressed("SPACE"):
 		host.fsm.change_state("jump")
@@ -22,30 +22,28 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("B"):
 		host.attack("attack")
 
-	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
+	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")
 
-
 func update(host: Node, delta: float) -> void:
-	host = host as Character
+	host = host as Player
 
-	right = Input.is_action_pressed("ui_right") if not host.disabled else false
-	left = Input.is_action_pressed("ui_left") if not host.disabled else false
+	var input_direction = host.get_input_direction()
 
-	if right and not left:
+	if input_direction.x == 1:
 		host.motion.x = clamp(host.motion.x + acceleration, 0, max_speed)
 		host.flip_right()
 		stopped = false
-	elif left and not right:
+	elif input_direction.x == -1:
 		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, 0)
 		host.flip_left()
 		stopped = false
 	else:
 		host.motion.x = lerp(host.motion.x, 0, friction)
 		if not stopped:
-			host.spawn_stop_dust()
 			Audio.play_sfx("player_stop")
 			stopped = true
+			host.spawn_stop_dust()
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
@@ -55,7 +53,7 @@ func update(host: Node, delta: float) -> void:
 	elif not host.is_on_floor():
 		host.fsm.change_state("fall")
 
-	elif Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
+	elif Input.is_action_pressed("V") and host.can_shoot():
 		host.play_shoot()
 
 	elif Input.is_action_pressed("ui_down"):
@@ -63,5 +61,5 @@ func update(host: Node, delta: float) -> void:
 		host.spawn_stop_dust()
 
 func exit(host: Node) -> void:
+	host = host as Player
 	stopped = true
-	host = host as Character

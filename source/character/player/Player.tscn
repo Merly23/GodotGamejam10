@@ -1,11 +1,11 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/player/Player.gd" type="Script" id=2]
-[ext_resource path="res://graphics/images/characters/android_crouch.png" type="Texture" id=3]
-[ext_resource path="res://graphics/images/characters/android_crouch-shoot.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/characters/android_faint.png" type="Texture" id=5]
-[ext_resource path="res://source/tools/SlowMotion.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/tools/SlowMotion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://graphics/images/characters/android_crouch.png" type="Texture" id=4]
+[ext_resource path="res://graphics/images/characters/android_crouch-shoot.png" type="Texture" id=5]
+[ext_resource path="res://graphics/images/characters/android_faint.png" type="Texture" id=6]
 [ext_resource path="res://graphics/images/characters/android_jump.png" type="Texture" id=7]
 [ext_resource path="res://graphics/images/characters/andorid_standby_legs.png" type="Texture" id=8]
 [ext_resource path="res://graphics/images/characters/android_walk_legs.png" type="Texture" id=9]
@@ -19,10 +19,12 @@
 [ext_resource path="res://source/character/player/states/Walk.gd" type="Script" id=17]
 [ext_resource path="res://source/character/player/states/Jump.gd" type="Script" id=18]
 [ext_resource path="res://source/character/player/states/Fall.gd" type="Script" id=19]
-[ext_resource path="res://source/character/player/states/Dash.gd" type="Script" id=20]
-[ext_resource path="res://source/character/player/states/Die.gd" type="Script" id=21]
-[ext_resource path="res://source/character/player/states/Crouch.gd" type="Script" id=22]
-[ext_resource path="res://source/tools/TerrainCheckArea.tscn" type="PackedScene" id=23]
+[ext_resource path="res://source/character/player/states/Slide.gd" type="Script" id=20]
+[ext_resource path="res://source/character/player/states/Hang.gd" type="Script" id=21]
+[ext_resource path="res://source/character/player/states/Dash.gd" type="Script" id=22]
+[ext_resource path="res://source/character/player/states/Die.gd" type="Script" id=23]
+[ext_resource path="res://source/character/player/states/Crouch.gd" type="Script" id=24]
+[ext_resource path="res://source/tools/TerrainCheckArea.tscn" type="PackedScene" id=25]
 
 [sub_resource type="Animation" id=1]
 resource_name = "crouch"
@@ -38,7 +40,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 0.999999 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Lower/Sprite:vframes")
@@ -114,7 +116,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 0.999999 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Lower/Sprite:vframes")
@@ -202,7 +204,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 0.999999 ),
 "update": 1,
-"values": [ ExtResource( 5 ) ]
+"values": [ ExtResource( 6 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Lower/Sprite:vframes")
@@ -951,11 +953,6 @@ max_health = 3
 bullet_speed = 800
 has_virus = true
 
-[node name="AnimationPlayer" parent="." index="0"]
-anims/crouch = SubResource( 1 )
-anims/crouch_shoot = SubResource( 2 )
-anims/die = SubResource( 3 )
-
 [node name="HealTickTimer" type="Timer" parent="." index="1"]
 wait_time = 5.0
 
@@ -969,16 +966,25 @@ autostart = true
 [node name="DashTimer" type="Timer" parent="." index="4"]
 one_shot = true
 
-[node name="ShootTimer" type="Timer" parent="." index="5"]
+[node name="CliffTimer" type="Timer" parent="." index="5"]
 wait_time = 0.2
 one_shot = true
 
-[node name="SlowMotionTimer" type="Timer" parent="." index="6"]
+[node name="ShootTimer" type="Timer" parent="." index="6"]
+wait_time = 0.2
 one_shot = true
 
-[node name="SlowMotion" parent="." index="7" instance=ExtResource( 6 )]
+[node name="SlowMotionTimer" type="Timer" parent="." index="7"]
+one_shot = true
+
+[node name="SlowMotion" parent="." index="8" instance=ExtResource( 3 )]
 slow_down_scale = 0.5
 slow_down_time = 0.3
+
+[node name="AnimationPlayer" parent="." index="9"]
+anims/crouch = SubResource( 1 )
+anims/crouch_shoot = SubResource( 2 )
+anims/die = SubResource( 3 )
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
 anims/dash = SubResource( 4 )
@@ -991,7 +997,7 @@ anims/walk = SubResource( 8 )
 parameters/playback = SubResource( 9 )
 
 [node name="Sprite" parent="Lower" index="2"]
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 offset = Vector2( 0, -31 )
 hframes = 6
 frame = 1
@@ -1053,41 +1059,69 @@ fall_damage_threshold = 1000
 wait_time = 0.15
 one_shot = true
 
-[node name="Dash" type="Node" parent="FiniteStateMachine" index="4"]
+[node name="Slide" type="Node" parent="FiniteStateMachine" index="4"]
 script = ExtResource( 20 )
+__meta__ = {
+"_editor_icon": ExtResource( 16 )
+}
+
+[node name="Hang" type="Node" parent="FiniteStateMachine" index="5"]
+script = ExtResource( 21 )
+__meta__ = {
+"_editor_icon": ExtResource( 16 )
+}
+
+[node name="Dash" type="Node" parent="FiniteStateMachine" index="6"]
+script = ExtResource( 22 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
 force = 1100
 max_dashes = 1
 
-[node name="Die" parent="FiniteStateMachine" index="5"]
-script = ExtResource( 21 )
+[node name="Die" parent="FiniteStateMachine" index="7"]
+script = ExtResource( 23 )
 
-[node name="Crouch" type="Node" parent="FiniteStateMachine" index="6"]
-script = ExtResource( 22 )
+[node name="Crouch" type="Node" parent="FiniteStateMachine" index="8"]
+script = ExtResource( 24 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
 
-[node name="CollisionShape2D" parent="." index="12"]
+[node name="CollisionShape2D" parent="." index="14"]
 position = Vector2( 0, -24 )
 shape = SubResource( 19 )
 
-[node name="HitArea" parent="." index="13"]
+[node name="TerrainCheckArea" parent="." index="15" instance=ExtResource( 25 )]
+position = Vector2( 0, -31 )
+
+[node name="ProjectileHook" type="Position2D" parent="." index="16"]
+position = Vector2( 0, -31 )
+
+[node name="Rays" type="Node2D" parent="." index="17"]
+
+[node name="Upper" type="RayCast2D" parent="Rays" index="0"]
+position = Vector2( 0, -43 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 11 )
+collision_mask = 2
+
+[node name="Lower" type="RayCast2D" parent="Rays" index="1"]
+position = Vector2( 0, -33 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 11 )
+collision_mask = 2
+
+[node name="HitArea" parent="." index="18"]
 position = Vector2( 16, -31 )
 collision_mask = 13
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 shape = SubResource( 20 )
-
-[node name="TerrainCheckArea" parent="." index="14" instance=ExtResource( 23 )]
-position = Vector2( 0, -31 )
-
-[node name="ProjectileHook" type="Position2D" parent="." index="15"]
-position = Vector2( 0, -31 )
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="HealTickTimer" to="." method="_on_HealTickTimer_timeout"]
 [connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]
 [connection signal="timeout" from="SlowMotionTimer" to="." method="_on_SlowMotionTimer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="HitArea" to="." method="_on_HitArea_area_entered"]

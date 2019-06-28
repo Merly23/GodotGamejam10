@@ -10,13 +10,16 @@ var direction := Vector2()
 
 var fired := false
 
+export var max_distance := 500
+
 onready var area := $Sprite/Projectile as Area2D
 onready var sprite := $Sprite as Sprite
-onready var life_time := $LifeTime
 
 func _physics_process(delta: float) -> void:
 	if fired:
 		sprite.position.x += speed * delta
+		if sprite.position.distance_to(Vector2(0,0)) > max_distance:
+			queue_free()
 
 func fire(damage: int, speed: int, direction : Vector2 = Vector2(1, 0)) -> void:
 
@@ -36,11 +39,10 @@ func fire(damage: int, speed: int, direction : Vector2 = Vector2(1, 0)) -> void:
 func _on_Area2D_body_entered(body) -> void:
 
 	if body is Character and shooter and shooter.team_number != body.team_number:
-		body.hurt(damage)
+		body.hurt(global_position, damage)
 		queue_free()
 	elif not body is Character:
 		queue_free()
-
 
 func dir2rot(direction: Vector2) -> float:
 	var rot := 0.0
@@ -55,9 +57,6 @@ func dir2rot(direction: Vector2) -> float:
 		rot -= 45 * direction.x * direction.y
 
 	return rot
-
-func _on_LifeTime_timeout() -> void:
-	queue_free()
 
 func _on_Projectile_area_entered(area: Area2D) -> void:
 	if area.name == "Projectile":

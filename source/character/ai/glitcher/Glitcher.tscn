@@ -300,4 +300,3 @@ position = Vector2( 25, -16 )
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 shape = SubResource( 8 )
-[connection signal="body_entered" from="HitArea" to="." method="_on_HitArea_body_entered"]

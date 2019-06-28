@@ -1,12 +1,12 @@
 extends State
 
 func enter(host: Node) -> void:
-	host = host as Character
+	host = host as Player
 	host.play("idle")
 	host.motion = Vector2(0,0)
 
 func input(host: Node, event: InputEvent) -> void:
-	host = host as Character
+	host = host as Player
 
 	if event.is_action_pressed("SPACE"):
 		host.fsm.change_state("jump")
@@ -14,14 +14,13 @@ func input(host: Node, event: InputEvent) -> void:
 	if event.is_action_pressed("B"):
 		host.attack("attack")
 
-	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
+	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")
 
 func update(host: Node, delta: float) -> void:
-	host = host as Character
+	host = host as Player
 
-	var left = Input.is_action_pressed("ui_left") if not host.disabled else false
-	var right = Input.is_action_pressed("ui_right") if not host.disabled else false
+	var input_direction = host.get_input_direction()
 
 	if not host.is_on_floor():
 		host.fsm.change_state("fall")
@@ -29,17 +28,13 @@ func update(host: Node, delta: float) -> void:
 	elif Input.is_action_pressed("ui_down"):
 		host.fsm.change_state("crouch")
 
-	elif bool(int(left) + int(right)) and host.can_move:
+	elif input_direction.x and host.can_move:
 		host.fsm.change_state("walk")
 
-	elif Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
+	elif Input.is_action_pressed("V") and host.can_shoot():
 		host.play_shoot()
 
-	elif left:
+	elif input_direction.x < 0:
 		host.flip_left()
-	elif right:
+	elif input_direction.y > 0:
 		host.flip_right()
-
-
-func exit(host: Node) -> void:
-	host = host as Character

@@ -6,26 +6,25 @@ export var acceleration := 20
 export var friction := 0.4
 
 func enter(host: Node) -> void:
-	host = host as Character
+	host = host as Player
 	host.play("jump")
 	Audio.play_sfx("player_jump")
 	host.spawn_jump_dust()
 	host.motion.y = -jump_force
 
 func input(host: Node, event: InputEvent) -> void:
-	host = host as Character
+	host = host as Player
 
-	if event.is_action_pressed("C") and host.can_dash() and host.has_virus:
+	if event.is_action_pressed("C") and host.can_dash():
 		host.fsm.change_state("dash")
 
 	if event.is_action_pressed("B"):
 		host.attack("attack")
 
 func update(host: Node, delta: float) -> void:
-	host = host as Character
+	host = host as Player
 
-	var left = Input.is_action_pressed("ui_left") if not host.disabled else false
-	var right = Input.is_action_pressed("ui_right") if not host.disabled else false
+	var input_direction = host.get_input_direction()
 
 	if host.is_on_wall():
 		host.motion.x = 0
@@ -35,12 +34,12 @@ func update(host: Node, delta: float) -> void:
 	if Input.is_action_just_released("SPACE"):
 		jump_cut(host)
 
-	if left and not right and host.can_move:
-		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, max_speed)
-		host.flip_left()
-	elif right and not left and host.can_move:
+	if input_direction.x == 1:
 		host.motion.x = clamp(host.motion.x + acceleration, -max_speed, max_speed)
 		host.flip_right()
+	elif input_direction.x == -1:
+		host.motion.x = clamp(host.motion.x - acceleration, -max_speed, max_speed)
+		host.flip_left()
 	else:
 		host.motion.x = lerp(host.motion.x, 0, friction)
 		if abs(host.motion.x) < 0.1:
@@ -54,12 +53,9 @@ func update(host: Node, delta: float) -> void:
 	if host.is_on_floor():
 		host.fsm.change_state("idle")
 
-	if Input.is_action_pressed("V") and host.can_shoot() and not host.disabled:
+	if Input.is_action_pressed("V") and host.can_shoot():
 		host.play_shoot()
 
 func jump_cut(host):
     if host.motion.y < -100:
         host.motion.y = -100
-
-func exit(host: Node) -> void:
-	host = host as Character

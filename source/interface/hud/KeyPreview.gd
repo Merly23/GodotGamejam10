@@ -5,6 +5,9 @@ var key = null
 onready var anim := $AnimationPlayer as AnimationPlayer
 
 func new_key(text: String) -> void:
+	if key:
+		clear()
+		yield(anim, "animation_finished")
 	key = Instance.KeyButton()
 	key.text = text
 	add_child(key)

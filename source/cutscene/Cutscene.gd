@@ -1,5 +1,5 @@
 extends Event
-class_name Cutscene
+class_name Cutscene, "res://graphics/images/icons/cutscene.png"
 
 signal started
 signal finished
@@ -10,7 +10,6 @@ onready var dialoque := $Dialoque
 
 func _ready() -> void:
 	_setup_speeches()
-	dialoque.connect("finished", self, "_on_Dialoque_finished")
 
 func _happen() -> void:
 	if not requirements_fullfilled():
