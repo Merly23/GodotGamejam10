@@ -86,7 +86,7 @@ func _register_states() -> void:
 func infect() -> void:
 	Global.has_virus = true
 	has_virus = true
-	Glitch.level = 2
+	Glitch.infect(3.0)
 
 func can_dash(silent := false) -> bool:
 	if not energy - dash_cost >= 0:
