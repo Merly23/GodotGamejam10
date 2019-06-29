@@ -77,7 +77,7 @@ func hurt(origin: Vector2, damage: int) -> void:
 		return
 
 	_tween_hurt()
-	knockback(origin, damage * 120)
+	knockback(origin, damage * 20)
 
 	Audio.play_sfx("player_hurt")
 	_set_health(health - damage)

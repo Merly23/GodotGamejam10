@@ -23,7 +23,8 @@ func _ready() -> void:
 		character.connect("hurt", self, "_on_Character_hurt")
 
 	get_tree().call_group("Character", "set_bottom_limit", bottom_limit)
-
+	get_tree().call_group("RaphiePlate", "set_max_health", player.max_health)
+	get_tree().call_group("RaphiePlate", "set_max_energy", player.max_energy)
 	game_cam.change_target(player)
 
 	if Global.save_data[id] != -1:
@@ -60,10 +61,10 @@ func _on_Character_hurt(damage: int) -> void:
 	# game_cam.screen_shake.start(0.05 * damage + 0.1, 10.0, 1.0 * damage, 1.0 * damage)
 
 func _on_Player_health_changed(health) -> void:
-	interface.update_health(health)
+	get_tree().call_group("RaphiePlate", "update_health", health)
 
 func _on_Player_energy_changed(energy) -> void:
-	interface.update_energy(energy)
+	get_tree().call_group("RaphiePlate", "update_energy", energy)
 
 func _on_Player_no_energy_left() -> void:
-	interface.shake_energy_bar()
+	get_tree().call_group("RaphiePlate", "shake_energy_bar")

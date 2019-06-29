@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://source/interface/hud/InfoPanel.gd" type="Script" id=1]
+[ext_resource path="res://source/interface/hud/RaphiePlate.gd" type="Script" id=1]
 [ext_resource path="res://graphics/images/interface/bg.png" type="Texture" id=2]
-[ext_resource path="res://graphics/images/interface/hp1.png" type="Texture" id=3]
-[ext_resource path="res://graphics/images/interface/hp2.png" type="Texture" id=4]
-[ext_resource path="res://graphics/images/interface/hp3.png" type="Texture" id=5]
-[ext_resource path="res://graphics/images/interface/mp.png" type="Texture" id=6]
+[ext_resource path="res://graphics/images/interface/hp.png" type="Texture" id=3]
+[ext_resource path="res://graphics/images/interface/mp.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hurt"
@@ -65,7 +63,9 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 2, 3 ), Vector2( -3, 4 ), Vector2( 3, 4 ), Vector2( -2, -3 ), Vector2( 3, 2 ), Vector2( 0, 0 ) ]
 }
 
-[node name="InfoPanel" type="Control"]
+[node name="RaphiePlate" type="Control" groups=[
+"RaphiePlate",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -640.0
@@ -84,35 +84,36 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 192, 64 )
 texture = ExtResource( 2 )
 
-[node name="HP1" type="TextureProgress" parent="."]
+[node name="HPBack" type="TextureProgress" parent="."]
+margin_left = 67.0
+margin_top = 20.0
+margin_right = 169.0
+margin_bottom = 31.0
+value = 100.0
+texture_progress = ExtResource( 3 )
+tint_progress = Color( 0.607843, 0.607843, 0.607843, 1 )
+
+[node name="EPBack" type="TextureProgress" parent="."]
+margin_left = 67.0
+margin_top = 39.0
+margin_right = 159.0
+margin_bottom = 50.0
+value = 100.0
+texture_progress = ExtResource( 4 )
+tint_progress = Color( 0.607843, 0.607843, 0.607843, 1 )
+
+[node name="HP" type="TextureProgress" parent="."]
 margin_left = 67.0
 margin_top = 20.0
 margin_right = 99.0
 margin_bottom = 31.0
-value = 100.0
+value = 60.0
 texture_progress = ExtResource( 3 )
-
-[node name="HP2" type="TextureProgress" parent="."]
-margin_left = 100.0
-margin_top = 23.0
-margin_right = 135.0
-margin_bottom = 34.0
-value = 100.0
-texture_progress = ExtResource( 4 )
-
-[node name="HP3" type="TextureProgress" parent="."]
-margin_left = 136.0
-margin_top = 24.0
-margin_right = 168.0
-margin_bottom = 35.0
-value = 100.0
-texture_progress = ExtResource( 5 )
 
 [node name="EP" type="TextureProgress" parent="."]
 margin_left = 67.0
 margin_top = 39.0
 margin_right = 159.0
 margin_bottom = 50.0
-value = 100.0
-texture_progress = ExtResource( 6 )
-[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+value = 60.0
+texture_progress = ExtResource( 4 )
