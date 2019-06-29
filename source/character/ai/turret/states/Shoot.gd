@@ -11,7 +11,7 @@ func enter(host: Node) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Character
 
-	if shots < max_shots:
+	if shots <= max_shots:
 
 		if not host.anim_player.is_playing():
 			host.anim_player.play("shoot")
