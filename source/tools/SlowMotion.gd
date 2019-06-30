@@ -9,6 +9,10 @@ export var slow_down_time := 0.4
 
 onready var tween := $Tween as Tween
 
+func hit() -> void:
+	tween.interpolate_property(self, "time_scale", 0, time_scale, 0.1, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.start()
+
 func toggle() -> bool:
 
 	if tween.is_active():

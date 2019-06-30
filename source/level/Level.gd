@@ -20,7 +20,7 @@ func _ready() -> void:
 	SaveGame.current_level = id
 
 	for character in get_tree().get_nodes_in_group("Character"):
-		character.connect("hurt", self, "_on_Character_hurt")
+		character.connect("died", self, "_on_Character_died")
 
 	get_tree().call_group("Character", "set_bottom_limit", bottom_limit)
 	get_tree().call_group("RaphiePlate", "set_max_health", player.max_health)
@@ -56,10 +56,8 @@ func _on_Cutscene_finished() -> void:
 func _on_Checkpoint_reached(id: int) -> void:
 	SaveGame.checkpoints[self.id] = id
 
-func _on_Character_hurt(damage: int) -> void:
-	if damage < 1:
-		return
-	# game_cam.screen_shake.start(0.05 * damage + 0.1, 10.0, 1.0 * damage, 1.0 * damage)
+func _on_Character_died() -> void:
+	player.slow_motion.hit()
 
 func _on_Player_health_changed(health) -> void:
 	get_tree().call_group("RaphiePlate", "update_health", health)
