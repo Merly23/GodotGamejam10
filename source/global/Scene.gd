@@ -6,7 +6,11 @@ const Credits := "res://source/interface/menu/Credits.tscn"
 const Settings := "res://source/interface/menu/Settings.tscn"
 const GameOver := "res://source/interface/menu/GameOver.tscn"
 
-const Level1 := "res://source/level/levels/Level1.tscn"
+const Level := {
+	1: "res://source/level/levels/Level1.tscn",
+	2: "res://source/level/levels/Level2.tscn",
+	3: "res://source/level/levels/Level3.tscn"
+}
 
 var next_scene := ""
 var prev_scene := ""

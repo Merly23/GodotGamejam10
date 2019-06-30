@@ -17,7 +17,7 @@ onready var cutscenes := $Events.get_children()
 onready var checkpoints := $Checkpoints.get_children()
 
 func _ready() -> void:
-	SaveGame.current_level = PATH + "Level" + str(id) + ".tscn"
+	SaveGame.current_level = id
 
 	for character in get_tree().get_nodes_in_group("Character"):
 		character.connect("hurt", self, "_on_Character_hurt")
@@ -25,10 +25,11 @@ func _ready() -> void:
 	get_tree().call_group("Character", "set_bottom_limit", bottom_limit)
 	get_tree().call_group("RaphiePlate", "set_max_health", player.max_health)
 	get_tree().call_group("RaphiePlate", "set_max_energy", player.max_energy)
+
 	game_cam.change_target(player)
 
-	if Global.save_data[id] != -1:
-		var new_position = checkpoints[Global.save_data[id]].global_position
+	if SaveGame.checkpoints.has(id):
+		var new_position = checkpoints[SaveGame.checkpoints[id]].global_position
 		player.global_position = new_position
 		game_cam.global_position = new_position
 
@@ -53,7 +54,7 @@ func _on_Cutscene_finished() -> void:
 	get_tree().call_group("Character", "_set_disabled", false)
 
 func _on_Checkpoint_reached(id: int) -> void:
-	Global.save_data[self.id] = id
+	SaveGame.checkpoints[self.id] = id
 
 func _on_Character_hurt(damage: int) -> void:
 	if damage < 1:

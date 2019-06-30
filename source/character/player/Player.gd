@@ -62,8 +62,9 @@ func _input(event: InputEvent) -> void:
 			spawn_pulse_out()
 
 func _ready() -> void:
-	if Global.has_virus:
+	if SaveGame.has_virus:
 		has_virus = true
+
 	Global.Player = self
 	fsm.change_state("fall")
 	energy = max_energy
@@ -84,7 +85,7 @@ func _register_states() -> void:
 	fsm.register_state("crouch", "Crouch")
 
 func infect() -> void:
-	Global.has_virus = true
+	SaveGame.has_virus = true
 	has_virus = true
 	Glitch.infect(3.0)
 
