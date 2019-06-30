@@ -17,7 +17,7 @@ onready var cutscenes := $Events.get_children()
 onready var checkpoints := $Checkpoints.get_children()
 
 func _ready() -> void:
-	Global.current_level = PATH + "Level" + str(id) + ".tscn"
+	SaveGame.current_level = PATH + "Level" + str(id) + ".tscn"
 
 	for character in get_tree().get_nodes_in_group("Character"):
 		character.connect("hurt", self, "_on_Character_hurt")
