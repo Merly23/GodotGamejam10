@@ -4,6 +4,7 @@ export var max_speed := 450
 export var acceleration := 20
 export var friction := 0.4
 
+export var fall_damage := 10
 export var fall_damage_threshold := 1500
 
 onready var timer := $Timer as Timer
@@ -56,10 +57,10 @@ func update(host: Node, delta: float) -> void:
 
 		Audio.play_sfx("player_land")
 
-		var fall_damage = int(host.motion.y / fall_damage_threshold)
+		var damage = int(host.motion.y / fall_damage_threshold) * fall_damage
 
-		if fall_damage:
-			host.hurt(host.global_position, fall_damage)
+		if damage:
+			host.hurt(host.global_position, damage)
 
 		if not timer.is_stopped() and not host.dead and host.can_move:
 			host.fsm.change_state("jump")
