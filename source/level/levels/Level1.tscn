@@ -118,7 +118,7 @@ seek_distance = 100
 sound_distance = 1500
 
 [node name="Player" parent="Characters" index="0"]
-position = Vector2( 3570, 376 )
+position = Vector2( 28, 386 )
 flip_on_start = false
 dash_cost = 10
 dash_cooldown = 0.5
@@ -126,6 +126,7 @@ slow_motion_cost = 5
 shoot_cost = 5
 
 [node name="Boot" parent="Events" index="0" instance=ExtResource( 12 )]
+position = Vector2( 27, 363 )
 delay = 0.2
 targets = [ NodePath("../..") ]
 on_signal = "ready"

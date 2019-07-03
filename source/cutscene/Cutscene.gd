@@ -30,4 +30,5 @@ func _on_Dialoque_finished() -> void:
 	_set_on_enter(false)
 	happened = true
 	emit_signal("happened")
+	emit_signal("seen", id)
 	emit_signal("finished")

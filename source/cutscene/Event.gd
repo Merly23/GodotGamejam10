@@ -2,6 +2,7 @@ extends Node2D
 class_name Event, "res://graphics/images/icons/event.png"
 
 signal happened
+signal seen(id)
 
 var id := 0
 
@@ -107,6 +108,7 @@ func _happen() -> void:
 	_set_on_enter(false)
 	happened = true
 	emit_signal("happened")
+	emit_signal("seen", id)
 
 func _set_on_enter(value):
 	if coll:

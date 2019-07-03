@@ -13,7 +13,7 @@ onready var terrain := $Terrain
 onready var interface := $Interface as Interface
 onready var game_cam := $GameCam
 
-onready var cutscenes := $Events.get_children()
+onready var events := $Events.get_children()
 onready var checkpoints := $Checkpoints.get_children()
 
 func _ready() -> void:
@@ -28,20 +28,29 @@ func _ready() -> void:
 
 	game_cam.change_target(player)
 
-	if SaveGame.checkpoints.has(id):
-		var new_position = checkpoints[SaveGame.checkpoints[id]].global_position
-		player.global_position = new_position
-		game_cam.global_position = new_position
-
-
-	for event in cutscenes:
+	for event in events:
 
 		if event is Cutscene:
 			event.connect("started", self, "_on_Cutscene_started")
 			event.connect("finished", self, "_on_Cutscene_finished")
 
+		event.connect("seen", self, "_on_Event_seen")
+
 	for checkpoint in checkpoints:
 		checkpoint.connect("reached", self, "_on_Checkpoint_reached")
+
+	if SaveGame.checkpoints.has(id):
+		var new_position = checkpoints[SaveGame.checkpoints[id]].global_position
+		player.global_position = new_position
+		game_cam.global_position = new_position
+
+	if SaveGame.events.has(id):
+
+		for event_id in SaveGame.events[id]:
+			events[event_id].happened = true
+
+func _on_Event_seen(event_id: int) -> void:
+	SaveGame.events[id].append(event_id)
 
 func _on_Cutscene_started() -> void:
 	interface.hide()

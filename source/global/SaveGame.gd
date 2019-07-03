@@ -3,6 +3,11 @@ extends Node
 var current_level := 0
 
 var checkpoints := {}
+var events := {
+	1: [],
+	2: [],
+	3: []
+}
 
 var has_virus := false
 
@@ -23,6 +28,7 @@ func _load_data():
 
 	current_level = data["current_level"]
 	checkpoints = data["checkpoints"]
+	events = data["events"]
 
 	has_virus = data["has_virus"]
 
@@ -39,6 +45,7 @@ func _save_data():
 
 	data["current_level"] = current_level
 	data["checkpoints"] = checkpoints
+	data["events"] = events
 
 	data["has_virus"] = has_virus
 

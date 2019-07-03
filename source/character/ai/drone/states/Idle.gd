@@ -22,8 +22,6 @@ func update(host: Node, delta: float) -> void:
 	else:
 		direction = -1 if host.is_flipped() else 1
 
-	print(direction)
-
 	if direction == 1 and host.terrain_on("right"):
 		direction = -1
 	elif direction == -1 and host.terrain_on("left"):
