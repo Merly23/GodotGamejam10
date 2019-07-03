@@ -38,7 +38,7 @@ hframes = 6
 region_enabled = true
 region_rect = Rect2( 0, 0, 384, 64 )
 
-[node name="Upper" parent="." index="5"]
+[node name="Upper" parent="." index="6"]
 visible = false
 
 [node name="AnimationTree" parent="Upper" index="1"]
@@ -58,12 +58,9 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="CollisionShape2D" parent="." index="7"]
+[node name="CollisionShape2D" parent="." index="8"]
 position = Vector2( 0, -33 )
 shape = SubResource( 3 )
-
-[node name="CollisionShape2D" parent="HitArea" index="0"]
-disabled = true
 
 [node name="Rays" type="Node2D" parent="." index="9"]
 position = Vector2( 0, -32 )
@@ -92,3 +89,6 @@ cast_to = Vector2( 0, 100 )
 collision_mask = 2
 
 [node name="Barrel" type="Position2D" parent="." index="10"]
+
+[node name="CollisionShape2D" parent="HitArea" index="0"]
+disabled = true
