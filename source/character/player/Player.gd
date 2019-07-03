@@ -74,6 +74,10 @@ func _ready() -> void:
 	heal_tick_timer.wait_time = heal_tick_time
 	heal_tick_timer.start()
 
+func _process(delta: float) -> void:
+	if global_position.y > bottom_limit:
+		fsm.change_state("die")
+
 func _register_states() -> void:
 	fsm.register_state("idle", "Idle")
 	fsm.register_state("walk", "Walk")
