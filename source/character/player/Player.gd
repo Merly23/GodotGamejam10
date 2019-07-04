@@ -141,6 +141,10 @@ func hurt(origin: Vector2, damage: int) -> void:
 
 	.hurt(origin, damage)
 
+func restore() -> void:
+	_set_health(max_health)
+	_set_energy(max_energy)
+
 func shoot() -> void:
 
 	_set_energy(energy - shoot_cost)

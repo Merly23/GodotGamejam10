@@ -66,6 +66,7 @@ func _on_Cutscene_finished() -> void:
 	get_tree().call_group("Character", "_set_disabled", false)
 
 func _on_Checkpoint_reached(id: int) -> void:
+	player.restore()
 	GameSaver.has_virus = player.has_virus
 
 	GameSaver.checkpoints[self.id] = id
