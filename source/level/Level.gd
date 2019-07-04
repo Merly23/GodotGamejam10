@@ -66,6 +66,8 @@ func _on_Cutscene_finished() -> void:
 	get_tree().call_group("Character", "_set_disabled", false)
 
 func _on_Checkpoint_reached(id: int) -> void:
+	SaveGame.has_virus = player.has_virus
+
 	SaveGame.checkpoints[self.id] = id
 
 	for event_id in seen_events:

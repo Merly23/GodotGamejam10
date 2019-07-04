@@ -89,7 +89,6 @@ func _register_states() -> void:
 	fsm.register_state("crouch", "Crouch")
 
 func infect() -> void:
-	SaveGame.has_virus = true
 	has_virus = true
 	Glitch.infect(3.0)
 
