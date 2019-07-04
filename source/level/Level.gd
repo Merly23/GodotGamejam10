@@ -29,7 +29,7 @@ func _ready() -> void:
 	get_tree().call_group("RaphiePlate", "set_max_health", player.max_health)
 	get_tree().call_group("RaphiePlate", "set_max_energy", player.max_energy)
 
-	game_cam.change_target($Enemies/Patrol)
+	game_cam.change_target(player)
 
 	for event in events:
 
