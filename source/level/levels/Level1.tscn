@@ -121,6 +121,7 @@ dash_cost = 10
 dash_cooldown = 0.5
 slow_motion_cost = 5
 shoot_cost = 5
+has_virus = false
 
 [node name="Boot" parent="Events" index="0" instance=ExtResource( 12 )]
 position = Vector2( 27, 363 )
@@ -166,6 +167,6 @@ smoothing_speed = 10.0
 [connection signal="happened" from="Events/Right" to="Interface" method="show_key" binds= [ "<" ]]
 [connection signal="happened" from="Events/Left" to="Interface" method="show_key" binds= [ "_ / A" ]]
 [connection signal="happened" from="Events/Jump" to="Interface" method="show_key" binds= [ "v" ]]
-[connection signal="happened" from="Events/Crouch" to="Objects/Door" method="open"]
 [connection signal="happened" from="Events/Crouch" to="Interface" method="hide_key"]
+[connection signal="happened" from="Events/Crouch" to="Objects/Door" method="open"]
 [connection signal="happened" from="Events/Event" to="Characters/Player" method="infect"]

@@ -9,9 +9,9 @@ var events := {}
 var has_virus := false
 
 func _ready():
-	events[1] = []
-	events[2] = []
-	events[3] = []
+	events[int(1)] = []
+	events[int(2)] = []
+	events[int(3)] = []
 
 	_load_data()
 
@@ -59,5 +59,8 @@ func _save_data():
 	file.close()
 
 func delete() -> void:
+	events[int(1)] = []
+	events[int(2)] = []
+	events[int(3)] = []
 	checkpoints = {}
 	has_virus = false
