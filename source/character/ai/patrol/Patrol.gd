@@ -4,6 +4,7 @@ class_name Patrol
 var origin := Vector2()
 
 export var vision := 350
+export var move_range := 100
 export var attack_range := 200
 export var bullet_speed := 500
 export var bullet_damage := 0
@@ -13,6 +14,8 @@ onready var shoot_timer := $ShootTimer as Timer
 onready var barrel := $Barrel as Position2D
 
 func _ready() -> void:
+	$FiniteStateMachine/Walk.radius = move_range
+
 	origin = global_position
 	fsm.change_state("idle")
 
