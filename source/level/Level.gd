@@ -20,7 +20,7 @@ onready var seen_events := []
 
 func _ready() -> void:
 
-	SaveGame.current_level = id
+	GameSaver.current_level = id
 
 	for character in get_tree().get_nodes_in_group("Character"):
 		character.connect("died", self, "_on_Character_died")
@@ -42,14 +42,14 @@ func _ready() -> void:
 	for checkpoint in checkpoints:
 		checkpoint.connect("reached", self, "_on_Checkpoint_reached")
 
-	if SaveGame.checkpoints.has(self.id):
-		var new_position = checkpoints[SaveGame.checkpoints[self.id]].global_position
+	if GameSaver.checkpoints.has(self.id):
+		var new_position = checkpoints[GameSaver.checkpoints[self.id]].global_position
 		player.global_position = new_position
 		game_cam.global_position = new_position
 
-	if SaveGame.events.has(self.id):
+	if GameSaver.events[self.id]:
 
-		for event_id in SaveGame.events[self.id]:
+		for event_id in GameSaver.events[self.id]:
 			events[event_id].happened = true
 
 func _on_Event_seen(event_id: int) -> void:
@@ -66,14 +66,16 @@ func _on_Cutscene_finished() -> void:
 	get_tree().call_group("Character", "_set_disabled", false)
 
 func _on_Checkpoint_reached(id: int) -> void:
-	SaveGame.has_virus = player.has_virus
+	GameSaver.has_virus = player.has_virus
 
-	SaveGame.checkpoints[self.id] = id
+	GameSaver.checkpoints[self.id] = id
 
 	for event_id in seen_events:
-		SaveGame.events[self.id].append(event_id)
+		GameSaver.events[self.id].append(event_id)
 
 	seen_events = []
+
+	GameSaver._save_data()
 
 func _on_Character_died() -> void:
 	player.slow_motion.hit()

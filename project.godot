@@ -89,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/resources/RSpeech.gd"
 }, {
+"base": "Resource",
+"class": "SaveGame",
+"language": "GDScript",
+"path": "res://source/resources/SaveGame.gd"
+}, {
 "base": "Node",
 "class": "SceneLoader",
 "language": "GDScript",
@@ -131,6 +136,7 @@ _global_script_class_icons={
 "Player": "",
 "Projectile": "",
 "RSpeech": "",
+"SaveGame": "",
 "SceneLoader": "",
 "ScreenShake": "",
 "Speech": "",
@@ -144,6 +150,7 @@ config/name="Raphie"
 run/main_scene="res://source/interface/menu/TitleScreen.tscn"
 boot_splash/image="res://graphics/images/splash/wallpaper.png"
 config/icon="res://graphics/images/characters/avatar.png"
+config//version="1.1.0"
 
 [autoload]
 
@@ -152,7 +159,7 @@ Audio="*res://source/global/Audio.tscn"
 Global="*res://source/global/Global.gd"
 Instance="*res://source/global/Instance.gd"
 Glitch="*res://source/global/Glitch.tscn"
-SaveGame="*res://source/global/SaveGame.gd"
+GameSaver="*res://source/global/GameSaver.gd"
 
 [debug]
 

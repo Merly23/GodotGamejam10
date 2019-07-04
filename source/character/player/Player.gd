@@ -62,7 +62,7 @@ func _input(event: InputEvent) -> void:
 			spawn_pulse_out()
 
 func _ready() -> void:
-	if SaveGame.has_virus:
+	if GameSaver.has_virus:
 		has_virus = true
 
 	Global.Player = self
