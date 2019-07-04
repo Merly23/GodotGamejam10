@@ -1,11 +1,11 @@
 extends Node
 class_name ParticleSpawner
 
-func spawn_sparks(spawn_position: Vector2, offset: int) -> void:
-	var sparks = Instance.Sparks()
-	sparks.global_position = spawn_position - Vector2(0, offset)
-	get_tree().current_scene.add_child(sparks)
-	sparks.play()
+func spawn_explosion(anim_name: String, spawn_position: Vector2, offset: int) -> void:
+	var explosion = Instance.Explosion()
+	explosion.global_position = spawn_position - Vector2(0, offset)
+	get_tree().current_scene.add_child(explosion)
+	explosion.play(anim_name)
 
 func spawn_jump_dust(spawn_position: Vector2) -> void:
 	var dust = Instance.Dust()

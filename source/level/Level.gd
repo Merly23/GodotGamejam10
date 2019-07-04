@@ -78,7 +78,7 @@ func _on_Checkpoint_reached(id: int) -> void:
 	GameSaver._save_data()
 
 func _on_Character_died() -> void:
-	player.slow_motion.hit()
+	pass # player.slow_motion.hit()
 
 func _on_Player_health_changed(health) -> void:
 	get_tree().call_group("RaphiePlate", "update_health", health)

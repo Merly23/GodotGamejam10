@@ -90,11 +90,9 @@ func play(anim_name: String) -> void:
 	lower.anim_player.play(anim_name)
 
 func play_upper(anim_name: String) -> void:
-#	upper.anim.travel(anim_name)
 	upper.anim_player.play(anim_name)
 
 func play_lower(anim_name: String) -> void:
-#	lower.anim.travel(anim_name)
 	lower.anim_player.play(anim_name)
 
 func stop_anim() -> void:
@@ -114,7 +112,10 @@ func spawn_land_dust() -> void:
 	particle_spawner.spawn_land_dust(global_position, 31, is_flipped())
 
 func spawn_sparks() -> void:
-	particle_spawner.spawn_sparks(global_position, 30)
+	particle_spawner.spawn_explosion("spark", global_position, 30)
+
+func spawn_explosion() -> void:
+	particle_spawner.spawn_explosion("explode", global_position, 30)
 
 func enable_collision() -> void:
 	collision_shape.disabled = false

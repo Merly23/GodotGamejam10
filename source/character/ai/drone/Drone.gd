@@ -33,6 +33,9 @@ func _register_states():
 func spawn_sparks():
 	.spawn_sparks()
 
+func spawn_explosion():
+	.spawn_explosion()
+
 func shoot() -> void:
 	print("shoot")
 	var projectile = Instance.Projectile()

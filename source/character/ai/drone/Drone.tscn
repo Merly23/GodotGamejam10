@@ -44,6 +44,10 @@ visible = false
 [node name="AnimationTree" parent="Upper" index="1"]
 parameters/playback = SubResource( 2 )
 
+[node name="Timer" type="Timer" parent="FiniteStateMachine/Die" index="0"]
+wait_time = 0.5
+one_shot = true
+
 [node name="Idle" type="Node" parent="FiniteStateMachine" index="1"]
 script = ExtResource( 6 )
 __meta__ = {
@@ -92,3 +96,4 @@ collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 disabled = true
+[connection signal="timeout" from="FiniteStateMachine/Die/Timer" to="FiniteStateMachine/Die" method="_on_Timer_timeout"]
