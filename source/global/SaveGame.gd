@@ -3,15 +3,16 @@ extends Node
 var current_level := 0
 
 var checkpoints := {}
-var events := {
-	1: [],
-	2: [],
-	3: []
-}
+
+var events := {}
 
 var has_virus := false
 
 func _ready():
+	events[1] = []
+	events[2] = []
+	events[3] = []
+
 	_load_data()
 
 func _exit_tree():

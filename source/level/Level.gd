@@ -16,7 +16,10 @@ onready var game_cam := $GameCam
 onready var events := $Events.get_children()
 onready var checkpoints := $Checkpoints.get_children()
 
+onready var seen_events := []
+
 func _ready() -> void:
+
 	SaveGame.current_level = id
 
 	for character in get_tree().get_nodes_in_group("Character"):
@@ -39,18 +42,18 @@ func _ready() -> void:
 	for checkpoint in checkpoints:
 		checkpoint.connect("reached", self, "_on_Checkpoint_reached")
 
-	if SaveGame.checkpoints.has(id):
-		var new_position = checkpoints[SaveGame.checkpoints[id]].global_position
+	if SaveGame.checkpoints.has(self.id):
+		var new_position = checkpoints[SaveGame.checkpoints[self.id]].global_position
 		player.global_position = new_position
 		game_cam.global_position = new_position
 
-	if SaveGame.events.has(id):
+	if SaveGame.events.has(self.id):
 
-		for event_id in SaveGame.events[id]:
+		for event_id in SaveGame.events[self.id]:
 			events[event_id].happened = true
 
 func _on_Event_seen(event_id: int) -> void:
-	SaveGame.events[id].append(event_id)
+	seen_events.append(event_id)
 
 func _on_Cutscene_started() -> void:
 	interface.hide()
@@ -64,6 +67,11 @@ func _on_Cutscene_finished() -> void:
 
 func _on_Checkpoint_reached(id: int) -> void:
 	SaveGame.checkpoints[self.id] = id
+
+	for event_id in seen_events:
+		SaveGame.events[self.id].append(event_id)
+
+	seen_events = []
 
 func _on_Character_died() -> void:
 	player.slow_motion.hit()
