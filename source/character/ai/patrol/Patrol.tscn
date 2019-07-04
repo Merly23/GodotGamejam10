@@ -196,9 +196,10 @@ extents = Vector2( 9, 24 )
 [node name="Patrol" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 team_number = 1
-max_health = 6
+max_health = 140
 vision = 400
 bullet_speed = 600
+bullet_damage = 8
 
 [node name="ShootTimer" type="Timer" parent="." index="0"]
 wait_time = 3.0

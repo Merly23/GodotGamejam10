@@ -255,13 +255,13 @@ extents = Vector2( 26, 16 )
 
 [node name="Glitcher" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-max_health = 2
+max_health = 180
 vision = 350
 attack_range = 60
 bullet_speed = 500
-damage = 1
+damage = 30
 
-[node name="AnimationPlayer" parent="." index="1"]
+[node name="AnimationPlayer" parent="." index="2"]
 anims/die = SubResource( 1 )
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
@@ -291,11 +291,11 @@ script = ExtResource( 7 )
 [node name="Timer" parent="FiniteStateMachine/Attack" index="1"]
 wait_time = 1.2
 
-[node name="CollisionShape2D" parent="." index="6"]
+[node name="CollisionShape2D" parent="." index="7"]
 position = Vector2( -1, -14 )
 shape = SubResource( 7 )
 
-[node name="HitArea" parent="." index="7"]
+[node name="HitArea" parent="." index="9"]
 position = Vector2( 25, -16 )
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]

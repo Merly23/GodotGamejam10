@@ -8,6 +8,8 @@ var events := []
 
 var has_virus := false
 
+var deleted := false
+
 func _ready():
 	for i in 4:
 		events.append([])
@@ -18,7 +20,7 @@ func _load_data():
 
 	var save_game = load("user://save_game.tres")
 
-	if not save_game:
+	if not save_game or deleted:
 		return
 
 	current_level = save_game.data["current_level"]
@@ -32,6 +34,7 @@ func _load_data():
 	Audio.effects_volume = save_game.data["effects_volume"]
 
 func _save_data():
+	deleted = false
 
 	var save_game := SaveGame.new()
 
@@ -48,6 +51,7 @@ func _save_data():
 	ResourceSaver.save("user://save_game.tres", save_game)
 
 func delete() -> void:
+	deleted = true
 	events = []
 
 	for i in 4:

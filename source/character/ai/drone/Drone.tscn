@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/drone/Drone.gd" type="Script" id=2]
 [ext_resource path="res://audio/sfx/droneLoop.wav" type="AudioStream" id=3]
 [ext_resource path="res://source/character/ai/drone/drone_idle_anim.tres" type="Animation" id=4]
 [ext_resource path="res://graphics/images/characters/drones.png" type="Texture" id=5]
-[ext_resource path="res://source/character/ai/drone/states/Idle.gd" type="Script" id=6]
-[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=7]
+[ext_resource path="res://source/character/ai/drone/states/Die.gd" type="Script" id=6]
+[ext_resource path="res://source/character/ai/drone/states/Idle.gd" type="Script" id=7]
+[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=8]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -17,6 +18,8 @@ radius = 8.0
 
 [node name="Drone" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+max_health = 110
+bullet_damage = 18
 
 [node name="Hover" type="AudioStreamPlayer" parent="." index="0"]
 stream = ExtResource( 3 )
@@ -44,14 +47,17 @@ visible = false
 [node name="AnimationTree" parent="Upper" index="1"]
 parameters/playback = SubResource( 2 )
 
+[node name="Die" parent="FiniteStateMachine" index="0"]
+script = ExtResource( 6 )
+
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Die" index="0"]
 wait_time = 0.5
 one_shot = true
 
 [node name="Idle" type="Node" parent="FiniteStateMachine" index="1"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="Timer" type="Timer" parent="FiniteStateMachine/Idle" index="0"]

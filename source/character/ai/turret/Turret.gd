@@ -28,6 +28,9 @@ func flip_right() -> void:
 	.flip_right()
 	barrel.position.x = 14
 
+func knockback(origin: Vector2, knockback:int) -> void:
+	pass
+
 func shoot() -> void:
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
