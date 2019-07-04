@@ -172,10 +172,10 @@ area_extents = Vector2( 100, 400 )
 offset = Vector2( 0, -80 )
 limit_bottom = 1200
 smoothing_speed = 10.0
-[connection signal="finished" from="Events/Boot" to="Interface" method="show_key" binds= [ ">" ]]
-[connection signal="happened" from="Events/Right" to="Interface" method="show_key" binds= [ "<" ]]
-[connection signal="happened" from="Events/Left" to="Interface" method="show_key" binds= [ "_ / A" ]]
-[connection signal="happened" from="Events/Jump" to="Interface" method="show_key" binds= [ "v" ]]
+[connection signal="finished" from="Events/Boot" to="Interface" method="show_key" binds= [ "ui_right" ]]
+[connection signal="happened" from="Events/Right" to="Interface" method="show_key" binds= [ "ui_left" ]]
+[connection signal="happened" from="Events/Left" to="Interface" method="show_key" binds= [ "SPACE" ]]
+[connection signal="happened" from="Events/Jump" to="Interface" method="show_key" binds= [ "ui_down" ]]
 [connection signal="happened" from="Events/Crouch" to="Objects/Door" method="open"]
 [connection signal="happened" from="Events/Crouch" to="Interface" method="hide_key"]
 [connection signal="happened" from="Events/Event" to="Characters/Player" method="infect"]
