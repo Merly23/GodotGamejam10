@@ -38,7 +38,7 @@ func shoot() -> void:
 	projectile.shooter = self
 	projectile.global_position = barrel.global_position
 	get_tree().current_scene.add_child(projectile)
-	projectile.fire(bullet_damage, bullet_speed, Vector2(get_player_direction(), 0))
+	projectile.fire(bullet_damage, bullet_speed, Vector2(get_direction(), 0))
 
 func get_random_target_position(move_radius: float) -> Vector2:
 	randomize()

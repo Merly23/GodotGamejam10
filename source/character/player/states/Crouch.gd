@@ -6,6 +6,12 @@ func enter(host: Node) -> void:
 	host.anim_player.play("crouch")
 	host.crouch()
 
+func input(host: Node, event: InputEvent) -> void:
+	host = host as Player
+
+	if event.is_action_pressed("C") and host.can_dash():
+		host.fsm.change_state("dash")
+
 func update(host: Node, delta: float) -> void:
 	host = host as Player
 
