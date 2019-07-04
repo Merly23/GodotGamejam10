@@ -48,13 +48,6 @@ func get_random_target_position(move_radius: float) -> Vector2:
 
 	return new_target_position
 
-func get_player_direction() -> int:
-
-	if not Global.Player:
-		return 1
-
-	return -1 if Global.Player.global_position.x < global_position.x else 1
-
 func can_shoot() -> bool:
 	return shoot_timer.is_stopped()
 

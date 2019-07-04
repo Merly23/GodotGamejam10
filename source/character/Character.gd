@@ -145,6 +145,13 @@ func is_flipped() -> bool:
 func get_direction() -> int:
 	return -1 if is_flipped() else 1
 
+func get_player_direction() -> int:
+
+	if not Global.Player:
+		return 1
+
+	return -1 if Global.Player.global_position.x < global_position.x else 1
+
 func slash() -> void:
 	pass
 

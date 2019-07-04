@@ -107,12 +107,20 @@ flip_on_start = true
 [node name="Turret3" parent="Enemies" index="2" instance=ExtResource( 11 )]
 position = Vector2( 3259, 385 )
 
-[node name="Glitcher" parent="Enemies" index="3" instance=ExtResource( 12 )]
+[node name="Glitcher" parent="Enemies" index="3" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 1467, 386 )
+collision_layer = 4
+collision_mask = 2
 bullet_damage = 0
 
-[node name="Glitcher2" parent="Enemies" index="4" instance=ExtResource( 12 )]
+[node name="Glitcher2" parent="Enemies" index="4" groups=[
+"Character",
+] instance=ExtResource( 12 )]
 position = Vector2( 1817, 867 )
+collision_layer = 4
+collision_mask = 2
 bullet_damage = 0
 
 [node name="Patrol" parent="Enemies" index="5" instance=ExtResource( 13 )]
