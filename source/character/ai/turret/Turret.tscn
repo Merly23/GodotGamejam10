@@ -239,13 +239,15 @@ tracks/5/keys = {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 14, 23 )
 
-[node name="Turret" index="0" instance=ExtResource( 1 )]
+[node name="Turret" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 flip_on_start = false
 team_number = 1
 max_health = 100
+vision = 300
+max_shots = 1
 bullet_speed = 600
-bullet_damage = 18
+bullet_damage = 12
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="0"]
 stream = ExtResource( 3 )
