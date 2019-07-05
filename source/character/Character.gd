@@ -187,8 +187,8 @@ func reset_modulate() -> void:
 	lower.sprite.modulate = Color("FFFFFFFF")
 
 func _tween_hurt() -> void:
-	tween.interpolate_property(self, "modulate", Color("FFFFFF"), Color("FF0000"), 0.1, Tween.TRANS_SINE, Tween.EASE_IN)
-	tween.interpolate_property(self, "modulate", Color("FF0000"), Color("FFFFFF"), 0.2, Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
+	tween.interpolate_property(self, "modulate", Color("FFFFFF"), Color("FF0000"), 0.01, Tween.TRANS_SINE, Tween.EASE_IN)
+	tween.interpolate_property(self, "modulate", Color("FF0000"), Color("FFFFFF"), 0.2, Tween.TRANS_SINE, Tween.EASE_OUT, 0.01)
 	tween.start()
 
 func _register_host() -> void:
