@@ -11,7 +11,7 @@ func _set_level(value):
 
 func infect(time: float) -> void:
 	_set_level(15)
-	tween.interpolate_property(self, "level", 15, 10, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN, time)
-	tween.interpolate_property(self, "level", 10, 5, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN, time + 1.0)
-	tween.interpolate_property(self, "level", 5, 2, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN, time + 2.0)
+	tween.interpolate_property(self, "level", 8, 6, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN, time)
+	tween.interpolate_property(self, "level", 6, 4, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN, time + 1.0)
+	tween.interpolate_property(self, "level", 4, 2, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN, time + 2.0)
 	tween.start()
