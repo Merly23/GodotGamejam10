@@ -142,6 +142,8 @@ tracks/4/keys = {
 
 [node name="Dummy" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+team_number = 1
+max_health = 100
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/die = SubResource( 1 )
