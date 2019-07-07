@@ -16,7 +16,7 @@
 [sub_resource type="CircleShape2D" id=3]
 radius = 8.0
 
-[node name="Drone" instance=ExtResource( 1 )]
+[node name="Drone" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_health = 110
 bullet_damage = 18

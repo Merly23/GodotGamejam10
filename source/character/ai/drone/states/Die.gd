@@ -19,9 +19,5 @@ func update(host: Node, delta: float) -> void:
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
-func _on_AnimationPlayer_animation_finished(anim_name: String, host: Character) -> void:
-	host.queue_free()
-
 func _on_Timer_timeout() -> void:
-	host.anim_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished", [ host ])
 	host.anim_player.queue("die")

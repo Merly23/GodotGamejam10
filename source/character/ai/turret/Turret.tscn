@@ -147,6 +147,20 @@ tracks/7/keys = {
 "update": 1,
 "values": [ 12 ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "shoot"
@@ -239,7 +253,7 @@ tracks/5/keys = {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 14, 23 )
 
-[node name="Turret" instance=ExtResource( 1 )]
+[node name="Turret" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 flip_on_start = false
 team_number = 1
@@ -266,7 +280,6 @@ parameters/playback = SubResource( 4 )
 texture = ExtResource( 5 )
 vframes = 4
 hframes = 12
-frame = 24
 
 [node name="ColorRect" type="ColorRect" parent="Lower/Sprite" index="0"]
 show_behind_parent = true

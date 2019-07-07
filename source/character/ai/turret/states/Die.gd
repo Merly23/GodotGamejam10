@@ -8,7 +8,3 @@ func enter(host: Node) -> void:
 
 func update(host: Node, delta: float) -> void:
 	host = host as Turret
-	pass
-
-func _on_AnimationPlayer_animation_finished(anim_name: String, host: Character) -> void:
-	host.queue_free()
