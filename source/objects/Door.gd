@@ -6,6 +6,8 @@ signal closed()
 signal locked()
 signal unlocked()
 
+var closed := true
+
 export var locked := false
 export var automatic := false
 
@@ -27,13 +29,13 @@ func unlock() -> void:
 	emit_signal("unlocked")
 
 func open() -> void:
-
-	if locked:
+	if locked or not closed:
 		return
 
 	if automatic and close_timer.is_stopped():
 		close_timer.start()
 
+	closed = false
 	anim.play("open")
 	emit_signal("opened")
 
@@ -42,6 +44,7 @@ func close() -> void:
 	if not close_timer.is_stopped():
 		close_timer.stop()
 
+	closed = true
 	anim.play_backwards("open")
 	emit_signal("closed")
 
