@@ -4,6 +4,13 @@ onready var master_selector := $CenterContainer/VBoxContainer/Sound/Master
 onready var music_selector := $CenterContainer/VBoxContainer/Sound/Music
 onready var effects_selector := $CenterContainer/VBoxContainer/Sound/Effects
 
+onready var back_button := $CenterContainer/VBoxContainer/Back as Button
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("C"):
+		back_button._pressed()
+		back_button.emit_signal("pressed")
+
 func _ready() -> void:
 	Glitch.level = 1
 	master_selector.volume = Audio.linear2int(Audio.master_volume)

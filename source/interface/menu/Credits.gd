@@ -1,5 +1,12 @@
 extends Panel
 
+onready var back_button := $CenterContainer/VBoxContainer/Buttons/Back as Button
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("C"):
+		back_button._pressed()
+		back_button.emit_signal("pressed")
+
 func _ready() -> void:
 	Glitch.level = 1
 
