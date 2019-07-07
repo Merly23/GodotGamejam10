@@ -64,10 +64,6 @@ beats = 4
 stream = ExtResource( 6 )
 bus = "Music"
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -2.0
-bus = "Music"
-
 [node name="SFX" type="Node" parent="."]
 
 [node name="Player" type="Node" parent="SFX"]

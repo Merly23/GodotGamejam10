@@ -134,7 +134,7 @@ func _on_bar() -> void:
 #	print("bar")
 
 	if next_song_data:
-		print(next_song_data)
+#		print(next_song_data)
 		if next_song_data.delay == 0:
 			_next_song()
 		else:
