@@ -3,7 +3,7 @@ extends Panel
 onready var load_button := $CenterContainer/VBoxContainer/Buttons/Load as Button
 
 func _ready() -> void:
-	Audio.play_music("menu_music")
+	Audio.play_song("MenuLoop")
 	Glitch.level = 1
 
 	if GameSaver.current_level:

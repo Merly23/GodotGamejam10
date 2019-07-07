@@ -178,7 +178,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "finite_state_machine" )
+enabled=PoolStringArray( "audio_booth", "finite_state_machine" )
 
 [importer_defaults]
 

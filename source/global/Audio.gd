@@ -4,7 +4,7 @@ export var master_volume := 1.0 setget _set_master_volume
 export var music_volume := 1.0 setget _set_music_volume
 export var effects_volume := 1.0 setget _set_effects_volume
 
-onready var music_player := $MusicPlayer as AudioStreamPlayer
+onready var music_booth := $MusicBooth
 
 onready var music = {
 	menu_music = preload("res://audio/music/menuLoop.wav"),
@@ -36,13 +36,11 @@ onready var sfx = {
 	tick4 = $SFX/Tick4
 }
 
-func play_music(song: String) -> void:
-
-	if music_player.stream == music[song]:
+func play_song(song: String) -> void:
+	if music_booth.is_playing() and music_booth.current_song.name == song:
 		return
 
-	music_player.stream = music[song]
-	music_player.play()
+	music_booth.play_song(song)
 
 func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
 
