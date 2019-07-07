@@ -163,16 +163,10 @@ team_number = 1
 seek_distance = 100
 sound_distance = 1500
 
-[node name="Android" parent="Enemies" index="14" groups=[
-"Character",
-] instance=ExtResource( 14 )]
+[node name="Android" parent="Enemies" index="14" instance=ExtResource( 14 )]
 position = Vector2( 897, 867 )
-collision_layer = 4
-collision_mask = 2
 can_move = false
-team_number = 1
 max_health = 350
-bullet_damage = 8
 damage = 20
 
 [node name="Player" parent="Characters" index="0"]
