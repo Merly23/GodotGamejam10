@@ -5,7 +5,7 @@ func _ready() -> void:
 	Glitch.level = 4
 
 func _on_Retry_pressed() -> void:
-	print(Scene.prev_scene)
+#	print(Scene.prev_scene)
 
 	if Scene.prev_scene:
 		Scene.change(Scene.prev_scene)

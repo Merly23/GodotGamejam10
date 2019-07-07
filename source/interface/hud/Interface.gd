@@ -8,7 +8,7 @@ func _ready() -> void:
 	Controller.connect("device_changed", self, "_on_Controller_device_changed")
 
 func show_key(action: String) -> void:
-	print("show key: ", action)
+#	print("show key: ", action)
 	key_preview.new_key(action)
 
 func hide_key():

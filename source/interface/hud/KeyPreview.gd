@@ -24,9 +24,9 @@ func new_key(action: String) -> void:
 	anim.play("fade_in")
 
 func update_key() -> void:
-	print("update_key")
+#	print("update_key")
 	if action and key:
-		print("updated key ", Controller.get_key_string(action))
+#		print("updated key ", Controller.get_key_string(action))
 		key.text = Controller.get_key_string(action)
 
 func clear() -> void:

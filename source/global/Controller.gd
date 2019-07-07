@@ -9,11 +9,11 @@ var input_map := {
 	ui_right = [">", ">"],
 	ui_up = ["^", "^"],
 	ui_down = ["v", "v"],
-	SPACE = ["_", "A"],
-	B = ["B", "R/R1"],
-	V = ["V", "L/L1"],
-	C = ["C", "B"],
-	X = ["X", "Y"]
+	jump = ["_", "A"],
+	attack = ["B", "R/R1"],
+	shoot = ["V", "L/L1"],
+	dash = ["C", "B"],
+	special = ["X", "Y"]
 }
 
 var current_device: int = DEVICES.KEYBOARD

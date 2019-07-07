@@ -115,7 +115,7 @@ func _happen() -> void:
 
 func _set_on_enter(value):
 	if coll:
-		coll.disabled = !value
+		coll.set_deferred("disabled", !value)
 	else:
 		area.queue_free()
 

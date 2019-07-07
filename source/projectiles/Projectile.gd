@@ -38,7 +38,7 @@ func fire(damage: int, speed: int, direction : Vector2 = Vector2(1, 0)) -> void:
 
 func _on_Area2D_body_entered(body) -> void:
 
-	print(body.name)
+#	print(body.name)
 
 	if body is Character and shooter and shooter.team_number != body.team_number:
 		body.hurt(global_position, damage)

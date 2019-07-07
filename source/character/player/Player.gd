@@ -40,7 +40,7 @@ onready var lower_ray := $Rays/Lower as RayCast2D
 onready var barrel := $ProjectileHook
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("X") and has_virus:
+	if event.is_action_pressed("special") and has_virus:
 
 		if not energy - slow_motion_cost >= 0 and not slow_motion.active:
 			emit_signal("no_energy_left")
@@ -257,14 +257,14 @@ func _on_SlowMotionTimer_timeout() -> void:
 	else:
 		cancel_slow_motion()
 		emit_signal("no_energy_left")
-		print("slomo tick")
+#		print("slomo tick")
 
 func _on_Tick_timeout() -> void:
 	if not slow_motion.active and not is_energy_filled():
 		_set_energy(energy + 5)
 
 func _on_HitArea_area_entered(area: Area2D) -> void:
-	print(area.name)
+#	print(area.name)
 	if area.name == "Projectile" and is_attacking():
 		area.queue_free()
 

@@ -15,10 +15,10 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Player
 
-	if event.is_action_pressed("C") and host.can_dash():
+	if event.is_action_pressed("dash") and host.can_dash():
 		host.fsm.change_state("dash")
 
-	if event.is_action_pressed("B"):
+	if event.is_action_pressed("attack"):
 		host.attack("attack")
 
 func update(host: Node, delta: float) -> void:
@@ -31,7 +31,7 @@ func update(host: Node, delta: float) -> void:
 
 	host.motion.y += Global.GRAVITY * delta
 
-	if Input.is_action_just_released("SPACE"):
+	if Input.is_action_just_released("jump"):
 		jump_cut(host)
 
 	if input_direction.x == 1:
@@ -53,7 +53,7 @@ func update(host: Node, delta: float) -> void:
 	if host.is_on_floor():
 		host.fsm.change_state("idle")
 
-	if Input.is_action_pressed("V") and host.can_shoot():
+	if Input.is_action_pressed("shoot") and host.can_shoot():
 		host.play_shoot()
 
 func jump_cut(host):

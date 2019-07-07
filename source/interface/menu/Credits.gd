@@ -3,7 +3,7 @@ extends Panel
 onready var back_button := $CenterContainer/VBoxContainer/Buttons/Back as Button
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("C"):
+	if event.is_action_pressed("ui_cancel"):
 		back_button._pressed()
 		back_button.emit_signal("pressed")
 

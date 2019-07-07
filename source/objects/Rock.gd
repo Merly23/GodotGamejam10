@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	elif loose:
 		motion += (Global.GRAVITY * delta * delta) / 2
 		rock.global_position.y += motion
-		print("looooose")
+#		print("looooose")
 
 func loosen():
 	loose = true

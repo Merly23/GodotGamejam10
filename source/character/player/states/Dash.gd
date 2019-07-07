@@ -28,7 +28,7 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Player
 
-	if event.is_action_pressed("C"):
+	if event.is_action_pressed("dash"):
 		follow_dash = true
 
 func update(host: Node, delta: float) -> void:

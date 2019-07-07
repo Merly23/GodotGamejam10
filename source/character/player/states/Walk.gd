@@ -16,13 +16,13 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Player
 
-	if event.is_action_pressed("SPACE"):
+	if event.is_action_pressed("jump"):
 		host.fsm.change_state("jump")
 
-	if event.is_action_pressed("B"):
+	if event.is_action_pressed("attack"):
 		host.attack("attack")
 
-	if event.is_action_pressed("C") and host.can_dash():
+	if event.is_action_pressed("dash") and host.can_dash():
 		host.fsm.change_state("dash")
 
 func update(host: Node, delta: float) -> void:
@@ -53,7 +53,7 @@ func update(host: Node, delta: float) -> void:
 	elif not host.is_on_floor():
 		host.fsm.change_state("fall")
 
-	elif Input.is_action_pressed("V") and host.can_shoot():
+	elif Input.is_action_pressed("shoot") and host.can_shoot():
 		host.play_shoot()
 
 	elif Input.is_action_pressed("ui_down"):

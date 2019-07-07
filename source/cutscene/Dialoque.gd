@@ -17,7 +17,7 @@ func add_speech(res: RSpeech) -> void:
 	add_child(speech)
 
 func start():
-	print("start speech")
+#	print("start speech")
 	_on_Speech_finished()
 
 func _on_Speech_finished() -> void:
@@ -26,15 +26,15 @@ func _on_Speech_finished() -> void:
 
 	current_index += 1
 
-	print("Index: ", current_index, " Child Count: ", get_child_count())
+#	print("Index: ", current_index, " Child Count: ", get_child_count())
 	if current_index == get_child_count():
-		print("end of dialoque")
+#		print("end of dialoque")
 		set_process_input(false)
 		yield(get_tree().create_timer(0.2), "timeout")
 		emit_signal("finished")
 		current_speech = null
 	else:
-		print("next speech")
+#		print("next speech")
 		current_speech = get_child(current_index)
 		current_speech.show()
 		current_speech.next_line()

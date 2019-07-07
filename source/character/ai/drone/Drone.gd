@@ -37,7 +37,7 @@ func spawn_explosion():
 	.spawn_explosion()
 
 func shoot() -> void:
-	print("shoot")
+#	print("shoot")
 	var projectile = Instance.Projectile()
 	projectile.shooter = self
 	projectile.global_position = global_position

@@ -8,7 +8,7 @@ func enter(host: Node) -> void:
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Player
 
-	if event.is_action_pressed("SPACE"):
+	if event.is_action_pressed("jump"):
 		host.cliff_timer.start()
 		host.fsm.change_state("jump")
 

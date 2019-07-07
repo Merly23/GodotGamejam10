@@ -195,7 +195,7 @@ required_events = [ NodePath("../Right") ]
 
 [node name="Jump" parent="Events" index="3" instance=ExtResource( 17 )]
 on_input = true
-input_action = "SPACE"
+input_action = "jump"
 input_time = 0.3
 required_events = [ NodePath("../Left") ]
 
@@ -231,7 +231,7 @@ required_events = [ NodePath("../Shoot") ]
 [node name="Okay" parent="Events" index="9" instance=ExtResource( 15 )]
 position = Vector2( 27, 363 )
 delay = 0.2
-targets = [ NodePath("../Crouch") ]
+targets = [ NodePath("../Shot") ]
 on_signal = "happened"
 speeches = [ ExtResource( 18 ) ]
 
@@ -257,14 +257,14 @@ limit_bottom = 1200
 smoothing_speed = 10.0
 [connection signal="finished" from="Events/Boot" to="Interface" method="show_key" binds= [ "ui_right" ]]
 [connection signal="happened" from="Events/Right" to="Interface" method="show_key" binds= [ "ui_left" ]]
-[connection signal="happened" from="Events/Left" to="Interface" method="show_key" binds= [ "SPACE" ]]
+[connection signal="happened" from="Events/Left" to="Interface" method="show_key" binds= [ "jump" ]]
 [connection signal="happened" from="Events/Jump" to="Interface" method="show_key" binds= [ "ui_down" ]]
 [connection signal="happened" from="Events/Crouch" to="Objects/Door" method="open"]
 [connection signal="happened" from="Events/Crouch" to="Interface" method="hide_key"]
-[connection signal="happened" from="Events/Attack" to="Interface" method="show_key" binds= [ "B" ]]
+[connection signal="happened" from="Events/Attack" to="Interface" method="show_key" binds= [ "attack" ]]
 [connection signal="happened" from="Events/Attacked" to="Interface" method="hide_key"]
 [connection signal="happened" from="Events/Attacked" to="Objects/Door2" method="open"]
-[connection signal="happened" from="Events/Shoot" to="Interface" method="show_key" binds= [ "V" ]]
+[connection signal="happened" from="Events/Shoot" to="Interface" method="show_key" binds= [ "shoot" ]]
 [connection signal="happened" from="Events/Shot" to="Objects/Door3" method="open"]
 [connection signal="happened" from="Events/Shot" to="Interface" method="hide_key"]
 [connection signal="started" from="Events/Infection" to="Characters/Player" method="infect"]
