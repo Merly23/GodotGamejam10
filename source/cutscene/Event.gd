@@ -93,11 +93,14 @@ func requirements_fullfilled() -> bool:
 		return not happened and active
 
 	for req_e in _required_events:
+
 		if not req_e.happened:
 			return false
+
 	return not happened and active
 
 func _happen() -> void:
+
 	if not requirements_fullfilled():
 		return
 
