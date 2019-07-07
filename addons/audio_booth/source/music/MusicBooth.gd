@@ -77,6 +77,13 @@ func stop_layer_on_bar(layer: int, fade_time := 0.0, delay := 0) -> void:
 func is_playing() -> bool:
 	return current_song != null
 
+func is_song_playing(song_name: String) -> bool:
+
+	if not current_song:
+		return false
+
+	return current_song.name == song_name
+
 func _get_song(song_name: String) -> Node:
 	assert songs.has(song_name)
 	return songs[song_name]

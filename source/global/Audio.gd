@@ -37,7 +37,7 @@ onready var sfx = {
 }
 
 func play_song(song: String) -> void:
-	if music_booth.is_playing() and music_booth.current_song.name == song:
+	if music_booth.is_song_playing(song):
 		return
 
 	music_booth.play_song(song)
