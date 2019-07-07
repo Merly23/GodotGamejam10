@@ -42,6 +42,9 @@ func play_song(song: String) -> void:
 
 	music_booth.play_song(song)
 
+func stop_song() -> void:
+	music_booth.stop_song()
+
 func play_sfx(effect_name, pitch_from := 0.0, pitch_to := 0.0):
 
 	if not sfx.has(effect_name):

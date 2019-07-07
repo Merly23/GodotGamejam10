@@ -1,7 +1,7 @@
 extends Control
 
 func _ready() -> void:
-	Audio.music_player.stop()
+	Audio.stop_song()
 	Glitch.level = 4
 
 func _on_Retry_pressed() -> void:
