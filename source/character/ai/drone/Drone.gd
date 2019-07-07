@@ -11,6 +11,7 @@ onready var hover_player := $Hover as AudioStreamPlayer
 onready var origin := global_position
 
 func _ready() -> void:
+	hover_player.volume_db = linear2db(0.0)
 	hover_player.play()
 	lower.sprite.region_rect.position.y = 64 * (randi() % 3)
 	fsm.change_state("idle")

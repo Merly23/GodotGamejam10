@@ -3,6 +3,7 @@ class_name Interface
 
 onready var raphie_plate := $RaphiePlate
 onready var key_preview := $KeyPreview
+onready var enemy_plate := $EnemyPlate
 
 func _ready() -> void:
 	Controller.connect("device_changed", self, "_on_Controller_device_changed")

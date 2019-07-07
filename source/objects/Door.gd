@@ -1,5 +1,11 @@
 extends StaticBody2D
 
+signal opened()
+signal closed()
+
+signal locked()
+signal unlocked()
+
 export var locked := false
 export var automatic := false
 
@@ -14,22 +20,29 @@ onready var enter_area := $EnterArea as Area2D
 
 func lock() -> void:
 	locked = true
+	emit_signal("locked")
 
 func unlock() -> void:
 	locked = false
+	emit_signal("unlocked")
 
 func open() -> void:
 	if locked:
 		return
 
+	if automatic:
+		close_timer.start()
+
 	anim.play("open")
+	emit_signal("opened")
 
 func close() -> void:
+	close_timer.stop()
 	anim.play_backwards("open")
+	emit_signal("closed")
 
 func _on_EnterArea_body_entered(body) -> void:
-	if automatic and close_timer.is_stopped():
-		close_timer.start()
+	if close_timer.is_stopped():
 		open()
 
 func _on_CloseTimer_timeout() -> void:
