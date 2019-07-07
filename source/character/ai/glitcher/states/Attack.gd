@@ -14,7 +14,6 @@ func update(host: Node, delta: float) -> void:
 
 	var direction = host.get_player_direction()
 
-
 	if host.is_player_in_attack_range() and timer.is_stopped() and not tween.is_active():
 		if direction < 0:
 			host.flip_left()
