@@ -56,7 +56,6 @@ position = Vector2( 1568, 288 )
 
 [node name="Door3" parent="Objects" index="2" instance=ExtResource( 4 )]
 position = Vector2( 2208, 289 )
-automatic = true
 
 [node name="Door4" parent="Objects" index="3" instance=ExtResource( 4 )]
 position = Vector2( 2848, 288 )
@@ -105,16 +104,24 @@ position = Vector2( 1176, 387 )
 [node name="Dummy3" parent="Enemies" index="2" instance=ExtResource( 10 )]
 position = Vector2( 1373, 387 )
 
-[node name="Turret" parent="Enemies" index="3" instance=ExtResource( 11 )]
+[node name="Dummy4" parent="Enemies" index="3" instance=ExtResource( 10 )]
+position = Vector2( 2068, 387 )
+max_health = 40
+
+[node name="Dummy5" parent="Enemies" index="4" instance=ExtResource( 10 )]
+position = Vector2( 1927, 387 )
+max_health = 40
+
+[node name="Turret" parent="Enemies" index="5" instance=ExtResource( 11 )]
 position = Vector2( 3004, 385 )
 flip_on_start = true
 can_move = false
 
-[node name="Turret2" parent="Enemies" index="4" instance=ExtResource( 11 )]
+[node name="Turret2" parent="Enemies" index="6" instance=ExtResource( 11 )]
 position = Vector2( 3259, 385 )
 can_move = false
 
-[node name="Drone4" parent="Enemies" index="5" instance=ExtResource( 12 )]
+[node name="Drone4" parent="Enemies" index="7" instance=ExtResource( 12 )]
 position = Vector2( 3003, 188 )
 flip_on_start = false
 can_move = false
@@ -122,38 +129,38 @@ team_number = 1
 seek_distance = 100
 sound_distance = 1500
 
-[node name="Drone5" parent="Enemies" index="6" instance=ExtResource( 12 )]
+[node name="Drone5" parent="Enemies" index="8" instance=ExtResource( 12 )]
 position = Vector2( 3378, 254 )
 can_move = false
 team_number = 1
 seek_distance = 100
 sound_distance = 1500
 
-[node name="Glitcher2" parent="Enemies" index="7" instance=ExtResource( 13 )]
+[node name="Glitcher2" parent="Enemies" index="9" instance=ExtResource( 13 )]
 position = Vector2( 1817, 867 )
 bullet_damage = 0
 
-[node name="Patrol" parent="Enemies" index="8" instance=ExtResource( 14 )]
+[node name="Patrol" parent="Enemies" index="10" instance=ExtResource( 14 )]
 position = Vector2( 3031, 867 )
 attack_range = 100
 
-[node name="Patrol2" parent="Enemies" index="9" instance=ExtResource( 14 )]
+[node name="Patrol2" parent="Enemies" index="11" instance=ExtResource( 14 )]
 position = Vector2( 3260, 867 )
 attack_range = 100
 
-[node name="Drone" parent="Enemies" index="10" instance=ExtResource( 12 )]
+[node name="Drone" parent="Enemies" index="12" instance=ExtResource( 12 )]
 position = Vector2( 2721, 731 )
 team_number = 1
 seek_distance = 100
 sound_distance = 1500
 
-[node name="Drone2" parent="Enemies" index="11" instance=ExtResource( 12 )]
+[node name="Drone2" parent="Enemies" index="13" instance=ExtResource( 12 )]
 position = Vector2( 1582, 530 )
 team_number = 1
 seek_distance = 100
 sound_distance = 1500
 
-[node name="Drone3" parent="Enemies" index="12" instance=ExtResource( 12 )]
+[node name="Drone3" parent="Enemies" index="14" instance=ExtResource( 12 )]
 position = Vector2( 2466, 701 )
 team_number = 1
 seek_distance = 100
@@ -209,14 +216,26 @@ targets = [ NodePath("../../Enemies/Dummy"), NodePath("../../Enemies/Dummy2"), N
 on_signal = "died"
 required_events = [ NodePath("../Attack") ]
 
-[node name="Okay" parent="Events" index="7" instance=ExtResource( 15 )]
+[node name="Shoot" parent="Events" index="7" instance=ExtResource( 17 )]
+position = Vector2( 1742, 250 )
+targets = [ NodePath("../../Characters/Player") ]
+on_enter = true
+area_extents = Vector2( 100, 300 )
+required_events = [ NodePath("../Attacked") ]
+
+[node name="Shot" parent="Events" index="8" instance=ExtResource( 17 )]
+targets = [ NodePath("../../Enemies/Dummy4"), NodePath("../../Enemies/Dummy5") ]
+on_signal = "died"
+required_events = [ NodePath("../Shoot") ]
+
+[node name="Okay" parent="Events" index="9" instance=ExtResource( 15 )]
 position = Vector2( 27, 363 )
 delay = 0.2
 targets = [ NodePath("../Crouch") ]
 on_signal = "happened"
 speeches = [ ExtResource( 18 ) ]
 
-[node name="Infection" parent="Events" index="8" instance=ExtResource( 15 )]
+[node name="Infection" parent="Events" index="10" instance=ExtResource( 15 )]
 position = Vector2( 2530, 234 )
 delay = 0.5
 targets = [ NodePath("../../Characters/Player") ]
@@ -224,7 +243,7 @@ on_enter = true
 area_extents = Vector2( 100, 300 )
 speeches = [ ExtResource( 19 ) ]
 
-[node name="Alert" parent="Events" index="9" instance=ExtResource( 15 )]
+[node name="Alert" parent="Events" index="11" instance=ExtResource( 15 )]
 position = Vector2( 3200, 234 )
 delay = 0.5
 targets = [ NodePath("../../Characters/Player") ]
@@ -245,6 +264,9 @@ smoothing_speed = 10.0
 [connection signal="happened" from="Events/Attack" to="Interface" method="show_key" binds= [ "B" ]]
 [connection signal="happened" from="Events/Attacked" to="Interface" method="hide_key"]
 [connection signal="happened" from="Events/Attacked" to="Objects/Door2" method="open"]
+[connection signal="happened" from="Events/Shoot" to="Interface" method="show_key" binds= [ "V" ]]
+[connection signal="happened" from="Events/Shot" to="Objects/Door3" method="open"]
+[connection signal="happened" from="Events/Shot" to="Interface" method="hide_key"]
 [connection signal="started" from="Events/Infection" to="Characters/Player" method="infect"]
 [connection signal="finished" from="Events/Alert" to="Enemies/Turret2" method="enable_movement"]
 [connection signal="finished" from="Events/Alert" to="Enemies/Drone5" method="enable_movement"]
