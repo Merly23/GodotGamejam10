@@ -33,15 +33,11 @@ onready var tween := $Tween as Tween
 
 onready var upper := {
 	anim_player = $Upper/AnimationPlayer,
-	anim_tree = $Upper/AnimationTree,
-	anim = $Upper/AnimationTree.get("parameters/playback"),
 	sprite = $Upper/Sprite
 }
 
 onready var lower := {
 	anim_player = $Lower/AnimationPlayer,
-	anim_tree = $Lower/AnimationTree,
-	anim = $Lower/AnimationTree.get("parameters/playback"),
 	sprite = $Lower/Sprite
 }
 
