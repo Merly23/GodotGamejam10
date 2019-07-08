@@ -16,6 +16,9 @@ func _ready():
 
 	_load_data()
 
+func _exit_tree() -> void:
+	_save_data()
+
 func _load_data():
 
 	var save_game = load("user://save_game.tres")
