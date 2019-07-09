@@ -41,17 +41,17 @@ margin_right = 140.0
 margin_bottom = 178.0
 custom_constants/separation = 8
 
+[node name="Play" parent="CenterContainer/VBoxContainer/Buttons" instance=ExtResource( 4 )]
+margin_right = 140.0
+margin_bottom = 26.0
+text = "New Game"
+grab_focus = true
+
 [node name="Load" parent="CenterContainer/VBoxContainer/Buttons" instance=ExtResource( 4 )]
 visible = false
 margin_right = 140.0
 margin_bottom = 26.0
 text = "Load"
-grab_focus = true
-
-[node name="Play" parent="CenterContainer/VBoxContainer/Buttons" instance=ExtResource( 4 )]
-margin_right = 140.0
-margin_bottom = 26.0
-text = "New Game"
 grab_focus = true
 
 [node name="Credits" parent="CenterContainer/VBoxContainer/Buttons" instance=ExtResource( 4 )]
@@ -71,8 +71,8 @@ margin_top = 102.0
 margin_right = 140.0
 margin_bottom = 128.0
 text = "Quit"
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]
