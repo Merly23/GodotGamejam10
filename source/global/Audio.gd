@@ -42,6 +42,12 @@ func play_song(song: String) -> void:
 
 	music_booth.play_song(song)
 
+func play_layer_on_bar(layer: int, fade_time := 0.0) -> void:
+	music_booth.play_layer_on_bar(layer, fade_time)
+
+func stop_layer_on_bar(layer: int, fade_time := 0.0) -> void:
+	music_booth.stop_layer_on_bar(layer, fade_time)
+
 func stop_song() -> void:
 	music_booth.stop_song()
 

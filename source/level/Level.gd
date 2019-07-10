@@ -52,6 +52,12 @@ func _ready() -> void:
 		for event_id in GameSaver.events[self.id]:
 			events[event_id].happened = true
 
+func play_song_layer(layer: int, fade_time := 0.0) -> void:
+	Audio.play_layer_on_bar(layer, fade_time)
+
+func stop_song_layer(layer: int, fade_time := 0.0) -> void:
+	Audio.stop_layer_on_bar(layer, fade_time)
+
 func _on_Event_seen(event_id: int) -> void:
 	seen_events.append(event_id)
 
