@@ -87,6 +87,14 @@ bus = "Music"
 stream = ExtResource( 9 )
 bus = "Music"
 
+[node name="Ambience" type="Node" parent="."]
+
+[node name="Ambience1" type="AudioStreamPlayer" parent="Ambience"]
+
+[node name="Ambience2" type="AudioStreamPlayer" parent="Ambience"]
+
+[node name="Ambience3" type="AudioStreamPlayer" parent="Ambience"]
+
 [node name="SFX" type="Node" parent="."]
 
 [node name="Player" type="Node" parent="SFX"]
@@ -198,3 +206,4 @@ bus = "Effects"
 stream = ExtResource( 30 )
 pitch_scale = 1.5
 bus = "Effects"
+[connection signal="bar" from="MusicBooth" to="." method="_on_MusicBooth_bar"]

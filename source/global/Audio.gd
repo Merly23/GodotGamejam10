@@ -1,5 +1,7 @@
 extends Node
 
+var current_bar := -1
+
 export var master_volume := 1.0 setget _set_master_volume
 export var music_volume := 1.0 setget _set_music_volume
 export var effects_volume := 1.0 setget _set_effects_volume
@@ -10,6 +12,12 @@ onready var music = {
 	menu_music = preload("res://audio/music/menuLoop.wav"),
 	game_music = preload("res://audio/music/combatLoop.wav")
 }
+
+onready var ambience = [
+	$Ambience/Ambience1,
+	$Ambience/Ambience2,
+	$Ambience/Ambience3
+]
 
 onready var sfx = {
 	player_hurt = $SFX/Player/Hurt,
@@ -92,3 +100,9 @@ func _set_music_volume(value):
 func _set_effects_volume(value):
 	effects_volume = value
 	AudioServer.set_bus_volume_db(2, linear2db(effects_volume))
+
+
+func _on_MusicBooth_bar() -> void:
+	current_bar += 1
+	if current_bar % 32 == 0:
+		ambience[randi() % ambience.size()].play()
