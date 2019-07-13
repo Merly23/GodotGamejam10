@@ -280,7 +280,7 @@ extents = Vector2( 10, 24 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 22, 32 )
 
-[node name="Android" index="0" groups=[
+[node name="Android" groups=[
 "Character",
 ] instance=ExtResource( 1 )]
 collision_layer = 4
