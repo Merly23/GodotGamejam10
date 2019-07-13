@@ -19,7 +19,6 @@ onready var checkpoints := $Checkpoints.get_children()
 onready var seen_events := []
 
 func _ready() -> void:
-
 	GameSaver.current_level = id
 
 	for character in get_tree().get_nodes_in_group("Character"):

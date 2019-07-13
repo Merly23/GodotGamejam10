@@ -1,6 +1,7 @@
 extends Node
 
 var current_bar := -1
+var play_ambience := false
 
 export var master_volume := 1.0 setget _set_master_volume
 export var music_volume := 1.0 setget _set_music_volume
@@ -43,6 +44,15 @@ onready var sfx = {
 	tick3 = $SFX/Tick3,
 	tick4 = $SFX/Tick4
 }
+
+func play_ambience() -> void:
+	play_ambience = true
+
+func stop_ambience() -> void:
+	play_ambience = false
+
+	for player in ambience:
+		player.stop()
 
 func play_song(song: String) -> void:
 	if music_booth.is_song_playing(song):
@@ -101,8 +111,13 @@ func _set_effects_volume(value):
 	effects_volume = value
 	AudioServer.set_bus_volume_db(2, linear2db(effects_volume))
 
-
 func _on_MusicBooth_bar() -> void:
+	if not play_ambience:
+		return
+
 	current_bar += 1
+
 	if current_bar % 32 == 0:
+		print("play ambience track")
 		ambience[randi() % ambience.size()].play()
+		current_bar = 0
