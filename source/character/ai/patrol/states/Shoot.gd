@@ -18,8 +18,11 @@ func update(host: Node, delta: float) -> void:
 
 		if not host.lower.anim_player.is_playing():
 			shots += 1
+
 	elif not host.can_move:
 		host.fsm.change_state("idle")
+	elif host.is_player_in_retreat_range():
+		host.fsm.change_state("retreat")
 	else:
 		host.fsm.change_state("seek")
 

@@ -12,6 +12,11 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Patrol
 
+	if host.is_on_floor():
+		host.motion.y = 0
+	else:
+		host.motion.y += Global.GRAVITY * delta
+
 	host.motion.x = host.get_player_direction() * speed
 
 	if host.motion.x < 0:
@@ -19,15 +24,16 @@ func update(host: Node, delta: float) -> void:
 	else:
 		host.flip_right()
 
+	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
+
+
 	if not host.can_move:
 		host.fsm.change_state("idle")
-	elif host.is_player_in_retreat_range() and not host.is_on_cliff():
-		host.fsm.change_state("retreat")
-	elif host.is_player_in_shoot_range() and not host.can_shoot():
+	elif host.is_player_in_attack_range() and not host.can_shoot():
 		host.fsm.change_state("idle")
-	elif host.is_player_in_shoot_range() and host.can_shoot():
+	elif host.is_player_in_attack_range() and host.can_shoot():
 		host.fsm.change_state("attack")
-	elif not host.is_player_in_vision() or host.is_on_wall() or host.is_player_in_shoot_range():
+	elif not host.is_player_in_vision() or host.is_on_wall() or host.is_player_in_attack_range():
 		host.fsm.change_state("idle")
 
 func exit(host: Node) -> void:

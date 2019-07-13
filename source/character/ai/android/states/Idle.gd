@@ -18,11 +18,14 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Patrol
 
-	if host.is_player_in_retreat_range() and not host.is_on_cliff():
-		host.fsm.change_state("retreat")
-	elif host.is_player_in_attack_range() and host.can_shoot() and not host.disabled and host.can_move:
+	if host.is_on_floor():
+		host.motion.y = 0
+	else:
+		host.motion.y += Global.GRAVITY * delta
+
+	if host.is_player_in_attack_range() and host.can_shoot() and not host.disabled and host.can_move:
 		host.fsm.change_state("attack")
-	elif host.is_player_in_vision() and not host.is_player_in_shoot_range() and not host.disabled and host.can_move:
+	if host.is_player_in_vision() and not host.is_player_in_attack_range() and not host.disabled and host.can_move:
 		host.fsm.change_state("seek")
 
 func exit(host: Node) -> void:

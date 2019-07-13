@@ -18,6 +18,11 @@ func update(host: Node, delta: float) -> void:
 
 	var direction = -1 if host.global_position.x > target_position.x else 1
 
+	if host.is_on_floor():
+		host.motion.y = 0
+	else:
+		host.motion.y += Global.GRAVITY * delta
+
 	host.motion.x = speed * direction
 
 	if host.motion.x < 0:
@@ -25,8 +30,10 @@ func update(host: Node, delta: float) -> void:
 	else:
 		host.flip_right()
 
-	if host.global_position.distance_to(target_position) < 20 or host.is_on_cliff() or host.is_on_wall() or not host.can_move:
+	if host.global_position.distance_to(target_position) < 20 or host.is_on_wall() or not host.can_move:
 		host.fsm.change_state("idle")
+
+	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
 func exit(host: Node) -> void:
 	host = host as Patrol
