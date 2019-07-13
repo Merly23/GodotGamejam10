@@ -36,7 +36,7 @@ func _set_level(value) -> void:
 		glitch.stop()
 		abberation_timer.stop()
 		_set_offset(0.0)
-		_set_abberation(0.001)
+		_set_abberation(0.000)
 	else:
 		wait.wait_time = _new_time()
 		wait.start()
