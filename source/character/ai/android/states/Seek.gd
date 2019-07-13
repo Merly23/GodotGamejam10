@@ -12,20 +12,12 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Patrol
 
-	if host.is_on_floor():
-		host.motion.y = 0
-	else:
-		host.motion.y += Global.GRAVITY * delta
-
 	host.motion.x = host.get_player_direction() * speed
 
 	if host.motion.x < 0:
 		host.flip_left()
 	else:
 		host.flip_right()
-
-	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
-
 
 	if not host.can_move:
 		host.fsm.change_state("idle")

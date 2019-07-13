@@ -266,7 +266,7 @@ extents = Vector2( 20, 12 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 26, 16 )
 
-[node name="Glitcher" instance=ExtResource( 1 )]
+[node name="Glitcher" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_health = 180
 vision = 350

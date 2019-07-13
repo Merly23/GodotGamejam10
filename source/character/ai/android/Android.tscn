@@ -280,11 +280,7 @@ extents = Vector2( 10, 24 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 22, 32 )
 
-[node name="Android" groups=[
-"Character",
-] instance=ExtResource( 1 )]
-collision_layer = 4
-collision_mask = 2
+[node name="Android" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_health = 20
 vision = 450
@@ -303,7 +299,6 @@ anims/walk = SubResource( 5 )
 
 [node name="Sprite" parent="Lower" index="1"]
 texture = ExtResource( 4 )
-offset = Vector2( 0, -32 )
 hframes = 5
 frame = 1
 
@@ -312,12 +307,9 @@ script = ExtResource( 7 )
 
 [node name="Walk" parent="FiniteStateMachine" index="2"]
 script = ExtResource( 8 )
-speed = 250
-radius = 250
 
 [node name="Seek" parent="FiniteStateMachine" index="3"]
 script = ExtResource( 9 )
-speed = 120
 
 [node name="Timer" parent="FiniteStateMachine/Attack" index="1"]
 wait_time = 0.3
@@ -328,8 +320,6 @@ shape = SubResource( 6 )
 
 [node name="HitArea" parent="." index="9"]
 position = Vector2( 15, -26 )
-collision_layer = 0
-collision_mask = 5
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 shape = SubResource( 7 )
