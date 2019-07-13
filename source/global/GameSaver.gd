@@ -8,6 +8,8 @@ var events := []
 
 var has_virus := false
 
+var glitch_level := 0
+
 var deleted := false
 
 func _ready():
@@ -26,11 +28,18 @@ func _load_data():
 	if not save_game or deleted:
 		return
 
+	var version = ProjectSettings.get_setting("application/config//version")
+
+	if save_game.version != version:
+		print("SaveGame incompatible. (Game Version: %s, Save File Version: %s)" % [ version, save_game.version])
+		return
+
 	current_level = save_game.data["current_level"]
 	checkpoints = save_game.data["checkpoints"]
 	events = save_game.data["events"]
 
 	has_virus = save_game.data["has_virus"]
+	glitch_level = save_game.data["glitch_level"]
 
 	Audio.master_volume = save_game.data["master_volume"]
 	Audio.music_volume = save_game.data["music_volume"]
@@ -41,11 +50,14 @@ func _save_data():
 
 	var save_game := SaveGame.new()
 
+	save_game.version = ProjectSettings.get_setting("application/config//version")
+
 	save_game.data["current_level"] = current_level
 	save_game.data["checkpoints"] = checkpoints
 	save_game.data["events"] = events
 
 	save_game.data["has_virus"] = has_virus
+	save_game.data["glitch_level"] = glitch_level
 
 	save_game.data["master_volume"] = Audio.master_volume
 	save_game.data["music_volume"] = Audio.music_volume
@@ -61,4 +73,5 @@ func delete() -> void:
 		events.append([])
 
 	checkpoints = {}
+	glitch_level = 0
 	has_virus = false

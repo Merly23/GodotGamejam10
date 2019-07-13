@@ -52,6 +52,9 @@ func _ready() -> void:
 		for event_id in GameSaver.events[self.id]:
 			events[event_id].happened = true
 
+	if GameSaver.glitch_level:
+		 Glitch.level = GameSaver.glitch_level
+
 func play_song_layer(layer: int, fade_time := 0.0) -> void:
 	Audio.play_layer_on_bar(layer, fade_time)
 
@@ -74,7 +77,7 @@ func _on_Cutscene_finished() -> void:
 func _on_Checkpoint_reached(id: int) -> void:
 	player.restore()
 	GameSaver.has_virus = player.has_virus
-
+	GameSaver.glitch_level = Glitch.level
 	GameSaver.checkpoints[self.id] = id
 
 	for event_id in seen_events:

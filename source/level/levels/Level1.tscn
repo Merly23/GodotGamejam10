@@ -21,7 +21,7 @@
 [ext_resource path="res://data/dialoques/level_1/infection_01.tres" type="Resource" id=19]
 [ext_resource path="res://data/dialoques/level_1/alarm_01.tres" type="Resource" id=20]
 
-[node name="Level1" instance=ExtResource( 1 )]
+[node name="Level1" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 bottom_limit = 1500
 
@@ -165,9 +165,7 @@ sound_distance = 1500
 [node name="Android" parent="Enemies" index="14" instance=ExtResource( 14 )]
 position = Vector2( 897, 867 )
 can_move = false
-team_number = 1
 max_health = 350
-bullet_damage = 8
 damage = 20
 
 [node name="Player" parent="Characters" index="0"]
@@ -282,9 +280,9 @@ area_extents = Vector2( 150, 200 )
 offset = Vector2( 0, -80 )
 limit_bottom = 1200
 smoothing_speed = 10.0
-[connection signal="died" from="Enemies/Android" to="Objects/Door8" method="unlock"]
 [connection signal="died" from="Enemies/Android" to="Objects/Door7" method="unlock"]
 [connection signal="died" from="Enemies/Android" to="." method="stop_song_layer" binds= [ 2, 2.0 ]]
+[connection signal="died" from="Enemies/Android" to="Objects/Door8" method="unlock"]
 [connection signal="finished" from="Events/Boot" to="Interface" method="show_key" binds= [ "ui_right" ]]
 [connection signal="happened" from="Events/Right" to="Interface" method="show_key" binds= [ "ui_left" ]]
 [connection signal="happened" from="Events/Left" to="Interface" method="show_key" binds= [ "jump" ]]
@@ -292,29 +290,29 @@ smoothing_speed = 10.0
 [connection signal="happened" from="Events/Crouch" to="Interface" method="hide_key"]
 [connection signal="happened" from="Events/Crouch" to="Objects/Door" method="open"]
 [connection signal="happened" from="Events/Attack" to="Interface" method="show_key" binds= [ "attack" ]]
-[connection signal="happened" from="Events/Attacked" to="Objects/Door2" method="open"]
 [connection signal="happened" from="Events/Attacked" to="Interface" method="hide_key"]
+[connection signal="happened" from="Events/Attacked" to="Objects/Door2" method="open"]
 [connection signal="happened" from="Events/Shoot" to="Interface" method="show_key" binds= [ "shoot" ]]
-[connection signal="happened" from="Events/Shot" to="Objects/Door3" method="open"]
 [connection signal="happened" from="Events/Shot" to="Interface" method="hide_key"]
+[connection signal="happened" from="Events/Shot" to="Objects/Door3" method="open"]
 [connection signal="started" from="Events/Infection" to="Characters/Player" method="infect"]
+[connection signal="finished" from="Events/Alert" to="Enemies/Turret2" method="enable_movement"]
+[connection signal="finished" from="Events/Alert" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Alert" to="Enemies/Turret" method="enable_movement"]
+[connection signal="finished" from="Events/Alert" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
+[connection signal="finished" from="Events/Alert" to="Interface" method="show_key" binds= [ "special" ]]
 [connection signal="finished" from="Events/Alert" to="Enemies/Drone5" method="enable_movement"]
 [connection signal="finished" from="Events/Alert" to="Enemies/Drone5" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Events/Alert" to="Enemies/Drone4" method="enable_movement"]
 [connection signal="finished" from="Events/Alert" to="Enemies/Drone4" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Alert" to="Interface" method="show_key" binds= [ "special" ]]
-[connection signal="finished" from="Events/Alert" to="Enemies/Turret" method="enable_movement"]
-[connection signal="finished" from="Events/Alert" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
-[connection signal="finished" from="Events/Alert" to="Enemies/Turret2" method="enable_movement"]
-[connection signal="finished" from="Events/Alert" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
-[connection signal="started" from="Events/Alert" to="Objects/Console" method="alert"]
 [connection signal="started" from="Events/Alert" to="Objects/ComputerServer" method="alert"]
 [connection signal="started" from="Events/Alert" to="Objects/Scanner" method="alert"]
+[connection signal="started" from="Events/Alert" to="Objects/Console" method="alert"]
 [connection signal="happened" from="Events/Killed" to="Objects/Door5" method="open"]
 [connection signal="happened" from="Events/Special" to="Interface" method="show_key" binds= [ "dash" ]]
 [connection signal="happened" from="Events/Dash" to="Interface" method="hide_key"]
-[connection signal="happened" from="Events/EnterBoss" to="Enemies/Android" method="enable_movement"]
-[connection signal="happened" from="Events/EnterBoss" to="Enemies/Android" method="setup_enemy_plate"]
 [connection signal="happened" from="Events/EnterBoss" to="Objects/Door7" method="lock"]
 [connection signal="happened" from="Events/EnterBoss" to="Objects/Door7" method="close"]
 [connection signal="happened" from="Events/EnterBoss" to="." method="play_song_layer" binds= [ 2, 2.0 ]]
+[connection signal="happened" from="Events/EnterBoss" to="Enemies/Android" method="enable_movement"]
+[connection signal="happened" from="Events/EnterBoss" to="Enemies/Android" method="setup_enemy_plate"]
