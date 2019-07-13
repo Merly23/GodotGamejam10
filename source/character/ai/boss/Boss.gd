@@ -1,5 +1,8 @@
-extends Glitcher
-class_name Android
+extends Character
+class_name Boss
+
+func knockback(origin: Vector2, knockback:int) -> void:
+	pass # overwrite, so it does not have a knockback
 
 func setup_enemy_plate() -> void:
 	var enemy_plate = get_tree().get_nodes_in_group("EnemyPlate")[0]

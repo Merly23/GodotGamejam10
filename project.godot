@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Glitcher",
+"base": "Boss",
 "class": "Android",
 "language": "GDScript",
-"path": "res://source/character/ai/android/Android.gd"
+"path": "res://source/character/ai/boss/android/Android.gd"
+}, {
+"base": "Character",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://source/character/ai/boss/Boss.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Character",
@@ -121,6 +126,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Android": "",
+"Boss": "",
 "Character": "",
 "Civilian": "",
 "Cutscene": "res://graphics/images/icons/cutscene.png",
