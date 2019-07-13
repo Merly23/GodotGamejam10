@@ -41,6 +41,9 @@ func open() -> void:
 
 func close() -> void:
 
+	if closed:
+		return
+
 	if not close_timer.is_stopped():
 		close_timer.stop()
 
@@ -49,6 +52,7 @@ func close() -> void:
 	emit_signal("closed")
 
 func _on_EnterArea_body_entered(body) -> void:
+	if automatic:
 		open()
 
 func _on_CloseTimer_timeout() -> void:
