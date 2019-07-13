@@ -21,7 +21,7 @@ func update(host: Node, delta: float) -> void:
 
 	if not host.can_move:
 		host.fsm.change_state("idle")
-	elif host.is_player_in_retreat_range() and not host.is_on_cliff():
+	elif host.is_player_in_retreat_range() and not host.is_on_cliff() and not host.is_on_wall():
 		host.fsm.change_state("retreat")
 	elif host.is_player_in_shoot_range() and not host.can_shoot():
 		host.fsm.change_state("idle")

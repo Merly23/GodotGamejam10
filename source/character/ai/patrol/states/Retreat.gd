@@ -23,7 +23,7 @@ func update(host: Node, delta: float) -> void:
 
 	if not host.can_move:
 		host.fsm.change_state("idle")
-	elif host.is_on_cliff() or not host.is_player_in_attack_range():
+	elif host.is_on_wall() or host.is_on_cliff() or not host.is_player_in_attack_range():
 		host.fsm.change_state("seek")
 
 func exit(host: Node) -> void:

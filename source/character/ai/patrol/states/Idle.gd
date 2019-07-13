@@ -18,7 +18,7 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Patrol
 
-	if host.is_player_in_retreat_range() and not host.is_on_cliff():
+	if host.is_player_in_retreat_range() and not host.is_on_cliff() and not host.is_on_wall():
 		host.fsm.change_state("retreat")
 	elif host.is_player_in_attack_range() and host.can_shoot() and not host.disabled and host.can_move:
 		host.fsm.change_state("attack")
