@@ -30,6 +30,7 @@ func shoot() -> void:
 	projectile.global_position = global_position + Vector2(0, -36)
 	get_tree().current_scene.add_child(projectile)
 	projectile.fire(shoot_damage, 360, Vector2(get_direction(), 0))
+	Audio.play_sfx("gun_shot")
 
 func _on_FiniteStateMachine_state_changed(state_name) -> void:
 	print(name, ": ", state_name)
