@@ -14,7 +14,7 @@ func play(flipped := false) -> void:
 
 	sprite.flip_h = flipped
 
-	tween.interpolate_property(self, "fade", 0.0, 1.0, 1.0, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.interpolate_property(self, "fade", 0.0, 1.0, 1.6, Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween.start()
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
