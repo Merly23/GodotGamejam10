@@ -1,7 +1,9 @@
 extends Character
 class_name Boss
 
-func knockback(origin: Vector2, knockback:int) -> void:
+var active := false
+
+func knockback(origin: Vector2, knockback: int) -> void:
 	pass # overwrite, so it does not have a knockback
 
 func setup_enemy_plate() -> void:
@@ -12,6 +14,15 @@ func setup_enemy_plate() -> void:
 	enemy_plate.show()
 	connect("health_changed", enemy_plate, "update_health")
 	connect("died", self, "_on_Boss_died")
+
+func activate() -> void:
+	active = true
+
+func deactivate() -> void:
+	active = false
+
+func is_active() -> bool:
+	return active
 
 func _on_Boss_died() -> void:
 	get_tree().call_group("EnemyPlate", "hide")

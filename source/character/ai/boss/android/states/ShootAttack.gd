@@ -1,8 +1,9 @@
 extends State
 
+var time := 0.0
 func enter(host: Node) -> void:
 	host = host as Android
-	host.anim_player.play("idle")
+	host.anim_player.play("shoot")
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Android
@@ -10,11 +11,11 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Android
 
-	if host.is_active():
+	time += delta
+
+	if time > 1:
 		host.fsm.change_state("seek")
 
 func exit(host: Node) -> void:
 	host = host as Android
-
-func _on_AttackTimer_timeout(host: Android) -> void:
-	pass
+	time = 0.0

@@ -1,33 +1,25 @@
 extends State
 
-export var speed = 120
-
 func enter(host: Node) -> void:
-	host = host as Patrol
-	host.play_lower("walk")
+	host = host as Android
+	host.anim_player.play("seek")
 
 func input(host: Node, event: InputEvent) -> void:
-	host = host as Patrol
+	host = host as Android
 
 func update(host: Node, delta: float) -> void:
-	host = host as Patrol
+	host = host as Android
 
-	host.motion.x = host.get_player_direction() * speed
+	var direction = host.get_player_direction()
 
-	if host.motion.x < 0:
+	if direction == 1:
+		host.flip_right()
+	elif direction == -1:
 		host.flip_left()
 	else:
-		host.flip_right()
+		host.fsm.change_state("idle")
 
-	if not host.can_move:
-		host.fsm.change_state("idle")
-	elif host.is_player_in_attack_range() and not host.can_shoot():
-		host.fsm.change_state("idle")
-	elif host.is_player_in_attack_range() and host.can_shoot():
-		host.fsm.change_state("attack")
-	elif not host.is_player_in_vision() or host.is_on_wall() or host.is_player_in_attack_range():
-		host.fsm.change_state("idle")
+	host.fsm.change_state("dash_attack")
 
 func exit(host: Node) -> void:
-	host = host as Patrol
-	host.motion.x = 0
+	host = host as Android
