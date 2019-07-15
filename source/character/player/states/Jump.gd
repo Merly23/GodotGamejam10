@@ -31,7 +31,7 @@ func update(host: Node, delta: float) -> void:
 
 	host.motion.y += Global.GRAVITY * delta
 
-	if not Input.is_action_pressed("jump") and not not Input.is_action_pressed("ui_up"):
+	if not Input.is_action_pressed("jump") and not Input.is_action_pressed("ui_up"):
 		jump_cut(host)
 
 	if input_direction.x == 1:
