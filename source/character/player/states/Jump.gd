@@ -31,7 +31,7 @@ func update(host: Node, delta: float) -> void:
 
 	host.motion.y += Global.GRAVITY * delta
 
-	if Input.is_action_just_released("jump"):
+	if not Input.is_action_pressed("jump") and not not Input.is_action_pressed("ui_up"):
 		jump_cut(host)
 
 	if input_direction.x == 1:
@@ -56,6 +56,6 @@ func update(host: Node, delta: float) -> void:
 	if Input.is_action_pressed("shoot") and host.can_shoot():
 		host.play_shoot()
 
-func jump_cut(host):
+func jump_cut(host: Player) -> void:
     if host.motion.y < -100:
         host.motion.y = -100
