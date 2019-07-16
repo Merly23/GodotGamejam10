@@ -6,6 +6,7 @@ func enter(host) -> void:
 	host.cancel_slow_motion()
 	host.anim_player.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished", [ host ])
 	host.anim_player.play("die")
+	host.dead = true
 
 func update(host: Node, delta: float) -> void:
 	host = host as Player

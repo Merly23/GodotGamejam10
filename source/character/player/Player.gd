@@ -67,7 +67,7 @@ func _ready() -> void:
 	dash_timer.wait_time = dash_cooldown
 
 func _process(delta: float) -> void:
-	if global_position.y > bottom_limit:
+	if global_position.y > bottom_limit and not dead:
 		fsm.change_state("die")
 
 func _register_states() -> void:
