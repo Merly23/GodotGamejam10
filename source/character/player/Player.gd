@@ -123,6 +123,10 @@ func flip_right() -> void:
 	lower_ray.rotation_degrees = -90
 
 func attack(attack_name: String) -> void:
+	if attack_name == "attack":
+		randomize()
+		play_upper(["attack", "attack2"][randi() % 2])
+		return
 	play_upper(attack_name)
 
 func play_shoot(crouch := false) -> void:
@@ -240,12 +244,12 @@ func is_energy_filled() -> bool:
 	return energy == max_energy
 
 func is_attacking() -> bool:
-	return upper.anim_player.current_animation == "attack" or upper.anim_player.current_animation == "air_attack"
+	return upper.anim_player.current_animation == "attack" or upper.anim_player.current_animation == "air_attack" or upper.anim_player.current_animation == "attack2"
 
 func _on_Upper_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	var current_animation = lower.anim_player.current_animation
 
-	if anim_name == "attack" or anim_name == "shoot":
+	if anim_name == "attack" or anim_name == "attack2" or anim_name == "air_attack" or anim_name == "shoot":
 		upper.anim_player.play(current_animation)
 		upper.anim_player.advance(lower.anim_player.current_animation_position)
 
