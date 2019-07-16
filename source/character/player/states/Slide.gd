@@ -45,7 +45,8 @@ func update(host: Node, delta: float) -> void:
 
 	if host.is_on_floor():
 		host.fsm.change_state("idle")
-
+	elif not host.is_on_slide_wall():
+		host.fsm.change_state("fall")
 	elif host.is_turning_on_wall():
 		time += delta
 		if time > fall_delay:
