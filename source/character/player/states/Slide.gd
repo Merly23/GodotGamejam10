@@ -1,11 +1,20 @@
 extends State
 
+var time := 0.0
+
+export var fall_delay := 0.2
+
 export var jump_force := 350
+export var slide_limit := 80
+export var fast_slide_limit := 350
+
+onready var slide_delay_timer := $SlideDelayTimer
 
 func enter(host: Node) -> void:
 	host = host as Player
 	host.motion.x = 0
 	host.stop_anim()
+	slide_delay_timer.start()
 	host.anim_player.play("hang")
 
 func input(host: Node, event: InputEvent) -> void:
@@ -25,8 +34,12 @@ func update(host: Node, delta: float) -> void:
 	host = host as Player
 
 	var input_direction = host.get_input_direction()
-
-	host.motion.y = clamp(host.motion.y + Global.GRAVITY / 4 * delta, 0, 100)
+	
+	if slide_delay_timer.is_stopped():
+		if Input.is_action_pressed("ui_down"):
+			host.motion.y = clamp(host.motion.y + Global.GRAVITY * delta / 10, 0, fast_slide_limit)
+		else:
+			host.motion.y = clamp(host.motion.y + Global.GRAVITY * delta * 10, 0, slide_limit)
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 
@@ -34,11 +47,13 @@ func update(host: Node, delta: float) -> void:
 		host.fsm.change_state("idle")
 
 	elif host.is_turning_on_wall():
-		host.flip()
-		host.fsm.change_state("fall")
-
-	elif not host.is_on_slide_wall():
-		host.fsm.change_state("fall")
+		time += delta
+		if time > fall_delay:
+			host.flip()
+			host.fsm.change_state("fall")
+	
+	else:
+		time = 0.0
 
 func exit(host: Node) -> void:
 	host = host as Player

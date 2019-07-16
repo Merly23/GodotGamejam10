@@ -269,7 +269,7 @@ tracks/5/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=4]
 resource_name = "hang"
 length = 0.1
 loop = true
@@ -346,7 +346,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=5]
 resource_name = "reset"
 length = 0.1
 tracks/0/type = "value"
@@ -362,7 +362,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -377,7 +377,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -427,7 +427,7 @@ tracks/3/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -479,7 +479,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -530,7 +530,7 @@ tracks/3/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 0.6
 loop = true
 step = 0.08
@@ -600,7 +600,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.25
 step = 0.05
 tracks/0/type = "value"
@@ -666,7 +666,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 length = 0.25
 step = 0.05
 tracks/0/type = "value"
@@ -732,7 +732,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=13]
 resource_name = "attack2"
 length = 0.25
 step = 0.05
@@ -799,7 +799,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=14]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -814,7 +814,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=15]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -864,7 +864,7 @@ tracks/3/keys = {
 "values": [ 1, 2 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=16]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -928,7 +928,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=17]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -979,7 +979,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=18]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -1045,7 +1045,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=19]
 length = 0.6
 loop = true
 step = 0.08
@@ -1098,10 +1098,10 @@ tracks/3/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=17]
+[sub_resource type="CapsuleShape2D" id=20]
 height = 26.0
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 28, 36 )
 
 [node name="Player" index="0" instance=ExtResource( 1 )]
@@ -1138,30 +1138,30 @@ slow_down_time = 0.3
 anims/crouch = SubResource( 1 )
 anims/crouch_shoot = SubResource( 2 )
 anims/die = SubResource( 3 )
-anims/hang = SubResource( 19 )
-anims/reset = SubResource( 20 )
+anims/hang = SubResource( 4 )
+anims/reset = SubResource( 5 )
 
 [node name="AnimationPlayer" parent="Lower" index="0"]
-anims/dash = SubResource( 4 )
-anims/fall = SubResource( 5 )
-anims/idle = SubResource( 6 )
-anims/jump = SubResource( 7 )
-anims/walk = SubResource( 8 )
+anims/dash = SubResource( 6 )
+anims/fall = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/jump = SubResource( 9 )
+anims/walk = SubResource( 10 )
 
 [node name="Sprite" parent="Lower" index="1"]
 texture = ExtResource( 7 )
 offset = Vector2( 0, -31 )
 
 [node name="AnimationPlayer" parent="Upper" index="0"]
-anims/air_attack = SubResource( 9 )
-anims/attack = SubResource( 10 )
-anims/attack2 = SubResource( 21 )
-anims/dash = SubResource( 11 )
-anims/fall = SubResource( 12 )
-anims/idle = SubResource( 13 )
-anims/jump = SubResource( 14 )
-anims/shoot = SubResource( 15 )
-anims/walk = SubResource( 16 )
+anims/air_attack = SubResource( 11 )
+anims/attack = SubResource( 12 )
+anims/attack2 = SubResource( 13 )
+anims/dash = SubResource( 14 )
+anims/fall = SubResource( 15 )
+anims/idle = SubResource( 16 )
+anims/jump = SubResource( 17 )
+anims/shoot = SubResource( 18 )
+anims/walk = SubResource( 19 )
 
 [node name="Sprite" parent="Upper" index="1"]
 position = Vector2( 0, 0 )
@@ -1213,6 +1213,10 @@ __meta__ = {
 "_editor_icon": ExtResource( 18 )
 }
 
+[node name="SlideDelayTimer" type="Timer" parent="FiniteStateMachine/Slide" index="0"]
+wait_time = 0.1
+one_shot = true
+
 [node name="Hang" type="Node" parent="FiniteStateMachine" index="5"]
 script = ExtResource( 23 )
 __meta__ = {
@@ -1238,7 +1242,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" parent="." index="12"]
 position = Vector2( 0, -24 )
-shape = SubResource( 17 )
+shape = SubResource( 20 )
 
 [node name="TerrainCheckArea" parent="." index="13" instance=ExtResource( 27 )]
 position = Vector2( 0, -31 )
@@ -1267,7 +1271,7 @@ position = Vector2( 16, -31 )
 collision_mask = 13
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]
-shape = SubResource( 18 )
+shape = SubResource( 21 )
 [connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]
 [connection signal="timeout" from="SlowMotionTimer" to="." method="_on_SlowMotionTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
