@@ -19,7 +19,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Global.Player:
 		var volume = 0.5 - (Global.Player.global_position.distance_to(global_position) / sound_distance)
-		hover_player.volume_db = linear2db(clamp(volume, 0, 0.6))
+		hover_player.volume_db = linear2db(clamp(volume, 0, 0.5))
 
 onready var rays := {
 	left = $Rays/Left,
