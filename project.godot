@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/character/ai/civilian/Civilian.gd"
 }, {
+"base": "Boss",
+"class": "Clasher",
+"language": "GDScript",
+"path": "res://source/character/ai/boss/clasher/Clasher.gd"
+}, {
 "base": "Event",
 "class": "Cutscene",
 "language": "GDScript",
@@ -129,6 +134,7 @@ _global_script_class_icons={
 "Boss": "",
 "Character": "",
 "Civilian": "",
+"Clasher": "",
 "Cutscene": "res://graphics/images/icons/cutscene.png",
 "Drone": "",
 "Event": "res://graphics/images/icons/event.png",
