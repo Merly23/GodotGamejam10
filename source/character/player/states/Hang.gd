@@ -3,7 +3,8 @@ extends State
 func enter(host: Node) -> void:
 	host = host as Player
 	host.motion.x = 0
-	host.play_lower("hang")
+	host.stop_anim()
+	host.anim_player.play("hang")
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Player
@@ -19,3 +20,8 @@ func input(host: Node, event: InputEvent) -> void:
 	elif host.is_turning_on_wall():
 		host.cliff_timer.start()
 		host.fsm.change_state("fall")
+
+func exit(host: Node) -> void:
+	host = host as Player
+	host.anim_player.play("reset")
+	host.reset_modulate()

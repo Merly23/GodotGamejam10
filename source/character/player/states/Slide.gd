@@ -5,6 +5,8 @@ export var jump_force := 350
 func enter(host: Node) -> void:
 	host = host as Player
 	host.motion.x = 0
+	host.stop_anim()
+	host.anim_player.play("hang")
 
 func input(host: Node, event: InputEvent) -> void:
 	host = host as Player
@@ -37,3 +39,8 @@ func update(host: Node, delta: float) -> void:
 
 	elif not host.is_on_slide_wall():
 		host.fsm.change_state("fall")
+
+func exit(host: Node) -> void:
+	host = host as Player
+	host.anim_player.play("reset")
+	host.call_deferred("reset_modulate")
