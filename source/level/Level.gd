@@ -11,7 +11,7 @@ onready var player := $Characters/Player
 onready var terrain := $Terrain
 
 onready var interface := $Interface as Interface
-onready var game_cam := $GameCam
+onready var game_cam := $GameCam as Camera2D
 
 onready var events := $Events.get_children()
 onready var checkpoints := $Checkpoints.get_children()
@@ -29,6 +29,7 @@ func _ready() -> void:
 	get_tree().call_group("RaphiePlate", "set_max_energy", player.max_energy)
 
 	game_cam.change_target(player)
+	game_cam.limit_bottom = bottom_limit
 
 	for event in events:
 
