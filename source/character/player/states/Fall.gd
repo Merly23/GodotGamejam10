@@ -4,8 +4,8 @@ export var max_speed := 450
 export var acceleration := 20
 export var friction := 0.4
 
-export var fall_damage := 10
-export var fall_damage_threshold := 1500
+export var fall_threshold := 1200
+export var fall_margin := 500
 
 onready var timer := $Timer as Timer
 
@@ -56,9 +56,9 @@ func update(host: Node, delta: float) -> void:
 	elif host.is_on_floor():
 
 		Audio.play_sfx("player_land")
-
-		var damage = int(host.motion.y / fall_damage_threshold) * fall_damage
-
+	
+		var damage = _calc_fall_damage(host.motion.y)
+		
 		if damage:
 			host.hurt(host.global_position, damage)
 
@@ -78,3 +78,13 @@ func exit(host: Node) -> void:
 	host.spawn_land_dust()
 	host = host as Character
 	host.motion.y = 0
+
+func _calc_fall_damage(height: int) -> int:
+	var damage := 0
+	
+	if height > fall_threshold:
+		damage = 100 * (height - fall_threshold) / fall_margin
+	
+	print("Height: %d, Damage: %d" % [height, damage])
+	
+	return damage
