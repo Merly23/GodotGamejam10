@@ -1152,6 +1152,9 @@ anims/walk = SubResource( 10 )
 texture = ExtResource( 7 )
 offset = Vector2( 0, -31 )
 
+[node name="Upper" parent="." index="10"]
+visible = false
+
 [node name="AnimationPlayer" parent="Upper" index="0"]
 anims/air_attack = SubResource( 11 )
 anims/attack = SubResource( 12 )
@@ -1253,14 +1256,14 @@ position = Vector2( 0, -31 )
 [node name="Rays" type="Node2D" parent="." index="15"]
 
 [node name="Upper" type="RayCast2D" parent="Rays" index="0"]
-position = Vector2( 0, -43 )
+position = Vector2( 0, -52 )
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 11 )
 collision_mask = 2
 
 [node name="Lower" type="RayCast2D" parent="Rays" index="1"]
-position = Vector2( 0, -33 )
+position = Vector2( 0, -46 )
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 11 )
