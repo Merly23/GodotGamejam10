@@ -29,6 +29,11 @@ func update(host: Node, delta: float) -> void:
 		host.motion.x = -speed
 		host.flip_left()
 
+	if host.is_on_floor():
+		host.motion.y = 0
+	else:
+		host.motion.y += Global.GRAVITY * delta
+
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
 	
 	if host.is_on_wall():
