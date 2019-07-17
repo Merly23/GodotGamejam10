@@ -20,6 +20,9 @@ func input(host: Node, event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_down"):
 		host.cliff_timer.start()
 		host.fsm.change_state("slide")
+	
+	elif event.is_action_pressed("dash") and host.can_dash():
+		host.fsm.change_state("dash")
 
 func update(host: Node, delta: float) -> void:
 	host = host as Player

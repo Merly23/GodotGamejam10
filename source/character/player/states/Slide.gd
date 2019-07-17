@@ -29,6 +29,9 @@ func input(host: Node, event: InputEvent) -> void:
 
 		host.flip()
 		host.fsm.change_state("jump")
+	
+	elif event.is_action_pressed("dash") and host.can_dash():
+		host.fsm.change_state("dash")
 
 func update(host: Node, delta: float) -> void:
 	host = host as Player
