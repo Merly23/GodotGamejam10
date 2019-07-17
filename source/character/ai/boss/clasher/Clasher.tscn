@@ -192,6 +192,7 @@ radius = 14.0
 [node name="Clasher" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_health = 2000
+bite_damage = 40
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/attack = SubResource( 1 )

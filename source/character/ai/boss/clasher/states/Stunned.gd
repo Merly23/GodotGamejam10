@@ -16,3 +16,8 @@ func enter(host: Node) -> void:
 
 func _on_StunTimer_timeout(host: Clasher) -> void:
 	host.fsm.change_state("seek")
+
+func exit(host: Node) -> void:
+	host = host as Clasher
+
+	stun_timer.stop()
