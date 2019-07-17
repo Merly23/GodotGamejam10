@@ -217,7 +217,7 @@ script = ExtResource( 10 )
 __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }
-stun_time = 5.0
+stun_time = 2.5
 
 [node name="StunTimer" type="Timer" parent="FiniteStateMachine/Stunned" index="0"]
 
