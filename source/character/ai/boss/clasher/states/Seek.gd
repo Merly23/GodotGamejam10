@@ -1,6 +1,6 @@
 extends State
 
-export var speed = 200
+export var speed = 160
 
 func enter(host: Node) -> void:
 	host = host as Clasher
@@ -23,11 +23,15 @@ func update(host: Node, delta: float) -> void:
 	else:
 		host.fsm.change_state("idle")
 	
+	if host.is_on_floor():
+		host.motion.y = 0
+	else:
+		host.motion.y += Global.GRAVITY * delta
+	
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
-	# host.fsm.change_state("dash_attack")
 	
 	if host.is_player_in_attack_range():
-		host.fsm.change_state("idle")
+		host.fsm.change_state("ram")
 	
 func exit(host: Node) -> void:
 	host = host as Clasher

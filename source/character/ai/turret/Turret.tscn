@@ -251,7 +251,7 @@ extents = Vector2( 14, 4 )
 
 [sub_resource type="RectangleShape2D" id=5]
 
-[node name="Turret" index="0" instance=ExtResource( 1 )]
+[node name="Turret" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 flip_on_start = false
 team_number = 1

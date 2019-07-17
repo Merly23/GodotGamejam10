@@ -1,7 +1,7 @@
 extends Boss
 class_name Clasher
 
-export var attack_range := 80
+export var attack_range := 150
 
 func _ready():
 	fsm.change_state("idle")
@@ -9,6 +9,8 @@ func _ready():
 func _register_states() -> void:
 	fsm.register_state("idle", "Idle")
 	fsm.register_state("seek", "Seek")
+	fsm.register_state("ram", "Ram")
+	fsm.register_state("stunned", "Stunned")
 
 func is_player_in_attack_range() -> bool:
 	return _is_player_in_range(attack_range)

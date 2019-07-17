@@ -35,6 +35,5 @@ func exit(host: Node) -> void:
 	bounces = 0
 
 func _on_PostBounceTimer_timeout(host: Android) -> void:
-	print(bounces, "/", max_bounces)
 	if bounces >= max_bounces:
 		host.fsm.change_state("shoot_attack")
