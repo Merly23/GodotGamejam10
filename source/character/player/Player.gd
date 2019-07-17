@@ -169,6 +169,8 @@ func slash() -> void:
 
 	for body in bodies:
 		if body is Character and body.team_number != team_number:
+			if not body.dead:
+				get_tree().call_group("GameCam", "shake", 4)
 			body.hurt(global_position, sword_damage)
 			_set_energy(energy + sword_damage * recharge_modifier)
 
