@@ -15,6 +15,7 @@ const Level := {
 var next_scene := ""
 var prev_scene := ""
 
+var changing := false
 var show_bar := false
 
 onready var scene_loader := $SceneLoader as SceneLoader
@@ -22,6 +23,11 @@ onready var anim := $AnimationPlayer as AnimationPlayer
 onready var progress_bar := $TextureProgress as TextureProgress
 
 func change(scene: String, show_bar: bool = false) -> void:
+	
+	if changing:
+		return
+	
+	changing = true
 	self.show_bar = show_bar
 	prev_scene = next_scene
 	next_scene = scene
@@ -41,6 +47,7 @@ func _on_ProgressBar_value_changed(value: float) -> void:
 func _on_SceneLoader_scene_loaded(scene) -> void:
 	get_tree().change_scene_to(scene)
 	anim.play("fade_in")
+	changing = false
 
 func _on_SceneLoader_stage_changed(stage) -> void:
 	progress_bar.value = stage
