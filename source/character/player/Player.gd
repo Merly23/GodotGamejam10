@@ -145,7 +145,7 @@ func hurt(origin: Vector2, damage: int) -> void:
 
 	if dashing or not invulnerability_timer.is_stopped():
 		return
-	
+
 	invulnerability_timer.start(invulnerability_time)
 	.hurt(origin, damage)
 

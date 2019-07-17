@@ -11,7 +11,7 @@ func input(host: Node, event: InputEvent) -> void:
 func update(host: Node, delta: float) -> void:
 	host = host as Clasher
 
-	if host.is_active() and not host.is_player_in_attack_range():
+	if host.is_active() and not host.is_player_in_vision():
 		host.fsm.change_state("seek")
 
 func exit(host: Node) -> void:

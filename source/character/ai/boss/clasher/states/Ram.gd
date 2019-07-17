@@ -10,10 +10,10 @@ func enter(host: Node) -> void:
 	host = host as Clasher
 	host.anim_player.play("walk")
 	direction = host.get_player_direction()
-	
+
 	if not ram_timer.is_connected("timeout", self, "_on_RamTimer_timeout"):
 		ram_timer.connect("timeout", self, "_on_RamTimer_timeout", [ host ])
-	
+
 	ram_timer.start(ram_time)
 
 func input(host: Node, event: InputEvent) -> void:
@@ -35,12 +35,12 @@ func update(host: Node, delta: float) -> void:
 		host.motion.y += Global.GRAVITY * delta
 
 	host.move_and_slide_with_snap(host.motion, Global.DOWN, Global.UP)
-	
+
 	if host.is_on_wall():
 		ram_timer.stop()
 		get_tree().call_group("GameCam", "shake", 25)
 		host.fsm.change_state("stunned")
-	
+
 func exit(host: Node) -> void:
 	host = host as Clasher
 

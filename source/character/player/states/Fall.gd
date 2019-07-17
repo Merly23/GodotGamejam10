@@ -56,9 +56,9 @@ func update(host: Node, delta: float) -> void:
 	elif host.is_on_floor():
 
 		Audio.play_sfx("player_land")
-	
+
 		var damage = _calc_fall_damage(host.motion.y)
-		
+
 		if damage:
 			host.hurt(host.global_position, damage)
 
@@ -81,10 +81,10 @@ func exit(host: Node) -> void:
 
 func _calc_fall_damage(height: int) -> int:
 	var damage := 0
-	
+
 	if height > fall_threshold:
 		damage = 100 * (height - fall_threshold) / fall_margin
-	
+
 	print("Height: %d, Damage: %d" % [height, damage])
-	
+
 	return damage
