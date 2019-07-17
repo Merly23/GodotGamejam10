@@ -74,8 +74,8 @@ func hurt(origin: Vector2, damage: int) -> void:
 
 	_tween_hurt()
 	knockback(origin, damage * 20)
-
 	Audio.play_sfx("player_hurt")
+	spawn_hit(origin)
 	_set_health(health - damage)
 	emit_signal("hurt", damage)
 
@@ -95,6 +95,9 @@ func stop_anim() -> void:
 	upper.anim_player.stop()
 	lower.anim_player.stop()
 
+func spawn_hit(origin: Vector2) -> void:
+	particle_spawner.spawn_hit(origin, global_position, 31)
+	
 func spawn_jump_dust() -> void:
 	particle_spawner.spawn_jump_dust(global_position)
 
