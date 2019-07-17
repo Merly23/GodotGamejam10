@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://source/character/ai/boss/Boss.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/boss/clasher/Clasher.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://graphics/images/characters/boss-alien_walk.png" type="Texture" id=5]
 [ext_resource path="res://source/character/ai/boss/clasher/states/Idle.gd" type="Script" id=6]
 [ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=7]
+[ext_resource path="res://source/character/ai/boss/clasher/states/Seek.gd" type="Script" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
@@ -170,7 +171,7 @@ radius = 14.0
 
 [node name="Clasher" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-team_number = 0
+max_health = 2000
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/attack = SubResource( 1 )
@@ -186,6 +187,12 @@ visible = false
 
 [node name="Idle" type="Node" parent="FiniteStateMachine" index="1"]
 script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
+
+[node name="Seek" type="Node" parent="FiniteStateMachine" index="2"]
+script = ExtResource( 8 )
 __meta__ = {
 "_editor_icon": ExtResource( 7 )
 }

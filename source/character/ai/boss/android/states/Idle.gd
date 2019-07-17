@@ -2,6 +2,7 @@ extends State
 
 func enter(host: Node) -> void:
 	host = host as Android
+	host.motion.x = 0
 	host.anim_player.play("idle")
 
 func input(host: Node, event: InputEvent) -> void:
@@ -15,6 +16,3 @@ func update(host: Node, delta: float) -> void:
 
 func exit(host: Node) -> void:
 	host = host as Android
-
-func _on_AttackTimer_timeout(host: Android) -> void:
-	pass

@@ -3,6 +3,9 @@ class_name Boss
 
 var active := false
 
+func _ready():
+	set_physics_process(false)
+
 func knockback(origin: Vector2, knockback: int) -> void:
 	pass # overwrite, so it does not have a knockback
 

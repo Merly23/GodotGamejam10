@@ -10,8 +10,8 @@ func spawn_explosion(anim_name: String, spawn_position: Vector2, offset: int) ->
 func spawn_hit(origin: Vector2, spawn_position: Vector2, offset: int) -> void:
 	var hit = Instance.Hit()
 	hit.global_position = spawn_position - Vector2(0, offset)
-	hit.look_at(origin)
 	get_tree().current_scene.add_child(hit)
+	hit.look_at(origin - Vector2(0, offset))
 	hit.play()
 
 func spawn_jump_dust(spawn_position: Vector2) -> void:

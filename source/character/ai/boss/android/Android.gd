@@ -6,7 +6,6 @@ export var dash_damage = 20
 
 func _ready() -> void:
 	fsm.change_state("idle")
-	set_physics_process(false)
 
 func _register_states() -> void:
 	fsm.register_state("idle", "Idle")
