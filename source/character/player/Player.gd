@@ -10,6 +10,8 @@ var dashing := false
 
 export var max_energy := 100
 
+export var invulnerability_time := 0.2
+
 export var sword_damage := 2
 export var recharge_modifier := 0.2
 export var bullet_speed := 1600
@@ -29,6 +31,7 @@ onready var dash_timer := $DashTimer as Timer
 onready var cliff_timer := $CliffTimer as Timer
 onready var shoot_timer := $ShootTimer as Timer
 onready var slow_motion_timer := $SlowMotionTimer as Timer
+onready var invulnerability_timer := $InvulnerabilityTimer as Timer
 
 onready var capsule := collision_shape.shape as CapsuleShape2D
 
@@ -140,9 +143,10 @@ func play_step():
 
 func hurt(origin: Vector2, damage: int) -> void:
 
-	if dashing:
+	if dashing or not invulnerability_timer.is_stopped():
 		return
-
+	
+	invulnerability_timer.start(invulnerability_time)
 	.hurt(origin, damage)
 
 func restore() -> void:
