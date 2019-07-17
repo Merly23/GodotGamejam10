@@ -46,6 +46,7 @@ onready var sfx = {
 }
 
 func play_ambience() -> void:
+	current_bar = 31
 	play_ambience = true
 
 func stop_ambience() -> void:

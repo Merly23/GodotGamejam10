@@ -22,7 +22,7 @@
 [ext_resource path="res://data/dialoques/level_1/infection_01.tres" type="Resource" id=20]
 [ext_resource path="res://data/dialoques/level_1/alarm_01.tres" type="Resource" id=21]
 
-[node name="Level1" index="0" instance=ExtResource( 1 )]
+[node name="Level1" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 bottom_limit = 2800
 
