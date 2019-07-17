@@ -18,10 +18,14 @@ func _register_states() -> void:
 	fsm.register_state("stunned", "Stunned")
 
 func bite() -> void:
-	pass
+	var bodies = hit_area.get_overlapping_bodies()
 
-func ram() -> void:
-	pass
+	# Audio.play_sfx("player_slash")
+
+	for body in bodies:
+		if body is Character and body.team_number != team_number:
+			if not body.dead:
+				body.hurt(global_position, bite_damage)
 
 func is_player_in_vision() -> bool:
 	return _is_player_in_range(vision)
@@ -38,3 +42,7 @@ func _is_player_in_range(distance: int) -> bool:
 		return false
 
 	return global_position.distance_to(Global.Player.global_position) < distance
+
+func _on_RamArea_body_entered(body: PhysicsBody2D) -> void:
+	if body is Player:
+		body.hurt(global_position - Vector2(0, 50), ram_damage)
