@@ -35,3 +35,10 @@ func change_state(new_state: String) -> void:
 	current_state.enter(host)
 
 	emit_signal("state_changed", current_state.name)
+
+func is_current_state(state_name) -> bool:
+
+	if not current_state:
+		return false
+
+	return current_state.name == state_name

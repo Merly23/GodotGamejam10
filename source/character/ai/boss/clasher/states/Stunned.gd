@@ -6,6 +6,7 @@ onready var stun_timer := $StunTimer as Timer
 
 func enter(host: Node) -> void:
 	host = host as Clasher
+	host.hurt(host.global_position, 10)
 	host.anim_player.play("idle", -1, 0.3)
 
 	if not stun_timer.is_connected("timeout", self, "_on_StunTimer_timeout"):

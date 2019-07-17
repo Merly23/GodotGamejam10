@@ -38,7 +38,7 @@ func update(host: Node, delta: float) -> void:
 
 	if host.is_on_wall():
 		ram_timer.stop()
-		get_tree().call_group("GameCam", "shake", 25)
+		get_tree().call_group("GameCam", "shake", 35, 0.18, 4)
 		host.fsm.change_state("stunned")
 
 func exit(host: Node) -> void:

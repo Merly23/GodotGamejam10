@@ -44,5 +44,9 @@ func _is_player_in_range(distance: int) -> bool:
 	return global_position.distance_to(Global.Player.global_position) < distance
 
 func _on_RamArea_body_entered(body: PhysicsBody2D) -> void:
+
+	if not fsm.is_current_state("Ram"):
+		return
+
 	if body is Player:
 		body.hurt(global_position - Vector2(0, 50), ram_damage)
