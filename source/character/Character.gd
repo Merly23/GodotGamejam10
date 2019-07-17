@@ -173,6 +173,10 @@ func get_current_frame() -> int:
 	return lower.sprite.frame
 
 func knockback(origin: Vector2, knockback:int) -> void:
+	
+	if knockback < 10:
+		return
+	
 	var direction = origin.direction_to(global_position)
 
 	tween.interpolate_property(self, "motion", direction * knockback, Vector2(0, 0), 0.2, Tween.TRANS_QUAD, Tween.EASE_OUT)
