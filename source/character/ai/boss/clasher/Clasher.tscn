@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/character/ai/boss/Boss.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/character/ai/boss/clasher/Clasher.gd" type="Script" id=2]
 [ext_resource path="res://graphics/images/characters/boss-alien_attack.png" type="Texture" id=3]
 [ext_resource path="res://graphics/images/characters/boss-alien_idle.png" type="Texture" id=4]
 [ext_resource path="res://graphics/images/characters/boss-alien_walk.png" type="Texture" id=5]
+[ext_resource path="res://source/character/ai/boss/clasher/states/Idle.gd" type="Script" id=6]
+[ext_resource path="res://addons/finite_state_machine/icons/state.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
@@ -163,6 +165,9 @@ tracks/3/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 14.0
+
 [node name="Clasher" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 team_number = 0
@@ -179,8 +184,11 @@ hframes = 8
 [node name="Upper" parent="." index="4"]
 visible = false
 
-[node name="CollisionShape2D" parent="." index="6"]
-visible = false
+[node name="Idle" type="Node" parent="FiniteStateMachine" index="1"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 7 )
+}
 
-[node name="CollisionShape2D" parent="HitArea" index="0"]
-visible = false
+[node name="CollisionShape2D" parent="." index="6"]
+shape = SubResource( 4 )

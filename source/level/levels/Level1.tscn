@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://source/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/level/levels/Level1.gd" type="Script" id=2]
@@ -15,12 +15,13 @@
 [ext_resource path="res://source/character/ai/drone/Drone.tscn" type="PackedScene" id=13]
 [ext_resource path="res://source/character/ai/patrol/Patrol.tscn" type="PackedScene" id=14]
 [ext_resource path="res://source/character/ai/boss/android/Android.tscn" type="PackedScene" id=15]
-[ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=16]
-[ext_resource path="res://data/dialoques/level_1/boot_01.tres" type="Resource" id=17]
-[ext_resource path="res://source/cutscene/Event.tscn" type="PackedScene" id=18]
-[ext_resource path="res://data/dialoques/level_1/okay_01.tres" type="Resource" id=19]
-[ext_resource path="res://data/dialoques/level_1/infection_01.tres" type="Resource" id=20]
-[ext_resource path="res://data/dialoques/level_1/alarm_01.tres" type="Resource" id=21]
+[ext_resource path="res://source/character/ai/boss/clasher/Clasher.tscn" type="PackedScene" id=16]
+[ext_resource path="res://source/cutscene/Cutscene.tscn" type="PackedScene" id=17]
+[ext_resource path="res://data/dialoques/level_1/boot_01.tres" type="Resource" id=18]
+[ext_resource path="res://source/cutscene/Event.tscn" type="PackedScene" id=19]
+[ext_resource path="res://data/dialoques/level_1/okay_01.tres" type="Resource" id=20]
+[ext_resource path="res://data/dialoques/level_1/infection_01.tres" type="Resource" id=21]
+[ext_resource path="res://data/dialoques/level_1/alarm_01.tres" type="Resource" id=22]
 
 [node name="Level1" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -260,6 +261,9 @@ position = Vector2( 897, 867 )
 can_move = false
 max_health = 350
 
+[node name="Clasher" parent="Enemies" index="20" instance=ExtResource( 16 )]
+position = Vector2( 3122, 2434 )
+
 [node name="Player" parent="Characters" index="0"]
 position = Vector2( 28, 386 )
 flip_on_start = false
@@ -269,58 +273,58 @@ slow_motion_cost = 5
 shoot_cost = 5
 has_virus = false
 
-[node name="Boot" parent="Events" index="0" instance=ExtResource( 16 )]
+[node name="Boot" parent="Events" index="0" instance=ExtResource( 17 )]
 position = Vector2( 27, 363 )
 delay = 0.2
 targets = [ NodePath("../..") ]
 on_signal = "ready"
-speeches = [ ExtResource( 17 ) ]
+speeches = [ ExtResource( 18 ) ]
 
-[node name="Attacked" parent="Events" index="1" instance=ExtResource( 18 )]
+[node name="Attacked" parent="Events" index="1" instance=ExtResource( 19 )]
 targets = [ NodePath("../../Enemies/Dummy"), NodePath("../../Enemies/Dummy2") ]
 on_signal = "died"
 
-[node name="Okay" parent="Events" index="2" instance=ExtResource( 16 )]
+[node name="Okay" parent="Events" index="2" instance=ExtResource( 17 )]
 position = Vector2( 27, 363 )
 delay = 0.2
 targets = [ NodePath("../Attacked") ]
 on_signal = "happened"
-speeches = [ ExtResource( 19 ) ]
-
-[node name="Infection" parent="Events" index="3" instance=ExtResource( 16 )]
-position = Vector2( 2530, 234 )
-delay = 0.5
-targets = [ NodePath("../../Characters/Player") ]
-on_enter = true
-area_extents = Vector2( 100, 300 )
 speeches = [ ExtResource( 20 ) ]
 
-[node name="Alert" parent="Events" index="4" instance=ExtResource( 16 )]
-position = Vector2( 3200, 234 )
+[node name="Infection" parent="Events" index="3" instance=ExtResource( 17 )]
+position = Vector2( 2530, 234 )
 delay = 0.5
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
 area_extents = Vector2( 100, 300 )
 speeches = [ ExtResource( 21 ) ]
 
-[node name="Killed" parent="Events" index="5" instance=ExtResource( 18 )]
+[node name="Alert" parent="Events" index="4" instance=ExtResource( 17 )]
+position = Vector2( 3200, 234 )
+delay = 0.5
+targets = [ NodePath("../../Characters/Player") ]
+on_enter = true
+area_extents = Vector2( 100, 300 )
+speeches = [ ExtResource( 22 ) ]
+
+[node name="Killed" parent="Events" index="5" instance=ExtResource( 19 )]
 targets = [ NodePath("../../Enemies/Drone4"), NodePath("../../Enemies/Drone5"), NodePath("../../Enemies/Turret"), NodePath("../../Enemies/Turret2") ]
 on_signal = "died"
 required_events = [ NodePath("../Alert") ]
 
-[node name="Special" parent="Events" index="6" instance=ExtResource( 18 )]
+[node name="Special" parent="Events" index="6" instance=ExtResource( 19 )]
 on_input = true
 input_action = "special"
 input_time = 0.0
 required_events = [ NodePath("../Alert") ]
 
-[node name="Dash" parent="Events" index="7" instance=ExtResource( 18 )]
+[node name="Dash" parent="Events" index="7" instance=ExtResource( 19 )]
 on_input = true
 input_action = "dash"
 input_time = 0.0
 required_events = [ NodePath("../Special") ]
 
-[node name="EnterBoss" parent="Events" index="8" instance=ExtResource( 18 )]
+[node name="EnterBoss" parent="Events" index="8" instance=ExtResource( 19 )]
 position = Vector2( 1062, 674 )
 targets = [ NodePath("../../Characters/Player") ]
 on_enter = true
@@ -335,6 +339,7 @@ smoothing_speed = 10.0
 [connection signal="died" from="Enemies/Android" to="." method="stop_song_layer" binds= [ 2, 2.0 ]]
 [connection signal="happened" from="Events/Attacked" to="Objects/Door2" method="open"]
 [connection signal="started" from="Events/Infection" to="Characters/Player" method="infect"]
+[connection signal="finished" from="Events/Alert" to="Interface" method="show_key" binds= [ "special" ]]
 [connection signal="finished" from="Events/Alert" to="Enemies/Turret" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Events/Alert" to="Enemies/Turret" method="enable_movement"]
 [connection signal="finished" from="Events/Alert" to="Enemies/Drone4" method="set_team_number" binds= [ 1 ]]
@@ -343,7 +348,6 @@ smoothing_speed = 10.0
 [connection signal="finished" from="Events/Alert" to="Enemies/Drone5" method="enable_movement"]
 [connection signal="finished" from="Events/Alert" to="Enemies/Turret2" method="set_team_number" binds= [ 1 ]]
 [connection signal="finished" from="Events/Alert" to="Enemies/Turret2" method="enable_movement"]
-[connection signal="finished" from="Events/Alert" to="Interface" method="show_key" binds= [ "special" ]]
 [connection signal="started" from="Events/Alert" to="Objects/Console" method="alert"]
 [connection signal="started" from="Events/Alert" to="Objects/ComputerServer" method="alert"]
 [connection signal="started" from="Events/Alert" to="Objects/Scanner" method="alert"]
@@ -352,7 +356,7 @@ smoothing_speed = 10.0
 [connection signal="happened" from="Events/Dash" to="Interface" method="hide_key"]
 [connection signal="happened" from="Events/EnterBoss" to="Objects/Door7" method="lock"]
 [connection signal="happened" from="Events/EnterBoss" to="Objects/Door7" method="close"]
+[connection signal="happened" from="Events/EnterBoss" to="." method="play_song_layer" binds= [ 2, 2.0 ]]
 [connection signal="happened" from="Events/EnterBoss" to="Enemies/Android" method="enable_movement"]
 [connection signal="happened" from="Events/EnterBoss" to="Enemies/Android" method="setup_enemy_plate"]
 [connection signal="happened" from="Events/EnterBoss" to="Enemies/Android" method="activate"]
-[connection signal="happened" from="Events/EnterBoss" to="." method="play_song_layer" binds= [ 2, 2.0 ]]
