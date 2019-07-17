@@ -40,7 +40,7 @@ onready var lower_ray := $Rays/Lower as RayCast2D
 onready var barrel := $ProjectileHook
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("special") and has_virus:
+	if event.is_action_pressed("special") and has_virus and not dead:
 
 		if not energy - slow_motion_cost >= 0 and not slow_motion.active:
 			emit_signal("no_energy_left")
