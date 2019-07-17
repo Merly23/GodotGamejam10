@@ -22,11 +22,11 @@ func _register_states():
 
 func flip_left() -> void:
 	.flip_left()
-	barrel.position.x = -14
+	barrel.position.x = -18
 
 func flip_right() -> void:
 	.flip_right()
-	barrel.position.x = 14
+	barrel.position.x = 18
 
 func knockback(origin: Vector2, knockback:int) -> void:
 	pass

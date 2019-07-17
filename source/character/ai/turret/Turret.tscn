@@ -312,7 +312,7 @@ position = Vector2( -1, -4 )
 shape = SubResource( 4 )
 
 [node name="Barrel" type="Position2D" parent="." index="8"]
-position = Vector2( -14, -37 )
+position = Vector2( -18, -17 )
 
 [node name="HitArea" parent="." index="9"]
 monitoring = false
