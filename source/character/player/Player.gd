@@ -11,7 +11,7 @@ var dashing := false
 export var max_energy := 100
 
 export var sword_damage := 2
-export var recharge_modifier := 5
+export var recharge_modifier := 0.2
 export var bullet_speed := 1600
 export var bullet_damage := 1
 export var bullet_cooldown := 0.3

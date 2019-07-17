@@ -1104,13 +1104,17 @@ height = 26.0
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 28, 36 )
 
-[node name="Player" instance=ExtResource( 1 )]
+[node name="Player" index="0" instance=ExtResource( 1 )]
 collision_layer = 1
 script = ExtResource( 2 )
 max_health = 100
 sword_damage = 40
 bullet_speed = 800
 bullet_damage = 8
+dash_cost = 10
+dash_cooldown = 0.5
+slow_motion_cost = 10
+shoot_cost = 6
 has_virus = true
 
 [node name="Tick" type="Timer" parent="." index="1"]
