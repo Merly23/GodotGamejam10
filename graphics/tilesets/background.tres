@@ -1233,3 +1233,13 @@
 131/navigation_offset = Vector2( 0, 0 )
 131/shapes = [  ]
 131/z_index = 0
+132/name = "metro-walls.png 132"
+132/texture = ExtResource( 2 )
+132/tex_offset = Vector2( 0, 0 )
+132/modulate = Color( 1, 1, 1, 1 )
+132/region = Rect2( 0, 160, 288, 96 )
+132/tile_mode = 0
+132/occluder_offset = Vector2( 0, 0 )
+132/navigation_offset = Vector2( 0, 0 )
+132/shapes = [  ]
+132/z_index = 0
