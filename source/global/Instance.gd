@@ -9,6 +9,8 @@ const AfterImage = preload("res://source/particles/AfterImage.tscn")
 
 const Projectile = preload("res://source/projectiles/Projectile.tscn")
 
+const Rock = preload("res://source/objects/Rock.tscn")
+
 const KeyButton = preload("res://source/interface/KeyButton.tscn")
 
 const Speech = preload("res://source/cutscene/Speech.tscn")
@@ -22,6 +24,8 @@ func Hit(): return Hit.instance()
 func AfterImage(): return AfterImage.instance()
 
 func Projectile(): return Projectile.instance()
+
+func Rock(): return Rock.instance()
 
 func KeyButton(): return KeyButton.instance()
 

@@ -189,7 +189,7 @@ radius = 14.0
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 14.0
 
-[node name="Clasher" index="0" instance=ExtResource( 1 )]
+[node name="Clasher" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_health = 2000
 bite_damage = 40

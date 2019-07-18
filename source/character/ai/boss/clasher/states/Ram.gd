@@ -38,6 +38,7 @@ func update(host: Node, delta: float) -> void:
 
 	if host.is_on_wall():
 		ram_timer.stop()
+		get_tree().call_group("RockSpawner", "spawn_rocks", host.global_position, 120, rand_range(2, 3))
 		get_tree().call_group("GameCam", "shake", 35, 0.18, 4)
 		host.fsm.change_state("stunned")
 
