@@ -10,6 +10,11 @@ var motion = 0
 var hit := false
 
 onready var tween := $Tween as Tween
+onready var break_player := $BreakPlayer
+onready var impact_player := $ImpactPlayer
+
+func _ready() -> void:
+	break_player.play()
 
 func _physics_process(delta: float) -> void:
 
@@ -32,6 +37,7 @@ func _tween_hit() -> void:
 	tween.interpolate_property(self, "motion", motion, 0, 0.2, Tween.TRANS_QUAD, Tween.EASE_IN)
 	tween.interpolate_property(self, "modulate:a", 1.0, 0.0, 0.2, Tween.TRANS_QUAD, Tween.EASE_IN, 0.2)
 	tween.start()
+	impact_player.play()
 
 func _on_Tween_tween_all_completed() -> void:
 	queue_free()

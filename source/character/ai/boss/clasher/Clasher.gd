@@ -50,3 +50,4 @@ func _on_RamArea_body_entered(body: PhysicsBody2D) -> void:
 
 	if body is Player:
 		body.hurt(global_position - Vector2(0, 50), ram_damage)
+		Audio.play_sfx("alien_ram_player")

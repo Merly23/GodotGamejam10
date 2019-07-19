@@ -40,6 +40,7 @@ func update(host: Node, delta: float) -> void:
 		ram_timer.stop()
 		get_tree().call_group("RockSpawner", "spawn_rocks", (Global.Player.global_position + host.global_position) / 2, 150, rand_range(2, 4))
 		get_tree().call_group("GameCam", "shake", 35, 0.18, 4)
+		Audio.play_sfx("alien_ram_player")
 		host.fsm.change_state("stunned")
 
 func exit(host: Node) -> void:

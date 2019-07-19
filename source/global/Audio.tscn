@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://source/global/Audio.gd" type="Script" id=1]
 [ext_resource path="res://addons/audio_booth/source/music/MusicBooth.gd" type="Script" id=2]
@@ -23,16 +23,18 @@
 [ext_resource path="res://audio/sfx/slowMoEnd.wav" type="AudioStream" id=21]
 [ext_resource path="res://audio/sfx/btnHover.wav" type="AudioStream" id=22]
 [ext_resource path="res://audio/sfx/btnPress.wav" type="AudioStream" id=23]
-[ext_resource path="res://audio/sfx/openMenu.wav" type="AudioStream" id=24]
-[ext_resource path="res://audio/sfx/closeMenu.wav" type="AudioStream" id=25]
-[ext_resource path="res://audio/sfx/playerGunshot.wav" type="AudioStream" id=26]
-[ext_resource path="res://audio/sfx/glitch.wav" type="AudioStream" id=27]
-[ext_resource path="res://audio/sfx/type.wav" type="AudioStream" id=28]
-[ext_resource path="res://audio/sfx/checkpointReached.wav" type="AudioStream" id=29]
-[ext_resource path="res://audio/sfx/tick1.wav" type="AudioStream" id=30]
-[ext_resource path="res://audio/sfx/tick2.wav" type="AudioStream" id=31]
-[ext_resource path="res://audio/sfx/tick3.wav" type="AudioStream" id=32]
-[ext_resource path="res://audio/sfx/tick4.wav" type="AudioStream" id=33]
+[ext_resource path="res://audio/sfx/ramPlayer.wav" type="AudioStream" id=24]
+[ext_resource path="res://audio/sfx/ramWall.wav" type="AudioStream" id=25]
+[ext_resource path="res://audio/sfx/openMenu.wav" type="AudioStream" id=26]
+[ext_resource path="res://audio/sfx/closeMenu.wav" type="AudioStream" id=27]
+[ext_resource path="res://audio/sfx/playerGunshot.wav" type="AudioStream" id=28]
+[ext_resource path="res://audio/sfx/glitch.wav" type="AudioStream" id=29]
+[ext_resource path="res://audio/sfx/type.wav" type="AudioStream" id=30]
+[ext_resource path="res://audio/sfx/checkpointReached.wav" type="AudioStream" id=31]
+[ext_resource path="res://audio/sfx/tick1.wav" type="AudioStream" id=32]
+[ext_resource path="res://audio/sfx/tick2.wav" type="AudioStream" id=33]
+[ext_resource path="res://audio/sfx/tick3.wav" type="AudioStream" id=34]
+[ext_resource path="res://audio/sfx/tick4.wav" type="AudioStream" id=35]
 
 [node name="Audio" type="Node"]
 pause_mode = 2
@@ -166,52 +168,63 @@ stream = ExtResource( 23 )
 volume_db = -2.0
 bus = "Effects"
 
+[node name="Alien" type="Node" parent="SFX"]
+
+[node name="RamPlayer" type="AudioStreamPlayer" parent="SFX/Alien"]
+stream = ExtResource( 24 )
+bus = "Effects"
+
+[node name="RamWall" type="AudioStreamPlayer" parent="SFX/Alien"]
+stream = ExtResource( 25 )
+bus = "Effects"
+
 [node name="Menu" type="Node" parent="SFX"]
 editor/display_folded = true
 
 [node name="Open" type="AudioStreamPlayer" parent="SFX/Menu"]
-stream = ExtResource( 24 )
-bus = "Effects"
-
-[node name="Close" type="AudioStreamPlayer" parent="SFX/Menu"]
-stream = ExtResource( 25 )
-bus = "Effects"
-
-[node name="GunShot" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 26 )
 bus = "Effects"
 
-[node name="Glitch" type="AudioStreamPlayer" parent="SFX"]
+[node name="Close" type="AudioStreamPlayer" parent="SFX/Menu"]
 stream = ExtResource( 27 )
-volume_db = -24.0
 bus = "Effects"
 
-[node name="Type" type="AudioStreamPlayer" parent="SFX"]
+[node name="GunShot" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 28 )
 volume_db = -6.0
 bus = "Effects"
 
-[node name="Checkpoint" type="AudioStreamPlayer" parent="SFX"]
+[node name="Glitch" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 29 )
+volume_db = -24.0
+bus = "Effects"
+
+[node name="Type" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 30 )
+volume_db = -6.0
+bus = "Effects"
+
+[node name="Checkpoint" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 31 )
 bus = "Effects"
 
 [node name="Tick1" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 30 )
-pitch_scale = 1.5
-bus = "Effects"
-
-[node name="Tick2" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource( 31 )
-pitch_scale = 1.5
-bus = "Effects"
-
-[node name="Tick3" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 32 )
 pitch_scale = 1.5
 bus = "Effects"
 
-[node name="Tick4" type="AudioStreamPlayer" parent="SFX"]
+[node name="Tick2" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource( 33 )
+pitch_scale = 1.5
+bus = "Effects"
+
+[node name="Tick3" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 34 )
+pitch_scale = 1.5
+bus = "Effects"
+
+[node name="Tick4" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 35 )
 pitch_scale = 1.5
 bus = "Effects"
 [connection signal="bar" from="MusicBooth" to="." method="_on_MusicBooth_bar"]
