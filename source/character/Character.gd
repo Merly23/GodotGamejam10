@@ -97,7 +97,7 @@ func stop_anim() -> void:
 
 func spawn_hit(origin: Vector2) -> void:
 	particle_spawner.spawn_hit(origin, global_position, 31)
-	
+
 func spawn_jump_dust() -> void:
 	particle_spawner.spawn_jump_dust(global_position)
 
@@ -173,10 +173,10 @@ func get_current_frame() -> int:
 	return lower.sprite.frame
 
 func knockback(origin: Vector2, knockback:int) -> void:
-	
+
 	if knockback < 10:
 		return
-	
+
 	var direction = origin.direction_to(global_position)
 
 	tween.interpolate_property(self, "motion", direction * knockback, Vector2(0, 0), 0.2, Tween.TRANS_QUAD, Tween.EASE_OUT)
