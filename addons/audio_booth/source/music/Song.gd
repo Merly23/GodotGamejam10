@@ -66,7 +66,7 @@ func stop(fade_time := 0.0) -> void:
 
 func play_layer(layer: int, fade_time := 0.0) -> void:
 
-	if players.size() > layer:
+	if players.size() < layer:
 		return
 
 	var player = players[layer]
