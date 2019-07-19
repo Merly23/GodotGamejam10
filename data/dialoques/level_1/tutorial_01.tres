@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 speaker = "Scientist"
-lines = [ "Ah, the new model...", "We'll need to test your combat skills.", "Please destroy all the tartgets." ]
+lines = [ "Ah, the new model...", "We'll need to test your combat skills.", "Please destroy all the targets." ]

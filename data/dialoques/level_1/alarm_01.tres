@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 speaker = "SYSTEM"
-lines = [ "ALERT!", "DISCOVERED ANOMALY!", "DEFENDING SYSTEMS ACTIVATED!" ]
+lines = [ "ALERT!", "ANOMALY DISCOVERED!!", "DEFENDING SYSTEMS ACTIVATED!" ]
