@@ -4,6 +4,7 @@ onready var rock := $Rock as Area2D
 
 export var damage := 25
 
+var speed := rand_range(250, 280)
 var motion = 0
 
 var hit := false
@@ -13,7 +14,7 @@ onready var tween := $Tween as Tween
 func _physics_process(delta: float) -> void:
 
 	if not hit:
-		motion = clamp(motion + 20, 0, 250)
+		motion = clamp(motion + 20, 0, speed)
 
 	rock.global_position.y += motion * delta
 
